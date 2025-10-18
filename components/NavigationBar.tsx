@@ -2,12 +2,16 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import SearchBar from '@/components/SearchBar';
+import RequestSkillModal from '@/components/RequestSkillModal';
+import SubmitSkillModal from '@/components/SubmitSkillModal';
 
 interface NavigationBarProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   onSearchClear: () => void;
   resultsCount?: number;
+  onRequestSkill?: () => void;
+  onSubmitSkill?: () => void;
 }
 
 export default function NavigationBar({
@@ -15,6 +19,8 @@ export default function NavigationBar({
   onSearchChange,
   onSearchClear,
   resultsCount,
+  onRequestSkill,
+  onSubmitSkill,
 }: NavigationBarProps) {
   const [showMiniSearch, setShowMiniSearch] = useState(false);
   const rafRef = useRef<number | null>(null);
@@ -91,15 +97,48 @@ export default function NavigationBar({
 
           {/* Right: Action Buttons */}
           <div className="flex items-center space-x-3 flex-shrink-0">
-            <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            <button 
+              onClick={onRequestSkill}
+              className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            >
               Request a skill
             </button>
-            <button className="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors">
+            <button 
+              onClick={onSubmitSkill}
+              className="px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+            >
               Submit
             </button>
           </div>
         </div>
       </div>
+      
     </nav>
+  );
+}
+
+// Modal Portal Component - renders modals outside of navbar
+export function NavigationModals({
+  isRequestModalOpen,
+  onRequestModalClose,
+  isSubmitModalOpen,
+  onSubmitModalClose,
+}: {
+  isRequestModalOpen: boolean;
+  onRequestModalClose: () => void;
+  isSubmitModalOpen: boolean;
+  onSubmitModalClose: () => void;
+}) {
+  return (
+    <>
+      <RequestSkillModal 
+        isOpen={isRequestModalOpen} 
+        onClose={onRequestModalClose} 
+      />
+      <SubmitSkillModal 
+        isOpen={isSubmitModalOpen} 
+        onClose={onSubmitModalClose} 
+      />
+    </>
   );
 }

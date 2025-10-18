@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SearchBar from '@/components/SearchBar';
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar, { NavigationModals } from '@/components/NavigationBar';
 import SkillCard from '@/components/SkillCard';
 import SkillCardSkeleton from '@/components/SkillCardSkeleton';
 import EmptyState from '@/components/EmptyState';
@@ -40,6 +40,8 @@ export default function HomeContent() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [showAllTags, setShowAllTags] = useState(false);
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
   // Load skills from search index
   useEffect(() => {
@@ -203,6 +205,8 @@ export default function HomeContent() {
         onSearchChange={setSearchQuery}
         onSearchClear={handleClearSearch}
         resultsCount={searchQuery ? searchResults.length : undefined}
+        onRequestSkill={() => setIsRequestModalOpen(true)}
+        onSubmitSkill={() => setIsSubmitModalOpen(true)}
       />
 
       {/* Hero Section with Main Search */}
@@ -450,6 +454,14 @@ export default function HomeContent() {
           </p>
         </div>
       </footer>
+      
+      {/* Modals rendered outside of other components */}
+      <NavigationModals
+        isRequestModalOpen={isRequestModalOpen}
+        onRequestModalClose={() => setIsRequestModalOpen(false)}
+        isSubmitModalOpen={isSubmitModalOpen}
+        onSubmitModalClose={() => setIsSubmitModalOpen(false)}
+      />
     </div>
   );
 }

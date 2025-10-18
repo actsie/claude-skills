@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Skill } from '@/lib/types';
 import TableOfContents from './TableOfContents';
-import NavigationBar from './NavigationBar';
+import NavigationBar, { NavigationModals } from './NavigationBar';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -15,6 +15,8 @@ interface SkillDetailClientProps {
 
 export default function SkillDetailClient({ skill, relatedSkills, children }: SkillDetailClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   
   // Scroll to top when component mounts
   useEffect(() => {
@@ -49,6 +51,8 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
         searchQuery={searchQuery}
         onSearchChange={handleSearchChange}
         onSearchClear={handleSearchClear}
+        onRequestSkill={() => setIsRequestModalOpen(true)}
+        onSubmitSkill={() => setIsSubmitModalOpen(true)}
       />
       
       {/* Header with Breadcrumbs */}
@@ -290,6 +294,14 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
           </aside>
         </div>
       </main>
+      
+      {/* Modals rendered outside of other components */}
+      <NavigationModals
+        isRequestModalOpen={isRequestModalOpen}
+        onRequestModalClose={() => setIsRequestModalOpen(false)}
+        isSubmitModalOpen={isSubmitModalOpen}
+        onSubmitModalClose={() => setIsSubmitModalOpen(false)}
+      />
     </div>
   );
 }
