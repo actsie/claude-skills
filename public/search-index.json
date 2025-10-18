@@ -1,5 +1,42 @@
 [
   {
+    "slug": "agentic-development",
+    "title": "Agentic Development",
+    "description": "Practical guidance for building software with AI agents using real-world workflows, model selection, prompt optimization, and parallel agent management.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "ai",
+      "agents",
+      "development",
+      "automation",
+      "workflow",
+      "ai-coding"
+    ],
+    "featured": false,
+    "excerpt": "Practical guidance for building software with AI agents, drawing from real-world experience developing a ~300k LOC TypeScript React application entirely with AI assistance.  <Callout type=\"tip\"> This ..."
+  },
+  {
+    "slug": "ai-vendor-evaluation",
+    "title": "AI Vendor Evaluation",
+    "description": "Comprehensive framework for systematically evaluating AI vendors and solutions to avoid costly mistakes in AI project procurement.",
+    "categories": [
+      "business",
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "vendor-evaluation",
+      "procurement",
+      "business-strategy",
+      "risk-management",
+      "decision-making"
+    ],
+    "featured": false,
+    "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
+  },
+  {
     "slug": "product-design",
     "title": "Product Design & UX Review",
     "description": "Design user-centered software products and conduct thorough design reviews using industry-standard UX principles, usability heuristics, and accessibility guidelines.",
