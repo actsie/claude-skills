@@ -195,5 +195,24 @@
     "featured": true,
     "featuredPriority": 2,
     "excerpt": "A comprehensive skill for conducting professional TypeScript code reviews, examining type safety, best practices, performance, security, and maintainability.  <Callout type=\"tip\"> This skill is perfec..."
+  },
+  {
+    "slug": "vibe-coding",
+    "title": "Vibe Coding",
+    "description": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality and understanding architectural decisions.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "ai-coding",
+      "software-development",
+      "natural-language",
+      "code-generation",
+      "development-workflow",
+      "ai-tools"
+    ],
+    "featured": false,
+    "excerpt": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality, understanding architectural decisions, and building sustainable develop..."
   }
 ]
