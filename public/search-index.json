@@ -119,6 +119,26 @@
     "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
   },
   {
+    "slug": "prompting-pattern-library",
+    "title": "Prompting Pattern Library",
+    "description": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions.",
+    "categories": [
+      "ai",
+      "productivity"
+    ],
+    "tags": [
+      "prompting",
+      "ai-interaction",
+      "prompt-engineering",
+      "ai-patterns",
+      "claude",
+      "gpt",
+      "model-optimization"
+    ],
+    "featured": false,
+    "excerpt": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions and workflow optimization.  ..."
+  },
+  {
     "slug": "typescript-code-review",
     "title": "TypeScript Code Review",
     "description": "Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.",
