@@ -78,6 +78,27 @@
     "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
   },
   {
+    "slug": "pitch-deck-builder",
+    "title": "Pitch Deck Builder",
+    "description": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.",
+    "categories": [
+      "business",
+      "presentation",
+      "startup"
+    ],
+    "tags": [
+      "pitch-deck",
+      "presentation-design",
+      "storytelling",
+      "investor-relations",
+      "sales",
+      "startup",
+      "business-strategy"
+    ],
+    "featured": false,
+    "excerpt": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.  <Callout typ..."
+  },
+  {
     "slug": "product-design",
     "title": "Product Design & UX Review",
     "description": "Design user-centered software products and conduct thorough design reviews using industry-standard UX principles, usability heuristics, and accessibility guidelines.",
