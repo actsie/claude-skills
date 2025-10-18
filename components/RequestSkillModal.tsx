@@ -35,23 +35,70 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
     setIsSubmitting(true);
 
     try {
-      // Using a test endpoint - replace with actual Formspree form ID when available
-      const response = await fetch('https://formspree.io/f/xwpezgkz', {
+      // Format data for Discord webhook
+      const discordEmbed = {
+        embeds: [{
+          title: "🎯 New Skill Request",
+          color: 0x3b82f6, // Blue color
+          fields: [
+            {
+              name: "📧 Email",
+              value: formData.email,
+              inline: true
+            },
+            {
+              name: "🔧 Skill Name",
+              value: formData.skillName,
+              inline: true
+            },
+            {
+              name: "⚡ Priority",
+              value: formData.priority,
+              inline: true
+            },
+            {
+              name: "📋 What should this skill do?",
+              value: formData.skillPurpose || "Not specified",
+              inline: false
+            },
+            {
+              name: "💡 Example Use Case",
+              value: formData.useCase || "Not specified",
+              inline: false
+            },
+            {
+              name: "📥 Input Type",
+              value: formData.inputType || "Not specified",
+              inline: true
+            },
+            {
+              name: "📤 Expected Output",
+              value: formData.expectedOutput || "Not specified",
+              inline: true
+            }
+          ],
+          timestamp: new Date().toISOString(),
+          footer: {
+            text: "Claude Skills Market"
+          }
+        }]
+      };
+
+      // Add additional context if provided
+      if (formData.additionalContext?.trim()) {
+        discordEmbed.embeds[0].fields.push({
+          name: "📝 Additional Context",
+          value: formData.additionalContext,
+          inline: false
+        });
+      }
+
+      const response = await fetch('https://discord.com/api/webhooks/1429050546781945867/-IT_fLkKWIA5Ek11ERQgBHkLsYL-IQVH4T8-DsZIfE9S8Z9QG7egPg7rel5qW0OSDV3q', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: formData.email,
-          skill_name: formData.skillName,
-          skill_purpose: formData.skillPurpose,
-          use_case: formData.useCase,
-          input_type: formData.inputType,
-          expected_output: formData.expectedOutput,
-          priority: formData.priority,
-          additional_context: formData.additionalContext,
-          _subject: `New Skill Request: ${formData.skillName}`,
-        }),
+        body: JSON.stringify(discordEmbed),
       });
 
       if (response.ok) {
