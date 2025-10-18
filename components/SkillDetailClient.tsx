@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, ReactNode } from 'react';
+import { useEffect, ReactNode, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Skill } from '@/lib/types';
 import TableOfContents from './TableOfContents';
+import NavigationBar from './NavigationBar';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -13,10 +14,24 @@ interface SkillDetailClientProps {
 }
 
 export default function SkillDetailClient({ skill, relatedSkills, children }: SkillDetailClientProps) {
+  const [searchQuery, setSearchQuery] = useState('');
+  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Handle search - redirect to home with search query
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim()) {
+      window.location.href = `/?q=${encodeURIComponent(query)}`;
+    }
+  };
+
+  const handleSearchClear = () => {
+    setSearchQuery('');
+  };
 
   // Filter related skills by matching tags
   const skillsByTags = relatedSkills.filter(relatedSkill => {
@@ -29,6 +44,13 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Navigation */}
+      <NavigationBar
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+        onSearchClear={handleSearchClear}
+      />
+      
       {/* Header with Breadcrumbs */}
       <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
