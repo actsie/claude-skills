@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SearchBar from '@/components/SearchBar';
+import NavigationBar from '@/components/NavigationBar';
 import SkillCard from '@/components/SkillCard';
 import SkillCardSkeleton from '@/components/SkillCardSkeleton';
 import EmptyState from '@/components/EmptyState';
@@ -193,39 +194,53 @@ export default function HomeContent() {
     }
   }, [selectedIndex]);
 
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center">
-            Claude Skills Market
-          </h1>
-          <p className="mt-2 text-center text-gray-600 dark:text-gray-400">
-            Make Claude your specialist.
-          </p>
-          <p className="text-center text-gray-600 dark:text-gray-400">
-            Discover and share modular Skills that extend Claude with real-world expertise.
-          </p>
-        </div>
-      </header>
+      {/* Simple Navigation */}
+      <NavigationBar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearchClear={handleClearSearch}
+        resultsCount={searchQuery ? searchResults.length : undefined}
+      />
 
-      {/* Search Section */}
-      <section className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SearchBar
-            value={searchQuery}
-            onChange={setSearchQuery}
-            onClear={handleClearSearch}
-            resultsCount={searchQuery ? searchResults.length : undefined}
-          />
-          {!searchQuery && !hasActiveFilters && (
-            <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
-              Try searching for &quot;TypeScript&quot;, &quot;Excel&quot;, &quot;AI prompting&quot;, or use filters below
-            </p>
-          )}
+      {/* Hero Section with Main Search */}
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              Claude Skills Market
+            </h1>
+            <div className="space-y-2 mb-8">
+              <p className="text-xl text-gray-600 dark:text-gray-400">
+                Make Claude your specialist.
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                Discover and share modular Skills that extend Claude with real-world expertise.
+              </p>
+            </div>
+            
+            {/* Main Search */}
+            <div className="max-w-3xl mx-auto">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                onClear={handleClearSearch}
+                resultsCount={searchQuery ? searchResults.length : undefined}
+                compact={false}
+              />
+              
+              {/* Search suggestions */}
+              {!searchQuery && (
+                <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                  Try searching for "TypeScript", "Excel", "AI prompting", or use filters below
+                </p>
+              )}
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Main Content with Sidebar */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex gap-8">

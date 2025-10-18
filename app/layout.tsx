@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import 'highlight.js/styles/github-dark.css';
-import Navbar from '@/components/Navbar';
 import PawgrammerBanner from '@/components/PawgrammerBanner';
 
 export const metadata: Metadata = {
@@ -18,7 +17,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <PawgrammerBanner />
-        <Navbar />
         {children}
       </body>
     </html>

@@ -165,3 +165,14 @@ pre code {
     linear-gradient(rgb(31, 41, 55), rgb(31, 41, 55)) padding-box,
     linear-gradient(120deg, hsl(278, 44%, 73%), hsl(35, 81%, 73%)) border-box !important;
 }
+
+/* Sticky navigation backdrop blur fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-sm {
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+  
+  .dark .backdrop-blur-sm {
+    background-color: rgba(31, 41, 55, 0.98);
+  }
+}

@@ -9,6 +9,7 @@ interface SearchBarProps {
   placeholder?: string;
   resultsCount?: number;
   debounceMs?: number;
+  compact?: boolean;
 }
 
 export default function SearchBar({
@@ -18,6 +19,7 @@ export default function SearchBar({
   placeholder = 'Search skills by name, description, tags...',
   resultsCount,
   debounceMs = 300,
+  compact = false,
 }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [localValue, setLocalValue] = useState(value);
@@ -63,11 +65,11 @@ export default function SearchBar({
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
+    <div className={compact ? "w-full" : "w-full max-w-3xl mx-auto"}>
       <div className="relative search-container">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <div className={`absolute inset-y-0 left-0 flex items-center pointer-events-none ${compact ? 'pl-3' : 'pl-4'}`}>
           <svg 
-            className="h-7 w-7 text-gray-400 sparkle-icon" 
+            className={`text-gray-400 sparkle-icon ${compact ? 'h-5 w-5' : 'h-7 w-7'}`}
             viewBox="0 0 24 24" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +101,8 @@ export default function SearchBar({
         <input
           ref={inputRef}
           type="text"
-          className="enhanced-search-input block w-full pl-16 pr-12 py-4 text-lg rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]"
-          placeholder={placeholder}
+          className={`enhanced-search-input block w-full ${compact ? 'pl-12 pr-10 py-2 text-sm rounded-lg' : 'pl-16 pr-12 py-4 text-lg rounded-xl'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 ${compact ? 'shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]' : 'shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]'}`}
+          placeholder={compact ? "Search skills..." : placeholder}
           value={localValue}
           onChange={(e) => handleInputChange(e.target.value)}
           aria-label="Search skills"
@@ -110,17 +112,17 @@ export default function SearchBar({
               linear-gradient(white, white) padding-box,
               linear-gradient(120deg, hsl(278, 44%, 73%), hsl(35, 81%, 73%)) border-box
             `,
-            border: '2px solid transparent',
+            border: compact ? '1px solid transparent' : '2px solid transparent',
           }}
         />
         {localValue && (
           <button
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className={`absolute inset-y-0 right-0 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors ${compact ? 'pr-3' : 'pr-4'}`}
             aria-label="Clear search"
           >
             <svg
-              className="h-5 w-5"
+              className={compact ? "h-4 w-4" : "h-5 w-5"}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -134,7 +136,7 @@ export default function SearchBar({
           </button>
         )}
       </div>
-      {resultsCount !== undefined && (
+      {!compact && resultsCount !== undefined && (
         <p
           id="search-results-count"
           className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center"
