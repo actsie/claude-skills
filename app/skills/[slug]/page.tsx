@@ -1,6 +1,12 @@
 import { getAllSkills, getSkillBySlug } from '@/lib/skills';
 import { notFound } from 'next/navigation';
 import SkillDetailClient from '@/components/SkillDetailClient';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { MDXComponents } from '@/components/mdx/MDXComponents';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGfm from 'remark-gfm';
 
 export async function generateStaticParams() {
   const skills = await getAllSkills();
@@ -23,5 +29,30 @@ export default async function SkillPage({ params }: { params: { slug: string } }
       ).then(skills => skills.filter((s): s is NonNullable<typeof s> => s !== null))
     : [];
 
-  return <SkillDetailClient skill={skill} relatedSkills={relatedSkills} />;
+  return (
+    <SkillDetailClient skill={skill} relatedSkills={relatedSkills}>
+      <MDXRemote
+        source={skill.body}
+        components={MDXComponents}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
+              rehypeSlug,
+              [
+                rehypeAutolinkHeadings,
+                {
+                  behavior: 'wrap',
+                  properties: {
+                    className: ['anchor'],
+                  },
+                },
+              ],
+              rehypeHighlight,
+            ],
+          },
+        }}
+      />
+    </SkillDetailClient>
+  );
 }

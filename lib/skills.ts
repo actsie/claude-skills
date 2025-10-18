@@ -1,37 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import remarkGfm from 'remark-gfm';
 import { Skill, SkillFrontmatter } from './types';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 const skillsDirectory = path.join(process.cwd(), 'content/skills');
-
-async function processMDX(markdown: string): Promise<MDXRemoteSerializeResult> {
-  const mdxSource = await serialize(markdown, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            behavior: 'wrap',
-            properties: {
-              className: ['anchor'],
-            },
-          },
-        ],
-        rehypeHighlight,
-      ],
-    },
-  });
-  return mdxSource;
-}
 
 export async function getAllSkills(): Promise<Skill[]> {
   // Check if directory exists
@@ -58,9 +30,6 @@ export async function getAllSkills(): Promise<Skill[]> {
 
         const frontmatter = data as SkillFrontmatter;
 
-        // Process markdown to MDX
-        const processedContent = await processMDX(content);
-
         return {
           slug: frontmatter.slug || slug,
           title: frontmatter.title,
@@ -74,7 +43,7 @@ export async function getAllSkills(): Promise<Skill[]> {
           externalUrl: frontmatter.externalUrl,
           date: frontmatter.date,
           version: frontmatter.version,
-          body: processedContent,
+          body: content,
           excerpt,
         };
       })
@@ -97,9 +66,6 @@ export async function getSkillBySlug(slug: string): Promise<Skill | null> {
 
     const frontmatter = data as SkillFrontmatter;
 
-    // Process markdown to MDX
-    const processedContent = await processMDX(content);
-
     return {
       slug: frontmatter.slug || slug,
       title: frontmatter.title,
@@ -113,7 +79,7 @@ export async function getSkillBySlug(slug: string): Promise<Skill | null> {
       externalUrl: frontmatter.externalUrl,
       date: frontmatter.date,
       version: frontmatter.version,
-      body: processedContent,
+      body: content,
       excerpt,
     };
   } catch (error) {

@@ -1,19 +1,18 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MDXRemote } from 'next-mdx-remote';
 import { Skill } from '@/lib/types';
-import { MDXComponents } from './mdx/MDXComponents';
 import TableOfContents from './TableOfContents';
 
 interface SkillDetailClientProps {
   skill: Skill;
   relatedSkills: Skill[];
+  children: ReactNode;
 }
 
-export default function SkillDetailClient({ skill, relatedSkills }: SkillDetailClientProps) {
+export default function SkillDetailClient({ skill, relatedSkills, children }: SkillDetailClientProps) {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -151,7 +150,7 @@ export default function SkillDetailClient({ skill, relatedSkills }: SkillDetailC
           <div className="lg:col-span-3">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8 lg:p-12">
               <div className="max-w-none">
-                <MDXRemote {...skill.body} components={MDXComponents} />
+                {children}
               </div>
             </div>
           </div>
