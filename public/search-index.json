@@ -117,6 +117,29 @@
     "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
   },
   {
+    "slug": "meeting-notes-summarizer",
+    "title": "Meeting Notes Summarizer",
+    "description": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.",
+    "categories": [
+      "productivity",
+      "business"
+    ],
+    "tags": [
+      "meeting-notes",
+      "summarization",
+      "action-items",
+      "productivity",
+      "collaboration",
+      "documentation",
+      "project-management"
+    ],
+    "featured": false,
+    "author": "Exploration Labs",
+    "repoUrl": "https://github.com/Exploration-labs/meeting-notes-summarizer",
+    "date": "2025-01-18T00:00:00.000Z",
+    "excerpt": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.  <Callout type=\"tip\"> Pe..."
+  },
+  {
     "slug": "pitch-deck-builder",
     "title": "Pitch Deck Builder",
     "description": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.",
