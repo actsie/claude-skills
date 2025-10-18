@@ -1,15 +1,36 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+import { serialize } from 'next-mdx-remote/serialize';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGfm from 'remark-gfm';
 import { Skill, SkillFrontmatter } from './types';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 const skillsDirectory = path.join(process.cwd(), 'content/skills');
 
-async function processMarkdown(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown);
-  return result.toString();
+async function processMDX(markdown: string): Promise<MDXRemoteSerializeResult> {
+  const mdxSource = await serialize(markdown, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: 'wrap',
+            properties: {
+              className: ['anchor'],
+            },
+          },
+        ],
+        rehypeHighlight,
+      ],
+    },
+  });
+  return mdxSource;
 }
 
 export async function getAllSkills(): Promise<Skill[]> {
@@ -21,7 +42,7 @@ export async function getAllSkills(): Promise<Skill[]> {
   const fileNames = fs.readdirSync(skillsDirectory);
   const allSkills = await Promise.all(
     fileNames
-      .filter((fileName) => fileName.endsWith('.md'))
+      .filter((fileName) => fileName.endsWith('.md') && !fileName.startsWith('_'))
       .map(async (fileName) => {
         const slug = fileName.replace(/\.md$/, '');
         const fullPath = path.join(skillsDirectory, fileName);
@@ -37,8 +58,8 @@ export async function getAllSkills(): Promise<Skill[]> {
 
         const frontmatter = data as SkillFrontmatter;
 
-        // Process markdown to HTML
-        const processedContent = await processMarkdown(content);
+        // Process markdown to MDX
+        const processedContent = await processMDX(content);
 
         return {
           slug: frontmatter.slug || slug,
@@ -76,8 +97,8 @@ export async function getSkillBySlug(slug: string): Promise<Skill | null> {
 
     const frontmatter = data as SkillFrontmatter;
 
-    // Process markdown to HTML
-    const processedContent = await processMarkdown(content);
+    // Process markdown to MDX
+    const processedContent = await processMDX(content);
 
     return {
       slug: frontmatter.slug || slug,

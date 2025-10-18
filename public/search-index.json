@@ -1,121 +1,22 @@
 [
   {
-    "slug": "api-documentation",
-    "title": "API Documentation Generator",
-    "description": "Generate comprehensive, developer-friendly API documentation with examples, authentication guides, and interactive references.",
+    "slug": "product-design",
+    "title": "Product Design & UX Review",
+    "description": "Design user-centered software products and conduct thorough design reviews using industry-standard UX principles, usability heuristics, and accessibility guidelines.",
     "categories": [
       "development"
     ],
     "tags": [
-      "api",
-      "documentation",
-      "openapi",
-      "developer-tools"
-    ],
-    "featured": false,
-    "excerpt": "Create documentation developers will love. This skill helps you write clear, comprehensive API docs with examples, authentication guides, and interactive references.    - **Endpoint Documentation**: G..."
-  },
-  {
-    "slug": "brand-style-guide",
-    "title": "Brand Style Guide Assistant",
-    "description": "Maintain brand consistency across all content by ensuring adherence to your brand's voice, tone, colors, typography, and messaging guidelines.",
-    "categories": [
-      "design",
-      "productivity"
-    ],
-    "tags": [
-      "branding",
-      "design",
-      "content",
-      "guidelines"
-    ],
-    "featured": true,
-    "featuredPriority": 3,
-    "excerpt": "Keep your brand consistent everywhere. This skill helps Claude understand and apply your brand guidelines, ensuring all content matches your voice, visual identity, and messaging standards.    - **Voi..."
-  },
-  {
-    "slug": "code-review",
-    "title": "Code Review Assistant",
-    "description": "Comprehensive code reviews covering security, performance, best practices, and maintainability with actionable feedback and suggestions.",
-    "categories": [
-      "development"
-    ],
-    "tags": [
-      "code-review",
-      "security",
-      "performance",
-      "best-practices"
-    ],
-    "featured": false,
-    "excerpt": "Get expert code reviews instantly. This skill helps identify bugs, security vulnerabilities, performance issues, and maintainability concerns while suggesting improvements and best practices.    - **S..."
-  },
-  {
-    "slug": "data-visualization",
-    "title": "Data Visualization Designer",
-    "description": "Create compelling charts, graphs, and dashboards with intelligent chart type selection, color schemes, and data storytelling guidance.",
-    "categories": [
-      "data-analysis",
-      "design"
-    ],
-    "tags": [
-      "visualization",
-      "charts",
-      "dashboards",
-      "analytics"
-    ],
-    "featured": false,
-    "excerpt": "Turn data into insights with beautiful visualizations. This skill helps you choose the right chart types, design effective dashboards, and tell compelling stories with your data.    - **Chart Selectio..."
-  },
-  {
-    "slug": "excel-manipulation",
-    "title": "Excel & Spreadsheet Manipulation",
-    "description": "Automate Excel tasks including data cleaning, formula generation, pivot tables, and complex spreadsheet operations with Claude's assistance.",
-    "categories": [
-      "productivity",
-      "data-analysis"
-    ],
-    "tags": [
-      "excel",
-      "spreadsheets",
-      "automation",
-      "data-processing"
+      "product-design",
+      "ux",
+      "ui",
+      "accessibility",
+      "design-systems",
+      "usability",
+      "wcag"
     ],
     "featured": true,
     "featuredPriority": 1,
-    "excerpt": "Transform your spreadsheet workflow with intelligent automation. This skill enables Claude to help you clean data, generate complex formulas, create pivot tables, and perform advanced Excel operations..."
-  },
-  {
-    "slug": "meeting-notes",
-    "title": "Meeting Notes Formatter",
-    "description": "Transform raw meeting notes into structured, actionable documents with summaries, action items, and key decisions highlighted.",
-    "categories": [
-      "productivity"
-    ],
-    "tags": [
-      "meetings",
-      "notes",
-      "productivity",
-      "organization"
-    ],
-    "featured": false,
-    "excerpt": "Never lose track of meeting outcomes. This skill transforms messy meeting notes into clear, actionable documents with summaries, action items, and decisions properly organized.    - **Structure Creati..."
-  },
-  {
-    "slug": "pdf-processing",
-    "title": "PDF Processing & Extraction",
-    "description": "Extract, analyze, and transform PDF content including text extraction, form filling, document splitting, and intelligent data parsing.",
-    "categories": [
-      "productivity",
-      "data-analysis"
-    ],
-    "tags": [
-      "pdf",
-      "document-processing",
-      "text-extraction",
-      "automation"
-    ],
-    "featured": true,
-    "featuredPriority": 2,
-    "excerpt": "Unlock the data trapped in PDF documents. This skill helps you extract text, tables, and images from PDFs, fill forms, split and merge documents, and parse structured data from complex PDF layouts.   ..."
+    "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
   }
 ]

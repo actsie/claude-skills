@@ -1,9 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { MDXRemote } from 'next-mdx-remote';
 import { Skill } from '@/lib/types';
+import { MDXComponents } from './mdx/MDXComponents';
+import TableOfContents from './TableOfContents';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -11,12 +14,19 @@ interface SkillDetailClientProps {
 }
 
 export default function SkillDetailClient({ skill, relatedSkills }: SkillDetailClientProps) {
-  const [activeTab, setActiveTab] = useState<'overview' | 'about'>('overview');
-
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Filter related skills by matching tags
+  const skillsByTags = relatedSkills.filter(relatedSkill => {
+    if (!skill.tags || !relatedSkill.tags) return false;
+    return skill.tags.some(tag => relatedSkill.tags.includes(tag));
+  }).slice(0, 5); // Limit to 5 related skills
+
+  // Get the first tag for the "View More" link
+  const firstTag = skill.tags && skill.tags.length > 0 ? skill.tags[0] : null;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -131,236 +141,69 @@ export default function SkillDetailClient({ skill, relatedSkills }: SkillDetailC
             </div>
           </div>
 
-          {/* Tabs */}
-          <div className="mt-6">
-            <nav className="flex space-x-8" aria-label="Tabs">
-              <button
-                onClick={() => setActiveTab('overview')}
-                className={`${
-                  activeTab === 'overview'
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                } whitespace-nowrap py-2 px-4 rounded-lg font-medium text-sm transition-colors`}
-                aria-current={activeTab === 'overview' ? 'page' : undefined}
-              >
-                Overview
-              </button>
-              <button
-                onClick={() => setActiveTab('about')}
-                className={`${
-                  activeTab === 'about'
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                } whitespace-nowrap py-2 px-4 rounded-lg font-medium text-sm transition-colors`}
-                aria-current={activeTab === 'about' ? 'page' : undefined}
-              >
-                About
-              </button>
-            </nav>
-          </div>
         </div>
       </header>
 
-      {/* Main content with sidebar */}
+      {/* Main content with right sidebar */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main content area */}
-          <div className="lg:col-span-2">
-            {activeTab === 'overview' && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8">
-                <div className="prose dark:prose-invert max-w-none [&_p]:text-gray-900 dark:[&_p]:text-gray-100 [&_li]:text-gray-900 dark:[&_li]:text-gray-100 [&_h1]:text-gray-900 dark:[&_h1]:text-gray-100 [&_h2]:text-gray-900 dark:[&_h2]:text-gray-100 [&_h3]:text-gray-900 dark:[&_h3]:text-gray-100 [&_strong]:text-gray-900 dark:[&_strong]:text-gray-100 [&_a]:text-primary-600 dark:[&_a]:text-primary-400">
-                  <div dangerouslySetInnerHTML={{ __html: skill.body }} />
-                </div>
-
-                {skill.tags && skill.tags.length > 0 && (
-                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                      Tags
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {skill.tags.map((tag) => (
-                        <Link
-                          key={tag}
-                          href={`/?tags=${tag}`}
-                          className="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                        >
-                          #{tag}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content Area */}
+          <div className="lg:col-span-3">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8 lg:p-12">
+              <div className="max-w-none">
+                <MDXRemote {...skill.body} components={MDXComponents} />
               </div>
-            )}
-
-            {activeTab === 'about' && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-                  About This Skill
-                </h2>
-
-                <div className="space-y-6">
-                  {skill.description && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                        Description
-                      </h3>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        {skill.description}
-                      </p>
-                    </div>
-                  )}
-
-                  {(skill.author || skill.date || skill.version) && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                        Metadata
-                      </h3>
-                      <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        {skill.author && (
-                          <div>
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                              Author
-                            </dt>
-                            <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                              {skill.author}
-                            </dd>
-                          </div>
-                        )}
-                        {skill.date && (
-                          <div>
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                              Date
-                            </dt>
-                            <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                              {new Date(skill.date).toLocaleDateString()}
-                            </dd>
-                          </div>
-                        )}
-                        {skill.version && (
-                          <div>
-                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                              Version
-                            </dt>
-                            <dd className="mt-1 text-sm text-gray-900 dark:text-gray-100">
-                              {skill.version}
-                            </dd>
-                          </div>
-                        )}
-                      </dl>
-                    </div>
-                  )}
-
-                  {(skill.repoUrl || skill.externalUrl) && (
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                        Links
-                      </h3>
-                      <div className="space-y-2">
-                        {skill.repoUrl && (
-                          <a
-                            href={skill.repoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
-                          >
-                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clipRule="evenodd" />
-                            </svg>
-                            View Repository
-                          </a>
-                        )}
-                        {skill.externalUrl && (
-                          <a
-                            href={skill.externalUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
-                          >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            External Link
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+            </div>
           </div>
 
-          {/* Right sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Author Bio */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Author
-              </h3>
-              <div className="flex items-center gap-3">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
-                    <span className="text-lg font-semibold text-primary-600 dark:text-primary-400">
-                      {skill.author?.charAt(0).toUpperCase() || 'A'}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium text-gray-900 dark:text-gray-100">
-                    {skill.author || 'Anonymous'}
-                  </p>
-                  {skill.authorBio && (
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                      {skill.authorBio}
-                    </p>
-                  )}
-                </div>
-              </div>
+          {/* Right Sidebar */}
+          <aside className="lg:col-span-1 space-y-6">
+            {/* Table of Contents - Only show if content exists */}
+            <TableOfContents />
 
-              {/* Author Links */}
-              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
+            {/* GitHub Link Panel - Always visible */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+              <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 uppercase tracking-wide">
+                Repository
+              </div>
+              {skill.repoUrl ? (
                 <a
-                  href="https://github.com"
+                  href={skill.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors font-medium text-sm"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
                   GitHub
                 </a>
-                <a
-                  href="https://example.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              ) : (
+                <div className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 font-medium text-sm cursor-not-allowed">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                   </svg>
-                  Website
-                </a>
-              </div>
+                  Add GitHub Link
+                </div>
+              )}
             </div>
 
-            {/* Skilltree */}
-            {relatedSkills.length > 0 && (
+            {/* Related Skills Panel */}
+            {skillsByTags.length > 0 && (
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 uppercase tracking-wide">
                   Related Skills
-                </h3>
-                <div className="space-y-2">
-                  {relatedSkills.map((relatedSkill) => (
+                </div>
+                <div className="space-y-3">
+                  {skillsByTags.map((relatedSkill) => (
                     <Link
                       key={relatedSkill.slug}
                       href={`/skills/${relatedSkill.slug}`}
-                      className="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                      className="block group"
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         {relatedSkill.logo && (
-                          <div className="w-8 h-8 relative rounded overflow-hidden bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-600 flex-shrink-0">
+                          <div className="w-10 h-10 relative rounded overflow-hidden bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-600 flex-shrink-0">
                             <Image
                               src={relatedSkill.logo}
                               alt=""
@@ -396,9 +239,34 @@ export default function SkillDetailClient({ skill, relatedSkills }: SkillDetailC
                     </Link>
                   ))}
                 </div>
+
+                {/* View More Link */}
+                {firstTag && (
+                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <Link
+                      href={`/?tags=${firstTag}`}
+                      className="flex items-center justify-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors"
+                    >
+                      View More
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
-          </div>
+          </aside>
         </div>
       </main>
     </div>

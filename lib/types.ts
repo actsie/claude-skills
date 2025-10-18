@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 export interface SkillFrontmatter {
   title: string;
   slug: string;
@@ -17,7 +19,7 @@ export interface SkillFrontmatter {
 }
 
 export interface Skill extends SkillFrontmatter {
-  body: string;
+  body: MDXRemoteSerializeResult;
   excerpt: string;
 }
 
