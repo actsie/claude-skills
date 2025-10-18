@@ -139,6 +139,26 @@
     "excerpt": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions and workflow optimization.  ..."
   },
   {
+    "slug": "requirements-elicitation",
+    "title": "Requirements Elicitation",
+    "description": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment.",
+    "categories": [
+      "business",
+      "development",
+      "project-management"
+    ],
+    "tags": [
+      "requirements-analysis",
+      "product-management",
+      "stakeholder-management",
+      "technical-specification",
+      "project-planning",
+      "business-analysis"
+    ],
+    "featured": false,
+    "excerpt": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment to ensure comprehensive project ..."
+  },
+  {
     "slug": "typescript-code-review",
     "title": "TypeScript Code Review",
     "description": "Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.",
