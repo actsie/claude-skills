@@ -159,6 +159,25 @@
     "excerpt": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment to ensure comprehensive project ..."
   },
   {
+    "slug": "resume-builder",
+    "title": "Resume Builder",
+    "description": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement.",
+    "categories": [
+      "career",
+      "professional-development"
+    ],
+    "tags": [
+      "resume",
+      "career-development",
+      "job-application",
+      "ats-optimization",
+      "professional-writing",
+      "career-strategy"
+    ],
+    "featured": false,
+    "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
+  },
+  {
     "slug": "typescript-code-review",
     "title": "TypeScript Code Review",
     "description": "Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.",
