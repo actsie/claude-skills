@@ -35,41 +35,24 @@ The repository is organized to provide comprehensive design guidance and resourc
 <Card>
 
 **Main Files:**
-- **SKILL.md** - Contains the main design framework and principles
-- **README.md** - Overview documentation
+- **SKILL.md** - Main design framework and principles
+- **README.md** - Documentation
 
 **Resource Directories:**
 - **references/** - Detailed reference materials including:
-  - Usability heuristics deep-dive
-  - UI patterns library
-  - Accessibility guidelines
-  - Design systems best practices
-  - Interaction design guidance
-- **examples/** - Sample designs and reviews
-- **templates/** - Design review and component specification templates
+  - `usability-heuristics-detailed.md` - Usability heuristics deep-dive
+  - `ui-patterns-library.md` - UI patterns library
+  - `accessibility-guidelines.md` - Accessibility guidelines
+  - `design-systems.md` - Design systems best practices
+  - `interaction-design.md` - Interaction design guidance
+- **examples/** - Sample designs and reviews:
+  - `design-review-example.md` - Example design review
+  - `component-examples.md` - Component design examples
+- **templates/** - Design review and component specification templates:
+  - `design-review-template.md` - Design review template
+  - `component-spec-template.md` - Component specification template
 
 </Card>
-
-### Core Frameworks
-
-The skill is built on six foundational areas:
-
-1. **Nielsen's 10 Usability Heuristics** - Interaction design principles
-2. **Design Process** - Research → Define → Design → Test → Iterate
-3. **Visual Design Principles** - Typography, color, spacing, layout, iconography
-4. **Interaction Design** - Navigation, feedback, forms, buttons, modals
-5. **Accessibility (WCAG 2.1 AA)** - Contrast, keyboard navigation, screen readers
-6. **Mobile-First Design** - Touch targets, responsive design, platform conventions
-
-### How to Use
-
-You can request assistance with:
-- General design tasks ("Design a user dashboard")
-- Focused reviews using specific frameworks
-- Design creation for specific components
-- Accessibility audits and compliance checks
-
-The skill provides structured output including executive summaries, heuristics reviews, visual design analysis, accessibility audits, and prioritized recommendations organized by severity level.
 
 ## What This Skill Does
 
@@ -83,6 +66,27 @@ The skill provides structured output including executive summaries, heuristics r
 - **User-Centered Design**: Apply industry-standard UX principles from Nielsen Norman Group, Google Material Design, and Apple's Human Interface Guidelines
 
 </Card>
+
+## Core Frameworks
+
+The skill is built on six foundational areas:
+
+1. **Nielsen's 10 Usability Heuristics** - Interaction design principles
+2. **Design Process** - Research → Define → Design → Test → Iterate
+3. **Visual Design Principles** - Typography, color, spacing, layout, iconography
+4. **Interaction Design** - Navigation, feedback, forms, buttons, modals
+5. **Accessibility (WCAG 2.1 AA)** - Contrast, keyboard navigation, screen readers
+6. **Mobile-First Design** - Touch targets, responsive design, platform conventions
+
+## How to Use
+
+You can request assistance with:
+- General design tasks ("Design a user dashboard")
+- Focused reviews using specific frameworks
+- Design creation for specific components
+- Accessibility audits and compliance checks
+
+The skill provides structured output including executive summaries, heuristics reviews, visual design analysis, accessibility audits, and prioritized recommendations organized by severity level.
 
 ## Example Use Cases
 
