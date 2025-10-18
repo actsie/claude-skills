@@ -15,8 +15,8 @@ export default function TableOfContents() {
   useEffect(() => {
     // Extract headings from the page
     const elements = Array.from(document.querySelectorAll('h2, h3'));
-    const items: TOCItem[] = elements.map((element) => ({
-      id: element.id,
+    const items: TOCItem[] = elements.map((element, index) => ({
+      id: element.id || `heading-${index}`,
       text: element.textContent || '',
       level: Number(element.tagName.charAt(1)),
     }));
@@ -48,9 +48,9 @@ export default function TableOfContents() {
           On This Page
         </h4>
         <ul className="space-y-2">
-          {headings.map((heading) => (
+          {headings.filter(heading => heading.text.trim()).map((heading, index) => (
             <li
-              key={heading.id}
+              key={`${heading.id}-${index}`}
               className={heading.level === 3 ? 'ml-4' : ''}
             >
               <a

@@ -35,8 +35,8 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace YOUR_FORM_ID with actual Formspree form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Using a test endpoint - replace with actual Formspree form ID when available
+      const response = await fetch('https://formspree.io/f/xwpezgkz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
