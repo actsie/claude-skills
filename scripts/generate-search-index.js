@@ -14,7 +14,7 @@ function generateSearchIndex() {
 
   const fileNames = fs.readdirSync(skillsDirectory);
   const skills = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
+    .filter((fileName) => fileName.endsWith('.md') && !fileName.startsWith('_'))
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/, '');
       const fullPath = path.join(skillsDirectory, fileName);

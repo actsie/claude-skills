@@ -18,5 +18,24 @@
     "featured": true,
     "featuredPriority": 1,
     "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
+  },
+  {
+    "slug": "typescript-code-review",
+    "title": "TypeScript Code Review",
+    "description": "Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "typescript",
+      "code-review",
+      "security",
+      "performance",
+      "type-safety",
+      "best-practices"
+    ],
+    "featured": true,
+    "featuredPriority": 2,
+    "excerpt": "A comprehensive skill for conducting professional TypeScript code reviews, examining type safety, best practices, performance, security, and maintainability.  <Callout type=\"tip\"> This skill is perfec..."
   }
 ]
