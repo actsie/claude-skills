@@ -234,7 +234,7 @@ export default function HomeContent() {
               {/* Search suggestions */}
               {!searchQuery && (
                 <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
-                  Try searching for "TypeScript", "Excel", "AI prompting", or use filters below
+                  Try searching for &quot;TypeScript&quot;, &quot;Excel&quot;, &quot;AI prompting&quot;, or use filters below
                 </p>
               )}
             </div>

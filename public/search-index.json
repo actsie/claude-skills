@@ -64,6 +64,32 @@
     "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
   },
   {
+    "slug": "csv-data-summarizer",
+    "title": "CSV Data Summarizer",
+    "description": "Automatically analyzes uploaded CSV files generating summary statistics, detecting missing data, and creating quick visualizations with no user prompting required.",
+    "categories": [
+      "analytics",
+      "data",
+      "automation"
+    ],
+    "tags": [
+      "csv",
+      "data-analysis",
+      "python",
+      "pandas",
+      "visualization",
+      "statistics",
+      "automation",
+      "data-science",
+      "charts",
+      "insights"
+    ],
+    "featured": false,
+    "author": "Corbin Brown (coffeefuelbump)",
+    "repoUrl": "https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill",
+    "excerpt": "> **Created by:** [Corbin Brown (coffeefuelbump)](https://github.com/coffeefuelbump)   > **Repository:** [github.com/coffeefuelbump/csv-data-summarizer-claude-skill](https://github.com/coffeefuelbump/..."
+  },
+  {
     "slug": "job-search-strategist",
     "title": "Job Search Strategist",
     "description": "Strategic, research-driven approach to job searching with deep company analysis, skills matching, and creative application strategies to maximize signal quality over volume.",
