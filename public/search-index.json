@@ -37,6 +37,27 @@
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
+    "slug": "complex-excel-builder",
+    "title": "Complex Excel Builder",
+    "description": "Comprehensive Excel workbook creation skill for building sophisticated financial models, operational dashboards, and board-level reports for startups and scale-ups.",
+    "categories": [
+      "business",
+      "finance",
+      "analytics"
+    ],
+    "tags": [
+      "excel",
+      "financial-modeling",
+      "spreadsheets",
+      "data-analysis",
+      "business-intelligence",
+      "reporting",
+      "dashboards"
+    ],
+    "featured": false,
+    "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
+  },
+  {
     "slug": "product-design",
     "title": "Product Design & UX Review",
     "description": "Design user-centered software products and conduct thorough design reviews using industry-standard UX principles, usability heuristics, and accessibility guidelines.",
