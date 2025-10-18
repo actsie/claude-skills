@@ -117,6 +117,31 @@
     "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
   },
   {
+    "slug": "landing-page-optimizer",
+    "title": "Landing Page Optimizer",
+    "description": "Comprehensive landing page analysis and optimization framework focusing on conversion rate improvement, user experience enhancement, and data-driven design decisions.",
+    "categories": [
+      "marketing",
+      "design",
+      "business"
+    ],
+    "tags": [
+      "landing-pages",
+      "conversion-optimization",
+      "ux-design",
+      "a-b-testing",
+      "analytics",
+      "marketing",
+      "web-design",
+      "cro"
+    ],
+    "featured": false,
+    "author": "Exploration Labs",
+    "repoUrl": "https://github.com/Exploration-labs/landing-page-optimizer",
+    "date": "2025-01-18T00:00:00.000Z",
+    "excerpt": "Comprehensive landing page analysis and optimization framework focusing on conversion rate improvement, user experience enhancement, and data-driven design decisions for maximum business impact.  <Cal..."
+  },
+  {
     "slug": "meeting-notes-summarizer",
     "title": "Meeting Notes Summarizer",
     "description": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.",
