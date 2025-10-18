@@ -32,8 +32,14 @@ export function applyFilters(
 ): Skill[] {
   return skills.filter((skill) => {
     // Check category filter
-    if (selectedCategory && !skill.categories.includes(selectedCategory)) {
-      return false;
+    if (selectedCategory) {
+      if (selectedCategory === 'featured') {
+        if (!skill.featured) {
+          return false;
+        }
+      } else if (!skill.categories.includes(selectedCategory)) {
+        return false;
+      }
     }
 
     // Check tags filter (skill must have ALL selected tags)

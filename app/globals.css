@@ -121,3 +121,47 @@ pre code {
     color: #d1d5db !important;
   }
 }
+
+/* Enhanced Search Bar Animations */
+@keyframes sparkle-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(var(--scale, 1.25)) rotate(var(--rotate, 0deg));
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.search-container:is(:hover, :focus-within) .sparkle-path-1 {
+  --scale: 1.5;
+  --rotate: 20deg;
+  animation: sparkle-pop 0.5s ease-out 0.24s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.search-container:is(:hover, :focus-within) .sparkle-path-2 {
+  --scale: 1.4;
+  --rotate: 10deg;
+  animation: sparkle-pop 0.5s ease-out 0.12s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.search-container:is(:hover, :focus-within) .sparkle-path-3 {
+  --scale: 1.25;
+  --rotate: 0deg;
+  animation: sparkle-pop 0.5s ease-out 0s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Dark mode support for enhanced search */
+.dark .enhanced-search-input {
+  background: 
+    linear-gradient(rgb(31, 41, 55), rgb(31, 41, 55)) padding-box,
+    linear-gradient(120deg, hsl(278, 44%, 73%), hsl(35, 81%, 73%)) border-box !important;
+}
