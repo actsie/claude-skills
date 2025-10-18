@@ -15,6 +15,8 @@
       "ai-coding"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/agentic-development",
     "excerpt": "Practical guidance for building software with AI agents, drawing from real-world experience developing a ~300k LOC TypeScript React application entirely with AI assistance.  <Callout type=\"tip\"> This ..."
   },
   {
@@ -34,6 +36,8 @@
       "decision-making"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/ai-vendor-evaluation",
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
@@ -55,6 +59,8 @@
       "dashboards"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/complex-excel-builder",
     "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
   },
   {
@@ -75,6 +81,8 @@
       "application-strategy"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/job-search-strategist",
     "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
   },
   {
@@ -96,6 +104,8 @@
       "business-strategy"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/pitch-deck-builder",
     "excerpt": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.  <Callout typ..."
   },
   {
@@ -116,6 +126,8 @@
     ],
     "featured": true,
     "featuredPriority": 1,
+    "author": "Exploration Labs",
+    "repoUrl": "https://github.com/Exploration-labs/skill-product-design",
     "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
   },
   {
@@ -136,6 +148,8 @@
       "model-optimization"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/prompting-pattern-library",
     "excerpt": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions and workflow optimization.  ..."
   },
   {
@@ -156,6 +170,8 @@
       "business-analysis"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/requirements-elicitation",
     "excerpt": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment to ensure comprehensive project ..."
   },
   {
@@ -175,7 +191,34 @@
       "career-strategy"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/resume-builder",
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
+  },
+  {
+    "slug": "superpowers-skills-library",
+    "title": "Superpowers Skills Library",
+    "description": "A comprehensive skills library for Claude Code that provides systematic workflows, slash commands, and proven techniques for software development through test-driven approaches and complexity reduction.",
+    "categories": [
+      "development",
+      "ai",
+      "workflow"
+    ],
+    "tags": [
+      "claude-code",
+      "skills",
+      "testing",
+      "debugging",
+      "collaboration",
+      "tdd",
+      "automation",
+      "meta-skills",
+      "systematic-development"
+    ],
+    "featured": true,
+    "author": "obra (Jesse Vincent)",
+    "repoUrl": "https://github.com/obra/superpowers",
+    "excerpt": "> **Created by:** [obra (Jesse Vincent)](https://github.com/obra)   > **Repository:** [github.com/obra/superpowers](https://github.com/obra/superpowers)   > **License:** MIT License   > **Stars:** 3,7..."
   },
   {
     "slug": "typescript-code-review",
@@ -194,6 +237,8 @@
     ],
     "featured": true,
     "featuredPriority": 2,
+    "author": "Exploration Labs",
+    "repoUrl": "https://github.com/Exploration-labs/typescript-code-review",
     "excerpt": "A comprehensive skill for conducting professional TypeScript code reviews, examining type safety, best practices, performance, security, and maintainability.  <Callout type=\"tip\"> This skill is perfec..."
   },
   {
@@ -213,6 +258,8 @@
       "ai-tools"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/vibe-coding",
     "excerpt": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality, understanding architectural decisions, and building sustainable develop..."
   },
   {
@@ -234,6 +281,8 @@
       "python"
     ],
     "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/xlsx-editor",
     "excerpt": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships through systematic analysis and valid..."
   }
 ]

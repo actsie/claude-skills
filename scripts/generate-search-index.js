@@ -36,6 +36,8 @@ function generateSearchIndex() {
         tags: data.tags || [],
         featured: data.featured || false,
         featuredPriority: data.featuredPriority,
+        author: data.author,
+        repoUrl: data.repoUrl,
         excerpt,
       };
     });
