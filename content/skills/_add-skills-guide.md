@@ -115,10 +115,61 @@ Use for organizing content into switchable sections.
 ### Content Structure Best Practices
 
 1. **Start with overview**: Use a Callout to introduce the skill
-2. **Group features**: Use Cards for capability lists
-3. **Code examples**: Use standard markdown code blocks (they auto-highlight)
-4. **Keep hierarchy**: Use H2 (##) and H3 (###) for structure
-5. **Lists**: Use bullet points or numbered lists for steps
+2. **Add Skill Structure**: Show repository organization (if repo has directories/resources)
+3. **Group features**: Use Cards for capability lists
+4. **Code examples**: Use standard markdown code blocks (they auto-highlight)
+5. **Keep hierarchy**: Use H2 (##) and H3 (###) for structure
+6. **Lists**: Use bullet points or numbered lists for steps
+
+### Standard Sections to Include
+
+For consistency across all skills, include these sections in order:
+
+1. **Title & Description** (from frontmatter)
+2. **Intro Callout** - Brief tip about who the skill is for
+3. **Skill Structure** ⭐ - Repository organization (if applicable)
+4. **What This Skill Does** - Core capabilities overview
+5. **Main Content** - Features, usage, examples
+6. **Repository Resources** - Link to reference materials
+
+### Skill Structure Section Template
+
+If the repository has organized directories (references/, examples/, templates/, etc.), **always include** a Skill Structure section. Place it right after the intro Callout.
+
+**Template:**
+
+```markdown
+## Skill Structure
+
+The repository is organized to provide comprehensive [topic] guidance and resources:
+
+<Card>
+
+**Main Files:**
+- **SKILL.md** - Main skill instructions
+- **README.md** - Documentation
+
+**Resource Directories:**
+- **references/** - [Describe contents]
+  - `file1.md` - [Description]
+  - `file2.md` - [Description]
+- **examples/** - [Describe contents]
+  - `example1.ext` - [Description]
+  - `example2.ext` - [Description]
+- **templates/** - [If applicable]
+
+</Card>
+```
+
+**How to get the structure:**
+1. Visit the GitHub repository
+2. Look at the folder/file structure
+3. List the main directories and key files
+4. Describe what each directory contains
+
+**See examples:**
+- `product-design.md` - Skill Structure section
+- `typescript-code-review.md` - Skill Structure section
 
 ## Categories
 

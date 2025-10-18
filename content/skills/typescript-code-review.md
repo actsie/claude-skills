@@ -27,6 +27,29 @@ A comprehensive skill for conducting professional TypeScript code reviews, exami
 This skill is perfect for TypeScript developers who want to ensure their code follows best practices, maintains type safety, and avoids common security and performance pitfalls.
 </Callout>
 
+## Skill Structure
+
+The repository is organized to provide comprehensive code review guidance and resources:
+
+<Card>
+
+**Main Files:**
+- **SKILL.md** - Main skill instructions
+- **README.md** - This documentation
+
+**Resource Directories:**
+- **references/** - Detailed reference materials including:
+  - `type-safety-checklist.md` - Type safety best practices
+  - `common-antipatterns.md` - TypeScript anti-patterns to avoid
+  - `security-checklist.md` - Security considerations
+  - `performance-tips.md` - Performance optimization strategies
+- **examples/** - Example code:
+  - `before-review.ts` - Code with common issues
+  - `after-review.ts` - Fixed version with best practices
+  - `sample-review-output.md` - Example of review format
+
+</Card>
+
 ## What This Skill Does
 
 This skill enables Claude to conduct thorough TypeScript code reviews across multiple dimensions. Whether you're looking for a general code review or focused assessment on specific concerns like security vulnerabilities or performance issues, this skill provides structured, actionable feedback.
