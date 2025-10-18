@@ -58,6 +58,26 @@
     "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
   },
   {
+    "slug": "job-search-strategist",
+    "title": "Job Search Strategist",
+    "description": "Strategic, research-driven approach to job searching with deep company analysis, skills matching, and creative application strategies to maximize signal quality over volume.",
+    "categories": [
+      "career",
+      "professional-development"
+    ],
+    "tags": [
+      "job-search",
+      "career-strategy",
+      "networking",
+      "interview-preparation",
+      "professional-development",
+      "resume",
+      "application-strategy"
+    ],
+    "featured": false,
+    "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
+  },
+  {
     "slug": "product-design",
     "title": "Product Design & UX Review",
     "description": "Design user-centered software products and conduct thorough design reviews using industry-standard UX principles, usability heuristics, and accessibility guidelines.",
