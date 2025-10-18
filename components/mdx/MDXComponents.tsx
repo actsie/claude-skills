@@ -1,6 +1,7 @@
 import Callout from './Callout';
 import Card from './Card';
 import Tabs from './Tabs';
+import CodeBlock from '../CodeBlock';
 
 export const MDXComponents = {
   Callout,
@@ -37,9 +38,18 @@ export const MDXComponents = {
   code: (props: any) => (
     <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-sm font-mono text-gray-800 dark:text-gray-200" {...props} />
   ),
-  pre: (props: any) => (
-    <pre className="my-4 p-4 rounded-lg bg-gray-900 dark:bg-gray-950 overflow-x-auto" {...props} />
-  ),
+  pre: (props: any) => {
+    // Extract language from className if present
+    const codeElement = props.children?.props;
+    const className = codeElement?.className || '';
+    const language = className.replace('language-', '').replace('hljs', '').trim() || 'text';
+    
+    return (
+      <CodeBlock language={language}>
+        {props.children}
+      </CodeBlock>
+    );
+  },
   blockquote: (props: any) => (
     <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-4 italic text-gray-600 dark:text-gray-400" {...props} />
   ),
