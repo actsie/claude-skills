@@ -5,6 +5,7 @@ categories: ["analytics", "data", "automation"]
 tags: ["csv", "data-analysis", "python", "pandas", "visualization", "statistics", "automation", "data-science", "charts", "insights"]
 author: "Corbin Brown (coffeefuelbump)"
 repoUrl: "https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill"
+date: "2025-10-18"
 featured: false
 ---
 

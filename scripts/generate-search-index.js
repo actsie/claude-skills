@@ -38,6 +38,7 @@ function generateSearchIndex() {
         featuredPriority: data.featuredPriority,
         author: data.author,
         repoUrl: data.repoUrl,
+        date: data.date,
         excerpt,
       };
     });

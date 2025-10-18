@@ -17,6 +17,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/agentic-development",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Practical guidance for building software with AI agents, drawing from real-world experience developing a ~300k LOC TypeScript React application entirely with AI assistance.  <Callout type=\"tip\"> This ..."
   },
   {
@@ -38,6 +39,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/ai-vendor-evaluation",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
@@ -61,6 +63,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/complex-excel-builder",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
   },
   {
@@ -87,6 +90,7 @@
     "featured": false,
     "author": "Corbin Brown (coffeefuelbump)",
     "repoUrl": "https://github.com/coffeefuelbump/csv-data-summarizer-claude-skill",
+    "date": "2025-10-18",
     "excerpt": "> **Created by:** [Corbin Brown (coffeefuelbump)](https://github.com/coffeefuelbump)   > **Repository:** [github.com/coffeefuelbump/csv-data-summarizer-claude-skill](https://github.com/coffeefuelbump/..."
   },
   {
@@ -109,6 +113,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/job-search-strategist",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Strategic, research-driven approach to job searching that prioritizes signal quality over application volume through deep company analysis, conversational skills matching, and creative multi-channel a..."
   },
   {
@@ -132,6 +137,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/pitch-deck-builder",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.  <Callout typ..."
   },
   {
@@ -154,6 +160,7 @@
     "featuredPriority": 1,
     "author": "Exploration Labs",
     "repoUrl": "https://github.com/Exploration-labs/skill-product-design",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
   },
   {
@@ -176,6 +183,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/prompting-pattern-library",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions and workflow optimization.  ..."
   },
   {
@@ -198,6 +206,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/requirements-elicitation",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment to ensure comprehensive project ..."
   },
   {
@@ -219,6 +228,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/resume-builder",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
   },
   {
@@ -244,6 +254,7 @@
     "featured": true,
     "author": "obra (Jesse Vincent)",
     "repoUrl": "https://github.com/obra/superpowers",
+    "date": "2025-10-18",
     "excerpt": "> **Created by:** [obra (Jesse Vincent)](https://github.com/obra)   > **Repository:** [github.com/obra/superpowers](https://github.com/obra/superpowers)   > **License:** MIT License   > **Stars:** 3,7..."
   },
   {
@@ -265,6 +276,7 @@
     "featuredPriority": 2,
     "author": "Exploration Labs",
     "repoUrl": "https://github.com/Exploration-labs/typescript-code-review",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "A comprehensive skill for conducting professional TypeScript code reviews, examining type safety, best practices, performance, security, and maintainability.  <Callout type=\"tip\"> This skill is perfec..."
   },
   {
@@ -286,6 +298,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/vibe-coding",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality, understanding architectural decisions, and building sustainable develop..."
   },
   {
@@ -309,6 +322,7 @@
     "featured": false,
     "author": "Nate Jones",
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/xlsx-editor",
+    "date": "2025-01-18T00:00:00.000Z",
     "excerpt": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships through systematic analysis and valid..."
   }
 ]
