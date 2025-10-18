@@ -214,5 +214,26 @@
     ],
     "featured": false,
     "excerpt": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality, understanding architectural decisions, and building sustainable develop..."
+  },
+  {
+    "slug": "xlsx-editor",
+    "title": "XLSX Editor",
+    "description": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships.",
+    "categories": [
+      "business",
+      "data-analysis",
+      "automation"
+    ],
+    "tags": [
+      "excel",
+      "xlsx",
+      "spreadsheet-editing",
+      "data-manipulation",
+      "formula-preservation",
+      "automation",
+      "python"
+    ],
+    "featured": false,
+    "excerpt": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships through systematic analysis and valid..."
   }
 ]
