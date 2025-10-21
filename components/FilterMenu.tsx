@@ -613,7 +613,7 @@ export default function FilterMenu({
                                     <Search className="w-8 h-8 mx-auto opacity-50" />
                                   </div>
                                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                                    No categories found for "{categorySearch}"
+                                    No categories found for &quot;{categorySearch}&quot;
                                   </div>
                                 </div>
                               )}
@@ -770,7 +770,7 @@ export default function FilterMenu({
                                     <Search className="w-8 h-8 mx-auto opacity-50" />
                                   </div>
                                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                                    No tags found for "{tagSearch}"
+                                    No tags found for &quot;{tagSearch}&quot;
                                   </div>
                                 </div>
                               )}
@@ -793,7 +793,7 @@ export default function FilterMenu({
                   Filter & Discover
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Find exactly what you're looking for
+                  Find exactly what you&apos;re looking for
                 </p>
               </div>
 
@@ -977,7 +977,7 @@ export default function FilterMenu({
                                     <Search className="w-8 h-8 mx-auto opacity-50" />
                                   </div>
                                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                                    No categories found for "{categorySearch}"
+                                    No categories found for &quot;{categorySearch}&quot;
                                   </div>
                                 </div>
                               )}
@@ -1350,7 +1350,7 @@ export default function FilterMenu({
                                       <Search className="w-8 h-8 mx-auto opacity-50" />
                                     </div>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                                      No tags found for "{tagSearch}"
+                                      No tags found for &quot;{tagSearch}&quot;
                                     </div>
                                   </div>
                                 )}
