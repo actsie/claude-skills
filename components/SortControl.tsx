@@ -48,7 +48,19 @@ export default function SortControl({
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div 
+      className="relative" 
+      ref={dropdownRef}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => {
+        // Add a small delay to prevent accidental closures
+        setTimeout(() => {
+          if (!dropdownRef.current?.matches(':hover')) {
+            setIsOpen(false);
+          }
+        }, 150);
+      }}
+    >
       <label htmlFor="sort-control" className="sr-only">
         Sort skills by
       </label>

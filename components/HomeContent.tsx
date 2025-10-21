@@ -7,10 +7,8 @@ import NavigationBar, { NavigationModals } from '@/components/NavigationBar';
 import SkillCard from '@/components/SkillCard';
 import SkillCardSkeleton from '@/components/SkillCardSkeleton';
 import EmptyState from '@/components/EmptyState';
-import CategoryFilter from '@/components/CategoryFilter';
-import TagFilter from '@/components/TagFilter';
-import ClearFilters from '@/components/ClearFilters';
 import SortControl from '@/components/SortControl';
+import FilterMenu from '@/components/FilterMenu';
 import { Skill, SearchResult } from '@/lib/types';
 import { createSearchIndex, getMatchedExcerpt } from '@/lib/search';
 import {
@@ -38,8 +36,6 @@ export default function HomeContent() {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [showAllCategories, setShowAllCategories] = useState(false);
-  const [showAllTags, setShowAllTags] = useState(false);
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
@@ -246,156 +242,11 @@ export default function HomeContent() {
         </div>
       </div>
 
-      {/* Main Content with Sidebar */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex gap-8">
-        {/* Sidebar */}
-        <aside className="hidden lg:block w-64 flex-shrink-0">
-          <div className="sticky top-12 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-6">Filters</h2>
-            
-            {/* Categories */}
-            <div className="mb-8">
-              <h3 className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide">
-                Categories
-              </h3>
-              <div className="space-y-2">
-                <button
-                  onClick={() => handleSelectCategory(null)}
-                  className={`w-full text-left px-3 py-2 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                    selectedCategory === null
-                      ? 'bg-primary-600 text-white shadow-sm'
-                      : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
-                  }`}
-                  aria-pressed={selectedCategory === null}
-                >
-                  All Categories
-                  <span className="ml-2 text-xs opacity-75">({skills.length})</span>
-                </button>
-                <button
-                  onClick={() => handleSelectCategory('featured')}
-                  className={`w-full text-left px-3 py-2 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                    selectedCategory === 'featured'
-                      ? 'bg-primary-600 text-white shadow-sm'
-                      : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
-                  }`}
-                  aria-pressed={selectedCategory === 'featured'}
-                >
-                  Featured
-                  <span className="ml-2 text-xs opacity-75">({skills.filter(skill => skill.featured).length})</span>
-                </button>
-{(() => {
-                  const sortedCategories = Array.from(filterCounts.categories.entries())
-                    .sort((a, b) => a[0].localeCompare(b[0]));
-                  const displayedCategories = showAllCategories ? sortedCategories : sortedCategories.slice(0, 5);
-                  
-                  return (
-                    <>
-                      {displayedCategories.map(([category, count]) => (
-                        <button
-                          key={category}
-                          onClick={() => handleSelectCategory(category)}
-                          className={`w-full text-left px-3 py-2 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                            selectedCategory === category
-                              ? 'bg-primary-600 text-white shadow-sm'
-                              : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
-                          }`}
-                          aria-pressed={selectedCategory === category}
-                        >
-                          {category}
-                          <span className="ml-2 text-xs opacity-75">({count})</span>
-                        </button>
-                      ))}
-                      {sortedCategories.length > 5 && (
-                        <button
-                          onClick={() => setShowAllCategories(!showAllCategories)}
-                          className="w-full text-left px-3 py-2 text-xs text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium focus:outline-none focus:underline"
-                        >
-                          {showAllCategories ? 'Show less' : `Show all (${sortedCategories.length})`}
-                        </button>
-                      )}
-                    </>
-                  );
-                })()}
-              </div>
-            </div>
-
-            {/* Tags */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wide">
-                  Tags {selectedTags.length > 0 && `(${selectedTags.length})`}
-                </h3>
-              </div>
-              <div className="space-y-2">
-                {(() => {
-                  const sortedTags = Array.from(filterCounts.tags.entries())
-                    .sort((a, b) => {
-                      if (b[1] !== a[1]) return b[1] - a[1];
-                      return a[0].localeCompare(b[0]);
-                    });
-                  const displayedTags = showAllTags ? sortedTags : sortedTags.slice(0, 5);
-                  
-                  return (
-                    <>
-                      {displayedTags.map(([tag, count]) => {
-                        const isSelected = selectedTags.includes(tag);
-                        return (
-                          <button
-                            key={tag}
-                            onClick={() => handleToggleTag(tag)}
-                            className={`w-full text-left px-3 py-2 rounded-md text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-                              isSelected
-                                ? 'bg-primary-600 text-white shadow-sm'
-                                : 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
-                            }`}
-                            aria-pressed={isSelected}
-                            aria-label={`Filter by ${tag} tag, ${count} skills`}
-                          >
-                            #{tag}
-                            <span className="ml-2 text-xs opacity-75">({count})</span>
-                          </button>
-                        );
-                      })}
-                      {sortedTags.length > 5 && (
-                        <button
-                          onClick={() => setShowAllTags(!showAllTags)}
-                          className="w-full text-left px-3 py-2 text-xs text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium focus:outline-none focus:underline"
-                        >
-                          {showAllTags ? 'Show less' : `Show all (${sortedTags.length})`}
-                        </button>
-                      )}
-                    </>
-                  );
-                })()}
-              </div>
-            </div>
-
-            {/* Clear Filters */}
-            {hasActiveFilters && (
-              <button
-                onClick={handleClearAll}
-                className="w-full px-4 py-2 text-xs font-medium text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all"
-              >
-                Clear all filters
-              </button>
-            )}
-          </div>
-        </aside>
-
-        {/* Mobile Filters Toggle */}
-        <div className="lg:hidden mb-6">
-          <button
-            onClick={() => {/* TODO: Add mobile filter toggle */}}
-            className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all"
-          >
-            Filters {hasActiveFilters && `(${(selectedCategory ? 1 : 0) + selectedTags.length} active)`}
-          </button>
-        </div>
-
-        {/* Main Content */}
-        <main className="flex-1 min-w-0">
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main>
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6" role="list" aria-label="Loading skills">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Loading skills">
             {Array.from({ length: 8 }).map((_, i) => (
               <SkillCardSkeleton key={i} />
             ))}
@@ -412,20 +263,44 @@ export default function HomeContent() {
         ) : (
           <>
             <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                {searchQuery || hasActiveFilters ? 'Filtered Results' : 'All Skills'}
-                <span className="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">
-                  ({sortedResults.length} {sortedResults.length === 1 ? 'skill' : 'skills'})
-                </span>
-              </h2>
-              <SortControl
-                currentSort={sortBy}
-                onSortChange={handleSortChange}
-                hasSearchQuery={!!searchQuery.trim()}
-              />
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                  {searchQuery || hasActiveFilters ? 'Filtered Results' : 'All Skills'}
+                  <span className="ml-2 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    ({sortedResults.length} {sortedResults.length === 1 ? 'skill' : 'skills'})
+                  </span>
+                </h2>
+                {(searchQuery || hasActiveFilters) && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Filtered by:{' '}
+                    {[
+                      searchQuery && `"${searchQuery}"`,
+                      selectedCategory && `${selectedCategory} category`,
+                      ...selectedTags.map(tag => `#${tag} tag`)
+                    ].filter(Boolean).join(', ')}
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <FilterMenu
+                  categories={filterCounts.categories}
+                  tags={filterCounts.tags}
+                  selectedCategory={selectedCategory}
+                  selectedTags={selectedTags}
+                  onSelectCategory={handleSelectCategory}
+                  onToggleTag={handleToggleTag}
+                  skillsCount={skills.length}
+                  skills={skills}
+                />
+                <SortControl
+                  currentSort={sortBy}
+                  onSortChange={handleSortChange}
+                  hasSearchQuery={!!searchQuery.trim()}
+                />
+              </div>
             </div>
             <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               role="list"
               aria-label="Skills list"
             >
