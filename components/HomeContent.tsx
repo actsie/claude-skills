@@ -12,6 +12,7 @@ import FilterMenu from '@/components/FilterMenu';
 import TrendingSection from '@/components/TrendingSection';
 import FeaturedSection from '@/components/FeaturedSection';
 import NewestSection from '@/components/NewestSection';
+import FAQSection from '@/components/FAQSection';
 import { Skill, SearchResult } from '@/lib/types';
 import { createSearchIndex, getMatchedExcerpt } from '@/lib/search';
 import {
@@ -416,8 +417,11 @@ export default function HomeContent() {
         </main>
       </div>
 
+      {/* FAQ Section */}
+      <FAQSection />
+
       {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-20">
+      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
             Claude Skills Market - Community curated collection
