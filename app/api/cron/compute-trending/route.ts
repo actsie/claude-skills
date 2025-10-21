@@ -45,10 +45,14 @@ export async function GET(request: NextRequest) {
         const skillId = skill.slug;
 
         // Get counters from KV
-        const [views24h, clicks24h] = await Promise.all([
-          kv.get<number>(`skill:${skillId}:views:24h`) || 0,
-          kv.get<number>(`skill:${skillId}:clicks:24h`) || 0,
+        const [views24hRaw, clicks24hRaw] = await Promise.all([
+          kv.get<number>(`skill:${skillId}:views:24h`),
+          kv.get<number>(`skill:${skillId}:clicks:24h`),
         ]);
+
+        // Default to 0 if null
+        const views24h = views24hRaw ?? 0;
+        const clicks24h = clicks24hRaw ?? 0;
 
         // Compute trending score
         // 3×clicks + 0.2×views

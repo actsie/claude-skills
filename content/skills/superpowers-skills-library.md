@@ -7,6 +7,7 @@ author: "obra (Jesse Vincent)"
 repoUrl: "https://github.com/obra/superpowers"
 date: "2025-10-18"
 featured: true
+featuredPriority: 3
 ---
 
 # Superpowers Skills Library

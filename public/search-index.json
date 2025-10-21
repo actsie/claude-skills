@@ -300,6 +300,7 @@
       "systematic-development"
     ],
     "featured": true,
+    "featuredPriority": 3,
     "author": "obra (Jesse Vincent)",
     "repoUrl": "https://github.com/obra/superpowers",
     "date": "2025-10-18",

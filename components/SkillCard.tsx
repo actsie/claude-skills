@@ -2,15 +2,18 @@
 
 import Link from 'next/link';
 import { Skill } from '@/lib/types';
+import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
+import type { SurfaceType } from '@/lib/analytics/types';
 
 interface SkillCardProps {
   skill: Skill;
   highlightedExcerpt?: string;
   index?: number;
   onTagClick?: (tag: string) => void;
+  surface?: SurfaceType;
 }
 
-export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick }: SkillCardProps) {
+export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick, surface = 'catalog' }: SkillCardProps) {
   // Safe defaults for missing/invalid fields
   const title = skill.title?.trim() || 'Untitled Skill';
   const description = skill.description?.trim() || 'No description available';
@@ -26,6 +29,40 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
   // Validate external URL
   const externalUrl = skill.externalUrl?.trim() || '';
   const isValidExternalUrl = externalUrl.startsWith('http://') || externalUrl.startsWith('https://');
+
+  // Add UTM parameters to external URLs (GitHub links)
+  const getExternalUrlWithUTM = (url: string): string => {
+    if (!url) return url;
+    try {
+      const urlObj = new URL(url);
+      urlObj.searchParams.set('utm_source', 'pawgrammer-skills');
+      urlObj.searchParams.set('utm_medium', 'skill_card');
+      urlObj.searchParams.set('utm_campaign', 'github_traffic');
+      urlObj.searchParams.set('utm_content', surface);
+      return urlObj.toString();
+    } catch {
+      return url;
+    }
+  };
+
+  // Handle internal skill detail navigation
+  const handleSkillClick = () => {
+    trackSkillDetailView(skill, surface, index);
+  };
+
+  // Handle external link click (GitHub links)
+  const handleExternalClick = () => {
+    if (externalUrl) {
+      trackGitHubLinkClick(skill, surface, externalUrl);
+    }
+  };
+
+  // Handle tag click
+  const handleTagClick = (tag: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    trackTagClick(tag, surface);
+    onTagClick?.(tag);
+  };
 
   return (
     <article
@@ -53,9 +90,10 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
         <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 pr-20">
           {isExternal && isValidExternalUrl ? (
             <a
-              href={externalUrl}
+              href={getExternalUrlWithUTM(externalUrl)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleExternalClick}
               className="focus:outline-none focus:underline inline-flex items-center gap-1"
               tabIndex={0}
               aria-label={`${title} (opens in new tab)`}
@@ -88,6 +126,7 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
           ) : hasValidSlug ? (
             <Link
               href={`/skills/${slug}`}
+              onClick={handleSkillClick}
               className="focus:outline-none focus:underline"
               tabIndex={0}
               aria-label={`View details for ${title}`}
@@ -138,10 +177,7 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
               <button
                 key={tag}
                 role="listitem"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onTagClick?.(tag);
-                }}
+                onClick={(e) => handleTagClick(tag, e)}
                 className="relative inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
                 aria-label={`Filter by tag: ${tag}`}
                 tabIndex={0}

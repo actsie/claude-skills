@@ -110,7 +110,7 @@ export function trackCatalogView(
   resultCount: number
 ): void {
   trackEvent('catalog_view', {
-    ...getBaseProperties('home', 'catalog_grid'),
+    ...getBaseProperties('home', 'home'),
     filters,
     result_count: resultCount,
   });
@@ -126,7 +126,7 @@ export function trackFilterApply(
   resultCount: number
 ): void {
   trackEvent('filter_apply', {
-    ...getBaseProperties('home', 'catalog_grid'),
+    ...getBaseProperties('home', 'home'),
     filter_type: filterType,
     filter_value: filterValue,
     filters,
@@ -146,7 +146,7 @@ export function trackSearchSubmit(
   const sanitizedQuery = searchQuery.trim().toLowerCase().slice(0, 100);
 
   trackEvent('search_submit', {
-    ...getBaseProperties('home', 'catalog_grid'),
+    ...getBaseProperties('home', 'home'),
     search_query: sanitizedQuery,
     filters,
     result_count: resultCount,

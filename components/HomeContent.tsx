@@ -9,6 +9,9 @@ import SkillCardSkeleton from '@/components/SkillCardSkeleton';
 import EmptyState from '@/components/EmptyState';
 import SortControl from '@/components/SortControl';
 import FilterMenu from '@/components/FilterMenu';
+import TrendingSection from '@/components/TrendingSection';
+import FeaturedSection from '@/components/FeaturedSection';
+import NewestSection from '@/components/NewestSection';
 import { Skill, SearchResult } from '@/lib/types';
 import { createSearchIndex, getMatchedExcerpt } from '@/lib/search';
 import {
@@ -23,6 +26,11 @@ import {
   getSortPreference,
   saveSortPreference,
 } from '@/lib/sort';
+import {
+  trackCatalogView,
+  trackFilterApply,
+  trackSearchSubmit,
+} from '@/lib/analytics/events';
 
 export default function HomeContent() {
   const router = useRouter();
@@ -125,7 +133,10 @@ export default function HomeContent() {
     setSelectedCategory(null);
     setSelectedTags([]);
     setSelectedIndex(-1);
-  }, []);
+
+    // Track clear filters event
+    trackFilterApply('clear', 'all', {}, skills.length);
+  }, [skills.length]);
 
   // Handle clear search only
   const handleClearSearch = useCallback(() => {
@@ -137,26 +148,51 @@ export default function HomeContent() {
   const handleSelectCategory = useCallback((category: string | null) => {
     setSelectedCategory(category);
     setSelectedIndex(-1);
-  }, []);
+
+    // Track filter apply event
+    const newFilters = {
+      category: category || undefined,
+      tags: selectedTags,
+      sort: sortBy,
+    };
+    // Result count will be computed after filter is applied, use current as approximation
+    trackFilterApply('category', category || 'none', newFilters, filteredSkills.length);
+  }, [selectedTags, sortBy, filteredSkills.length]);
 
   // Handle tag toggle
   const handleToggleTag = useCallback((tag: string) => {
     setSelectedTags((prev) => {
-      if (prev.includes(tag)) {
-        return prev.filter((t) => t !== tag);
-      } else {
-        return [...prev, tag];
-      }
+      const newTags = prev.includes(tag)
+        ? prev.filter((t) => t !== tag)
+        : [...prev, tag];
+
+      // Track filter apply event
+      const newFilters = {
+        category: selectedCategory || undefined,
+        tags: newTags,
+        sort: sortBy,
+      };
+      trackFilterApply('tag', tag, newFilters, filteredSkills.length);
+
+      return newTags;
     });
     setSelectedIndex(-1);
-  }, []);
+  }, [selectedCategory, sortBy, filteredSkills.length]);
 
   // Handle sort change
   const handleSortChange = useCallback((newSort: SortOption) => {
     setSortBy(newSort);
     saveSortPreference(newSort);
     setSelectedIndex(-1);
-  }, []);
+
+    // Track filter apply event for sort
+    const filters = {
+      category: selectedCategory || undefined,
+      tags: selectedTags,
+      sort: newSort,
+    };
+    trackFilterApply('sort', newSort, filters, filteredSkills.length);
+  }, [selectedCategory, selectedTags, filteredSkills.length]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -191,6 +227,30 @@ export default function HomeContent() {
       element?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, [selectedIndex]);
+
+  // Track catalog view when results change
+  useEffect(() => {
+    if (isInitialized && !isLoading) {
+      const filters = {
+        category: selectedCategory || undefined,
+        tags: selectedTags,
+        sort: sortBy,
+      };
+      trackCatalogView(filters, sortedResults.length);
+    }
+  }, [isInitialized, isLoading, sortedResults.length, selectedCategory, selectedTags, sortBy]);
+
+  // Track search submit when search query changes
+  useEffect(() => {
+    if (isInitialized && searchQuery.trim()) {
+      const filters = {
+        category: selectedCategory || undefined,
+        tags: selectedTags,
+        sort: sortBy,
+      };
+      trackSearchSubmit(searchQuery, filters, sortedResults.length);
+    }
+  }, [searchQuery]); // Only trigger when searchQuery changes
 
 
   return (
@@ -245,6 +305,18 @@ export default function HomeContent() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <main>
+        {/* Homepage Sections (show when no filters/search active) */}
+        {!isLoading && !searchQuery && !hasActiveFilters && (
+          <>
+            <FeaturedSection />
+            <TrendingSection />
+            <NewestSection />
+
+            {/* Divider */}
+            <div className="mb-8 border-t border-gray-200 dark:border-gray-700"></div>
+          </>
+        )}
+
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Loading skills">
             {Array.from({ length: 8 }).map((_, i) => (
@@ -313,6 +385,7 @@ export default function HomeContent() {
                   }
                   index={index}
                   onTagClick={handleToggleTag}
+                  surface="catalog"
                 />
               ))}
             </div>

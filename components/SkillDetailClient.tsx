@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, ReactNode, useState } from 'react';
+import { useEffect, ReactNode, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Skill } from '@/lib/types';
 import TableOfContents from './TableOfContents';
 import NavigationBar, { NavigationModals } from './NavigationBar';
+import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -17,7 +18,16 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
   const [searchQuery, setSearchQuery] = useState('');
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
-  
+  const hasTrackedView = useRef(false);
+
+  // Track skill detail view on mount
+  useEffect(() => {
+    if (!hasTrackedView.current) {
+      trackSkillDetailView(skill, 'skill_detail');
+      hasTrackedView.current = true;
+    }
+  }, [skill]);
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +43,38 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
 
   const handleSearchClear = () => {
     setSearchQuery('');
+  };
+
+  // Add UTM parameters to GitHub URLs
+  const getGitHubUrlWithUTM = (url: string): string => {
+    if (!url) return url;
+    try {
+      const urlObj = new URL(url);
+      urlObj.searchParams.set('utm_source', 'pawgrammer-skills');
+      urlObj.searchParams.set('utm_medium', 'skill_detail');
+      urlObj.searchParams.set('utm_campaign', 'github_traffic');
+      urlObj.searchParams.set('utm_content', 'skill_detail');
+      return urlObj.toString();
+    } catch {
+      return url;
+    }
+  };
+
+  // Handle GitHub link click
+  const handleGitHubClick = () => {
+    if (skill.repoUrl) {
+      trackGitHubLinkClick(skill, 'skill_detail', skill.repoUrl);
+    }
+  };
+
+  // Handle category click
+  const handleCategoryClick = (category: string) => {
+    trackTagClick(category, 'skill_detail');
+  };
+
+  // Handle related skill click
+  const handleRelatedSkillClick = (relatedSkill: Skill, index: number) => {
+    trackSkillDetailView(relatedSkill, 'related_skills', index);
   };
 
   // Filter related skills by matching tags
@@ -157,6 +199,7 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
                   <Link
                     key={category}
                     href={`/?category=${category}`}
+                    onClick={() => handleCategoryClick(category)}
                     className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200 hover:bg-primary-200 dark:hover:bg-primary-800 transition-colors"
                   >
                     {category}
@@ -193,9 +236,10 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
               </div>
               {skill.repoUrl ? (
                 <a
-                  href={skill.repoUrl}
+                  href={getGitHubUrlWithUTM(skill.repoUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleGitHubClick}
                   className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors font-medium text-sm"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -220,10 +264,11 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
                   Related Skills
                 </div>
                 <div className="space-y-3">
-                  {skillsByTags.map((relatedSkill) => (
+                  {skillsByTags.map((relatedSkill, index) => (
                     <Link
                       key={relatedSkill.slug}
                       href={`/skills/${relatedSkill.slug}`}
+                      onClick={() => handleRelatedSkillClick(relatedSkill, index)}
                       className="block group"
                     >
                       <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">

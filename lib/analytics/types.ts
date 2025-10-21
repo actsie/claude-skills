@@ -1,9 +1,11 @@
 export type PageType = 'home' | 'skill_detail';
 export type SurfaceType =
+  | 'home'
+  | 'catalog'
   | 'trending'
   | 'featured'
   | 'newest'
-  | 'catalog_grid'
+  | 'related_skills'
   | 'skill_detail';
 
 export interface SkillProperties {
