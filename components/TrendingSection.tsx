@@ -181,9 +181,9 @@ export default function TrendingSection() {
       </div>
 
       <div className="relative">
-        <div className="space-y-0 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-800">
+        <div className="space-y-0">
           {/* Column Headers */}
-          <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 bg-gray-100 dark:bg-gray-750 border-b border-gray-200 dark:border-gray-700">
+          <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 border-b border-gray-200 dark:border-gray-700">
             <div className="col-span-6">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Skill
@@ -238,12 +238,12 @@ export default function TrendingSection() {
               key={skill.slug}
               href={`/skills/${skill.slug}`}
               onClick={() => trackSkillDetailView(skill, 'trending', rank)}
-              className="group grid grid-cols-12 gap-4 items-center py-2 px-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors border-b border-gray-200 dark:border-gray-700 last:border-b-0"
+              className="group grid grid-cols-12 gap-4 items-center py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               aria-label={`Rank ${rank}. ${skill.title}`}
             >
               {/* Rank + Title (6 columns) */}
               <div className="col-span-6 flex items-center gap-3 min-w-0">
-                <span className="flex-shrink-0 w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-gray-700 dark:text-gray-300 font-semibold text-xs">
+                <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-gray-500 dark:text-gray-400 font-semibold text-xs">
                   {rank}
                 </span>
                 <h3

@@ -76,7 +76,8 @@ export interface EventBatch {
 
 export interface TrendingSkill extends SkillProperties {
   slug: string;
-  trending_score: number;
+  trending_score?: number;
+  description?: string;
 }
 
 export interface PopularSkill extends SkillProperties {

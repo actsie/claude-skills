@@ -85,6 +85,28 @@ export default function HomeContent() {
     }
   }, [isLoading, isInitialized, searchParams]);
 
+  // Update state when URL changes (e.g., from clicking tags in sections)
+  useEffect(() => {
+    if (isInitialized) {
+      const params = parseQueryString(searchParams.toString());
+
+      // Only update if values actually changed to prevent infinite loops
+      if (params.searchQuery !== searchQuery) {
+        setSearchQuery(params.searchQuery);
+      }
+      if (params.category !== selectedCategory) {
+        setSelectedCategory(params.category);
+      }
+      if (JSON.stringify(params.tags) !== JSON.stringify(selectedTags)) {
+        setSelectedTags(params.tags);
+      }
+      if (params.sort && params.sort !== sortBy) {
+        setSortBy(params.sort);
+        saveSortPreference(params.sort);
+      }
+    }
+  }, [searchParams, isInitialized, searchQuery, selectedCategory, selectedTags, sortBy]);
+
   // Update URL when filters or sort change
   useEffect(() => {
     if (isInitialized) {
