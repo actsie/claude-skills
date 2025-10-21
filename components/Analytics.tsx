@@ -1,43 +1,21 @@
 'use client';
 
 import { useEffect } from 'react';
-import { initPostHog, enablePostHogTracking, disablePostHogTracking } from '@/lib/analytics/posthog';
-import { hasAnalyticsConsent, hasMarketingConsent } from '@/lib/analytics/consent';
+import { initPostHog } from '@/lib/analytics/posthog';
 import Script from 'next/script';
 
 export default function Analytics() {
   useEffect(() => {
-    // Initialize PostHog if consent is given
-    if (hasAnalyticsConsent()) {
-      initPostHog();
-    }
-
-    // Listen for consent changes
-    const handleConsentUpdate = (event: any) => {
-      const consent = event.detail;
-
-      if (consent?.analytics) {
-        initPostHog();
-        enablePostHogTracking();
-      } else {
-        disablePostHogTracking();
-      }
-    };
-
-    window.addEventListener('consent-updated', handleConsentUpdate);
-
-    return () => {
-      window.removeEventListener('consent-updated', handleConsentUpdate);
-    };
+    // Initialize PostHog immediately
+    initPostHog();
   }, []);
 
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  const hasMarketing = hasMarketingConsent();
 
   return (
     <>
-      {/* Google Analytics 4 - Only load if marketing consent given */}
-      {gaId && hasMarketing && (
+      {/* Google Analytics 4 */}
+      {gaId && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}

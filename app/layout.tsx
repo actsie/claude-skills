@@ -3,7 +3,6 @@ import './globals.css';
 import 'highlight.js/styles/github-dark.css';
 import PawgrammerBanner from '@/components/PawgrammerBanner';
 import Analytics from '@/components/Analytics';
-import CookieBanner from '@/components/CookieBanner';
 
 export const metadata: Metadata = {
   title: 'Claude Skills Market',
@@ -21,7 +20,6 @@ export default function RootLayout({
         <PawgrammerBanner />
         {children}
         <Analytics />
-        <CookieBanner />
       </body>
     </html>
   );
