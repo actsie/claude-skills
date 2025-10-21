@@ -51,7 +51,7 @@ export default function PawgrammerBanner() {
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="text-sm/6 text-gray-100">
-          Explore skills here. Build your own projects with Pawgrammer
+          Explore skills here. Build your projects with Pawgrammer
         </p>
         <a
           href="https://pawgrammer.com"
