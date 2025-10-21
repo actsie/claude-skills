@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { getAllSkills } from '@/lib/skills';
 import type { TrendingSkill } from '@/lib/analytics/types';
+
+const redis = Redis.fromEnv();
 
 /**
  * Compute Trending Skills (Scheduled Job)
@@ -46,8 +48,8 @@ export async function GET(request: NextRequest) {
 
         // Get counters from KV
         const [views24hRaw, clicks24hRaw] = await Promise.all([
-          kv.get<number>(`skill:${skillId}:views:24h`),
-          kv.get<number>(`skill:${skillId}:clicks:24h`),
+          redis.get<number>(`skill:${skillId}:views:24h`),
+          redis.get<number>(`skill:${skillId}:clicks:24h`),
         ]);
 
         // Default to 0 if null
@@ -91,8 +93,8 @@ export async function GET(request: NextRequest) {
 
     // Store in KV
     await Promise.all([
-      kv.set(TRENDING_KEY, JSON.stringify(trending), { ex: TRENDING_TTL }),
-      kv.set(TRENDING_BACKUP_KEY, JSON.stringify(trending)), // No TTL for backup
+      redis.set(TRENDING_KEY, JSON.stringify(trending), { ex: TRENDING_TTL }),
+      redis.set(TRENDING_BACKUP_KEY, JSON.stringify(trending)), // No TTL for backup
     ]);
 
     console.log('[Cron] Trending skills stored in KV');

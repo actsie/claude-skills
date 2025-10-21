@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { getAllSkills } from '@/lib/skills';
+
+const redis = Redis.fromEnv();
 
 /**
  * Get Newest Skills (Read-only API)
@@ -24,7 +26,7 @@ interface NewestSkill {
 export async function GET() {
   try {
     // Try to get from cache
-    const cachedData = await kv.get<string>(NEWEST_CACHE_KEY);
+    const cachedData = await redis.get<string>(NEWEST_CACHE_KEY);
 
     if (cachedData) {
       const newest: NewestSkill[] = JSON.parse(cachedData);
@@ -63,7 +65,7 @@ export async function GET() {
       }));
 
     // Cache the result
-    await kv.set(NEWEST_CACHE_KEY, JSON.stringify(newest), {
+    await redis.set(NEWEST_CACHE_KEY, JSON.stringify(newest), {
       ex: NEWEST_CACHE_TTL,
     });
 

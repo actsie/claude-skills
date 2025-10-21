@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import type { TrendingSkill } from '@/lib/analytics/types';
+
+const redis = Redis.fromEnv();
 
 /**
  * Get Trending Skills (Read-only API)
@@ -15,7 +17,7 @@ const TRENDING_BACKUP_KEY = 'skills:trending:last_good';
 export async function GET() {
   try {
     // Try to get current trending data
-    const trendingData = await kv.get<string>(TRENDING_KEY);
+    const trendingData = await redis.get<string>(TRENDING_KEY);
 
     if (trendingData) {
       const trending: TrendingSkill[] = JSON.parse(trendingData);
@@ -31,7 +33,7 @@ export async function GET() {
     }
 
     // Fallback to backup (stale-while-revalidate)
-    const backupData = await kv.get<string>(TRENDING_BACKUP_KEY);
+    const backupData = await redis.get<string>(TRENDING_BACKUP_KEY);
 
     if (backupData) {
       const trending: TrendingSkill[] = JSON.parse(backupData);

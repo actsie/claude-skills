@@ -43,7 +43,7 @@ Operational procedures for managing the Claude Skills Market analytics system.
          │
          ▼
 ┌─────────────────┐
-│  Vercel KV      │
+│  Upstash Redis      │
 │  (Redis)        │
 └────────┬────────┘
          │
@@ -58,7 +58,7 @@ Operational procedures for managing the Claude Skills Market analytics system.
 
 - **PostHog:** Product analytics (user behavior, events)
 - **GA4:** Marketing analytics (traffic sources, campaigns)
-- **Vercel KV:** Redis-compatible storage for counters and caching
+- **Upstash Redis:** Redis-compatible storage for counters and caching
 - **Vercel Cron:** Scheduled trending computation (every 10 minutes)
 
 ---
@@ -77,9 +77,9 @@ NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 # Google Analytics 4
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
-# Vercel KV
-KV_REST_API_URL=https://xxxxxx.kv.vercel-storage.com
-KV_REST_API_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# Upstash Redis
+UPSTASH_REDIS_REST_URL=https://xxxxxx.upstash.io
+UPSTASH_REDIS_REST_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Cron Security
 CRON_SECRET=your-secure-random-string-here
@@ -95,9 +95,9 @@ NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 # GA4 (optional in dev)
 # NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
-# Vercel KV (use dev database)
-KV_REST_API_URL=https://dev-xxxxx.kv.vercel-storage.com
-KV_REST_API_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# Upstash Redis (use dev database)
+UPSTASH_REDIS_REST_URL=https://dev-xxxxx.kv.vercel-storage.com
+UPSTASH_REDIS_REST_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Cron Security
 CRON_SECRET=dev-cron-secret
@@ -176,23 +176,19 @@ CRON_SECRET=dev-cron-secret
    - Check Realtime view
    - Confirm events are flowing to new property
 
-### Vercel KV Token Rotation
+### Upstash Redis Token Rotation
 
 **Steps:**
 
-1. **Create new KV database (recommended) or new token:**
-   ```bash
-   # Option 1: New database
-   vercel kv create analytics-prod-v2
-
-   # Option 2: Rotate token for existing database
-   vercel kv rotate-token
-   ```
+1. **Create new Redis database (recommended) or rotate credentials:**
+   - Go to https://console.upstash.com
+   - Create new database or rotate credentials for existing database
+   - Copy new REST URL and REST token
 
 2. **Update environment variables:**
    ```bash
-   vercel env add KV_REST_API_URL production
-   vercel env add KV_REST_API_TOKEN production
+   vercel env add UPSTASH_REDIS_REST_URL production
+   vercel env add UPSTASH_REDIS_REST_TOKEN production
    ```
 
 3. **Redeploy:**
@@ -202,18 +198,13 @@ CRON_SECRET=dev-cron-secret
 
 4. **Verify:**
    ```bash
-   # Check KV connection
+   # Check Redis connection
    curl https://your-domain.com/api/trending
    ```
 
 5. **Migrate data (if using new database):**
-   ```bash
-   # Export from old DB
-   vercel kv export old-db-id > backup.json
-
-   # Import to new DB
-   vercel kv import new-db-id < backup.json
-   ```
+   - Use Upstash console's Data Browser to export/import
+   - Or use the Upstash Redis CLI tool
 
 ### Cron Secret Rotation
 
@@ -273,7 +264,7 @@ vercel deploy --prod
 
 ### 2. Disable Trending Computation
 
-**Scenario:** Trending algorithm causing issues, high KV usage
+**Scenario:** Trending algorithm causing issues, high Redis usage
 
 **Steps:**
 
@@ -297,31 +288,26 @@ vercel deploy --prod
 **Rollback:**
 Restore cron configuration and deploy
 
-### 3. Purge Sensitive Data from KV
+### 3. Purge Sensitive Data from Redis
 
-**Scenario:** Accidentally stored PII in KV
+**Scenario:** Accidentally stored PII in Redis
 
 **Steps:**
 
-1. **List all keys:**
-   ```bash
-   vercel kv scan 0
-   ```
+1. **Use Upstash Console:**
+   - Go to https://console.upstash.com
+   - Select your database
+   - Use Data Browser to view and delete keys
+   - Search for keys using patterns like `skill:*:views:*`
 
-2. **Delete specific keys:**
-   ```bash
-   # Single key
-   vercel kv del skill:example-slug:views:24h
-
-   # Pattern (use carefully)
-   vercel kv scan 0 MATCH "skill:*:views:*" | xargs vercel kv del
-   ```
+2. **Or use Redis CLI (if needed):**
+   - Install redis-cli or use Upstash CLI
+   - Connect to your database
+   - Delete specific keys: `DEL skill:example-slug:views:24h`
 
 3. **Verify deletion:**
-   ```bash
-   vercel kv get skill:example-slug:views:24h
-   # Should return null
-   ```
+   - Check Data Browser or use `GET skill:example-slug:views:24h`
+   - Should return null
 
 ### 4. Emergency Cache Clear
 
@@ -329,11 +315,11 @@ Restore cron configuration and deploy
 
 **Steps:**
 
-1. **Clear trending cache:**
-   ```bash
-   vercel kv del skills:trending:v1
-   vercel kv del skills:trending:last_good
-   ```
+1. **Clear trending cache (using Upstash Console or API):**
+   - Option A: Use Upstash console Data Browser to delete keys:
+     - `skills:trending:v1`
+     - `skills:trending:last_good`
+   - Option B: Use Redis DEL command via API or CLI
 
 2. **Trigger recomputation:**
    ```bash
@@ -350,62 +336,40 @@ Restore cron configuration and deploy
 
 ## Data Management
 
-### Backup Vercel KV Data
+### Backup Upstash Redis Data
 
 **Frequency:** Weekly (recommended)
 
 **Steps:**
 
-```bash
-# Export all data
-vercel kv scan 0 COUNT 10000 > kv_keys.txt
+1. **Use Upstash Console Backup:**
+   - Go to https://console.upstash.com
+   - Select your database
+   - Use the built-in backup feature (if available on your plan)
 
-# Export with values
-for key in $(cat kv_keys.txt); do
-  value=$(vercel kv get "$key")
-  echo "$key|$value" >> kv_backup_$(date +%Y%m%d).txt
-done
-```
+2. **Or manual export:**
+   - Use Upstash Data Browser to export keys
+   - Use Redis DUMP commands for specific keys
+   - Store backups in S3 or similar
 
-**Automated backup script:**
-```bash
-#!/bin/bash
-# backup-kv.sh
-DATE=$(date +%Y%m%d)
-BACKUP_FILE="kv_backup_$DATE.json"
-
-vercel kv export > "$BACKUP_FILE"
-gzip "$BACKUP_FILE"
-
-# Upload to S3 (optional)
-aws s3 cp "${BACKUP_FILE}.gz" s3://your-bucket/kv-backups/
-```
+**Note:** Upstash Redis has built-in persistence and replication. For trending data, it's safe to rely on recomputation from the cron job.
 
 ### Restore from Backup
 
-```bash
-# Decompress
-gunzip kv_backup_20250121.json.gz
-
-# Import
-vercel kv import < kv_backup_20250121.json
-```
+- Use Upstash console restore feature
+- Or manually import keys using Redis CLI or API
 
 ### Clear Old Event Data
 
-KV keys have automatic TTLs:
+Redis keys have automatic TTLs:
 - `skill:*:views:24h` → 25 hours
 - `skill:*:clicks:24h` → 25 hours
 - `skill:*:views:7d` → 8 days
 
 **Manual cleanup (if needed):**
-```bash
-# Find expired keys (shouldn't exist due to TTL)
-vercel kv scan 0 MATCH "skill:*:*:24h"
-
-# Delete manually if TTL failed
-vercel kv scan 0 MATCH "skill:*:*:24h" | xargs vercel kv del
-```
+- Use Upstash console Data Browser to search and delete expired keys
+- Or use Redis DEL commands
+- TTL cleanup should happen automatically - manual intervention rarely needed
 
 ### Data Retention Policy
 
@@ -413,8 +377,8 @@ vercel kv scan 0 MATCH "skill:*:*:24h" | xargs vercel kv del
 |-----------|-----------|----------|-------|
 | Event data | 90 days | PostHog | Configurable in PostHog settings |
 | GA4 data | 14 months | Google Analytics | Standard retention |
-| KV counters | 24h-8d | Vercel KV | Automatic TTL |
-| Trending cache | 15 min | Vercel KV | Recomputed every 10 min |
+| Redis counters | 24h-8d | Upstash Redis | Automatic TTL |
+| Trending cache | 15 min | Upstash Redis | Recomputed every 10 min |
 
 ---
 
@@ -430,8 +394,8 @@ vercel kv scan 0 MATCH "skill:*:*:24h" | xargs vercel kv del
    - Vercel logs: Check `/api/cron/compute-trending`
    - Alert if failures > 2 consecutive runs
 
-3. **KV Storage Usage:**
-   - Vercel dashboard: KV metrics
+3. **Redis Storage Usage:**
+   - Upstash console: Database metrics
    - Alert if > 80% of plan limit
 
 4. **Page Load Time:**
@@ -458,7 +422,7 @@ vercel log-drain add https://your-logging-service.com/endpoint
 **Recommended Slack Alerts:**
 - Cron job failures
 - PostHog event volume drop
-- KV quota exceeded
+- Redis quota exceeded
 
 ---
 
@@ -533,30 +497,24 @@ vercel logs --filter=/api/cron --since 1h
      -H "Authorization: Bearer YOUR_CRON_SECRET" -v
    ```
 
-### Issue: High KV usage / quota exceeded
+### Issue: High Redis usage / quota exceeded
 
 **Diagnosis:**
-```bash
-# Count keys
-vercel kv scan 0 COUNT 10000 | wc -l
-
-# List all keys
-vercel kv scan 0
-```
+- Check Upstash console for key count and memory usage
+- Use Data Browser to inspect keys
 
 **Solutions:**
-1. Clear expired keys manually (TTL should handle this):
-   ```bash
-   vercel kv scan 0 MATCH "skill:*:*:24h" | xargs vercel kv del
-   ```
+1. Clear expired keys manually (TTL should handle this automatically):
+   - Use Upstash console Data Browser
+   - Filter by pattern `skill:*:*:24h` and delete
 
 2. Reduce counter TTLs:
    ```typescript
    // In /app/api/analytics/track/route.ts
-   await kv.expire(`skill:${skillId}:views:24h`, 24 * 60 * 60); // 24h instead of 25h
+   await redis.expire(`skill:${skillId}:views:24h`, 24 * 60 * 60); // 24h instead of 25h
    ```
 
-3. Upgrade Vercel KV plan
+3. Upgrade Upstash Redis plan (check pricing at https://upstash.com/pricing)
 
 ### Issue: UTM parameters not appearing in GA4
 

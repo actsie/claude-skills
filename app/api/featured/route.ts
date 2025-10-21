@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import { getAllSkills } from '@/lib/skills';
 import type { Skill } from '@/lib/types';
+
+const redis = Redis.fromEnv();
 
 /**
  * Get Featured Skills (Read-only API)
@@ -31,7 +33,7 @@ interface FeaturedSkill {
 export async function GET() {
   try {
     // Try to get from cache
-    const cachedData = await kv.get<string>(FEATURED_CACHE_KEY);
+    const cachedData = await redis.get<string>(FEATURED_CACHE_KEY);
 
     if (cachedData) {
       const featured: FeaturedSkill[] = JSON.parse(cachedData);
@@ -70,7 +72,7 @@ export async function GET() {
     // Backfill if < 3
     if (featured.length < 3) {
       // Get trending skills to exclude
-      const trendingData = await kv.get<string>(TRENDING_KEY);
+      const trendingData = await redis.get<string>(TRENDING_KEY);
       const trendingSlugs = new Set<string>();
 
       if (trendingData) {
@@ -104,7 +106,7 @@ export async function GET() {
     }));
 
     // Cache the result
-    await kv.set(FEATURED_CACHE_KEY, JSON.stringify(response), {
+    await redis.set(FEATURED_CACHE_KEY, JSON.stringify(response), {
       ex: FEATURED_CACHE_TTL,
     });
 
@@ -140,7 +142,7 @@ async function getPopularSkills(
       }
 
       // Get 7-day views as proxy for 30-day (we can add 30d counter later)
-      const views = (await kv.get<number>(`skill:${skill.slug}:views:7d`)) || 0;
+      const views = (await redis.get<number>(`skill:${skill.slug}:views:7d`)) || 0;
 
       return { skill, views };
     })

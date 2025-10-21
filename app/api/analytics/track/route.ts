@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
 
 /**
  * Server fallback for analytics tracking
@@ -99,28 +101,28 @@ async function incrementCounters(
       case 'skill_detail_view':
         // Increment 24h and 7d view counters
         await Promise.all([
-          kv.incr(`skill:${skillId}:views:24h`),
-          kv.incr(`skill:${skillId}:views:7d`),
+          redis.incr(`skill:${skillId}:views:24h`),
+          redis.incr(`skill:${skillId}:views:7d`),
         ]);
 
         // Set TTL on first increment (idempotent)
         await Promise.all([
-          kv.expire(`skill:${skillId}:views:24h`, 25 * 60 * 60), // 25 hours
-          kv.expire(`skill:${skillId}:views:7d`, 8 * 24 * 60 * 60), // 8 days
+          redis.expire(`skill:${skillId}:views:24h`, 25 * 60 * 60), // 25 hours
+          redis.expire(`skill:${skillId}:views:7d`, 8 * 24 * 60 * 60), // 8 days
         ]);
         break;
 
       case 'github_link_click':
         // Increment 24h and 7d click counters
         await Promise.all([
-          kv.incr(`skill:${skillId}:clicks:24h`),
-          kv.incr(`skill:${skillId}:clicks:7d`),
+          redis.incr(`skill:${skillId}:clicks:24h`),
+          redis.incr(`skill:${skillId}:clicks:7d`),
         ]);
 
         // Set TTL
         await Promise.all([
-          kv.expire(`skill:${skillId}:clicks:24h`, 25 * 60 * 60),
-          kv.expire(`skill:${skillId}:clicks:7d`, 8 * 24 * 60 * 60),
+          redis.expire(`skill:${skillId}:clicks:24h`, 25 * 60 * 60),
+          redis.expire(`skill:${skillId}:clicks:7d`, 8 * 24 * 60 * 60),
         ]);
         break;
 
