@@ -111,6 +111,7 @@ export default function HomeContent() {
         saveSortPreference(params.sort);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, isInitialized]);
 
   // Update URL when filters or sort change
@@ -283,6 +284,7 @@ export default function HomeContent() {
       };
       trackSearchSubmit(searchQuery, filters, sortedResults.length);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]); // Only trigger when searchQuery changes
 
   // Auto-scroll to results when typing in search (especially for mobile mini search)
