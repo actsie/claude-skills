@@ -2,8 +2,10 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { TrendingUp } from 'lucide-react';
-import { trackHomeSectionImpression, trackSkillDetailView } from '@/lib/analytics/events';
+import { useRouter } from 'next/navigation';
+import { trackHomeSectionImpression, trackSkillDetailView, trackTagClick } from '@/lib/analytics/events';
+import { formatTags } from '@/lib/utils/tags';
+import { formatAbsoluteDate } from '@/lib/utils/dates';
 import type { TrendingSkill } from '@/lib/analytics/types';
 
 export default function TrendingSection() {
@@ -11,13 +13,71 @@ export default function TrendingSection() {
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasTrackedImpression, setHasTrackedImpression] = useState(false);
+  const [previewSkill, setPreviewSkill] = useState<string | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const previewTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     // Fetch trending skills
     fetch('/api/trending')
       .then((res) => res.json())
       .then((data) => {
-        setTrending(data.trending || []);
+        const trendingData = data.trending || [];
+
+        // Use mock data if API returns empty (for preview purposes)
+        if (trendingData.length === 0) {
+          setTrending([
+            {
+              skill_id: 'typescript-code-review',
+              slug: 'typescript-code-review',
+              title: 'TypeScript Code Review',
+              description: 'Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.',
+              category: 'development',
+              tags: ['typescript', 'code-review', 'security', 'performance', 'type-safety', 'best-practices'],
+              created_at: '2025-01-15',
+            },
+            {
+              skill_id: 'product-design',
+              slug: 'product-design',
+              title: 'Product Design & UX Review',
+              description: 'Design user-centered software products and conduct thorough design reviews using industry-standard UX principles.',
+              category: 'development',
+              tags: ['product-design', 'ux', 'ui', 'accessibility', 'design-systems', 'usability'],
+              created_at: '2025-01-14',
+            },
+            {
+              skill_id: 'prompting-pattern-library',
+              slug: 'prompting-pattern-library',
+              title: 'Prompting Pattern Library',
+              description: 'Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance and failure mode analysis.',
+              category: 'ai',
+              tags: ['prompting', 'ai-interaction', 'prompt-engineering', 'ai-patterns', 'claude', 'gpt'],
+              created_at: '2025-01-12',
+            },
+            {
+              skill_id: 'complex-excel-builder',
+              slug: 'complex-excel-builder',
+              title: 'Complex Excel Builder',
+              description: 'Comprehensive Excel workbook creation skill for building sophisticated financial models and operational dashboards.',
+              category: 'business',
+              tags: ['excel', 'financial-modeling', 'spreadsheets', 'dashboards', 'business-intelligence'],
+              created_at: '2025-01-10',
+            },
+            {
+              skill_id: 'agentic-development',
+              slug: 'agentic-development',
+              title: 'Agentic Development',
+              description: 'Practical guidance for building software with AI agents using real-world workflows and prompt optimization.',
+              category: 'development',
+              tags: ['ai', 'agents', 'development', 'automation', 'workflow', 'ai-coding'],
+              created_at: '2025-01-08',
+            },
+          ]);
+        } else {
+          setTrending(trendingData);
+        }
+
         setLoading(false);
       })
       .catch((err) => {
@@ -49,8 +109,56 @@ export default function TrendingSection() {
     return () => observer.disconnect();
   }, [trending, hasTrackedImpression]);
 
+  const handleTagClick = (e: React.MouseEvent, tag: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    trackTagClick(tag, 'trending');
+    router.push(`/?tags=${encodeURIComponent(tag)}`);
+  };
+
+  // Handle preview card hover with delays
+  const handlePreviewEnter = (skillSlug: string, e: React.MouseEvent) => {
+    if (previewTimeoutRef.current) {
+      clearTimeout(previewTimeoutRef.current);
+      previewTimeoutRef.current = null;
+    }
+    setMousePosition({ x: e.clientX, y: e.clientY });
+    setPreviewSkill(skillSlug);
+  };
+
+  const handlePreviewLeave = () => {
+    previewTimeoutRef.current = setTimeout(() => {
+      setPreviewSkill(null);
+    }, 150);
+  };
+
+  const handlePreviewCardEnter = () => {
+    if (previewTimeoutRef.current) {
+      clearTimeout(previewTimeoutRef.current);
+      previewTimeoutRef.current = null;
+    }
+  };
+
   if (loading) {
-    return null; // or skeleton loader
+    // Show skeleton during initial load only
+    return (
+      <section ref={sectionRef} className="mb-12">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Trending Now
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-16 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse"
+            />
+          ))}
+        </div>
+      </section>
+    );
   }
 
   if (trending.length === 0) {
@@ -61,63 +169,236 @@ export default function TrendingSection() {
     <section
       ref={sectionRef}
       className="mb-12"
+      aria-label="Trending skills"
     >
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg">
-          <TrendingUp className="w-5 h-5 text-white" />
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            🔥 Trending Now
-          </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            Most popular skills in the last 24 hours
-          </p>
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Trending Now
+        </h2>
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700">
+          24h
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {trending.map((skill, index) => (
-          <Link
-            key={skill.slug}
-            href={`/skills/${skill.slug}`}
-            onClick={() => trackSkillDetailView(skill, 'trending', index)}
-            className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-lg transition-all duration-200"
-          >
-            {/* Rank Badge */}
-            <div className="absolute -top-2 -left-2 w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
-              {index + 1}
+      <div className="relative">
+        <div className="space-y-0 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-800">
+          {/* Column Headers */}
+          <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 bg-gray-100 dark:bg-gray-750 border-b border-gray-200 dark:border-gray-700">
+            <div className="col-span-6">
+              <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                Skill
+              </span>
             </div>
+            <div className="col-span-2">
+              <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                Category
+              </span>
+            </div>
+            <div className="col-span-3">
+              <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                Tags
+              </span>
+            </div>
+            <div className="col-span-1 flex justify-end">
+              <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                Status
+              </span>
+            </div>
+          </div>
 
-            {/* Content */}
-            <div className="pt-2">
-              <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
-                {skill.title}
-              </h3>
+          {trending.map((skill, index) => {
+          const formattedTags = formatTags(skill.tags || [], 2);
+          const rank = index + 1;
 
-              {/* Category */}
-              {skill.category && (
-                <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                  {skill.category}
-                </div>
-              )}
+          // Trending badge based on rank
+          const getTrendingBadge = (rank: number) => {
+            if (rank <= 2) {
+              return (
+                <span className="px-2 py-0.5 text-xs font-medium bg-[#D7CBFC] dark:bg-[#5E50A0] text-[#362B6B] dark:text-[#D7CBFC] rounded-full">
+                  Hot
+                </span>
+              );
+            } else if (rank <= 4) {
+              return (
+                <span className="px-2 py-0.5 text-xs font-medium bg-[#EBE5FD] dark:bg-[#362B6B] text-[#5E50A0] dark:text-[#C3B1FA] rounded-full">
+                  Rising
+                </span>
+              );
+            } else {
+              return (
+                <span className="px-2 py-0.5 text-xs font-medium bg-[#F8F6FE] dark:bg-[#191046] text-[#7866CC] dark:text-[#AF97F8] rounded-full">
+                  New
+                </span>
+              );
+            }
+          };
 
-              {/* Tags */}
-              {skill.tags && skill.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {skill.tags.slice(0, 2).map((tag) => (
-                    <span
+          return (
+            <Link
+              key={skill.slug}
+              href={`/skills/${skill.slug}`}
+              onClick={() => trackSkillDetailView(skill, 'trending', rank)}
+              className="group grid grid-cols-12 gap-4 items-center py-2 px-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors border-b border-gray-200 dark:border-gray-700 last:border-b-0"
+              aria-label={`Rank ${rank}. ${skill.title}`}
+            >
+              {/* Rank + Title (6 columns) */}
+              <div className="col-span-6 flex items-center gap-3 min-w-0">
+                <span className="flex-shrink-0 w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-gray-700 dark:text-gray-300 font-semibold text-xs">
+                  {rank}
+                </span>
+                <h3
+                  className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors truncate cursor-pointer"
+                  onMouseEnter={(e) => handlePreviewEnter(skill.slug, e)}
+                  onMouseMove={(e) => setMousePosition({ x: e.clientX, y: e.clientY })}
+                  onMouseLeave={handlePreviewLeave}
+                >
+                  {skill.title}
+                </h3>
+              </div>
+
+              {/* Category (2 columns) */}
+              <div className="col-span-2">
+                {skill.category && (
+                  <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">
+                    {skill.category}
+                  </span>
+                )}
+              </div>
+
+              {/* Tags (3 columns) */}
+              <div className="col-span-3 flex items-center gap-1.5 flex-wrap">
+                {formattedTags.map((tag, tagIndex) => {
+                  const isExtraIndicator = tag.startsWith('+');
+
+                  if (isExtraIndicator) {
+                    return (
+                      <span
+                        key={`extra-${tagIndex}`}
+                        className="px-1.5 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded"
+                        title={`${skill.tags?.length} total tags`}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  }
+
+                  return (
+                    <button
                       key={tag}
-                      className="px-2 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md"
+                      onClick={(e) => handleTagClick(e, tag)}
+                      className="px-1.5 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
+                      title={`Filter by #${tag}`}
                     >
                       #{tag}
-                    </span>
-                  ))}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Trending Badge (1 column) */}
+              <div className="col-span-1 flex justify-end">
+                {getTrendingBadge(rank)}
+              </div>
+            </Link>
+          );
+        })}
+        </div>
+
+        {/* Preview Card */}
+        {previewSkill && (() => {
+          const skill = trending.find(s => s.slug === previewSkill);
+          if (!skill) return null;
+
+          // Calculate position to prevent overflow
+          const cardWidth = 320; // w-80 = 20rem = 320px
+          const cardHeight = 400; // estimated height
+          const offset = 20;
+
+          let left = mousePosition.x + offset;
+          let top = mousePosition.y;
+
+          // Adjust if too close to right edge
+          if (left + cardWidth > window.innerWidth) {
+            left = mousePosition.x - cardWidth - offset;
+          }
+
+          // Adjust if too close to bottom edge
+          if (top + cardHeight > window.innerHeight) {
+            top = window.innerHeight - cardHeight - 20;
+          }
+
+          return (
+            <div
+              className="fixed w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl backdrop-blur-sm z-50 pointer-events-auto animate-[pop_0.2s_ease-out]"
+              style={{
+                left: `${left}px`,
+                top: `${top}px`,
+              }}
+              onMouseEnter={handlePreviewCardEnter}
+              onMouseLeave={handlePreviewLeave}
+            >
+              {/* Preview Header */}
+              <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-orange-50/70 to-red-50/70 dark:from-orange-900/30 dark:to-red-900/30 rounded-t-xl">
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                    {skill.title.charAt(0)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1">
+                      {skill.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Trending Skill
+                    </p>
+                  </div>
                 </div>
-              )}
+              </div>
+
+              {/* Preview Content */}
+              <div className="p-6">
+                {/* Description */}
+                {skill.description && (
+                  <div className="mb-4">
+                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {skill.description}
+                    </p>
+                  </div>
+                )}
+
+                {/* Category */}
+                {skill.category && (
+                  <div className="mb-4">
+                    <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                      Category
+                    </h4>
+                    <span className="inline-block px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded capitalize">
+                      {skill.category}
+                    </span>
+                  </div>
+                )}
+
+                {/* Tags */}
+                {skill.tags && skill.tags.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                      Tags
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {skill.tags.slice(0, 6).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </Link>
-        ))}
+          );
+        })()}
       </div>
     </section>
   );

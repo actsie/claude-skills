@@ -99,7 +99,7 @@ export async function GET() {
       title: skill.title,
       description: skill.description,
       category: skill.categories[0] || '',
-      tags: skill.tags.slice(0, 3),
+      tags: skill.tags, // Send all tags, component handles truncation
       created_at: skill.date,
       repoUrl: skill.repoUrl,
       featured_rank: skill.featuredPriority,
@@ -128,28 +128,70 @@ export async function GET() {
 }
 
 /**
- * Get popular skills based on 30-day view counts
+ * Get popular skills based on 7-day view counts
  * Excludes trending skills to avoid duplication
+ * Tie-breakers: clicks_7d → created_at (newer first) → category diversity
  */
 async function getPopularSkills(
   allSkills: Skill[],
   excludeSlugs: Set<string>
 ): Promise<Skill[]> {
-  const skillsWithViews = await Promise.all(
+  const skillsWithMetrics = await Promise.all(
     allSkills.map(async (skill) => {
       if (excludeSlugs.has(skill.slug)) {
-        return { skill, views: 0 };
+        return { skill, views: 0, clicks: 0 };
       }
 
-      // Get 7-day views as proxy for 30-day (we can add 30d counter later)
+      // Get 7-day views and clicks
       const views = (await redis.get<number>(`skill:${skill.slug}:views:7d`)) || 0;
+      const clicks = (await redis.get<number>(`skill:${skill.slug}:clicks:7d`)) || 0;
 
-      return { skill, views };
+      return { skill, views, clicks };
     })
   );
 
-  return skillsWithViews
+  // Track used categories for diversity
+  const usedCategories = new Set<string>();
+
+  return skillsWithMetrics
     .filter((s) => s.views > 0 && !excludeSlugs.has(s.skill.slug))
-    .sort((a, b) => b.views - a.views)
-    .map((s) => s.skill);
+    .sort((a, b) => {
+      // Primary: views_7d (descending)
+      if (b.views !== a.views) {
+        return b.views - a.views;
+      }
+
+      // Tie-breaker 1: clicks_7d (descending)
+      if (b.clicks !== a.clicks) {
+        return b.clicks - a.clicks;
+      }
+
+      // Tie-breaker 2: created_at (newer first)
+      const dateA = new Date(a.skill.date || 0).getTime();
+      const dateB = new Date(b.skill.date || 0).getTime();
+      if (dateB !== dateA) {
+        return dateB - dateA;
+      }
+
+      // Tie-breaker 3: category diversity (prefer unused categories)
+      const catA = a.skill.categories[0] || '';
+      const catB = b.skill.categories[0] || '';
+      const aUsed = usedCategories.has(catA);
+      const bUsed = usedCategories.has(catB);
+
+      if (aUsed !== bUsed) {
+        return aUsed ? 1 : -1; // Prefer unused category
+      }
+
+      // Final fallback: alphabetical by title
+      return a.skill.title.localeCompare(b.skill.title);
+    })
+    .map((s) => {
+      // Track category as used for next iterations
+      const category = s.skill.categories[0] || '';
+      if (category) {
+        usedCategories.add(category);
+      }
+      return s.skill;
+    });
 }

@@ -135,6 +135,21 @@ pre code {
   }
 }
 
+/* Preview Card Pop Animation */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .search-container:is(:hover, :focus-within) .sparkle-path-1 {
   --scale: 1.5;
   --rotate: 20deg;

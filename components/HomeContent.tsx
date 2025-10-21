@@ -308,8 +308,8 @@ export default function HomeContent() {
         {/* Homepage Sections (show when no filters/search active) */}
         {!isLoading && !searchQuery && !hasActiveFilters && (
           <>
-            <FeaturedSection />
             <TrendingSection />
+            <FeaturedSection />
             <NewestSection />
 
             {/* Divider */}
