@@ -21,6 +21,9 @@ interface FilterMenuProps {
     categories?: string[];
     repoUrl?: string;
   }>;
+  isGetFeaturedModalOpen?: boolean;
+  onOpenGetFeaturedModal?: () => void;
+  onCloseGetFeaturedModal?: () => void;
 }
 
 export default function FilterMenu({
@@ -32,6 +35,9 @@ export default function FilterMenu({
   onToggleTag,
   skillsCount,
   skills = [],
+  isGetFeaturedModalOpen: externalIsGetFeaturedModalOpen,
+  onOpenGetFeaturedModal,
+  onCloseGetFeaturedModal,
 }: FilterMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<'categories' | 'tags' | null>(null);
@@ -42,7 +48,19 @@ export default function FilterMenu({
   const [canScrollDown, setCanScrollDown] = useState(false);
   const [canScrollDownTags, setCanScrollDownTags] = useState(false);
   const [previewSkill, setPreviewSkill] = useState<string | null>(null);
-  const [isGetFeaturedModalOpen, setIsGetFeaturedModalOpen] = useState(false);
+  const [internalIsGetFeaturedModalOpen, setInternalIsGetFeaturedModalOpen] = useState(false);
+
+  // Use external state if provided, otherwise use internal state
+  const isGetFeaturedModalOpen = externalIsGetFeaturedModalOpen !== undefined ? externalIsGetFeaturedModalOpen : internalIsGetFeaturedModalOpen;
+  const setIsGetFeaturedModalOpen = (value: boolean) => {
+    if (value && onOpenGetFeaturedModal) {
+      onOpenGetFeaturedModal();
+    } else if (!value && onCloseGetFeaturedModal) {
+      onCloseGetFeaturedModal();
+    } else {
+      setInternalIsGetFeaturedModalOpen(value);
+    }
+  };
   const [isMobile, setIsMobile] = useState(false);
   const [expandedSection, setExpandedSection] = useState<'categories' | 'tags' | null>(null);
   const [mobileSubPanel, setMobileSubPanel] = useState<'categories' | 'tags' | null>(null);
@@ -1785,12 +1803,13 @@ export default function FilterMenu({
             </div>
 
             {/* Modal Form */}
-            <form 
+            <form
               onSubmit={async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
                 const data = {
                   content: `**New Feature Request Submission**\n\n` +
+                    `**Email:** ${formData.get('email')}\n` +
                     `**GitHub URL:** ${formData.get('githubUrl')}\n` +
                     `**Category:** ${formData.get('category')}\n` +
                     `**Tags:** ${formData.get('tags')}\n` +
@@ -1815,6 +1834,21 @@ export default function FilterMenu({
               }}
               className="p-6 space-y-4"
             >
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="your@email.com"
+                  className="w-full px-3 py-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors min-h-[44px]"
+                />
+              </div>
+
               {/* GitHub URL */}
               <div>
                 <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

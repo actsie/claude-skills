@@ -100,30 +100,44 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const resources = [
-  {
-    title: 'Official Skills Documentation',
-    href: 'https://www.anthropic.com/news/skills',
-    description: 'Learn about Skills from Anthropic',
-  },
-  {
-    title: 'How to Create a Skill',
-    href: 'https://github.com/anthropics/skills/blob/main/skill-creator/SKILL.md',
-    description: 'Step-by-step guide to building Skills',
-  },
-  {
-    title: 'Submit Your Own Skill',
-    href: 'https://github.com/anthropics/skills',
-    description: 'Share your Skills with the community',
-  },
-  {
-    title: 'Watch Tutorial',
-    href: 'https://www.youtube.com/watch?v=kS1MJFZWMq4',
-    description: 'Video guide to using Skills',
-  },
-];
+interface FAQSectionProps {
+  onSubmitSkill?: () => void;
+  onGetFeatured?: () => void;
+}
 
-export default function FAQSection() {
+export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionProps) {
+  const resources = [
+    {
+      title: 'Official Skills Documentation',
+      href: 'https://www.anthropic.com/news/skills',
+      description: 'Learn about Skills from Anthropic',
+      external: true,
+    },
+    {
+      title: 'How to Create a Skill',
+      href: 'https://github.com/anthropics/skills/blob/main/skill-creator/SKILL.md',
+      description: 'Step-by-step guide to building Skills',
+      external: true,
+    },
+    {
+      title: 'Watch Tutorial',
+      href: 'https://www.youtube.com/watch?v=kS1MJFZWMq4',
+      description: 'Video guide to using Skills',
+      external: true,
+    },
+    {
+      title: 'Submit Your Own Skill',
+      description: 'Share your Skills with the community',
+      onClick: onSubmitSkill,
+      external: false,
+    },
+    {
+      title: 'Get Featured',
+      description: 'Showcase your Skill on the homepage',
+      onClick: onGetFeatured,
+      external: false,
+    },
+  ];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -150,25 +164,31 @@ export default function FAQSection() {
             </p>
 
             <div className="space-y-4">
-              {resources.map((resource, index) => (
-                <a
-                  key={index}
-                  href={resource.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-start justify-between gap-3 transition-all duration-200"
-                >
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#7866CC] dark:group-hover:text-[#AF97F8] transition-colors">
-                      {resource.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {resource.description}
-                    </p>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-[#7866CC] dark:text-[#AF97F8] flex-shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              ))}
+              {resources.map((resource, index) => {
+                const isExternal = resource.external;
+                const Component = isExternal ? 'a' : 'button';
+                const props = isExternal
+                  ? { href: resource.href, target: '_blank', rel: 'noopener noreferrer' }
+                  : { onClick: resource.onClick };
+
+                return (
+                  <Component
+                    key={index}
+                    {...props}
+                    className="group flex items-start justify-between gap-3 transition-all duration-200 w-full text-left"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#7866CC] dark:group-hover:text-[#AF97F8] transition-colors">
+                        {resource.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        {resource.description}
+                      </p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-[#7866CC] dark:text-[#AF97F8] flex-shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
+                  </Component>
+                );
+              })}
             </div>
           </div>
 

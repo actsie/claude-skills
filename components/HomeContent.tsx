@@ -13,6 +13,7 @@ import TrendingSection from '@/components/TrendingSection';
 import FeaturedSection from '@/components/FeaturedSection';
 import NewestSection from '@/components/NewestSection';
 import FAQSection from '@/components/FAQSection';
+import GetFeaturedModal from '@/components/GetFeaturedModal';
 import { Skill, SearchResult } from '@/lib/types';
 import { createSearchIndex, getMatchedExcerpt } from '@/lib/search';
 import {
@@ -47,6 +48,7 @@ export default function HomeContent() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [isGetFeaturedModalOpen, setIsGetFeaturedModalOpen] = useState(false);
 
   // Load skills from search index
   useEffect(() => {
@@ -149,6 +151,9 @@ export default function HomeContent() {
 
   // Check if any filters are active
   const hasActiveFilters = selectedCategory !== null || selectedTags.length > 0;
+
+  // Determine if we should show homepage sections
+  const isHomepage = !searchQuery && !hasActiveFilters;
 
   // Handle clear all (search + filters)
   const handleClearAll = useCallback(() => {
@@ -329,7 +334,7 @@ export default function HomeContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <main>
         {/* Homepage Sections (show when no filters/search active) */}
-        {!isLoading && !searchQuery && !hasActiveFilters && (
+        {!isLoading && isHomepage && (
           <>
             <TrendingSection />
             <FeaturedSection />
@@ -418,7 +423,10 @@ export default function HomeContent() {
       </div>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <FAQSection
+        onSubmitSkill={() => setIsSubmitModalOpen(true)}
+        onGetFeatured={() => setIsGetFeaturedModalOpen(true)}
+      />
 
       {/* Footer */}
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
@@ -435,6 +443,12 @@ export default function HomeContent() {
         onRequestModalClose={() => setIsRequestModalOpen(false)}
         isSubmitModalOpen={isSubmitModalOpen}
         onSubmitModalClose={() => setIsSubmitModalOpen(false)}
+      />
+
+      {/* Get Featured Modal */}
+      <GetFeaturedModal
+        isOpen={isGetFeaturedModalOpen}
+        onClose={() => setIsGetFeaturedModalOpen(false)}
       />
     </div>
   );
