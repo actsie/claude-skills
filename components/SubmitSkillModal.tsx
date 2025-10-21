@@ -63,14 +63,15 @@ export default function SubmitSkillModal({ isOpen, onClose }: SubmitSkillModalPr
     }
 
     try {
-      const response = await fetch('https://formspree.io/f/mdkwbzej', {
+      const response = await fetch('https://discord.com/api/webhooks/1430129322353754256/lUkfcaO3CyEMSD85n3c5Da0m1UINhKv_pI5bGv2kdacxDEx4ZPxAdUXRqK1_S-Q44f2a', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          submissionType: 'GitHub Link',
-          githubLink: githubLink,
+          content: `**New Skill Submission**\n\n` +
+            `**GitHub Repository:** ${githubLink}\n` +
+            `**Submitted at:** ${new Date().toLocaleString()}`
         }),
       });
 
