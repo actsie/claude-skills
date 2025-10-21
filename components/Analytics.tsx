@@ -31,7 +31,7 @@ export default function Analytics() {
     };
   }, []);
 
-  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const hasMarketing = hasMarketingConsent();
 
   return (
