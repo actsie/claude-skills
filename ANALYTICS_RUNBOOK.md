@@ -59,7 +59,7 @@ Operational procedures for managing the Claude Skills Market analytics system.
 - **PostHog:** Product analytics (user behavior, events)
 - **GA4:** Marketing analytics (traffic sources, campaigns)
 - **Upstash Redis:** Redis-compatible storage for counters and caching
-- **Vercel Cron:** Scheduled trending computation (every 10 minutes)
+- **Vercel Cron:** Scheduled trending computation (once daily at midnight UTC)
 
 ---
 
@@ -283,7 +283,7 @@ vercel deploy --prod
    vercel deploy --prod
    ```
 
-**Effect:** Trending scores stop updating; trending section uses cached/stale data
+**Effect:** Trending scores stop updating; trending section uses cached/stale data (updates daily)
 
 **Rollback:**
 Restore cron configuration and deploy
@@ -378,7 +378,7 @@ Redis keys have automatic TTLs:
 | Event data | 90 days | PostHog | Configurable in PostHog settings |
 | GA4 data | 14 months | Google Analytics | Standard retention |
 | Redis counters | 24h-8d | Upstash Redis | Automatic TTL |
-| Trending cache | 15 min | Upstash Redis | Recomputed every 10 min |
+| Trending cache | 24 hours | Upstash Redis | Recomputed daily at midnight UTC |
 
 ---
 
@@ -538,7 +538,7 @@ console.log(url.toString());
 
 ### Trending Computation Cron
 
-**Schedule:** Every 10 minutes (`*/10 * * * *`)
+**Schedule:** Once daily at midnight UTC (`0 0 * * *`)
 
 **Endpoint:** `/api/cron/compute-trending`
 
@@ -546,10 +546,10 @@ console.log(url.toString());
 
 **What it does:**
 1. Fetches all skills from search index
-2. Gets view/click counters from KV
+2. Gets view/click counters from Redis
 3. Computes trending scores: `(clicks_24h × 3) + (views_24h × 0.2)`
-4. Filters skills with minimum signal (2 clicks OR 10 views)
-5. Stores top 5 in `skills:trending:v1` (15 min TTL)
+4. Filters skills with minimum signal (1 click in 24h)
+5. Stores top 5 in `skills:trending:v1` (24 hour TTL)
 6. Stores backup in `skills:trending:last_good` (no TTL)
 
 **Manual trigger:**
@@ -561,7 +561,7 @@ curl -X POST https://your-domain.com/api/cron/compute-trending \
 **Monitoring:**
 ```bash
 # Check last run
-vercel logs --filter=/api/cron --since 15m
+vercel logs --filter=/api/cron --since 24h
 
 # Check output
 curl https://your-domain.com/api/trending | jq '.trending[] | {title, score}'
@@ -571,6 +571,7 @@ curl https://your-domain.com/api/trending | jq '.trending[] | {title, score}'
 - If cron fails, trending section falls back to `skills:trending:last_good`
 - If both missing, trending section returns empty array (hidden on frontend)
 - Check logs for errors: `vercel logs --filter=compute-trending`
+- Note: Trending data updates once daily, so expect 24-hour staleness between updates
 
 ---
 
@@ -586,9 +587,9 @@ curl https://your-domain.com/api/trending | jq '.trending[] | {title, score}'
 ### Performance
 
 1. **Use server fallback sparingly:** Only when PostHog blocked by ad-blockers
-2. **Batch KV operations:** Use `Promise.all()` for parallel increments
+2. **Batch Redis operations:** Use `Promise.all()` for parallel increments
 3. **Set appropriate TTLs:** Don't store data longer than needed
-4. **Cache trending data:** 15-minute cache prevents KV overload
+4. **Cache trending data:** 24-hour cache aligns with daily cron schedule
 
 ### Privacy
 

@@ -131,7 +131,7 @@ vercel deploy --prod
    - Events should appear within 1-2 minutes
 
 3. **Verify cron job:**
-   - Wait 10 minutes after first deploy
+   - Wait until midnight UTC (or manually trigger via API)
    - Check Vercel logs for cron execution
    - Look for log entry: "[Cron] Computing trending skills..."
    - Visit `/api/trending` - should return JSON with trending skills
@@ -172,11 +172,12 @@ Before your analytics system is fully operational, complete these steps:
 - [ ] Deploy to production (push to main or `vercel deploy --prod`)
 - [ ] Verify application loads without errors
 - [ ] Check PostHog dashboard for incoming events
-- [ ] Wait 10 minutes and verify cron job runs successfully
+- [ ] Wait until midnight UTC (or manually trigger cron) and verify job runs successfully
 - [ ] Monitor Vercel logs for any errors in first 24 hours
 
 **Important Notes:**
-- The cron job runs every 10 minutes and computes trending skills based on view/click counters
+- The cron job runs once daily at midnight UTC and computes trending skills based on view/click counters
+- Trending section updates daily - expect up to 24 hours between updates (compatible with Vercel Hobby plan)
 - Trending section will be empty until there is user activity (views and clicks)
 - Featured section uses manual flags in skill markdown files (`featured: true`)
 - Newest section shows skills sorted by `date` field in frontmatter

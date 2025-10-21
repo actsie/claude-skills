@@ -7,7 +7,7 @@ const redis = Redis.fromEnv();
 
 /**
  * Compute Trending Skills (Scheduled Job)
- * Runs every 10 minutes via Vercel Cron
+ * Runs once daily at midnight UTC via Vercel Cron
  *
  * Algorithm:
  *   trending_score = 3 × (github_link_click_24h) + 0.2 × (skill_detail_view_24h)
@@ -15,14 +15,14 @@ const redis = Redis.fromEnv();
  * Minimum signal threshold: At least 1 click in 24h to be considered
  *
  * Stores:
- *   - skills:trending:v1 (top 5 trending skills, TTL: 15 min)
+ *   - skills:trending:v1 (top 5 trending skills, TTL: 24 hours)
  *   - skills:trending:last_good (backup for stale-while-revalidate, no TTL)
  */
 
 const CRON_SECRET = process.env.CRON_SECRET;
 const TRENDING_KEY = 'skills:trending:v1';
 const TRENDING_BACKUP_KEY = 'skills:trending:last_good';
-const TRENDING_TTL = 15 * 60; // 15 minutes
+const TRENDING_TTL = 24 * 60 * 60; // 24 hours
 const MIN_CLICKS_THRESHOLD = 1; // Minimum 1 click in 24h to be considered trending
 
 export async function GET(request: NextRequest) {
