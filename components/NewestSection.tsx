@@ -247,13 +247,6 @@ export default function NewestSection() {
                     })}
                   </div>
                 )}
-
-                {/* Date */}
-                {formattedDate && (
-                  <div className="text-xs text-gray-400 dark:text-gray-500 mt-3">
-                    Added {formattedDate}
-                  </div>
-                )}
               </div>
             </Link>
           );

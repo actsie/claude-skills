@@ -6,6 +6,7 @@ interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
   onClear: () => void;
+  onInputChange?: (value: string) => void; // Immediate callback without debounce
   placeholder?: string;
   resultsCount?: number;
   debounceMs?: number;
@@ -17,6 +18,7 @@ export default function SearchBar({
   value,
   onChange,
   onClear,
+  onInputChange,
   placeholder = 'Search skills by name, description, tags...',
   resultsCount,
   debounceMs = 300,
@@ -59,15 +61,17 @@ export default function SearchBar({
   // Focus input when autoFocusTrigger changes to true
   useEffect(() => {
     if (autoFocusTrigger && inputRef.current) {
-      // Small delay to ensure the element is visible and interactive
+      // Delay to ensure CSS transition completes (navigation uses 300ms transition)
       setTimeout(() => {
         inputRef.current?.focus();
-      }, 100);
+      }, 350);
     }
   }, [autoFocusTrigger]);
 
   const handleInputChange = (newValue: string) => {
     setLocalValue(newValue);
+    // Call immediate callback if provided (for instant UI updates)
+    onInputChange?.(newValue);
   };
 
   const handleClear = () => {

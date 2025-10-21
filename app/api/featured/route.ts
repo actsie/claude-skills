@@ -128,54 +128,30 @@ export async function GET() {
 }
 
 /**
- * Get popular skills based on 7-day view counts
+ * Get popular skills based on date (simpler approach without Redis metrics)
  * Excludes trending skills to avoid duplication
- * Tie-breakers: clicks_7d → created_at (newer first) → category diversity
+ * Prioritizes newer skills with category diversity
  */
 async function getPopularSkills(
   allSkills: Skill[],
   excludeSlugs: Set<string>
 ): Promise<Skill[]> {
-  const skillsWithMetrics = await Promise.all(
-    allSkills.map(async (skill) => {
-      if (excludeSlugs.has(skill.slug)) {
-        return { skill, views: 0, clicks: 0 };
-      }
-
-      // Get 7-day views and clicks
-      const views = (await redis.get<number>(`skill:${skill.slug}:views:7d`)) || 0;
-      const clicks = (await redis.get<number>(`skill:${skill.slug}:clicks:7d`)) || 0;
-
-      return { skill, views, clicks };
-    })
-  );
-
   // Track used categories for diversity
   const usedCategories = new Set<string>();
 
-  return skillsWithMetrics
-    .filter((s) => s.views > 0 && !excludeSlugs.has(s.skill.slug))
+  return allSkills
+    .filter((skill) => !excludeSlugs.has(skill.slug))
     .sort((a, b) => {
-      // Primary: views_7d (descending)
-      if (b.views !== a.views) {
-        return b.views - a.views;
-      }
-
-      // Tie-breaker 1: clicks_7d (descending)
-      if (b.clicks !== a.clicks) {
-        return b.clicks - a.clicks;
-      }
-
-      // Tie-breaker 2: created_at (newer first)
-      const dateA = new Date(a.skill.date || 0).getTime();
-      const dateB = new Date(b.skill.date || 0).getTime();
+      // Primary: created_at (newer first)
+      const dateA = new Date(a.date || 0).getTime();
+      const dateB = new Date(b.date || 0).getTime();
       if (dateB !== dateA) {
         return dateB - dateA;
       }
 
-      // Tie-breaker 3: category diversity (prefer unused categories)
-      const catA = a.skill.categories[0] || '';
-      const catB = b.skill.categories[0] || '';
+      // Tie-breaker: category diversity (prefer unused categories)
+      const catA = a.categories[0] || '';
+      const catB = b.categories[0] || '';
       const aUsed = usedCategories.has(catA);
       const bUsed = usedCategories.has(catB);
 
@@ -184,14 +160,14 @@ async function getPopularSkills(
       }
 
       // Final fallback: alphabetical by title
-      return a.skill.title.localeCompare(b.skill.title);
+      return a.title.localeCompare(b.title);
     })
-    .map((s) => {
+    .map((skill) => {
       // Track category as used for next iterations
-      const category = s.skill.categories[0] || '';
+      const category = skill.categories[0] || '';
       if (category) {
         usedCategories.add(category);
       }
-      return s.skill;
+      return skill;
     });
 }

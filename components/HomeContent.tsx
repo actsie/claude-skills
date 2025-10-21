@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SearchBar from '@/components/SearchBar';
 import NavigationBar, { NavigationModals } from '@/components/NavigationBar';
@@ -40,6 +40,7 @@ export default function HomeContent() {
 
   const [skills, setSkills] = useState<Skill[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [immediateSearchInput, setImmediateSearchInput] = useState(''); // Track typing immediately
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>('featured');
@@ -49,6 +50,7 @@ export default function HomeContent() {
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [isGetFeaturedModalOpen, setIsGetFeaturedModalOpen] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Load skills from search index
   useEffect(() => {
@@ -88,7 +90,7 @@ export default function HomeContent() {
     }
   }, [isLoading, isInitialized, searchParams]);
 
-  // Update state when URL changes (e.g., from clicking tags in sections)
+  // Update state when URL changes (e.g., from clicking tags in sections, browser back/forward)
   useEffect(() => {
     if (isInitialized) {
       const params = parseQueryString(searchParams.toString());
@@ -96,6 +98,7 @@ export default function HomeContent() {
       // Only update if values actually changed to prevent infinite loops
       if (params.searchQuery !== searchQuery) {
         setSearchQuery(params.searchQuery);
+        setImmediateSearchInput(params.searchQuery);
       }
       if (params.category !== selectedCategory) {
         setSelectedCategory(params.category);
@@ -108,7 +111,7 @@ export default function HomeContent() {
         saveSortPreference(params.sort);
       }
     }
-  }, [searchParams, isInitialized, searchQuery, selectedCategory, selectedTags, sortBy]);
+  }, [searchParams, isInitialized]);
 
   // Update URL when filters or sort change
   useEffect(() => {
@@ -152,12 +155,13 @@ export default function HomeContent() {
   // Check if any filters are active
   const hasActiveFilters = selectedCategory !== null || selectedTags.length > 0;
 
-  // Determine if we should show homepage sections
-  const isHomepage = !searchQuery && !hasActiveFilters;
+  // Determine if we should show homepage sections (use immediate input to hide sections instantly)
+  const isHomepage = !immediateSearchInput && !hasActiveFilters;
 
   // Handle clear all (search + filters)
   const handleClearAll = useCallback(() => {
     setSearchQuery('');
+    setImmediateSearchInput('');
     setSelectedCategory(null);
     setSelectedTags([]);
     setSelectedIndex(-1);
@@ -169,6 +173,7 @@ export default function HomeContent() {
   // Handle clear search only
   const handleClearSearch = useCallback(() => {
     setSearchQuery('');
+    setImmediateSearchInput('');
     setSelectedIndex(-1);
   }, []);
 
@@ -280,6 +285,21 @@ export default function HomeContent() {
     }
   }, [searchQuery]); // Only trigger when searchQuery changes
 
+  // Auto-scroll to results when typing in search (especially for mobile mini search)
+  useEffect(() => {
+    if (immediateSearchInput && resultsRef.current) {
+      // Small delay to let sections disappear first
+      setTimeout(() => {
+        const element = resultsRef.current;
+        if (element) {
+          const yOffset = -80; // Offset for sticky navigation bar
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [immediateSearchInput]);
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -287,6 +307,7 @@ export default function HomeContent() {
       <NavigationBar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onSearchInputChange={setImmediateSearchInput}
         onSearchClear={handleClearSearch}
         resultsCount={searchQuery ? searchResults.length : undefined}
         onRequestSkill={() => setIsRequestModalOpen(true)}
@@ -314,6 +335,7 @@ export default function HomeContent() {
               <SearchBar
                 value={searchQuery}
                 onChange={setSearchQuery}
+                onInputChange={setImmediateSearchInput}
                 onClear={handleClearSearch}
                 resultsCount={searchQuery ? searchResults.length : undefined}
                 compact={false}
@@ -362,7 +384,7 @@ export default function HomeContent() {
           />
         ) : (
           <>
-            <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div ref={resultsRef} className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                   {searchQuery || hasActiveFilters ? 'Filtered Results' : 'All Skills'}

@@ -9,6 +9,7 @@ import SubmitSkillModal from '@/components/SubmitSkillModal';
 interface NavigationBarProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
+  onSearchInputChange?: (value: string) => void;
   onSearchClear: () => void;
   resultsCount?: number;
   onRequestSkill?: () => void;
@@ -18,6 +19,7 @@ interface NavigationBarProps {
 export default function NavigationBar({
   searchQuery,
   onSearchChange,
+  onSearchInputChange,
   onSearchClear,
   resultsCount,
   onRequestSkill,
@@ -95,6 +97,7 @@ export default function NavigationBar({
             <SearchBar
               value={searchQuery}
               onChange={onSearchChange}
+              onInputChange={onSearchInputChange}
               onClear={onSearchClear}
               compact={true}
               autoFocusTrigger={mobileSearchExpanded}

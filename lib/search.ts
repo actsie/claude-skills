@@ -45,8 +45,8 @@ export function highlightMatches(text: string, matches: Array<[number, number]>)
   for (const [start, end] of sortedMatches) {
     // Add text before match
     result += text.substring(lastIndex, start);
-    // Add highlighted match
-    result += `<mark class="bg-yellow-200 dark:bg-yellow-900">${text.substring(start, end + 1)}</mark>`;
+    // Add highlighted match (transparent background, just bold)
+    result += `<mark class="bg-transparent font-semibold">${text.substring(start, end + 1)}</mark>`;
     lastIndex = end + 1;
   }
 
