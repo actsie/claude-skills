@@ -290,11 +290,15 @@ export default function HomeContent() {
     if (immediateSearchInput && resultsRef.current) {
       // Small delay to let sections disappear first
       setTimeout(() => {
-        const element = resultsRef.current;
-        if (element) {
-          const yOffset = -80; // Offset for sticky navigation bar
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+        // Only auto-scroll if user has scrolled down (using mini search)
+        // Don't scroll if at top of page (using main search)
+        if (window.scrollY > 250) {
+          const element = resultsRef.current;
+          if (element) {
+            const yOffset = -80; // Offset for sticky navigation bar
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
         }
       }, 100);
     }
