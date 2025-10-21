@@ -184,22 +184,22 @@ export default function TrendingSection() {
         <div className="space-y-0">
           {/* Column Headers */}
           <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 border-b border-gray-200 dark:border-gray-700">
-            <div className="col-span-6">
+            <div className="col-span-6 md:col-span-6">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Skill
               </span>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-4 md:col-span-2">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Category
               </span>
             </div>
-            <div className="col-span-3">
+            <div className="hidden md:block md:col-span-3">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Tags
               </span>
             </div>
-            <div className="col-span-1 flex justify-end">
+            <div className="col-span-2 md:col-span-1 flex justify-end">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Status
               </span>
@@ -242,7 +242,7 @@ export default function TrendingSection() {
               aria-label={`Rank ${rank}. ${skill.title}`}
             >
               {/* Rank + Title (6 columns) */}
-              <div className="col-span-6 flex items-center gap-3 min-w-0">
+              <div className="col-span-6 md:col-span-6 flex items-center gap-3 min-w-0">
                 <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-gray-500 dark:text-gray-400 font-semibold text-xs">
                   {rank}
                 </span>
@@ -256,8 +256,8 @@ export default function TrendingSection() {
                 </h3>
               </div>
 
-              {/* Category (2 columns) */}
-              <div className="col-span-2">
+              {/* Category (4 columns on mobile, 2 on desktop) */}
+              <div className="col-span-4 md:col-span-2">
                 {skill.category && (
                   <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">
                     {skill.category}
@@ -265,8 +265,8 @@ export default function TrendingSection() {
                 )}
               </div>
 
-              {/* Tags (3 columns) */}
-              <div className="col-span-3 flex items-center gap-1.5 flex-wrap">
+              {/* Tags (3 columns, hidden on mobile) */}
+              <div className="hidden md:flex md:col-span-3 items-center gap-1.5 flex-wrap">
                 {formattedTags.map((tag, tagIndex) => {
                   const isExtraIndicator = tag.startsWith('+');
 
@@ -295,8 +295,8 @@ export default function TrendingSection() {
                 })}
               </div>
 
-              {/* Trending Badge (1 column) */}
-              <div className="col-span-1 flex justify-end">
+              {/* Trending Badge (2 columns on mobile, 1 on desktop) */}
+              <div className="col-span-2 md:col-span-1 flex justify-end">
                 {getTrendingBadge(rank)}
               </div>
             </Link>
