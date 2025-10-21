@@ -10,6 +10,7 @@ interface SearchBarProps {
   resultsCount?: number;
   debounceMs?: number;
   compact?: boolean;
+  autoFocusTrigger?: boolean;
 }
 
 export default function SearchBar({
@@ -20,6 +21,7 @@ export default function SearchBar({
   resultsCount,
   debounceMs = 300,
   compact = false,
+  autoFocusTrigger = false,
 }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [localValue, setLocalValue] = useState(value);
@@ -53,6 +55,16 @@ export default function SearchBar({
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  // Focus input when autoFocusTrigger changes to true
+  useEffect(() => {
+    if (autoFocusTrigger && inputRef.current) {
+      // Small delay to ensure the element is visible and interactive
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [autoFocusTrigger]);
 
   const handleInputChange = (newValue: string) => {
     setLocalValue(newValue);

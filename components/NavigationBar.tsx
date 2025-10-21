@@ -97,6 +97,7 @@ export default function NavigationBar({
               onChange={onSearchChange}
               onClear={onSearchClear}
               compact={true}
+              autoFocusTrigger={mobileSearchExpanded}
             />
           </div>
 
