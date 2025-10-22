@@ -3,6 +3,8 @@ import { Redis } from '@upstash/redis';
 import { getAllSkills } from '@/lib/skills';
 import type { Skill } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 const redis = Redis.fromEnv();
 
 /**

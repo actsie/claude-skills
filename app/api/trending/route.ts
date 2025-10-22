@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
 import type { TrendingSkill } from '@/lib/analytics/types';
 
+export const dynamic = 'force-dynamic';
+
 const redis = Redis.fromEnv();
 
 /**
