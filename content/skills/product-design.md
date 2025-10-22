@@ -16,7 +16,7 @@ featured: true
 featuredPriority: 1
 author: Exploration Labs
 repoUrl: https://github.com/Exploration-labs/skill-product-design
-date: 2025-01-18
+date: 2025-10-18
 version: 1.0.0
 ---
 

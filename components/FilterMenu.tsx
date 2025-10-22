@@ -265,44 +265,61 @@ export default function FilterMenu({
 
 
   return (
-    <div 
-      className="relative" 
-      ref={dropdownRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        onKeyDown={handleKeyDown}
-        className={`inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-200 ease-out rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
-          isOpen 
-            ? 'bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/30 dark:to-primary-800/40 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-700 shadow-lg'
-            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:border-gray-400 dark:hover:border-gray-500 shadow-sm hover:shadow-md'
-        }`}
-        aria-haspopup="menu"
-        aria-expanded={isOpen}
-      >
-        <Filter className={`w-4 h-4 mr-2 transition-transform duration-200 ${isOpen ? 'scale-110' : ''}`} />
-        <span className="font-semibold">Filters</span>
-        {activeFilterCount > 0 && (
-          <span className="ml-2 px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-sm animate-pulse">
-            {activeFilterCount}
-          </span>
-        )}
-        <svg
-          className={`w-4 h-4 ml-2 transition-transform duration-300 ease-out ${isOpen ? 'transform rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+    <div className="flex items-center gap-2">
+      {/* Clear all filters button - only shown when filters are active */}
+      {activeFilterCount > 0 && (
+        <button
+          onClick={() => {
+            // Clear filters - scroll position preservation is handled in HomeContent
+            onSelectCategory(null);
+            selectedTags.forEach(tag => onToggleTag(tag));
+          }}
+          className="inline-flex items-center px-3 py-2 text-sm font-medium transition-all duration-200 ease-out rounded-xl bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-700 shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
+          <X className="w-4 h-4 mr-1.5" />
+          <span className="font-medium">Clear all</span>
+        </button>
+      )}
+
+      {/* Filter Menu Button */}
+      <div
+        className="relative"
+        ref={dropdownRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          onKeyDown={handleKeyDown}
+          className={`inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-200 ease-out rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+            isOpen
+              ? 'bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/30 dark:to-primary-800/40 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-700 shadow-md'
+              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md'
+          }`}
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
+        >
+          <Filter className={`w-4 h-4 mr-2 transition-transform duration-200 ${isOpen ? 'scale-110' : ''}`} />
+          <span className="font-semibold">Filters</span>
+          {activeFilterCount > 0 && (
+            <span className="ml-2 px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-sm animate-pulse">
+              {activeFilterCount}
+            </span>
+          )}
+          <svg
+            className={`w-4 h-4 ml-2 transition-transform duration-300 ease-out ${isOpen ? 'transform rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
 
       {isOpen && (
         <>
@@ -343,7 +360,7 @@ export default function FilterMenu({
                       <span className="flex items-center">
                         <FolderOpen className="w-5 h-5 mr-3 text-purple-500 group-hover:scale-110 transition-transform duration-200" />
                         <span className="font-semibold">Categories</span>
-                        {selectedCategory && (
+                        {selectedCategory && selectedCategory !== 'saved' && selectedCategory !== 'featured' && (
                           <span className="ml-3 px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full shadow-sm">
                             1
                           </span>
@@ -367,6 +384,27 @@ export default function FilterMenu({
                         )}
                       </span>
                       <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-all duration-200" />
+                    </button>
+
+                    {/* Saved Skills Button */}
+                    <button
+                      onClick={() => {
+                        onSelectCategory('saved');
+                        setIsOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group border min-h-[52px] ${
+                        selectedCategory === 'saved'
+                          ? 'bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/50 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-600 shadow-sm'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 hover:text-purple-700 dark:hover:text-purple-300 border-gray-200 dark:border-gray-700 hover:border-purple-200 dark:hover:border-purple-800'
+                      }`}
+                    >
+                      <span className="flex items-center">
+                        <svg className={`w-5 h-5 mr-3 transition-all duration-200 ${selectedCategory === 'saved' ? 'text-purple-500' : 'text-purple-400 group-hover:text-purple-500 group-hover:scale-110'}`} fill={selectedCategory === 'saved' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                        <span className="font-semibold">Saved Skills</span>
+                      </span>
+                      <span className="text-xs opacity-75 font-bold">({typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('saved_skills') || '[]').length : 0})</span>
                     </button>
                   </div>
 
@@ -849,7 +887,7 @@ export default function FilterMenu({
                   <span className="flex items-center">
                     <FolderOpen className="w-4 h-4 mr-3 text-purple-500 group-hover:scale-110 transition-transform duration-200" />
                     <span className="font-semibold">Categories</span>
-                    {selectedCategory && (
+                    {selectedCategory && selectedCategory !== 'saved' && selectedCategory !== 'featured' && (
                       <span className="ml-3 px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-full shadow-sm">
                         1
                       </span>
@@ -1573,6 +1611,27 @@ export default function FilterMenu({
                 )}
               </div>
 
+              {/* Saved Skills Section */}
+              <button
+                onClick={() => {
+                  onSelectCategory('saved');
+                  setIsOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group border min-h-[44px] ${
+                  selectedCategory === 'saved'
+                    ? 'bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/50 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-600 shadow-sm'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 hover:text-purple-700 dark:hover:text-purple-300 border-transparent hover:border-purple-200 dark:hover:border-purple-800'
+                }`}
+              >
+                <span className="flex items-center">
+                  <svg className={`w-4 h-4 mr-3 transition-all duration-200 ${selectedCategory === 'saved' ? 'text-purple-500' : 'text-purple-400 group-hover:text-purple-500 group-hover:scale-110'}`} fill={selectedCategory === 'saved' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                  <span className="font-semibold">Saved Skills</span>
+                </span>
+                <span className="text-xs opacity-75 font-bold">({typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('saved_skills') || '[]').length : 0})</span>
+              </button>
+
             </div>
 
               {/* 2-Column Footer */}
@@ -2062,6 +2121,7 @@ export default function FilterMenu({
           </>
         );
       })()}
+      </div>
     </div>
   );
 }

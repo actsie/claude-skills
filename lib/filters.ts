@@ -37,6 +37,16 @@ export function applyFilters(
         if (!skill.featured) {
           return false;
         }
+      } else if (selectedCategory === 'saved') {
+        // Check if skill is in localStorage saved_skills array
+        if (typeof window !== 'undefined') {
+          const savedSkills = JSON.parse(localStorage.getItem('saved_skills') || '[]');
+          if (!savedSkills.includes(skill.slug)) {
+            return false;
+          }
+        } else {
+          return false;
+        }
       } else if (!skill.categories.includes(selectedCategory)) {
         return false;
       }

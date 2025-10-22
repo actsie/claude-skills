@@ -2,6 +2,7 @@ export interface SkillFrontmatter {
   title: string;
   slug: string;
   description: string;
+  oneLiner?: string; // Promise-based tagline (max 100 chars)
   categories: string[];
   tags: string[];
   featured?: boolean;
@@ -13,6 +14,7 @@ export interface SkillFrontmatter {
   repoUrl?: string;
   externalUrl?: string;
   date?: string;
+  lastUpdated?: string; // For "updated X days ago" display
   version?: string;
 }
 

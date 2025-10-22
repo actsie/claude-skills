@@ -2,6 +2,7 @@
 title: TypeScript Code Review
 slug: typescript-code-review
 description: Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.
+oneLiner: Catch type errors, security risks, and performance issues before they reach production
 categories:
   - development
 tags:
@@ -15,7 +16,8 @@ featured: true
 featuredPriority: 2
 author: Exploration Labs
 repoUrl: https://github.com/Exploration-labs/typescript-code-review
-date: 2025-01-18
+date: 2025-10-18
+lastUpdated: 2025-10-18
 version: 1.0.0
 ---
 

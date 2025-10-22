@@ -1,9 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { Skill } from '@/lib/types';
 import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
 import type { SurfaceType } from '@/lib/analytics/types';
+import {
+  getCategoryColor,
+  formatLastUpdated,
+  getVisibleTags,
+  getPrimaryCategory,
+  truncateText
+} from '@/lib/skillUtils';
 
 interface SkillCardProps {
   skill: Skill;
@@ -11,22 +17,28 @@ interface SkillCardProps {
   index?: number;
   onTagClick?: (tag: string) => void;
   surface?: SurfaceType;
+  onOpenModal?: (skill: Skill) => void;
 }
 
-export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick, surface = 'catalog' }: SkillCardProps) {
+export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick, surface = 'catalog', onOpenModal }: SkillCardProps) {
   // Safe defaults for missing/invalid fields
   const title = skill.title?.trim() || 'Untitled Skill';
   const description = skill.description?.trim() || 'No description available';
   const slug = skill.slug?.trim() || '';
   const categories = Array.isArray(skill.categories) ? skill.categories.filter(Boolean) : [];
   const tags = Array.isArray(skill.tags) ? skill.tags.filter(Boolean) : [];
+  const author = skill.author?.trim() || null;
+  const lastUpdated = skill.lastUpdated || skill.date || null;
+
+  // Get primary category for display
+  const primaryCategory = getPrimaryCategory(categories);
+
+  // Get visible tags with collapse
+  const { visible: visibleTags, remaining: remainingTags } = getVisibleTags(tags, 2);
 
   // Determine if external URL
   const isExternal = Boolean(skill.externalUrl);
   const hasValidSlug = slug.length > 0;
-  const isLinkDisabled = isExternal && !skill.externalUrl?.trim();
-
-  // Validate external URL
   const externalUrl = skill.externalUrl?.trim() || '';
   const isValidExternalUrl = externalUrl.startsWith('http://') || externalUrl.startsWith('https://');
 
@@ -45,15 +57,16 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
     }
   };
 
-  // Handle internal skill detail navigation
-  const handleSkillClick = () => {
-    trackSkillDetailView(skill, surface, index);
-  };
-
-  // Handle external link click (GitHub links)
-  const handleExternalClick = () => {
-    if (externalUrl) {
+  // Handle card click - navigate to skill page or external URL
+  const handleCardClick = () => {
+    if (isExternal && isValidExternalUrl) {
+      // Track and open external URL
       trackGitHubLinkClick(skill, surface, externalUrl);
+      window.open(getExternalUrlWithUTM(externalUrl), '_blank', 'noopener,noreferrer');
+    } else if (hasValidSlug) {
+      // Track and navigate to skill detail page
+      trackSkillDetailView(skill, surface, index);
+      window.location.href = `/skills/${slug}`;
     }
   };
 
@@ -66,127 +79,111 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
 
   return (
     <article
-      className="group relative bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2"
-      tabIndex={-1}
+      className="group relative flex flex-col rounded-xl bg-white dark:bg-gray-800 p-5 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer min-h-[300px]"
       data-skill-index={index}
+      data-skill-slug={skill.slug}
       role="listitem"
       aria-label={`${title} skill card`}
+      onClick={handleCardClick}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCardClick();
+        }
+      }}
     >
+      {/* Gradient Border Glow */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover:opacity-20"></div>
+      <div className="absolute inset-[1px] rounded-[11px] bg-white dark:bg-gray-800"></div>
+
+      {/* Featured Badge */}
       {skill.featured && (
-        <div className="absolute top-4 right-4">
-          <span
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-primary-400 to-primary-600 text-white shadow-md"
-            aria-label="Featured skill"
-          >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            Featured
-          </span>
+        <div className="absolute top-2 right-2 z-10">
+          <div className="relative px-3 py-1 text-gray-900 dark:text-gray-100 text-[10px] font-semibold rounded-full shadow-sm select-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+            {/* Glossy border */}
+            <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 opacity-60" />
+
+            {/* Sparkle shine */}
+            <div className="absolute -top-3 -right-0.5 w-6 h-6 -rotate-[20deg] pointer-events-none">
+              <div className="absolute left-3 w-px h-full bg-gradient-to-b from-transparent via-white/70 to-transparent" />
+              <div className="absolute top-3 w-full h-px bg-gradient-to-l from-transparent via-white/70 to-transparent" />
+            </div>
+
+            <span className="relative">
+              FEATURED
+            </span>
+          </div>
         </div>
       )}
 
-      <div className="flex flex-col h-full">
-        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 pr-20">
-          {isExternal && isValidExternalUrl ? (
-            <a
-              href={getExternalUrlWithUTM(externalUrl)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleExternalClick}
-              className="focus:outline-none focus:underline inline-flex items-center gap-1"
-              tabIndex={0}
-              aria-label={`${title} (opens in new tab)`}
-            >
-              <span className="absolute inset-0" aria-hidden="true" />
-              {title}
-              <svg
-                className="w-4 h-4 flex-shrink-0 relative"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          ) : isLinkDisabled ? (
-            <span
-              className="text-gray-400 dark:text-gray-500 cursor-not-allowed"
-              aria-label={`${title} (link unavailable)`}
-              title="External link is invalid or unavailable"
-            >
-              {title}
-            </span>
-          ) : hasValidSlug ? (
-            <Link
-              href={`/skills/${slug}`}
-              onClick={handleSkillClick}
-              className="focus:outline-none focus:underline"
-              tabIndex={0}
-              aria-label={`View details for ${title}`}
-            >
-              <span className="absolute inset-0" aria-hidden="true" />
-              {title}
-            </Link>
-          ) : (
-            <span
-              className="text-gray-400 dark:text-gray-500"
-              aria-label={`${title} (no details available)`}
-            >
-              {title}
-            </span>
-          )}
+      <div className="relative flex flex-col h-full">
+        {/* Title */}
+        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2 mb-3">
+          {title}
         </h3>
 
-        {highlightedExcerpt ? (
-          <div
-            className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4"
-            dangerouslySetInnerHTML={{ __html: highlightedExcerpt }}
-            aria-label="Skill description with search highlights"
-          />
-        ) : (
-          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">
+        {/* Description */}
+        <div className="flex-1 mb-4">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
             {description}
           </p>
-        )}
+        </div>
 
-        {categories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-3 mt-auto" role="list" aria-label="Skill categories">
-            {categories.map((category) => (
-              <span
-                key={category}
-                role="listitem"
-                className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200"
-                aria-label={`Category: ${category}`}
-              >
-                {category}
+        {/* Category + Tags: Combined inline - positioned at bottom */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {/* Category chip */}
+          {primaryCategory && (
+            <>
+              <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ${getCategoryColor(primaryCategory)}`}>
+                {primaryCategory}
               </span>
-            ))}
-          </div>
-        )}
+              {visibleTags.length > 0 && (
+                <span className="text-gray-300 dark:text-gray-600">|</span>
+              )}
+            </>
+          )}
 
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2" role="list" aria-label="Skill tags">
-            {tags.map((tag) => (
-              <button
-                key={tag}
-                role="listitem"
-                onClick={(e) => handleTagClick(tag, e)}
-                className="relative inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
-                aria-label={`Filter by tag: ${tag}`}
-                tabIndex={0}
-              >
-                #{tag}
-              </button>
-            ))}
+          {/* Tags */}
+          {visibleTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={(e) => handleTagClick(tag, e)}
+              className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
+              aria-label={`Filter by tag: ${tag}`}
+              tabIndex={-1}
+            >
+              #{tag}
+            </button>
+          ))}
+          {remainingTags > 0 && (
+            <span className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium text-gray-500 dark:text-gray-500">
+              +{remainingTags} more
+            </span>
+          )}
+        </div>
+
+        {/* Footer: Creator + Last Updated */}
+        <div className="pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-1.5">
+            {author && (
+              <span className="flex items-center gap-1">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+                {author}
+              </span>
+            )}
           </div>
-        )}
+          {lastUpdated && (
+            <span className="flex items-center gap-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              {formatLastUpdated(lastUpdated)}
+            </span>
+          )}
+        </div>
       </div>
     </article>
   );

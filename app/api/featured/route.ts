@@ -14,7 +14,7 @@ const redis = Redis.fromEnv();
  * 2. If < 3, backfill from popular (30-day views, excluding top 5 trending)
  */
 
-const FEATURED_CACHE_KEY = 'skills:featured:v1';
+const FEATURED_CACHE_KEY = 'skills:featured:v2';
 const FEATURED_CACHE_TTL = 60 * 60; // 1 hour
 const TRENDING_KEY = 'skills:trending:v1';
 
@@ -25,7 +25,9 @@ interface FeaturedSkill {
   description: string;
   category: string;
   tags: string[];
+  author?: string;
   created_at?: string;
+  lastUpdated?: string;
   repoUrl?: string;
   featured_rank?: number;
 }
@@ -100,7 +102,9 @@ export async function GET() {
       description: skill.description,
       category: skill.categories[0] || '',
       tags: skill.tags, // Send all tags, component handles truncation
+      author: skill.author,
       created_at: skill.date,
+      lastUpdated: skill.lastUpdated || skill.date,
       repoUrl: skill.repoUrl,
       featured_rank: skill.featuredPriority,
     }));

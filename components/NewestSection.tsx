@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { trackHomeSectionImpression, trackSkillDetailView, trackTagClick } from '@/lib/analytics/events';
 import { formatTags } from '@/lib/utils/tags';
-import { formatAbsoluteDate } from '@/lib/utils/dates';
+import { formatLastUpdated } from '@/lib/skillUtils';
 
 interface NewestSkill {
   skill_id: string;
@@ -14,7 +14,9 @@ interface NewestSkill {
   description: string;
   category: string;
   tags: string[];
+  author?: string;
   created_at?: string;
+  lastUpdated?: string;
   repoUrl?: string;
 }
 
@@ -31,6 +33,7 @@ export default function NewestSection() {
       .then((res) => res.json())
       .then((data) => {
         const newestData = data.newest || [];
+        console.log('Newest API data:', newestData);
 
         // Use mock data if API returns empty (for preview purposes)
         if (newestData.length === 0) {
@@ -42,7 +45,9 @@ export default function NewestSection() {
               description: 'Comprehensive landing page analysis and optimization',
               category: 'marketing',
               tags: ['landing-pages', 'conversion-optimization', 'ux-design', 'analytics'],
-              created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
             {
               skill_id: 'meeting-notes-summarizer',
@@ -51,7 +56,9 @@ export default function NewestSection() {
               description: 'Transform meeting recordings into structured summaries',
               category: 'productivity',
               tags: ['meeting-notes', 'summarization', 'action-items', 'productivity'],
-              created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
             {
               skill_id: 'pitch-deck-builder',
@@ -60,7 +67,9 @@ export default function NewestSection() {
               description: 'Professional pitch deck creation with strategic storytelling',
               category: 'business',
               tags: ['pitch-deck', 'presentation-design', 'storytelling', 'investor-relations'],
-              created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
             {
               skill_id: 'csv-data-summarizer',
@@ -69,7 +78,9 @@ export default function NewestSection() {
               description: 'Automatically analyzes CSV files with statistics and visualizations',
               category: 'analytics',
               tags: ['csv', 'data-analysis', 'python', 'visualization'],
-              created_at: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(), // 8 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
             {
               skill_id: 'job-search-strategist',
@@ -78,7 +89,9 @@ export default function NewestSection() {
               description: 'Strategic, research-driven approach to job searching',
               category: 'career',
               tags: ['job-search', 'career-strategy', 'networking', 'resume'],
-              created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
             {
               skill_id: 'ai-vendor-evaluation',
@@ -87,7 +100,9 @@ export default function NewestSection() {
               description: 'Framework for evaluating AI vendors and solutions',
               category: 'business',
               tags: ['ai', 'vendor-evaluation', 'procurement', 'risk-management'],
-              created_at: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(), // 12 days ago
+              author: 'Exploration Labs',
+              created_at: '2025-10-18',
+              lastUpdated: '2025-10-18',
             },
           ]);
         } else {
@@ -182,71 +197,111 @@ export default function NewestSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {newest.map((skill, index) => {
           const formattedTags = formatTags(skill.tags || [], 2);
-          const formattedDate = formatAbsoluteDate(skill.created_at);
 
           return (
             <Link
               key={skill.slug}
               href={`/skills/${skill.slug}`}
               onClick={() => trackSkillDetailView(skill, 'newest', index)}
-              className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-lg transition-all duration-200"
+              className="group relative flex flex-col rounded-xl bg-white dark:bg-gray-800 p-5 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer min-h-[250px]"
             >
+              {/* Gradient Border Glow */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover:opacity-20"></div>
+              <div className="absolute inset-[1px] rounded-[11px] bg-white dark:bg-gray-800"></div>
+
               {/* NEW Badge (if < 7 days old) */}
               {isNew(skill.created_at) && (
-                <div className="absolute -top-2 -right-2 px-2 py-1 bg-[#D7CBFC] dark:bg-[#5E50A0] text-[#362B6B] dark:text-[#D7CBFC] text-xs font-bold rounded-full shadow-md">
-                  NEW
+                <div className="absolute top-2 right-2 z-10">
+                  <div className="relative px-3 py-1 text-gray-900 dark:text-gray-100 text-[10px] font-semibold rounded-full shadow-sm select-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                    <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 opacity-60" />
+                    <div className="absolute -top-3 -right-0.5 w-6 h-6 -rotate-[20deg] pointer-events-none">
+                      <div className="absolute left-3 w-px h-full bg-gradient-to-b from-transparent via-white/70 to-transparent" />
+                      <div className="absolute top-3 w-full h-px bg-gradient-to-l from-transparent via-white/70 to-transparent" />
+                    </div>
+                    <span className="relative">NEW</span>
+                  </div>
                 </div>
               )}
 
               {/* Content */}
-              <div>
-                <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2">
+              <div className="relative flex flex-col h-full">
+                {/* Title */}
+                <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2 mb-3">
                   {skill.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
-                  {skill.description}
-                </p>
+                {/* Description */}
+                <div className="flex-1 mb-4">
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {skill.description}
+                  </p>
+                </div>
 
-                {/* Category */}
-                {skill.category && (
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                    {skill.category}
-                  </div>
-                )}
+                {/* Category + Tags: Combined inline - positioned at bottom */}
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  {/* Category Badge */}
+                  {skill.category && (
+                    <>
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-gray-50 text-gray-700 dark:bg-gray-900/30 dark:text-gray-300">
+                        {skill.category}
+                      </span>
+                      {formattedTags.length > 0 && (
+                        <span className="text-gray-300 dark:text-gray-600">|</span>
+                      )}
+                    </>
+                  )}
 
-                {/* Tags */}
-                {formattedTags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {formattedTags.map((tag, tagIndex) => {
-                      const isExtraIndicator = tag.startsWith('+');
+                  {/* Tags */}
+                  {formattedTags.map((tag, tagIndex) => {
+                    const isExtraIndicator = tag.startsWith('+');
 
-                      if (isExtraIndicator) {
-                        // "+N" is non-clickable
-                        return (
-                          <span
-                            key={`extra-${tagIndex}`}
-                            className="px-2 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-md"
-                            title={`${skill.tags?.length} total tags`}
-                          >
-                            {tag}
-                          </span>
-                        );
-                      }
-
+                    if (isExtraIndicator) {
+                      // "+N" is non-clickable
                       return (
-                        <button
-                          key={tag}
-                          onClick={(e) => handleTagClick(e, tag)}
-                          className="px-2 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
-                          title={`Filter by #${tag}`}
+                        <span
+                          key={`extra-${tagIndex}`}
+                          className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium text-gray-500 dark:text-gray-500"
+                          title={`${skill.tags?.length} total tags`}
                         >
-                          #{tag}
-                        </button>
+                          {tag}
+                        </span>
                       );
-                    })}
+                    }
+
+                    return (
+                      <button
+                        key={tag}
+                        onClick={(e) => handleTagClick(e, tag)}
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
+                        title={`Filter by #${tag}`}
+                      >
+                        #{tag}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Footer: Author + Date */}
+                <div className="pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                  <div className="flex items-center gap-1.5">
+                    {skill.author && (
+                      <span className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                        </svg>
+                        {skill.author}
+                      </span>
+                    )}
                   </div>
-                )}
+                  {skill.lastUpdated && (
+                    <span className="flex items-center gap-1">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      </svg>
+                      {formatLastUpdated(skill.lastUpdated)}
+                    </span>
+                  )}
+                </div>
               </div>
             </Link>
           );

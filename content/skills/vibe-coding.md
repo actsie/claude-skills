@@ -2,6 +2,7 @@
 title: Vibe Coding
 slug: vibe-coding
 description: AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality and understanding architectural decisions.
+oneLiner: Build software faster with AI while keeping quality high and understanding what's being built
 categories:
   - development
   - ai
@@ -16,7 +17,8 @@ featured: false
 author: Nate Jones
 repoUrl: https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/vibe-coding
 externalUrl: https://natesnewsletter.substack.com/
-date: 2025-01-18
+date: 2025-10-18
+lastUpdated: 2025-10-18
 version: 1.0.0
 ---
 

@@ -2,6 +2,7 @@
 title: Resume Builder
 slug: resume-builder
 description: Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement.
+oneLiner: Land more interviews with ATS-optimized resumes that make recruiters take notice
 categories:
   - career
   - professional-development
@@ -16,7 +17,8 @@ featured: false
 author: Nate Jones
 repoUrl: https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/resume-builder
 externalUrl: https://natesnewsletter.substack.com/
-date: 2025-01-18
+date: 2025-10-18
+lastUpdated: 2025-10-18
 version: 1.0.0
 ---
 

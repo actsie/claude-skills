@@ -18,7 +18,7 @@ tags:
 featured: false
 author: Exploration Labs
 repoUrl: https://github.com/Exploration-labs/landing-page-optimizer
-date: 2025-01-18
+date: 2025-10-18
 version: 1.0.0
 ---
 

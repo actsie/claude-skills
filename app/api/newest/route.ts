@@ -9,7 +9,7 @@ const redis = Redis.fromEnv();
  * Returns top 6 newest skills sorted by creation date
  */
 
-const NEWEST_CACHE_KEY = 'skills:newest:v1';
+const NEWEST_CACHE_KEY = 'skills:newest:v2';
 const NEWEST_CACHE_TTL = 60 * 60; // 1 hour
 
 interface NewestSkill {
@@ -19,7 +19,9 @@ interface NewestSkill {
   description: string;
   category: string;
   tags: string[];
+  author?: string;
   created_at?: string;
+  lastUpdated?: string;
   repoUrl?: string;
 }
 
@@ -60,7 +62,9 @@ export async function GET() {
         description: skill.description,
         category: skill.categories[0] || '',
         tags: skill.tags.slice(0, 3),
+        author: skill.author,
         created_at: skill.date,
+        lastUpdated: skill.lastUpdated || skill.date,
         repoUrl: skill.repoUrl,
       }));
 

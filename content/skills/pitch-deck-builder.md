@@ -18,7 +18,7 @@ featured: false
 author: Nate Jones
 repoUrl: https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/pitch-deck-builder
 externalUrl: https://natesnewsletter.substack.com/
-date: 2025-01-18
+date: 2025-10-18
 version: 1.0.0
 ---
 

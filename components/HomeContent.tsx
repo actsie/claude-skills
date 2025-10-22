@@ -51,6 +51,7 @@ export default function HomeContent() {
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [isGetFeaturedModalOpen, setIsGetFeaturedModalOpen] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const isClearingFiltersRef = useRef(false);
 
   // Load skills from search index
   useEffect(() => {
@@ -180,6 +181,11 @@ export default function HomeContent() {
 
   // Handle category selection
   const handleSelectCategory = useCallback((category: string | null) => {
+    // If clearing category while filters are active, trigger scroll to All Skills
+    if (category === null && (selectedCategory !== null || selectedTags.length > 0)) {
+      isClearingFiltersRef.current = true;
+    }
+
     setSelectedCategory(category);
     setSelectedIndex(-1);
 
@@ -191,7 +197,7 @@ export default function HomeContent() {
     };
     // Result count will be computed after filter is applied, use current as approximation
     trackFilterApply('category', category || 'none', newFilters, filteredSkills.length);
-  }, [selectedTags, sortBy, filteredSkills.length]);
+  }, [selectedCategory, selectedTags, sortBy, filteredSkills.length]);
 
   // Handle tag toggle
   const handleToggleTag = useCallback((tag: string) => {
@@ -306,6 +312,22 @@ export default function HomeContent() {
     }
   }, [immediateSearchInput]);
 
+  // Scroll to All Skills section after clearing filters
+  useEffect(() => {
+    if (isClearingFiltersRef.current) {
+      // Wait for DOM to fully update with homepage sections (Trending, Featured, Newest)
+      const timeoutId = setTimeout(() => {
+        if (resultsRef.current) {
+          const yOffset = -120; // Offset for sticky navigation bar + padding to show section title clearly
+          const y = resultsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          isClearingFiltersRef.current = false;
+        }
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [selectedCategory, selectedTags]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
