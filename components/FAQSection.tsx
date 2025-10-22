@@ -145,7 +145,7 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50 border-t border-gray-200 dark:border-gray-700">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#EBE5FD] dark:bg-[#362B6B] rounded-full blur-3xl"></div>

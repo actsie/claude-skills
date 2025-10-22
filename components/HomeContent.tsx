@@ -343,8 +343,13 @@ export default function HomeContent() {
       />
 
       {/* Hero Section with Main Search */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div
+        className="relative dark:bg-gray-800"
+        style={{
+          background: 'linear-gradient(135deg, #fdf6ef 0%, #fcf3fa 33%, #f9f1fc 66%, #f4eefc 100%)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Claude Skills Market
@@ -357,7 +362,7 @@ export default function HomeContent() {
                 Discover and share modular Skills that extend Claude with real-world expertise.
               </p>
             </div>
-            
+
             {/* Main Search */}
             <div className="max-w-3xl mx-auto">
               <SearchBar
@@ -368,7 +373,7 @@ export default function HomeContent() {
                 resultsCount={searchQuery ? searchResults.length : undefined}
                 compact={false}
               />
-              
+
               {/* Search suggestions */}
               {!searchQuery && (
                 <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
@@ -377,6 +382,38 @@ export default function HomeContent() {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Wave divider SVG at bottom of hero */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            overflow: 'hidden',
+            lineHeight: 0,
+          }}
+        >
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            style={{
+              position: 'relative',
+              display: 'block',
+              width: 'calc(100% + 1.3px)',
+              height: '80px',
+            }}
+          >
+            <path
+              d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+              style={{
+                fill: '#f9fafb',
+              }}
+            />
+          </svg>
         </div>
       </div>
 
@@ -472,6 +509,40 @@ export default function HomeContent() {
         </main>
       </div>
 
+      {/* Wave divider between skills and FAQ */}
+      <div className="relative bg-gray-50 dark:bg-gray-900" style={{ paddingBottom: '80px' }}>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            overflow: 'hidden',
+            lineHeight: 0,
+          }}
+        >
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            style={{
+              position: 'relative',
+              display: 'block',
+              width: 'calc(100% + 1.3px)',
+              height: '80px',
+            }}
+          >
+            <path
+              d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+              style={{
+                fill: '#ffffff',
+              }}
+            />
+          </svg>
+        </div>
+      </div>
+
       {/* FAQ Section */}
       <FAQSection
         onSubmitSkill={() => setIsSubmitModalOpen(true)}
@@ -479,7 +550,7 @@ export default function HomeContent() {
       />
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+      <footer className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
             Claude Skills Market - Community curated collection
