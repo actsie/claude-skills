@@ -72,12 +72,12 @@ export default function NavigationBar({
 
   return (
     <nav
-      className="sticky top-0 z-50 backdrop-blur-sm py-3 relative"
+      className="sticky top-0 z-50 relative"
       style={{
-        background: 'linear-gradient(135deg, rgba(253, 246, 239, 0.95) 0%, rgba(252, 243, 250, 0.95) 33%, rgba(249, 241, 252, 0.95) 66%, rgba(244, 238, 252, 0.95) 100%)',
+        background: '#f9f1fc',
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 relative z-10">
         <div className="flex items-center justify-between gap-2">
 
           {/* Left: Title */}
@@ -135,6 +135,41 @@ export default function NavigationBar({
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Wave divider at bottom of navbar */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(100% - 15px)',
+          left: 0,
+          width: '100%',
+          overflow: 'hidden',
+          lineHeight: 0,
+          transform: 'rotate(180deg)',
+          zIndex: 0,
+        }}
+      >
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          style={{
+            position: 'relative',
+            display: 'block',
+            width: 'calc(100% + 1.3px)',
+            height: '40px',
+          }}
+        >
+          <path
+            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+            className="shape-fill"
+            style={{
+              fill: '#f9f1fc',
+            }}
+          />
+        </svg>
       </div>
 
     </nav>

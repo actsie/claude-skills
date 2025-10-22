@@ -6,7 +6,10 @@ import Image from 'next/image';
 import { Skill } from '@/lib/types';
 import TableOfContents from './TableOfContents';
 import NavigationBar, { NavigationModals } from './NavigationBar';
+import TrustActions from './TrustActions';
+import QualityBanner from './QualityBanner';
 import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
+import { getFingerprint } from '@/lib/voting/fingerprint';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -19,6 +22,8 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const hasTrackedView = useRef(false);
+  const [qualityMetrics, setQualityMetrics] = useState<{ helpful: number; not_helpful: number } | null>(null);
+  const dwellStartTime = useRef<number>(Date.now());
 
   // Track skill detail view on mount
   useEffect(() => {
@@ -27,6 +32,41 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
       hasTrackedView.current = true;
     }
   }, [skill]);
+
+  // Track view with dwell time (8s minimum)
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const dwellTime = Date.now() - dwellStartTime.current;
+
+      if (dwellTime >= 8000) {
+        try {
+          const fingerprint = await getFingerprint();
+          await fetch(`/api/skills/${skill.slug}/view`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fingerprint, dwellTime }),
+          });
+        } catch (err) {
+          console.error('View tracking failed:', err);
+        }
+      }
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [skill.slug]);
+
+  // Fetch metrics for quality banner
+  useEffect(() => {
+    fetch(`/api/skills/${skill.slug}/metrics`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQualityMetrics({
+          helpful: data.metrics.helpful,
+          not_helpful: data.metrics.not_helpful,
+        });
+      })
+      .catch((err) => console.error('Failed to fetch metrics:', err));
+  }, [skill.slug]);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -219,6 +259,14 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
           <div className="lg:col-span-3">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8 lg:p-12">
               <div className="max-w-none">
+                {/* Quality warning banner */}
+                {qualityMetrics && (
+                  <QualityBanner
+                    helpful={qualityMetrics.helpful}
+                    not_helpful={qualityMetrics.not_helpful}
+                  />
+                )}
+
                 {children}
               </div>
             </div>
@@ -230,7 +278,7 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
             <TableOfContents />
 
             {/* GitHub Link Panel - Always visible */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 sticky top-24">
               <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 uppercase tracking-wide">
                 Repository
               </div>
@@ -256,6 +304,9 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
                 </div>
               )}
             </div>
+
+            {/* Trust & Actions Panel */}
+            <TrustActions skillId={skill.slug} skillTitle={skill.title} />
 
             {/* Related Skills Panel */}
             {skillsByTags.length > 0 && (

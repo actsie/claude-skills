@@ -32,3 +32,20 @@ export interface SearchResult {
   }>;
   score?: number;
 }
+
+export interface SkillMetrics {
+  views: number;
+  helpful: number;
+  not_helpful: number;
+  saves: number;
+}
+
+export interface UserSkillState {
+  vote: 'helpful' | 'not_helpful' | null;
+  saved: boolean;
+}
+
+export interface MetricsResponse {
+  metrics: SkillMetrics;
+  userState: UserSkillState | null;
+}
