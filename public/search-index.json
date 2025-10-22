@@ -43,6 +43,55 @@
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
+    "slug": "claude-scientific-skills",
+    "title": "Claude Scientific Skills",
+    "description": "Comprehensive collection of 70+ scientific skills for Claude, transforming it into an AI Scientist with access to bioinformatics, cheminformatics, drug discovery, and research tools.",
+    "categories": [
+      "science",
+      "research"
+    ],
+    "tags": [
+      "bioinformatics",
+      "cheminformatics",
+      "drug-discovery",
+      "machine-learning",
+      "proteomics",
+      "genomics",
+      "scientific-computing",
+      "research"
+    ],
+    "featured": true,
+    "featuredPriority": 2,
+    "author": "K-Dense AI",
+    "repoUrl": "https://github.com/K-Dense-AI/claude-scientific-skills",
+    "date": "2025-10-22T00:00:00.000Z",
+    "excerpt": "A comprehensive collection of 70+ ready-to-use scientific skills curated by K-Dense AI that transforms Claude Code into an \"AI Scientist\" with access to specialized scientific libraries, databases, an..."
+  },
+  {
+    "slug": "claude-skills-mcp",
+    "title": "Claude Skills MCP",
+    "description": "MCP server enabling semantic search and retrieval of Claude Agent Skills using vector embeddings, bringing Anthropic's Skills system to any MCP-compatible AI tool.",
+    "categories": [
+      "development",
+      "tools"
+    ],
+    "tags": [
+      "mcp",
+      "vector-search",
+      "semantic-search",
+      "claude",
+      "cursor",
+      "ai-integration",
+      "skills"
+    ],
+    "featured": true,
+    "featuredPriority": 1,
+    "author": "K-Dense AI",
+    "repoUrl": "https://github.com/K-Dense-AI/claude-skills-mcp",
+    "date": "2025-10-22T00:00:00.000Z",
+    "excerpt": "An MCP server that brings Claude's powerful Skills system to ANY AI model or coding assistant through the Model Context Protocol, enabling semantic search and intelligent skill discovery via vector em..."
+  },
+  {
     "slug": "complex-excel-builder",
     "title": "Complex Excel Builder",
     "description": "Comprehensive Excel workbook creation skill for building sophisticated financial models, operational dashboards, and board-level reports for startups and scale-ups.",

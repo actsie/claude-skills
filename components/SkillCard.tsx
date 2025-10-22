@@ -97,9 +97,10 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
       <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover:opacity-20"></div>
       <div className="absolute inset-[1px] rounded-[11px] bg-white dark:bg-gray-800"></div>
 
-      {/* Featured Badge */}
-      {skill.featured && (
-        <div className="absolute top-2 right-2 z-10">
+      {/* Badges Container */}
+      <div className="absolute top-2 right-2 z-10 flex flex-col gap-2 items-end">
+        {/* Featured Badge */}
+        {skill.featured && (
           <div className="relative px-3 py-1 text-gray-900 dark:text-gray-100 text-[10px] font-semibold rounded-full shadow-sm select-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
             {/* Glossy border */}
             <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 opacity-60" />
@@ -114,8 +115,20 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
               FEATURED
             </span>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* MCP Badge */}
+        {skill.mcp && (
+          <div className="relative px-3 py-1 text-white text-[10px] font-semibold rounded-full shadow-sm select-none bg-gradient-to-r from-blue-500 to-purple-500 backdrop-blur-sm">
+            {/* Glossy border */}
+            <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-blue-400 to-purple-400 opacity-80" />
+
+            <span className="relative">
+              MCP
+            </span>
+          </div>
+        )}
+      </div>
 
       <div className="relative flex flex-col h-full">
         {/* Title */}

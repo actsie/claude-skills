@@ -9,7 +9,7 @@ const redis = Redis.fromEnv();
  * Returns top 6 newest skills sorted by creation date
  */
 
-const NEWEST_CACHE_KEY = 'skills:newest:v2';
+const NEWEST_CACHE_KEY = 'skills:newest:v3';
 const NEWEST_CACHE_TTL = 60 * 60; // 1 hour
 
 interface NewestSkill {

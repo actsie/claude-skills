@@ -7,6 +7,7 @@ export interface SkillFrontmatter {
   tags: string[];
   featured?: boolean;
   featuredPriority?: number;
+  mcp?: boolean; // Model Context Protocol badge
   author?: string;
   authorBio?: string;
   logo?: string;

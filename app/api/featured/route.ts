@@ -14,7 +14,7 @@ const redis = Redis.fromEnv();
  * 2. If < 3, backfill from popular (30-day views, excluding top 5 trending)
  */
 
-const FEATURED_CACHE_KEY = 'skills:featured:v2';
+const FEATURED_CACHE_KEY = 'skills:featured:v3';
 const FEATURED_CACHE_TTL = 60 * 60; // 1 hour
 const TRENDING_KEY = 'skills:trending:v1';
 
