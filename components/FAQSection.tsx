@@ -190,6 +190,23 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
                 );
               })}
             </div>
+
+            {/* Product Hunt Badge */}
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <a
+                href="https://www.producthunt.com/products/claude-skills-market?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-claude&#0045;skills&#0045;market"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1029864&theme=dark&t=1761198045655"
+                  alt="Claude Skills Market - Discover Skills to extend what Claude can do | Product Hunt"
+                  style={{ width: '250px', height: '54px' }}
+                  width="250"
+                  height="54"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Right Column - FAQ */}
