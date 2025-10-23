@@ -216,8 +216,8 @@ export async function GET(request: NextRequest) {
         // Clean up old data (keep only HISTORY_DAYS)
         const cutoffDay = today - HISTORY_DAYS;
         await Promise.all([
-          redis.zremrangebyscore(`skill:${skillId}:score`, '-inf', cutoffDay - 1),
-          redis.zremrangebyscore(`skill:${skillId}:views`, '-inf', cutoffDay - 1),
+          redis.zremrangebyscore(`skill:${skillId}:score`, Number.NEGATIVE_INFINITY, cutoffDay - 1),
+          redis.zremrangebyscore(`skill:${skillId}:views`, Number.NEGATIVE_INFINITY, cutoffDay - 1),
         ]);
 
         // Get historical data
