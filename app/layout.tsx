@@ -58,6 +58,10 @@ export const metadata: Metadata = {
     // yandex: 'your-yandex-verification-code',
     // bing: 'your-bing-verification-code',
   },
+  icons: {
+    icon: '/pawgrammericonnew.png',
+    apple: '/pawgrammericonnew.png',
+  },
 };
 
 export default function RootLayout({
