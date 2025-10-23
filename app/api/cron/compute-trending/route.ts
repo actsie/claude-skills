@@ -68,11 +68,14 @@ async function getScoreHistory(skillId: string, days: number): Promise<number[]>
   const today = getUnixDay();
   const startDay = today - (days - 1);
 
-  const scores = await redis.zrangebyscore(
+  const scores = await redis.zrange(
     `skill:${skillId}:score`,
     startDay,
     today,
-    { withScores: true }
+    {
+      byScore: true,
+      withScores: true,
+    }
   );
 
   // Parse scores into a map: day → score
@@ -104,10 +107,11 @@ async function getViews7d(skillId: string): Promise<number> {
   const today = getUnixDay();
   const startDay = today - 6; // 7 days including today
 
-  const views = await redis.zrangebyscore(
+  const views = await redis.zrange(
     `skill:${skillId}:views`,
     startDay,
-    today
+    today,
+    { byScore: true }
   );
 
   if (!views || !Array.isArray(views)) return 0;
@@ -219,7 +223,7 @@ export async function GET(request: NextRequest) {
         // Get historical data
         const [history7d, scoreYesterdayArr, views7d, firstSeenAtRaw] = await Promise.all([
           getScoreHistory(skillId, SPARKLINE_DAYS),
-          redis.zrangebyscore(`skill:${skillId}:score`, yesterday, yesterday),
+          redis.zrange(`skill:${skillId}:score`, yesterday, yesterday, { byScore: true }),
           getViews7d(skillId),
           redis.get<string>(`skill:${skillId}:first_seen_at`),
         ]);

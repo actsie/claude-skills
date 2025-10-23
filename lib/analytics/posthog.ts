@@ -25,14 +25,14 @@ export function initPostHog(): void {
     return;
   }
 
-  // Only init if consent is given (or not required in dev)
-  const hasConsent = hasAnalyticsConsent();
+  // CONSENT CHECK DISABLED - uncomment below if GDPR compliance needed
+  // const hasConsent = hasAnalyticsConsent();
   const isDev = process.env.NODE_ENV === 'development';
 
-  if (!hasConsent && !isDev) {
-    console.log('PostHog not initialized - waiting for analytics consent');
-    return;
-  }
+  // if (!hasConsent && !isDev) {
+  //   console.log('PostHog not initialized - waiting for analytics consent');
+  //   return;
+  // }
 
   posthog.init(apiKey, {
     api_host: apiHost,
