@@ -76,8 +76,15 @@ export interface EventBatch {
 
 export interface TrendingSkill extends SkillProperties {
   slug: string;
-  trending_score?: number;
+  trending_score: number;
   description?: string;
+  velocity_percent: number | null; // null when low signal
+  history_7d: number[]; // 7-day trending score history (last = today)
+  views_7d: number; // baseline context for velocity calculation
+  first_seen_at: string; // ISO timestamp
+  badge: 'hot' | 'rising' | 'new' | 'cooling' | 'stable';
+  rank: number; // position in trending list (1-5)
+  low_signal: boolean; // precomputed flag for insufficient data
 }
 
 export interface PopularSkill extends SkillProperties {

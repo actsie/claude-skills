@@ -7,6 +7,7 @@ import { trackHomeSectionImpression, trackSkillDetailView, trackTagClick } from 
 import { formatTags } from '@/lib/utils/tags';
 import { formatAbsoluteDate } from '@/lib/utils/dates';
 import type { TrendingSkill } from '@/lib/analytics/types';
+import Sparkline from '@/components/Sparkline';
 
 export default function TrendingSection() {
   const [trending, setTrending] = useState<TrendingSkill[]>([]);
@@ -17,6 +18,9 @@ export default function TrendingSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const previewTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
+
+  // Cache for lazy-loaded skill descriptions and author
+  const [descriptionCache, setDescriptionCache] = useState<Record<string, { description?: string; author?: string; loading: boolean; error?: boolean }>>({});
 
   useEffect(() => {
     // Fetch trending skills
@@ -34,8 +38,16 @@ export default function TrendingSection() {
               title: 'TypeScript Code Review',
               description: 'Professional TypeScript code reviews evaluating type safety, security, performance, and maintainability with actionable feedback.',
               category: 'development',
-              tags: ['typescript', 'code-review', 'security', 'performance', 'type-safety', 'best-practices'],
+              tags: ['typescript', 'code-review', 'security'],
               created_at: '2025-01-15',
+              trending_score: 45,
+              velocity_percent: 125,
+              history_7d: [10, 15, 20, 25, 30, 38, 45],
+              views_7d: 320,
+              first_seen_at: '2025-01-10T00:00:00Z',
+              badge: 'hot' as const,
+              rank: 1,
+              low_signal: false,
             },
             {
               skill_id: 'product-design',
@@ -43,8 +55,16 @@ export default function TrendingSection() {
               title: 'Product Design & UX Review',
               description: 'Design user-centered software products and conduct thorough design reviews using industry-standard UX principles.',
               category: 'development',
-              tags: ['product-design', 'ux', 'ui', 'accessibility', 'design-systems', 'usability'],
+              tags: ['product-design', 'ux', 'ui'],
               created_at: '2025-01-14',
+              trending_score: 38,
+              velocity_percent: 25,
+              history_7d: [25, 26, 28, 30, 32, 35, 38],
+              views_7d: 215,
+              first_seen_at: '2025-01-08T00:00:00Z',
+              badge: 'rising' as const,
+              rank: 2,
+              low_signal: false,
             },
             {
               skill_id: 'prompting-pattern-library',
@@ -52,8 +72,16 @@ export default function TrendingSection() {
               title: 'Prompting Pattern Library',
               description: 'Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance and failure mode analysis.',
               category: 'ai',
-              tags: ['prompting', 'ai-interaction', 'prompt-engineering', 'ai-patterns', 'claude', 'gpt'],
+              tags: ['prompting', 'ai-interaction', 'prompt-engineering'],
               created_at: '2025-01-12',
+              trending_score: 32,
+              velocity_percent: null,
+              history_7d: [5, 8, 10, 12, 15, 20, 32],
+              views_7d: 45,
+              first_seen_at: new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString(),
+              badge: 'new' as const,
+              rank: 3,
+              low_signal: true,
             },
             {
               skill_id: 'complex-excel-builder',
@@ -61,8 +89,16 @@ export default function TrendingSection() {
               title: 'Complex Excel Builder',
               description: 'Comprehensive Excel workbook creation skill for building sophisticated financial models and operational dashboards.',
               category: 'business',
-              tags: ['excel', 'financial-modeling', 'spreadsheets', 'dashboards', 'business-intelligence'],
+              tags: ['excel', 'financial-modeling', 'spreadsheets'],
               created_at: '2025-01-10',
+              trending_score: 28,
+              velocity_percent: -30,
+              history_7d: [45, 42, 38, 35, 32, 30, 28],
+              views_7d: 180,
+              first_seen_at: '2025-01-05T00:00:00Z',
+              badge: 'cooling' as const,
+              rank: 4,
+              low_signal: false,
             },
             {
               skill_id: 'agentic-development',
@@ -70,8 +106,16 @@ export default function TrendingSection() {
               title: 'Agentic Development',
               description: 'Practical guidance for building software with AI agents using real-world workflows and prompt optimization.',
               category: 'development',
-              tags: ['ai', 'agents', 'development', 'automation', 'workflow', 'ai-coding'],
+              tags: ['ai', 'agents', 'development'],
               created_at: '2025-01-08',
+              trending_score: 22,
+              velocity_percent: 5,
+              history_7d: [20, 20, 21, 21, 21, 22, 22],
+              views_7d: 95,
+              first_seen_at: '2025-01-01T00:00:00Z',
+              badge: 'stable' as const,
+              rank: 5,
+              low_signal: false,
             },
           ]);
         } else {
@@ -124,6 +168,38 @@ export default function TrendingSection() {
     }
     setMousePosition({ x: e.clientX, y: e.clientY });
     setPreviewSkill(skillSlug);
+
+    // Lazy-load description if not cached
+    if (!descriptionCache[skillSlug]) {
+      setDescriptionCache(prev => ({
+        ...prev,
+        [skillSlug]: { loading: true }
+      }));
+
+      fetch(`/api/skills/${skillSlug}`)
+        .then(res => res.json())
+        .then(data => {
+          setDescriptionCache(prev => ({
+            ...prev,
+            [skillSlug]: {
+              description: data.description || data.excerpt,
+              author: data.author,
+              loading: false,
+              error: false
+            }
+          }));
+        })
+        .catch(err => {
+          console.error('Failed to fetch skill description:', err);
+          setDescriptionCache(prev => ({
+            ...prev,
+            [skillSlug]: {
+              loading: false,
+              error: true
+            }
+          }));
+        });
+    }
   };
 
   const handlePreviewLeave = () => {
@@ -184,24 +260,24 @@ export default function TrendingSection() {
         <div className="space-y-0">
           {/* Column Headers */}
           <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 border-b border-gray-200 dark:border-gray-700">
-            <div className="col-span-6 md:col-span-6">
+            <div className="col-span-5 md:col-span-5">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Skill
               </span>
             </div>
-            <div className="col-span-4 md:col-span-2">
+            <div className="col-span-3 md:col-span-2">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Category
               </span>
             </div>
-            <div className="hidden md:block md:col-span-3">
+            <div className="hidden md:block md:col-span-2">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Tags
               </span>
             </div>
-            <div className="col-span-2 md:col-span-1 flex justify-end">
+            <div className="col-span-4 md:col-span-3 flex justify-end">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
-                Status
+                Trend
               </span>
             </div>
           </div>
@@ -210,27 +286,111 @@ export default function TrendingSection() {
           const formattedTags = formatTags(skill.tags || [], 2);
           const rank = index + 1;
 
-          // Trending badge based on rank
-          const getTrendingBadge = (rank: number) => {
-            if (rank <= 2) {
+          // Badge styles based on velocity-driven badge from API
+          const getBadgeStyles = (badge: string) => {
+            switch (badge) {
+              case 'hot':
+                return {
+                  bg: 'dark:bg-gray-700',
+                  text: 'text-gray-700 dark:text-gray-300',
+                  label: 'Hot',
+                  style: { backgroundColor: '#fcf3fa' }, // light pink - warm/hot
+                };
+              case 'rising':
+                return {
+                  bg: 'dark:bg-gray-700',
+                  text: 'text-gray-700 dark:text-gray-300',
+                  label: 'Rising',
+                  style: { backgroundColor: '#f9f1fc' }, // light lavender - upward
+                };
+              case 'new':
+                return {
+                  bg: 'dark:bg-gray-700',
+                  text: 'text-gray-700 dark:text-gray-300',
+                  label: 'New',
+                  style: { backgroundColor: '#f4eefc' }, // light purple - fresh
+                };
+              case 'cooling':
+                return {
+                  bg: 'dark:bg-gray-700',
+                  text: 'text-gray-700 dark:text-gray-300',
+                  label: 'Cooling',
+                  style: { backgroundColor: '#fdf6ef' }, // peachy cream - cooling
+                };
+              case 'stable':
+                return {
+                  bg: 'bg-gray-100 dark:bg-gray-700',
+                  text: 'text-gray-600 dark:text-gray-400',
+                  label: 'Stable',
+                  style: undefined,
+                };
+              default:
+                return {
+                  bg: 'bg-gray-100 dark:bg-gray-700',
+                  text: 'text-gray-600 dark:text-gray-400',
+                  label: 'Stable',
+                  style: undefined,
+                };
+            }
+          };
+
+          const badgeStyles = getBadgeStyles(skill.badge);
+
+          // Velocity display with arrow and color
+          const getVelocityDisplay = () => {
+            // Fallback for old cached data without new fields
+            if (skill.low_signal === undefined || skill.velocity_percent === undefined || skill.views_7d === undefined) {
               return (
-                <span className="px-2 py-0.5 text-xs font-medium bg-[#D7CBFC] dark:bg-[#5E50A0] text-[#362B6B] dark:text-[#D7CBFC] rounded-full">
-                  Hot
-                </span>
-              );
-            } else if (rank <= 4) {
-              return (
-                <span className="px-2 py-0.5 text-xs font-medium bg-[#EBE5FD] dark:bg-[#362B6B] text-[#5E50A0] dark:text-[#C3B1FA] rounded-full">
-                  Rising
-                </span>
-              );
-            } else {
-              return (
-                <span className="px-2 py-0.5 text-xs font-medium bg-[#F8F6FE] dark:bg-[#191046] text-[#7866CC] dark:text-[#AF97F8] rounded-full">
-                  New
-                </span>
+                <div className="flex items-center justify-end gap-2" title="Updating...">
+                  <span className="text-sm text-gray-400 dark:text-gray-500">—</span>
+                  <span className="w-2 h-2 rounded-full bg-gray-400" aria-label="Data updating"></span>
+                </div>
               );
             }
+
+            if (skill.low_signal || skill.velocity_percent === null) {
+              return (
+                <div className="flex items-center justify-end gap-2" title="Not enough data">
+                  <span className="text-sm text-gray-400 dark:text-gray-500">—</span>
+                  <span className="w-2 h-2 rounded-full bg-yellow-400" aria-label="Low signal indicator"></span>
+                </div>
+              );
+            }
+
+            const velocity = skill.velocity_percent;
+            const isPositive = velocity > 0;
+            const isNegative = velocity < 0;
+            const arrow = isPositive ? '↑' : isNegative ? '↓' : '—';
+            const colorClass = isPositive
+              ? 'text-green-600 dark:text-green-400'
+              : isNegative
+              ? 'text-red-600 dark:text-red-400'
+              : 'text-gray-600 dark:text-gray-400';
+
+            return (
+              <div className="flex items-center justify-end gap-2">
+                <div className="flex flex-col items-end">
+                  <span
+                    className={`text-xs font-medium ${colorClass}`}
+                    aria-label={`Trend ${isPositive ? 'up' : isNegative ? 'down' : 'flat'} ${Math.abs(velocity)} percent`}
+                  >
+                    {arrow} {Math.abs(velocity)}%
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {skill.views_7d} views
+                  </span>
+                </div>
+                {skill.history_7d && skill.history_7d.length > 0 && (
+                  <Sparkline
+                    data={skill.history_7d}
+                    width={50}
+                    height={20}
+                    color={isPositive ? '#10b981' : isNegative ? '#ef4444' : '#6b7280'}
+                    className="opacity-80"
+                  />
+                )}
+              </div>
+            );
           };
 
           return (
@@ -241,8 +401,8 @@ export default function TrendingSection() {
               className="group grid grid-cols-12 gap-4 items-center py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               aria-label={`Rank ${rank}. ${skill.title}`}
             >
-              {/* Rank + Title (6 columns) */}
-              <div className="col-span-6 md:col-span-6 flex items-center gap-3 min-w-0">
+              {/* Rank + Title + Badge (5 columns) */}
+              <div className="col-span-5 md:col-span-5 flex items-center gap-3 min-w-0">
                 <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-gray-500 dark:text-gray-400 font-semibold text-xs">
                   {rank}
                 </span>
@@ -254,10 +414,16 @@ export default function TrendingSection() {
                 >
                   {skill.title}
                 </h3>
+                <span
+                  className={`hidden sm:inline-block px-2 py-0.5 text-xs font-medium ${badgeStyles.bg} ${badgeStyles.text} rounded-full flex-shrink-0`}
+                  style={badgeStyles.style}
+                >
+                  {badgeStyles.label}
+                </span>
               </div>
 
-              {/* Category (4 columns on mobile, 2 on desktop) */}
-              <div className="col-span-4 md:col-span-2">
+              {/* Category (3 columns on mobile, 2 on desktop) */}
+              <div className="col-span-3 md:col-span-2">
                 {skill.category && (
                   <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">
                     {skill.category}
@@ -265,8 +431,8 @@ export default function TrendingSection() {
                 )}
               </div>
 
-              {/* Tags (3 columns, hidden on mobile) */}
-              <div className="hidden md:flex md:col-span-3 items-center gap-1.5 flex-wrap">
+              {/* Tags (2 columns, hidden on mobile) */}
+              <div className="hidden md:flex md:col-span-2 items-center gap-1.5 flex-wrap">
                 {formattedTags.map((tag, tagIndex) => {
                   const isExtraIndicator = tag.startsWith('+');
 
@@ -295,9 +461,9 @@ export default function TrendingSection() {
                 })}
               </div>
 
-              {/* Trending Badge (2 columns on mobile, 1 on desktop) */}
-              <div className="col-span-2 md:col-span-1 flex justify-end">
-                {getTrendingBadge(rank)}
+              {/* Trend: Velocity + Sparkline (4 columns on mobile, 3 on desktop) */}
+              <div className="col-span-4 md:col-span-3 flex justify-end">
+                {getVelocityDisplay()}
               </div>
             </Link>
           );
@@ -350,6 +516,11 @@ export default function TrendingSection() {
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                       Trending Skill
                     </p>
+                    {descriptionCache[skill.slug]?.author && (
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                        by {descriptionCache[skill.slug].author}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -357,13 +528,33 @@ export default function TrendingSection() {
               {/* Preview Content */}
               <div className="p-6">
                 {/* Description */}
-                {skill.description && (
-                  <div className="mb-4">
-                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {skill.description}
-                    </p>
-                  </div>
-                )}
+                <div className="mb-4">
+                  {(() => {
+                    const cached = descriptionCache[skill.slug];
+                    if (cached?.loading) {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+                          Loading description...
+                        </p>
+                      );
+                    }
+                    if (cached?.error) {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+                          Description unavailable
+                        </p>
+                      );
+                    }
+                    if (cached?.description || skill.description) {
+                      return (
+                        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {cached?.description || skill.description}
+                        </p>
+                      );
+                    }
+                    return null;
+                  })()}
+                </div>
 
                 {/* Category */}
                 {skill.category && (

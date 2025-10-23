@@ -8,30 +8,153 @@ export const dynamic = 'force-dynamic';
 const redis = Redis.fromEnv();
 
 /**
- * Compute Trending Skills (Scheduled Job)
+ * Compute Trending Skills with Velocity (Scheduled Job)
  * Runs once daily at midnight UTC via Vercel Cron
  *
  * Algorithm:
  *   trending_score = 3 × clicks_24h + 0.2 × views_24h + 2 × helpful_24h - 1 × not_helpful_24h
  *
- * Weights:
- *   - GitHub clicks: 3.0 (high engagement signal)
- *   - Page views: 0.2 (basic engagement)
- *   - Helpful votes: 2.0 (quality signal)
- *   - Not helpful votes: -1.0 (quality penalty)
+ * Velocity Calculation:
+ *   velocity_percent = ((today + prior) - (yesterday + prior)) / max(yesterday + prior, 5) * 100
+ *   Requires baseline: views_7d >= BASELINE_VIEWS || score_yesterday >= BASELINE_SCORE
  *
- * Minimum signal threshold: At least 1 click OR 1 vote in 24h to be considered
+ * Badge Assignment (first match wins):
+ *   1. 'new' - first_seen <= NEW_HOURS
+ *   2. 'hot' - velocity >= HOT_THRESHOLD && views_7d >= BASELINE_VIEWS
+ *   3. 'rising' - velocity >= RISING_THRESHOLD && views_7d >= BASELINE_VIEWS
+ *   4. 'cooling' - velocity <= COOLING_THRESHOLD && views_7d >= COOLING_BASELINE
+ *   5. 'stable' - else
  *
  * Stores:
- *   - skills:trending:v1 (top 5 trending skills, TTL: 24 hours)
- *   - skills:trending:last_good (backup for stale-while-revalidate, no TTL)
+ *   - skill:{slug}:score - sorted set with unix_day → score (14-day retention)
+ *   - skill:{slug}:views - sorted set with unix_day → views (14-day retention)
+ *   - skill:{slug}:first_seen_at - ISO timestamp
+ *   - skill:{slug}:trend - JSON summary with velocity & badges (24h TTL)
+ *   - skills:trending:v1 - top 5 trending (24h TTL)
+ *   - skills:trending:last_good - backup (no TTL)
  */
 
+// Load config from env with defaults
 const CRON_SECRET = process.env.CRON_SECRET;
+const HOT_THRESHOLD = parseInt(process.env.TRENDING_HOT_THRESHOLD || '50');
+const RISING_THRESHOLD = parseInt(process.env.TRENDING_RISING_THRESHOLD || '15');
+const COOLING_THRESHOLD = parseInt(process.env.TRENDING_COOLING_THRESHOLD || '-25');
+const BASELINE_VIEWS = parseInt(process.env.TRENDING_BASELINE_VIEWS || '50');
+const COOLING_BASELINE = parseInt(process.env.TRENDING_COOLING_BASELINE || '100');
+const BASELINE_SCORE = parseInt(process.env.TRENDING_BASELINE_SCORE || '5');
+const BAYESIAN_PRIOR = parseInt(process.env.TRENDING_BAYESIAN_PRIOR || '5');
+const NEW_HOURS = parseInt(process.env.TRENDING_NEW_HOURS || '48');
+const HISTORY_DAYS = parseInt(process.env.TRENDING_HISTORY_DAYS || '14');
+const SPARKLINE_DAYS = parseInt(process.env.TRENDING_SPARKLINE_DAYS || '7');
+
 const TRENDING_KEY = 'skills:trending:v1';
 const TRENDING_BACKUP_KEY = 'skills:trending:last_good';
 const TRENDING_TTL = 24 * 60 * 60; // 24 hours
-const MIN_SIGNAL_THRESHOLD = 1; // Minimum 1 click OR 1 vote in 24h to be considered trending
+const MIN_SIGNAL_THRESHOLD = 1;
+
+/**
+ * UTC-consistent day calculation
+ * Prevents timezone jitter at day boundaries
+ */
+function getUnixDay(timestamp?: number): number {
+  return Math.floor((timestamp || Date.now()) / 86400000);
+}
+
+/**
+ * Get trending scores for last N days from Redis
+ * Carries forward last value for missing days
+ */
+async function getScoreHistory(skillId: string, days: number): Promise<number[]> {
+  const today = getUnixDay();
+  const startDay = today - (days - 1);
+
+  const scores = await redis.zrangebyscore(
+    `skill:${skillId}:score`,
+    startDay,
+    today,
+    { withScores: true }
+  );
+
+  // Parse scores into a map: day → score
+  const scoreMap = new Map<number, number>();
+  if (scores && Array.isArray(scores)) {
+    for (let i = 0; i < scores.length; i += 2) {
+      const day = Math.floor(scores[i + 1] as number);
+      const score = scores[i] as number;
+      scoreMap.set(day, score);
+    }
+  }
+
+  // Fill history, carrying forward last known value
+  const history: number[] = [];
+  let lastValue = 0;
+  for (let day = startDay; day <= today; day++) {
+    const value = scoreMap.get(day) ?? lastValue;
+    history.push(value);
+    lastValue = value;
+  }
+
+  return history;
+}
+
+/**
+ * Get total views for last N days
+ */
+async function getViews7d(skillId: string): Promise<number> {
+  const today = getUnixDay();
+  const startDay = today - 6; // 7 days including today
+
+  const views = await redis.zrangebyscore(
+    `skill:${skillId}:views`,
+    startDay,
+    today
+  );
+
+  if (!views || !Array.isArray(views)) return 0;
+
+  // Sum all view counts
+  return views.reduce((sum: number, val: any) => sum + (typeof val === 'number' ? val : 0), 0);
+}
+
+/**
+ * Calculate velocity percentage with Bayesian prior and baseline gates
+ */
+function calculateVelocity(
+  scoreToday: number,
+  scoreYesterday: number,
+  views7d: number
+): number | null {
+  // Baseline gate
+  const hasBaseline = views7d >= BASELINE_VIEWS || scoreYesterday >= BASELINE_SCORE;
+  if (!hasBaseline) return null;
+
+  // Safer % with Bayesian prior
+  const numerator = (scoreToday + BAYESIAN_PRIOR) - (scoreYesterday + BAYESIAN_PRIOR);
+  const denominator = Math.max(scoreYesterday + BAYESIAN_PRIOR, 5);
+  const pct = (numerator / denominator) * 100;
+
+  // Round and clamp ±999%
+  return Math.max(-999, Math.min(999, Math.round(pct)));
+}
+
+/**
+ * Assign badge based on velocity and baseline thresholds
+ */
+function assignBadge(
+  velocity: number | null,
+  views7d: number,
+  firstSeenAt: string
+): 'hot' | 'rising' | 'new' | 'cooling' | 'stable' {
+  // Calculate hours since first seen
+  const hoursSinceFirstSeen = (Date.now() - new Date(firstSeenAt).getTime()) / (1000 * 60 * 60);
+
+  // First match wins
+  if (hoursSinceFirstSeen <= NEW_HOURS) return 'new';
+  if (velocity !== null && velocity >= HOT_THRESHOLD && views7d >= BASELINE_VIEWS) return 'hot';
+  if (velocity !== null && velocity >= RISING_THRESHOLD && views7d >= BASELINE_VIEWS) return 'rising';
+  if (velocity !== null && velocity <= COOLING_THRESHOLD && views7d >= COOLING_BASELINE) return 'cooling';
+  return 'stable';
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -44,12 +167,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    console.log('[Cron] Computing trending skills...');
+    console.log('[Cron] Computing trending skills with velocity...');
+
+    const today = getUnixDay();
+    const yesterday = today - 1;
 
     // Get all skills
     const allSkills = await getAllSkills();
 
-    // Compute trending scores for each skill
+    // Compute trending scores and velocity for each skill
     const skillsWithScores = await Promise.all(
       allSkills.map(async (skill) => {
         const skillId = skill.slug;
@@ -60,11 +186,10 @@ export async function GET(request: NextRequest) {
           redis.get<number>(`skill:${skillId}:clicks:24h`),
         ]);
 
-        // Default to 0 if null
         const views24h = views24hRaw ?? 0;
         const clicks24h = clicks24hRaw ?? 0;
 
-        // Get vote counts from last 24h (using sorted sets with timestamp scores)
+        // Get vote counts from last 24h
         const timestamp24hAgo = Date.now() - (24 * 60 * 60 * 1000);
         const [helpful24h, notHelpful24h] = await Promise.all([
           redis.zcount(`skill:vote:helpful:${skillId}`, timestamp24hAgo, '+inf'),
@@ -72,12 +197,51 @@ export async function GET(request: NextRequest) {
         ]);
 
         // Compute trending score
-        // 3×clicks + 0.2×views + 2×helpful - 1×not_helpful
         const trendingScore =
           (clicks24h * 3) +
           (views24h * 0.2) +
           (helpful24h * 2) -
           (notHelpful24h * 1);
+
+        // Store today's score and views in Redis sorted sets
+        await Promise.all([
+          redis.zadd(`skill:${skillId}:score`, { score: today, member: trendingScore }),
+          redis.zadd(`skill:${skillId}:views`, { score: today, member: views24h }),
+        ]);
+
+        // Clean up old data (keep only HISTORY_DAYS)
+        const cutoffDay = today - HISTORY_DAYS;
+        await Promise.all([
+          redis.zremrangebyscore(`skill:${skillId}:score`, '-inf', cutoffDay - 1),
+          redis.zremrangebyscore(`skill:${skillId}:views`, '-inf', cutoffDay - 1),
+        ]);
+
+        // Get historical data
+        const [history7d, scoreYesterdayArr, views7d, firstSeenAtRaw] = await Promise.all([
+          getScoreHistory(skillId, SPARKLINE_DAYS),
+          redis.zrangebyscore(`skill:${skillId}:score`, yesterday, yesterday),
+          getViews7d(skillId),
+          redis.get<string>(`skill:${skillId}:first_seen_at`),
+        ]);
+
+        const scoreYesterday = scoreYesterdayArr && Array.isArray(scoreYesterdayArr) && scoreYesterdayArr.length > 0
+          ? (scoreYesterdayArr[0] as number)
+          : 0;
+
+        // Set first_seen_at if not exists
+        let firstSeenAt = firstSeenAtRaw || new Date().toISOString();
+        if (!firstSeenAtRaw) {
+          await redis.set(`skill:${skillId}:first_seen_at`, firstSeenAt);
+        }
+
+        // Calculate velocity
+        const velocity = calculateVelocity(trendingScore, scoreYesterday, views7d);
+
+        // Assign badge
+        const badge = assignBadge(velocity, views7d, firstSeenAt);
+
+        // Determine low signal flag
+        const lowSignal = velocity === null;
 
         return {
           skill_id: skillId,
@@ -85,8 +249,14 @@ export async function GET(request: NextRequest) {
           title: skill.title,
           category: skill.categories[0] || '',
           tags: skill.tags.slice(0, 3),
-          created_at: skill.date,
+          created_at: skill.date || new Date().toISOString(),
           trending_score: trendingScore,
+          velocity_percent: velocity,
+          history_7d: history7d,
+          views_7d: views7d,
+          first_seen_at: firstSeenAt,
+          badge,
+          low_signal: lowSignal,
           clicks24h,
           views24h,
           helpful24h,
@@ -95,8 +265,7 @@ export async function GET(request: NextRequest) {
       })
     );
 
-    // Filter by minimum signal threshold and sort by score
-    // Must have at least 1 click OR 1 vote in 24h to be considered
+    // Filter by minimum signal and sort by score
     const trending = skillsWithScores
       .filter((s) =>
         s.clicks24h >= MIN_SIGNAL_THRESHOLD ||
@@ -105,7 +274,7 @@ export async function GET(request: NextRequest) {
       )
       .sort((a, b) => b.trending_score - a.trending_score)
       .slice(0, 5) // Top 5
-      .map((s) => ({
+      .map((s, index) => ({
         skill_id: s.skill_id,
         slug: s.slug,
         title: s.title,
@@ -113,11 +282,29 @@ export async function GET(request: NextRequest) {
         tags: s.tags,
         created_at: s.created_at,
         trending_score: s.trending_score,
+        velocity_percent: s.velocity_percent,
+        history_7d: s.history_7d,
+        views_7d: s.views_7d,
+        first_seen_at: s.first_seen_at,
+        badge: s.badge,
+        rank: index + 1,
+        low_signal: s.low_signal,
       })) as TrendingSkill[];
 
     console.log('[Cron] Computed trending skills:', trending.length);
 
-    // Store in KV
+    // Store per-skill trend summaries
+    await Promise.all(
+      trending.map((skill) =>
+        redis.set(
+          `skill:${skill.slug}:trend`,
+          JSON.stringify(skill),
+          { ex: TRENDING_TTL }
+        )
+      )
+    );
+
+    // Store trending list
     await Promise.all([
       redis.set(TRENDING_KEY, JSON.stringify(trending), { ex: TRENDING_TTL }),
       redis.set(TRENDING_BACKUP_KEY, JSON.stringify(trending)), // No TTL for backup
@@ -129,6 +316,7 @@ export async function GET(request: NextRequest) {
       success: true,
       trending: trending.length,
       timestamp: new Date().toISOString(),
+      velocity_enabled: true,
     });
   } catch (error) {
     console.error('[Cron] Error computing trending:', error);
