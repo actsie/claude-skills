@@ -19,10 +19,13 @@ const TRENDING_BACKUP_KEY = 'skills:trending:last_good';
 export async function GET() {
   try {
     // Try to get current trending data
-    const trendingData = await redis.get<string>(TRENDING_KEY);
+    const trendingData = await redis.get(TRENDING_KEY);
 
     if (trendingData) {
-      const trending: TrendingSkill[] = JSON.parse(trendingData);
+      // Upstash auto-deserializes, handle both string and object
+      const trending: TrendingSkill[] = typeof trendingData === 'string'
+        ? JSON.parse(trendingData)
+        : trendingData;
 
       return NextResponse.json(
         { trending },
@@ -35,10 +38,12 @@ export async function GET() {
     }
 
     // Fallback to backup (stale-while-revalidate)
-    const backupData = await redis.get<string>(TRENDING_BACKUP_KEY);
+    const backupData = await redis.get(TRENDING_BACKUP_KEY);
 
     if (backupData) {
-      const trending: TrendingSkill[] = JSON.parse(backupData);
+      const trending: TrendingSkill[] = typeof backupData === 'string'
+        ? JSON.parse(backupData)
+        : backupData;
 
       console.log('[Trending API] Using backup data (stale)');
 

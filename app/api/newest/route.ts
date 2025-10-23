@@ -30,10 +30,13 @@ interface NewestSkill {
 export async function GET() {
   try {
     // Try to get from cache
-    const cachedData = await redis.get<string>(NEWEST_CACHE_KEY);
+    const cachedData = await redis.get(NEWEST_CACHE_KEY);
 
     if (cachedData) {
-      const newest: NewestSkill[] = JSON.parse(cachedData);
+      // Upstash auto-deserializes, handle both string and object
+      const newest: NewestSkill[] = typeof cachedData === 'string'
+        ? JSON.parse(cachedData)
+        : cachedData;
 
       return NextResponse.json(
         { newest },

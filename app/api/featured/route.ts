@@ -37,10 +37,13 @@ interface FeaturedSkill {
 export async function GET() {
   try {
     // Try to get from cache
-    const cachedData = await redis.get<string>(FEATURED_CACHE_KEY);
+    const cachedData = await redis.get(FEATURED_CACHE_KEY);
 
     if (cachedData) {
-      const featured: FeaturedSkill[] = JSON.parse(cachedData);
+      // Upstash auto-deserializes, handle both string and object
+      const featured: FeaturedSkill[] = typeof cachedData === 'string'
+        ? JSON.parse(cachedData)
+        : cachedData;
 
       return NextResponse.json(
         { featured },
@@ -76,11 +79,13 @@ export async function GET() {
     // Backfill if < 3
     if (featured.length < 3) {
       // Get trending skills to exclude
-      const trendingData = await redis.get<string>(TRENDING_KEY);
+      const trendingData = await redis.get(TRENDING_KEY);
       const trendingSlugs = new Set<string>();
 
       if (trendingData) {
-        const trending = JSON.parse(trendingData);
+        const trending = typeof trendingData === 'string'
+          ? JSON.parse(trendingData)
+          : trendingData;
         trending.forEach((s: any) => trendingSlugs.add(s.slug));
       }
 
