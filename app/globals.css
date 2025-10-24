@@ -150,6 +150,17 @@ pre code {
   }
 }
 
+/* Tooltip Slide Out Animation - auto-hide after 1.5s */
+@keyframes slideOut {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .search-container:is(:hover, :focus-within) .sparkle-path-1 {
   --scale: 1.5;
   --rotate: 20deg;
