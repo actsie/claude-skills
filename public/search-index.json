@@ -180,6 +180,27 @@
     "excerpt": "Comprehensive Excel workbook creation skill designed for startups and scale-ups to build sophisticated financial models, operational dashboards, and board-level reports with professional-grade structu..."
   },
   {
+    "slug": "content-research-writer",
+    "title": "Content Research Writer",
+    "description": "Collaborative writing assistant providing research support, structural guidance, citation management, and iterative feedback while preserving your unique voice.",
+    "categories": [
+      "productivity",
+      "content",
+      "writing"
+    ],
+    "tags": [
+      "writing",
+      "research",
+      "citations",
+      "content-creation"
+    ],
+    "featured": false,
+    "author": "ComposioHQ",
+    "repoUrl": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Transform writing from a solitary activity into a collaborative process. This skill provides research assistance, structural guidance, citation management, and iterative feedback while preserving your..."
+  },
+  {
     "slug": "csv-data-summarizer",
     "title": "CSV Data Summarizer",
     "description": "Automatically analyzes uploaded CSV files generating summary statistics, detecting missing data, and creating quick visualizations with no user prompting required.",
@@ -251,6 +272,46 @@
     "excerpt": "Official Anthropic skill that enables comprehensive Word document operations including creation, editing, and analysis with full support for tracked changes, comments, and formatting preservation.  <C..."
   },
   {
+    "slug": "family-history-research",
+    "title": "Family History Research Planning",
+    "description": "Strategic genealogy research planning following Genealogical Proof Standard (GPS), with citation guidance, source evaluation, and evidence-based methodology.",
+    "categories": [
+      "research",
+      "genealogy"
+    ],
+    "tags": [
+      "genealogy",
+      "research",
+      "family-history",
+      "documentation"
+    ],
+    "featured": false,
+    "author": "emaynard",
+    "repoUrl": "https://github.com/emaynard/claude-family-history-research-skill",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Strategic genealogy research planning following the Genealogical Proof Standard (GPS). Provides methodology guidance, citation templates, source evaluation frameworks, and evidence-based research plan..."
+  },
+  {
+    "slug": "file-organizer",
+    "title": "File Organizer",
+    "description": "Automatically organizes files into logical folder structures based on type, date, size, and content. Finds duplicates, suggests cleanup, and maintains operation logs.",
+    "categories": [
+      "productivity",
+      "utilities"
+    ],
+    "tags": [
+      "file-management",
+      "organization",
+      "automation",
+      "cleanup"
+    ],
+    "featured": false,
+    "author": "ComposioHQ",
+    "repoUrl": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/file-organizer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Stop drowning in disorganized downloads and scattered project files. This skill analyzes directories, detects file types, finds duplicates, and organizes everything into logical structures—with your a..."
+  },
+  {
     "slug": "finishing-a-development-branch",
     "title": "Finishing a Development Branch",
     "description": "Structured workflow for completing development work through test verification, branch determination, and merge execution with appropriate cleanup.",
@@ -269,6 +330,26 @@
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Structured four-step workflow for completing development work: verify tests, determine base branch, present merge options, and execute with proper cleanup.  <Callout type=\"tip\"> Essential for develope..."
+  },
+  {
+    "slug": "git-pushing",
+    "title": "Git Pushing Workflow",
+    "description": "Automated git workflow that stages changes, generates conventional commit messages, pushes to remote repositories, and optionally creates pull requests.",
+    "categories": [
+      "development",
+      "git"
+    ],
+    "tags": [
+      "git",
+      "version-control",
+      "workflow",
+      "automation"
+    ],
+    "featured": false,
+    "author": "mhattingpete",
+    "repoUrl": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/git-pushing",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Automate the final stage of your development workflow: staging changes, generating conventional commit messages, and pushing to remote repositories. Part of a complete engineering workflow system desi..."
   },
   {
     "slug": "internal-comms",
@@ -290,6 +371,26 @@
     "repoUrl": "https://github.com/anthropics/skills/tree/main/internal-comms",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill for creating professional internal company communications using standardized formats and templates that align with organizational best practices.  <Callout type=\"tip\"> Essenti..."
+  },
+  {
+    "slug": "invoice-organizer",
+    "title": "Invoice Organizer",
+    "description": "Automatically extracts data from invoice PDFs and images, organizes files by vendor and date, generates expense reports, and maintains searchable CSV records.",
+    "categories": [
+      "productivity",
+      "finance"
+    ],
+    "tags": [
+      "invoices",
+      "finance",
+      "automation",
+      "document-processing"
+    ],
+    "featured": false,
+    "author": "ComposioHQ",
+    "repoUrl": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/invoice-organizer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Stop manually sorting invoices and expense receipts. This skill extracts key data from PDFs and images, organizes files by vendor and date, generates expense reports, and maintains a searchable CSV da..."
   },
   {
     "slug": "job-search-strategist",
@@ -362,6 +463,46 @@
     "excerpt": "A framework for recognizing and formalizing valuable patterns from work sessions into reusable skills with conservative, ROI-focused pattern recognition.  <Callout type=\"tip\"> This skill is designed f..."
   },
   {
+    "slug": "markdown-to-epub",
+    "title": "Markdown to EPUB Converter",
+    "description": "Converts markdown documents into professional EPUB3 ebook files with proper structure, styling, table of contents, and metadata for publishing or distribution.",
+    "categories": [
+      "productivity",
+      "publishing"
+    ],
+    "tags": [
+      "epub",
+      "markdown",
+      "ebooks",
+      "publishing"
+    ],
+    "featured": false,
+    "author": "smerchek",
+    "repoUrl": "https://github.com/smerchek/claude-epub-skill/tree/main/markdown-to-epub",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Transform markdown documents into professional EPUB3 ebook files ready for publishing. Generates proper book structure, table of contents, metadata, and styling—perfect for self-publishing, documentat..."
+  },
+  {
+    "slug": "meeting-insights-analyzer",
+    "title": "Meeting Insights Analyzer",
+    "description": "Analyzes meeting transcripts to identify communication patterns, speaker dynamics, decision-making effectiveness, and action item clarity across your team meetings.",
+    "categories": [
+      "productivity",
+      "communication"
+    ],
+    "tags": [
+      "meetings",
+      "transcripts",
+      "communication",
+      "team-dynamics"
+    ],
+    "featured": false,
+    "author": "ComposioHQ",
+    "repoUrl": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/meeting-insights-analyzer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Unlock hidden patterns in your team's meeting transcripts. This skill analyzes communication dynamics, identifies who speaks when, tracks decision quality, and surfaces action items across multiple me..."
+  },
+  {
     "slug": "meeting-notes-summarizer",
     "title": "Meeting Notes Summarizer",
     "description": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.",
@@ -383,6 +524,27 @@
     "repoUrl": "https://github.com/Exploration-labs/meeting-notes-summarizer",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.  <Callout type=\"tip\"> Pe..."
+  },
+  {
+    "slug": "move-code-quality",
+    "title": "Move Code Quality Checker",
+    "description": "Comprehensive code review guidance for Move language packages against Move Book standards, covering naming, structure, testing, documentation, and best practices.",
+    "categories": [
+      "development",
+      "code-quality"
+    ],
+    "tags": [
+      "move-language",
+      "code-review",
+      "blockchain",
+      "aptos",
+      "sui"
+    ],
+    "featured": false,
+    "author": "1NickPappas",
+    "repoUrl": "https://github.com/1NickPappas/move-code-quality-skill",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Comprehensive code review for Move language packages against official Move Book standards. Analyzes naming conventions, module structure, testing coverage, documentation quality, and blockchain-specif..."
   },
   {
     "slug": "pdf",
@@ -566,6 +728,26 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/resume-builder",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
+  },
+  {
+    "slug": "review-implementing",
+    "title": "Review Feedback Implementation",
+    "description": "Systematically processes code review feedback by parsing comments, creating actionable tasks, implementing changes, and verifying all suggestions are addressed.",
+    "categories": [
+      "development",
+      "code-review"
+    ],
+    "tags": [
+      "code-review",
+      "feedback",
+      "workflow",
+      "collaboration"
+    ],
+    "featured": false,
+    "author": "mhattingpete",
+    "repoUrl": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/review-implementing",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Transform code review comments into systematic implementation actions. This skill parses reviewer feedback, creates trackable tasks, implements changes methodically, and ensures every suggestion is ad..."
   },
   {
     "slug": "root-cause-tracing",
@@ -914,6 +1096,26 @@
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Comprehensive methodology for test-first software development using the Red-Green-Refactor cycle to build reliable, verified code through systematic testing discipline.  <Callout type=\"tip\"> Essential..."
+  },
+  {
+    "slug": "test-fixing",
+    "title": "Test Fixing Workflow",
+    "description": "Systematic test debugging workflow that runs test suites, groups related failures, identifies root causes, applies minimal fixes, and verifies resolution.",
+    "categories": [
+      "development",
+      "testing"
+    ],
+    "tags": [
+      "testing",
+      "debugging",
+      "workflow",
+      "quality"
+    ],
+    "featured": false,
+    "author": "mhattingpete",
+    "repoUrl": "https://github.com/mhattingpete/claude-skills-marketplace/tree/main/engineering-workflow-plugin/skills/test-fixing",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Transform failing tests into passing ones through systematic debugging. This skill runs test suites, groups related failures, identifies root causes, applies minimal focused fixes, and verifies comple..."
   },
   {
     "slug": "token-budget-advisor",
