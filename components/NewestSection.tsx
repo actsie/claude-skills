@@ -147,13 +147,13 @@ export default function NewestSection() {
     router.push(`/?tags=${encodeURIComponent(tag)}`);
   };
 
-  // Helper to check if skill is new (< 7 days old)
+  // Helper to check if skill is new (today or yesterday only)
   const isNew = (dateStr?: string): boolean => {
     if (!dateStr) return false;
     const skillDate = new Date(dateStr);
     const now = new Date();
-    const daysDiff = (now.getTime() - skillDate.getTime()) / (1000 * 60 * 60 * 24);
-    return daysDiff < 7;
+    const daysDiff = Math.floor((now.getTime() - skillDate.getTime()) / (1000 * 60 * 60 * 24));
+    return daysDiff <= 1; // Only show NEW badge for today (0 days) or yesterday (1 day)
   };
 
   if (loading) {

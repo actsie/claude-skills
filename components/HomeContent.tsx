@@ -329,6 +329,16 @@ export default function HomeContent() {
     }
   }, [selectedCategory, selectedTags]);
 
+  // Animate title letters on mount
+  useEffect(() => {
+    const spans = document.querySelectorAll('.animated-letter');
+    spans.forEach((span, idx) => {
+      setTimeout(() => {
+        span.classList.add('active');
+      }, 100 * (idx + 1));
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Simple Navigation */}
@@ -351,8 +361,22 @@ export default function HomeContent() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Claude Skills Market
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 animated-title">
+              {'Claude Skills Market'.split('').map((char, idx) => (
+                <span
+                  key={idx}
+                  className={`animated-letter ${char === ' ' ? 'letter-space' : ''}`}
+                  data-index={idx}
+                  onClick={(e) => {
+                    e.currentTarget.classList.add('active');
+                  }}
+                  onAnimationEnd={(e) => {
+                    e.currentTarget.classList.remove('active');
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
             </h1>
             <div className="space-y-2 mb-8">
               <p className="text-xl text-gray-600 dark:text-gray-400">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import { Search, X } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
 import RequestSkillModal from '@/components/RequestSkillModal';
@@ -82,10 +83,12 @@ export default function NavigationBar({
 
           {/* Left: Title */}
           <div className="flex-shrink-0">
-            <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">
-              <span className="hidden sm:inline">Claude Skills Market</span>
-              <span className="sm:hidden">Skills</span>
-            </h1>
+            <Link href="/">
+              <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap cursor-pointer">
+                <span className="hidden sm:inline">Claude Skills Market</span>
+                <span className="sm:hidden">Skills</span>
+              </h1>
+            </Link>
           </div>
 
           {/* Center: Mini Search (desktop: scroll-based, mobile: toggle-based) */}

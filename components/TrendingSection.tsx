@@ -528,7 +528,7 @@ export default function TrendingSection() {
                   {rank}
                 </span>
                 <h3
-                  className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors truncate cursor-pointer"
+                  className="text-sm font-medium text-gray-900 dark:text-gray-100 transition-colors truncate cursor-pointer group-hover:text-[#5E50A0]"
                   onMouseEnter={(e) => handlePreviewEnter(skill.slug, e)}
                   onMouseMove={(e) => setMousePosition({ x: e.clientX, y: e.clientY })}
                   onMouseLeave={handlePreviewLeave}
@@ -641,9 +641,9 @@ export default function TrendingSection() {
               onMouseLeave={handlePreviewLeave}
             >
               {/* Preview Header */}
-              <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-orange-50/70 to-red-50/70 dark:from-orange-900/30 dark:to-red-900/30 rounded-t-xl">
+              <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-purple-50/70 to-pink-50/70 dark:from-purple-900/30 dark:to-pink-900/30 rounded-t-xl">
                 <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
                     {skill.title.charAt(0)}
                   </div>
                   <div className="flex-1 min-w-0">

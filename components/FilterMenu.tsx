@@ -65,6 +65,7 @@ export default function FilterMenu({
   const [expandedSection, setExpandedSection] = useState<'categories' | 'tags' | null>(null);
   const [mobileSubPanel, setMobileSubPanel] = useState<'categories' | 'tags' | null>(null);
   const [mobilePreviewSkill, setMobilePreviewSkill] = useState<string | null>(null);
+  const [shouldFlipSubmenu, setShouldFlipSubmenu] = useState(false);
   const previewTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -97,6 +98,32 @@ export default function FilterMenu({
       setTagSearch('');
     }
   };
+
+  // Calculate if submenu should flip to the left based on available viewport space
+  useEffect(() => {
+    const checkSubmenuPosition = () => {
+      if (!dropdownRef.current || (!activeSubmenu && !previewSkill)) {
+        setShouldFlipSubmenu(false);
+        return;
+      }
+
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
+      const submenuWidth = 320; // w-80 = 320px
+      const viewportWidth = window.innerWidth;
+      const spaceOnRight = viewportWidth - dropdownRect.right;
+
+      // Flip if there's not enough space on the right (with 20px buffer)
+      setShouldFlipSubmenu(spaceOnRight < submenuWidth + 20);
+    };
+
+    if ((activeSubmenu || previewSkill) && !isMobile) {
+      checkSubmenuPosition();
+      window.addEventListener('resize', checkSubmenuPosition);
+      return () => window.removeEventListener('resize', checkSubmenuPosition);
+    } else {
+      setShouldFlipSubmenu(false);
+    }
+  }, [activeSubmenu, previewSkill, isMobile]);
 
   // Get filtered and sorted categories
   const getFilteredCategories = () => {
@@ -900,9 +927,13 @@ export default function FilterMenu({
 
                 {/* Categories Submenu - Desktop Flyout */}
                 {!isMobile && activeSubmenu === 'categories' && (
-                  <div 
+                  <div
                     data-submenu="categories"
-                    className="absolute left-full top-0 -ml-1 w-80 bg-white dark:bg-gray-800 border border-purple-200/50 dark:border-purple-700/50 rounded-xl shadow-2xl backdrop-blur-sm z-30 animate-in slide-in-from-left-2 fade-in duration-300"
+                    className={`absolute top-0 w-80 bg-white dark:bg-gray-800 border border-purple-200/50 dark:border-purple-700/50 rounded-xl shadow-2xl backdrop-blur-sm z-30 animate-in fade-in duration-300 ${
+                      shouldFlipSubmenu
+                        ? 'right-full -mr-1 slide-in-from-right-2'
+                        : 'left-full -ml-1 slide-in-from-left-2'
+                    }`}
                     onMouseEnter={() => {
                       if (closeTimeoutRef.current) {
                         clearTimeout(closeTimeoutRef.current);
@@ -1291,9 +1322,13 @@ export default function FilterMenu({
 
                 {/* Tags Submenu - Desktop Flyout */}
                 {!isMobile && activeSubmenu === 'tags' && (
-                  <div 
+                  <div
                     data-submenu="tags"
-                    className="absolute left-full top-0 -ml-1 w-80 bg-white dark:bg-gray-800 border border-purple-200/50 dark:border-purple-700/50 rounded-xl shadow-2xl backdrop-blur-sm z-30 animate-in slide-in-from-left-2 fade-in duration-300"
+                    className={`absolute top-0 w-80 bg-white dark:bg-gray-800 border border-purple-200/50 dark:border-purple-700/50 rounded-xl shadow-2xl backdrop-blur-sm z-30 animate-in fade-in duration-300 ${
+                      shouldFlipSubmenu
+                        ? 'right-full -mr-1 slide-in-from-right-2'
+                        : 'left-full -ml-1 slide-in-from-left-2'
+                    }`}
                     onMouseEnter={() => {
                       if (closeTimeoutRef.current) {
                         clearTimeout(closeTimeoutRef.current);
@@ -1719,10 +1754,14 @@ export default function FilterMenu({
               {previewSkill && (() => {
             const skill = getFeaturedSkills().find(s => s.slug === previewSkill);
             if (!skill) return null;
-            
+
             return (
-              <div 
-                className="absolute left-full -ml-1 top-0 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl backdrop-blur-sm z-50 animate-in slide-in-from-left-2 fade-in duration-300"
+              <div
+                className={`absolute top-0 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl backdrop-blur-sm z-50 animate-in fade-in duration-300 ${
+                  shouldFlipSubmenu
+                    ? 'right-full -mr-1 slide-in-from-right-2'
+                    : 'left-full -ml-1 slide-in-from-left-2'
+                }`}
                 onMouseEnter={handlePreviewCardEnter}
                 onMouseLeave={handlePreviewLeave}
               >
@@ -1736,9 +1775,11 @@ export default function FilterMenu({
                       <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1">
                         {skill.title}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Featured Skill
-                      </p>
+                      {skill.repoUrl && (
+                        <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                          by {new URL(skill.repoUrl).pathname.split('/')[1]}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
