@@ -10,6 +10,8 @@ import {
   getPrimaryCategory,
   truncateText
 } from '@/lib/skillUtils';
+import { isVerifiedAuthor } from '@/lib/utils/verification';
+import VerifiedBadge from '@/components/VerifiedBadge';
 
 interface SkillCardProps {
   skill: Skill;
@@ -79,7 +81,7 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
 
   return (
     <article
-      className="group relative flex flex-col rounded-xl bg-white dark:bg-gray-800 p-5 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer min-h-[300px]"
+      className="group/card relative flex flex-col rounded-xl bg-white dark:bg-gray-800 p-5 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer min-h-[300px]"
       data-skill-index={index}
       data-skill-slug={skill.slug}
       role="listitem"
@@ -94,7 +96,7 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
       }}
     >
       {/* Gradient Border Glow */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover:opacity-20"></div>
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover/card:opacity-20"></div>
       <div className="absolute inset-[1px] rounded-[11px] bg-white dark:bg-gray-800"></div>
 
       {/* Badges Container */}
@@ -185,6 +187,9 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
                   <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                 </svg>
                 {author}
+                {isVerifiedAuthor(skill.repoUrl) && (
+                  <VerifiedBadge size="sm" />
+                )}
               </span>
             )}
           </div>
