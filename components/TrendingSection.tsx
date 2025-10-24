@@ -380,7 +380,7 @@ export default function TrendingSection() {
                     {skill.views_7d} views
                   </span>
                 </div>
-                {skill.history_7d && skill.history_7d.length > 0 && (
+                {skill.history_7d && skill.history_7d.length >= 2 ? (
                   <Sparkline
                     data={skill.history_7d}
                     width={50}
@@ -388,6 +388,14 @@ export default function TrendingSection() {
                     color={isPositive ? '#10b981' : isNegative ? '#ef4444' : '#6b7280'}
                     className="opacity-80"
                   />
+                ) : (
+                  <span
+                    className="text-xl cursor-help"
+                    title="Collecting trend data..."
+                    aria-label="Trend data still being collected"
+                  >
+                    ✨
+                  </span>
                 )}
               </div>
             );
