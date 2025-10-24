@@ -191,6 +191,28 @@
     "excerpt": "Comprehensive landing page analysis and optimization framework focusing on conversion rate improvement, user experience enhancement, and data-driven design decisions for maximum business impact.  <Cal..."
   },
   {
+    "slug": "learning-capture",
+    "title": "Learning Capture",
+    "description": "Framework for recognizing and formalizing valuable patterns from work sessions into reusable skills with ROI-focused pattern recognition.",
+    "categories": [
+      "ai",
+      "development"
+    ],
+    "tags": [
+      "learning",
+      "pattern-recognition",
+      "skills",
+      "workflow",
+      "optimization",
+      "knowledge-capture"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/learning-capture",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A framework for recognizing and formalizing valuable patterns from work sessions into reusable skills with conservative, ROI-focused pattern recognition.  <Callout type=\"tip\"> This skill is designed f..."
+  },
+  {
     "slug": "meeting-notes-summarizer",
     "title": "Meeting Notes Summarizer",
     "description": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.",
@@ -261,6 +283,28 @@
     "excerpt": "A comprehensive skill for designing user-centered software products and conducting thorough design reviews using established UX frameworks and accessibility standards.  <Callout type=\"tip\"> This skill..."
   },
   {
+    "slug": "prompt-optimization-analyzer",
+    "title": "Prompt Optimization Analyzer",
+    "description": "Diagnostic tool for reviewing and optimizing skill prompts by identifying token waste, anti-patterns, trigger issues, and optimization opportunities.",
+    "categories": [
+      "ai",
+      "development"
+    ],
+    "tags": [
+      "prompting",
+      "optimization",
+      "analysis",
+      "debugging",
+      "token-efficiency",
+      "skills"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/prompt-optimization-analyzer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A diagnostic tool designed to review and optimize skill prompts by systematically identifying token waste, anti-patterns, trigger issues, and optimization opportunities.  <Callout type=\"tip\"> This ski..."
+  },
+  {
     "slug": "prompting-pattern-library",
     "title": "Prompting Pattern Library",
     "description": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions.",
@@ -329,6 +373,160 @@
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
   },
   {
+    "slug": "skill-debugging-assistant",
+    "title": "Skill Debugging Assistant",
+    "description": "Diagnostic framework for troubleshooting skill issues including trigger failures, false positives, unexpected behavior, and validation errors.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "debugging",
+      "troubleshooting",
+      "skills",
+      "diagnostics",
+      "validation",
+      "optimization"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-debugging-assistant",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A comprehensive diagnostic framework for troubleshooting skill issues by systematically analyzing triggers, parameters, prompts, and structural problems.  <Callout type=\"tip\"> This skill is essential ..."
+  },
+  {
+    "slug": "skill-dependency-mapper",
+    "title": "Skill Dependency Mapper",
+    "description": "Analyze skill ecosystems to optimize workflows, identify bottlenecks, and recommend effective skill combinations through dependency mapping.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "dependencies",
+      "workflow",
+      "optimization",
+      "skills",
+      "analysis",
+      "visualization"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-dependency-mapper",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A tool for analyzing skill ecosystems to optimize workflows, identify bottlenecks, and recommend effective skill combinations through comprehensive dependency mapping.  <Callout type=\"tip\"> This skill..."
+  },
+  {
+    "slug": "skill-doc-generator",
+    "title": "Skill Documentation Generator",
+    "description": "Automate creation of standardized README files for skills by analyzing SKILL.md files and enforcing consistency standards across documentation.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "documentation",
+      "automation",
+      "skills",
+      "validation",
+      "generation",
+      "standards"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-doc-generator",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Automate the creation of standardized README files for skills by analyzing SKILL.md source files and enforcing consistency standards across documentation.  <Callout type=\"tip\"> This skill is perfect f..."
+  },
+  {
+    "slug": "skill-gap-analyzer",
+    "title": "Skill Gap Analyzer",
+    "description": "Examine skill collections to identify coverage gaps, redundant overlaps, and optimization opportunities with context-aware recommendations.",
+    "categories": [
+      "ai",
+      "development"
+    ],
+    "tags": [
+      "analysis",
+      "optimization",
+      "skills",
+      "coverage",
+      "recommendations",
+      "workflow"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-gap-analyzer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Examine your skill collection to identify coverage gaps, redundant overlaps, and optimization opportunities with context-aware recommendations tailored to your workflows.  <Callout type=\"tip\"> This sk..."
+  },
+  {
+    "slug": "skill-performance-profiler",
+    "title": "Skill Performance Profiler",
+    "description": "Optimize skill usage by tracking token consumption, measuring invocation frequency, and identifying consolidation opportunities across conversations.",
+    "categories": [
+      "ai",
+      "development"
+    ],
+    "tags": [
+      "performance",
+      "profiling",
+      "optimization",
+      "skills",
+      "analytics",
+      "token-efficiency"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-performance-profiler",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A comprehensive analysis tool for optimizing skill usage by tracking token consumption, measuring invocation frequency, and identifying consolidation opportunities across conversations.  <Callout type..."
+  },
+  {
+    "slug": "skill-security-analyzer",
+    "title": "Skill Security Analyzer",
+    "description": "Evaluate Claude skills for security vulnerabilities, risks, and safety concerns through comprehensive vulnerability scanning and risk categorization.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "security",
+      "analysis",
+      "skills",
+      "vulnerability",
+      "audit",
+      "safety"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-security-analyzer",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A specialized tool designed to evaluate Claude skills for security vulnerabilities, risks, and safety concerns before deployment through comprehensive security assessment and risk categorization.  <Ca..."
+  },
+  {
+    "slug": "skill-testing-framework",
+    "title": "Skill Testing Framework",
+    "description": "Comprehensive testing solution for validating skill functionality with automated test generation, multi-level testing, and regression detection.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "testing",
+      "validation",
+      "skills",
+      "automation",
+      "quality-assurance",
+      "regression"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-testing-framework",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "A comprehensive testing solution designed to validate skill functionality across multiple testing levels, enabling developers to create, execute, and manage test suites that ensure skills operate corr..."
+  },
+  {
     "slug": "superpowers-skills-library",
     "title": "Superpowers Skills Library",
     "description": "A comprehensive skills library for Claude Code that provides systematic workflows, slash commands, and proven techniques for software development through test-driven approaches and complexity reduction.",
@@ -354,6 +552,28 @@
     "repoUrl": "https://github.com/obra/superpowers",
     "date": "2025-10-18",
     "excerpt": "> **Created by:** [obra (Jesse Vincent)](https://github.com/obra)   > **Repository:** [github.com/obra/superpowers](https://github.com/obra/superpowers)   > **License:** MIT License   > **Stars:** 3,7..."
+  },
+  {
+    "slug": "token-budget-advisor",
+    "title": "Token Budget Advisor",
+    "description": "Early assessment tool for token-heavy tasks providing chunking strategies and budget planning to prevent context window overruns before work begins.",
+    "categories": [
+      "ai",
+      "development"
+    ],
+    "tags": [
+      "optimization",
+      "planning",
+      "tokens",
+      "strategy",
+      "workflow",
+      "efficiency"
+    ],
+    "featured": false,
+    "author": "Nate Jones",
+    "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/token-budget-advisor",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "An early assessment tool that detects token-intensive tasks and provides specific chunking strategies to prevent exceeding context window constraints before work begins.  <Callout type=\"tip\"> This ski..."
   },
   {
     "slug": "typescript-code-review",
