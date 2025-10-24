@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     template: '%s | Claude Skills Market',
   },
   description: 'Make Claude your specialist. Discover and share modular Skills that extend Claude with real-world expertise.',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
   keywords: ['Claude AI', 'AI Skills', 'Claude Skills', 'AI Marketplace', 'Claude Code', 'AI Automation', 'Productivity Tools'],
   authors: [{ name: 'Claude Skills Market' }],
   creator: 'Claude Skills Market',

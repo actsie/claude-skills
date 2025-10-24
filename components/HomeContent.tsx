@@ -427,7 +427,7 @@ export default function HomeContent() {
             style={{
               position: 'relative',
               display: 'block',
-              width: 'calc(100% + 1.3px)',
+              width: '100%',
               height: '80px',
             }}
           >
@@ -553,7 +553,7 @@ export default function HomeContent() {
             style={{
               position: 'relative',
               display: 'block',
-              width: 'calc(100% + 1.3px)',
+              width: '100%',
               height: '80px',
             }}
           >

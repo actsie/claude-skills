@@ -73,7 +73,7 @@ export default function NavigationBar({
 
   return (
     <nav
-      className="sticky top-0 z-50 relative"
+      className="sticky top-0 z-50"
       style={{
         background: '#f9f1fc',
       }}
@@ -170,7 +170,7 @@ export default function NavigationBar({
           style={{
             position: 'relative',
             display: 'block',
-            width: 'calc(100% + 1.3px)',
+            width: '100%',
             height: '40px',
           }}
         >

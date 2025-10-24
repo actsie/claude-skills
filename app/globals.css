@@ -14,10 +14,11 @@
   }
 }
 
+/* Use overflow-x: clip instead of hidden - clips overflow without breaking position: sticky */
 body {
   color: var(--foreground);
   background: var(--background);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @layer utilities {

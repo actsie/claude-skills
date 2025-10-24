@@ -141,7 +141,7 @@ export default function SearchBar({
         <input
           ref={inputRef}
           type="text"
-          className={`enhanced-search-input block w-full ${compact ? 'pl-12 pr-10 py-2 rounded-lg' : 'pl-16 pr-12 py-4 text-lg rounded-xl'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 ${compact ? 'shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]' : 'shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]'}`}
+          className={`enhanced-search-input block w-full ${compact ? 'pl-12 pr-10 py-2 rounded-lg' : 'pl-16 pr-12 py-4 rounded-xl'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 ${compact ? 'shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]' : 'shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]'}`}
           placeholder={compact ? "Search skills..." : placeholder}
           value={localValue}
           onChange={(e) => handleInputChange(e.target.value)}
