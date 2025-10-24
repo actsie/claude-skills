@@ -78,6 +78,7 @@ export interface TrendingSkill extends SkillProperties {
   slug: string;
   trending_score: number;
   description?: string;
+  repoUrl?: string; // for verified badge
   velocity_percent: number | null; // null when low signal
   history_7d: number[]; // 7-day trending score history (last = today)
   views_7d: number; // baseline context for velocity calculation

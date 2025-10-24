@@ -8,6 +8,8 @@ import { formatTags } from '@/lib/utils/tags';
 import { formatAbsoluteDate } from '@/lib/utils/dates';
 import type { TrendingSkill } from '@/lib/analytics/types';
 import Sparkline from '@/components/Sparkline';
+import { isVerifiedAuthor } from '@/lib/utils/verification';
+import VerifiedBadge from '@/components/VerifiedBadge';
 
 export default function TrendingSection() {
   const [trending, setTrending] = useState<TrendingSkill[]>([]);
@@ -651,8 +653,11 @@ export default function TrendingSection() {
                       {skill.title}
                     </h3>
                     {descriptionCache[skill.slug]?.author && (
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1 flex items-center gap-1">
                         by {descriptionCache[skill.slug].author}
+                        {isVerifiedAuthor(skill.repoUrl) && (
+                          <VerifiedBadge size="sm" />
+                        )}
                       </p>
                     )}
                   </div>

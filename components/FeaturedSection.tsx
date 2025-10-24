@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { trackHomeSectionImpression, trackSkillDetailView, trackTagClick } from '@/lib/analytics/events';
 import { formatTags } from '@/lib/utils/tags';
 import { formatLastUpdated } from '@/lib/skillUtils';
+import { isVerifiedAuthor } from '@/lib/utils/verification';
+import VerifiedBadge from '@/components/VerifiedBadge';
 
 interface FeaturedSkill {
   skill_id: string;
@@ -234,6 +236,9 @@ export default function FeaturedSection() {
                           <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                         </svg>
                         {skill.author}
+                        {isVerifiedAuthor(skill.repoUrl) && (
+                          <VerifiedBadge size="sm" />
+                        )}
                       </span>
                     )}
                   </div>

@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { Skill } from '@/lib/types';
 import { getCategoryColor, formatLastUpdated } from '@/lib/skillUtils';
+import { isVerifiedAuthor } from '@/lib/utils/verification';
+import VerifiedBadge from '@/components/VerifiedBadge';
 
 interface SkillDetailModalProps {
   skill: Skill | null;
@@ -143,7 +145,12 @@ export default function SkillDetailModal({ skill, isOpen, onClose }: SkillDetail
             {skill.author && (
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Author</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{skill.author}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 flex items-center gap-1">
+                  {skill.author}
+                  {isVerifiedAuthor(skill.repoUrl) && (
+                    <VerifiedBadge size="sm" />
+                  )}
+                </p>
               </div>
             )}
             {skill.version && (
