@@ -93,8 +93,8 @@ export default function NavigationBar({
 
           {/* Center: Mini Search (desktop: scroll-based, mobile: toggle-based) */}
           <div
-            className={`flex-1 max-w-xs mx-6 transition-all duration-300 ${
-              mobileSearchExpanded ? 'block md:block' : 'hidden md:block'
+            className={`flex-1 transition-all duration-300 ${
+              mobileSearchExpanded ? 'block md:block max-w-full mx-2 md:max-w-xs md:mx-6' : 'hidden md:block md:max-w-xs md:mx-6'
             }`}
             style={{
               opacity: mobileSearchExpanded || showMiniSearch ? 1 : 0,
@@ -109,33 +109,42 @@ export default function NavigationBar({
               onClear={onSearchClear}
               compact={true}
               autoFocusTrigger={mobileSearchExpanded}
+              showCloseButton={mobileSearchExpanded}
+              onClose={() => setMobileSearchExpanded(false)}
             />
           </div>
 
           {/* Right: Action Buttons */}
           <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
-            {/* Mobile Search Toggle */}
-            <button
-              onClick={() => setMobileSearchExpanded(!mobileSearchExpanded)}
-              className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-              aria-label={mobileSearchExpanded ? 'Close search' : 'Open search'}
-            >
-              {mobileSearchExpanded ? <X size={20} /> : <Search size={20} />}
-            </button>
+            {/* Mobile Search Toggle - Only show when search is NOT expanded */}
+            {!mobileSearchExpanded && (
+              <button
+                onClick={() => setMobileSearchExpanded(true)}
+                className="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                aria-label="Open search"
+              >
+                <Search size={20} />
+              </button>
+            )}
 
-            <button
-              onClick={onRequestSkill}
-              className="px-2 sm:px-4 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors whitespace-nowrap"
-            >
-              <span className="hidden sm:inline">Request a skill</span>
-              <span className="sm:hidden">Request</span>
-            </button>
-            <button
-              onClick={onSubmitSkill}
-              className="px-2 sm:px-4 py-2 bg-primary-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
-            >
-              Submit
-            </button>
+            {/* Request and Submit buttons - Hide on mobile when search is expanded */}
+            {!mobileSearchExpanded && (
+              <>
+                <button
+                  onClick={onRequestSkill}
+                  className="px-2 sm:px-4 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors whitespace-nowrap"
+                >
+                  <span className="hidden sm:inline">Request a skill</span>
+                  <span className="sm:hidden">Request</span>
+                </button>
+                <button
+                  onClick={onSubmitSkill}
+                  className="px-2 sm:px-4 py-2 bg-primary-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+                >
+                  Submit
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -52,12 +52,12 @@ export default function PawgrammerBanner() {
 
   return (
     <div
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-out px-4 ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 transition-all duration-500 ease-out ${
         hasAnimated && !shouldHideOnScroll ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
       style={{ zIndex: 9999 }}
     >
-      <div className="flex flex-col gap-2 w-full max-w-[280px] sm:max-w-[320px] text-[10px] sm:text-xs">
+      <div className="flex flex-col gap-2 w-[280px] sm:w-[320px] text-[10px] sm:text-xs mx-4">
         <div className="flex items-center justify-between w-full h-auto sm:h-14 rounded-lg bg-white border border-gray-100 px-2 sm:px-[10px] py-2 sm:py-0 shadow-lg">
           <a
             href="https://pawgrammer.com/"

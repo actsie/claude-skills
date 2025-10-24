@@ -12,6 +12,8 @@ interface SearchBarProps {
   debounceMs?: number;
   compact?: boolean;
   autoFocusTrigger?: boolean;
+  showCloseButton?: boolean; // Show close/collapse button (for mobile mini search)
+  onClose?: () => void; // Callback when close button is clicked
 }
 
 export default function SearchBar({
@@ -24,6 +26,8 @@ export default function SearchBar({
   debounceMs = 300,
   compact = false,
   autoFocusTrigger = false,
+  showCloseButton = false,
+  onClose,
 }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [localValue, setLocalValue] = useState(value);
@@ -83,14 +87,33 @@ export default function SearchBar({
   return (
     <div className={compact ? "w-full" : "w-full max-w-3xl mx-auto"}>
       <div className="relative search-container">
-        <div className={`absolute inset-y-0 left-0 flex items-center pointer-events-none ${compact ? 'pl-3' : 'pl-4'}`}>
-          <svg 
-            className={`text-gray-400 sparkle-icon ${compact ? 'h-5 w-5' : 'h-7 w-7'}`}
-            viewBox="0 0 24 24" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
+        {/* Left icon: Close button (mobile) or Sparkle icon */}
+        <div className={`absolute inset-y-0 left-0 flex items-center ${compact ? 'pl-3' : 'pl-4'} ${showCloseButton ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+          {showCloseButton && onClose ? (
+            <button
+              onClick={onClose}
+              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+              aria-label="Close search"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="h-5 w-5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          ) : (
+            <svg
+              className={`text-gray-400 sparkle-icon ${compact ? 'h-5 w-5' : 'h-7 w-7'}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
             <path 
               className="sparkle-path-1"
               fillRule="evenodd" 
@@ -110,14 +133,15 @@ export default function SearchBar({
               fillRule="evenodd" 
               clipRule="evenodd" 
               d="M13.5005 23C13.3376 23 13.1791 22.9469 13.049 22.8487C12.9189 22.7505 12.8243 22.6127 12.7795 22.456L11.9665 19.61C11.7915 18.9971 11.4631 18.4389 11.0124 17.9882C10.5616 17.5374 10.0035 17.209 9.39054 17.034L6.54454 16.221C6.38795 16.1761 6.25021 16.0815 6.15216 15.9514C6.05411 15.8214 6.00108 15.6629 6.00108 15.5C6.00108 15.3371 6.05411 15.1786 6.15216 15.0486C6.25021 14.9185 6.38795 14.8239 6.54454 14.779L9.39054 13.966C10.0035 13.791 10.5616 13.4626 11.0124 13.0118C11.4631 12.5611 11.7915 12.0029 11.9665 11.39L12.7795 8.544C12.8244 8.38741 12.919 8.24967 13.0491 8.15162C13.1792 8.05357 13.3376 8.00054 13.5005 8.00054C13.6634 8.00054 13.8219 8.05357 13.952 8.15162C14.0821 8.24967 14.1767 8.38741 14.2215 8.544L15.0345 11.39C15.2096 12.0029 15.538 12.5611 15.9887 13.0118C16.4394 13.4626 16.9976 13.791 17.6105 13.966L20.4565 14.779C20.6131 14.8239 20.7509 14.9185 20.8489 15.0486C20.947 15.1786 21 15.3371 21 15.5C21 15.6629 20.947 15.8214 20.8489 15.9514C20.7509 16.0815 20.6131 16.1761 20.4565 16.221L17.6105 17.034C16.9976 17.209 16.4394 17.5374 15.9887 17.9882C15.538 18.4389 15.2096 18.9971 15.0345 19.61L14.2215 22.456C14.1768 22.6127 14.0822 22.7505 13.9521 22.8487C13.822 22.9469 13.6635 23 13.5005 23Z" 
-              fill="currentColor" 
+              fill="currentColor"
             />
           </svg>
+          )}
         </div>
         <input
           ref={inputRef}
           type="text"
-          className={`enhanced-search-input block w-full ${compact ? 'pl-12 pr-10 py-2 text-sm rounded-lg' : 'pl-16 pr-12 py-4 text-lg rounded-xl'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 ${compact ? 'shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]' : 'shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]'}`}
+          className={`enhanced-search-input block w-full ${compact ? 'pl-12 pr-10 py-2 rounded-lg' : 'pl-16 pr-12 py-4 text-lg rounded-xl'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-transparent transition-all duration-300 ${compact ? 'shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]' : 'shadow-[0_20px_25px_-5px_rgba(0,0,0,0.15),_0_8px_10px_-6px_rgba(0,0,0,0.25)]'}`}
           placeholder={compact ? "Search skills..." : placeholder}
           value={localValue}
           onChange={(e) => handleInputChange(e.target.value)}
@@ -129,6 +153,7 @@ export default function SearchBar({
               linear-gradient(120deg, hsl(278, 44%, 73%), hsl(35, 81%, 73%)) border-box
             `,
             border: compact ? '1px solid transparent' : '2px solid transparent',
+            fontSize: compact ? '16px' : undefined,
           }}
         />
         {localValue && (
