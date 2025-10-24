@@ -12,12 +12,134 @@ This is an internal reference document for adding new skills to the marketplace.
 
 ## Quick Checklist
 
+- [ ] **Security review** - Complete security checklist below
 - [ ] Create new markdown file in `content/skills/[slug].md`
 - [ ] Add complete frontmatter with all required fields
 - [ ] Copy content from GitHub repo README
 - [ ] Enhance with MDX components (Callout, Card, Tabs)
 - [ ] Regenerate search index
 - [ ] Test the skill page locally
+
+## Security Review ⚠️
+
+**CRITICAL: All skills must pass security review before adding to marketplace.**
+
+### Trust Levels
+
+| Level | Examples | Review Required |
+|-------|----------|-----------------|
+| **Highest Trust** ✅ | Anthropic official skills | Minimal - verify repo only |
+| **High Trust** ✅ | Established contributors (obra, michalparkola) | Standard review |
+| **Medium Trust** ⚠️ | Company/org repos (ComposioHQ) | Full review |
+| **Requires Review** ⚠️ | Individual/new contributors | Comprehensive review |
+
+### Security Checklist
+
+**1. Author & Repository Verification**
+- [ ] GitHub repository exists and is publicly accessible
+- [ ] Author has legitimate profile with activity history
+- [ ] Repository has reasonable star count / community engagement
+- [ ] For organizations: Verify company legitimacy
+- [ ] Check for verified badges or known contributors
+
+**2. Code & Script Analysis**
+- [ ] No suspicious shell command execution (`exec`, `system`, `subprocess.run`)
+- [ ] File operations are safe (no unauthorized deletions or modifications)
+- [ ] No hardcoded credentials, API keys, or secrets
+- [ ] Network requests only to documented/expected domains
+- [ ] No obfuscated or minified suspicious code
+
+**3. Data & Privacy**
+- [ ] No unauthorized data collection or tracking
+- [ ] No data exfiltration patterns (sending data to unexpected servers)
+- [ ] External API calls are documented and legitimate
+- [ ] No PII (personally identifiable information) harvesting
+
+**4. Content & Links**
+- [ ] All external URLs are legitimate (not phishing/malware sites)
+- [ ] Dependencies are from trusted sources (npm, PyPI official packages)
+- [ ] Documentation URLs point to official docs
+- [ ] No social engineering in skill descriptions
+
+**5. Skill-Specific Risk Assessment**
+
+**High Risk Indicators** 🔴 (require extra scrutiny):
+- File system write/delete operations
+- Shell command execution
+- Network requests to arbitrary URLs
+- Database modifications
+- Credential handling
+
+**Medium Risk Indicators** 🟡:
+- File read operations
+- Document parsing/generation
+- API integrations with auth tokens
+- Browser automation
+
+**Low Risk Indicators** 🟢 (generally safe):
+- Pure analysis/transformation
+- Read-only operations
+- Template generation
+- Documentation skills
+
+### Red Flags 🚩
+
+**Immediately flag or reject if found:**
+- Obfuscated code or encoded strings
+- Calls to `eval()`, `exec()`, or similar dynamic execution
+- Suspicious network requests (non-standard ports, unknown domains)
+- File operations outside of expected directories
+- Requests for credentials without clear purpose
+- Social engineering language ("urgent", "limited time", etc.)
+- Typosquatting legitimate package names
+- Recently created repos with no history
+
+### Review Process
+
+**For Each Skill:**
+
+1. **Check Trust Level** - Determine author trust level from table above
+2. **Fetch SKILL.md** - Read the skill content from GitHub
+3. **Scan for Red Flags** - Look for suspicious patterns
+4. **Verify External Resources** - Check all URLs and dependencies
+5. **Review Scripts/Assets** - If bundled, inspect code carefully
+6. **Document Findings** - Note any concerns or approval
+7. **Make Decision**:
+   - ✅ **Approve** - Safe to add
+   - ⚠️ **Flag** - Needs user review/approval
+   - ❌ **Reject** - Security risk, do not add
+
+### Example Review Notes
+
+**Good Example:**
+```
+Skill: test-driven-development (obra)
+Trust Level: High Trust ✅
+Review: Standard practices for TDD, no external calls,
+        no file operations, documentation only.
+Decision: Approved ✅
+```
+
+**Flagged Example:**
+```
+Skill: video-downloader (ComposioHQ)
+Trust Level: Medium Trust ⚠️
+Review: Downloads videos from external URLs,
+        requires network access, file write operations.
+        Legitimate use case but needs verification.
+Concerns: Verify URL validation, check download locations
+Decision: Flagged for user review ⚠️
+```
+
+**Rejected Example:**
+```
+Skill: suspicious-tool (unknown)
+Trust Level: Requires Review ⚠️
+Review: Executes arbitrary shell commands,
+        makes requests to unknown domains,
+        obfuscated code patterns found.
+Decision: Rejected - Security Risk ❌
+```
 
 ## File Structure
 

@@ -43,6 +43,29 @@
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
+    "slug": "artifacts-builder",
+    "title": "Artifacts Builder",
+    "description": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts using React, TypeScript, Tailwind CSS, and shadcn/ui with automated bundling.",
+    "categories": [
+      "development",
+      "web",
+      "design"
+    ],
+    "tags": [
+      "react",
+      "typescript",
+      "artifacts",
+      "frontend",
+      "tailwind",
+      "shadcn"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/artifacts-builder",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts that can be shared on Claude.ai, using modern frontend technologies with automated bundling.  <Callout type=\"tip\"> ..."
+  },
+  {
     "slug": "claude-scientific-skills",
     "title": "Claude Scientific Skills",
     "description": "Comprehensive collection of 70+ scientific skills for Claude, transforming it into an AI Scientist with access to bioinformatics, cheminformatics, drug discovery, and research tools.",
@@ -143,6 +166,50 @@
     "excerpt": "> **Created by:** [Corbin Brown (coffeefuelbump)](https://github.com/coffeefuelbump)   > **Repository:** [github.com/coffeefuelbump/csv-data-summarizer-claude-skill](https://github.com/coffeefuelbump/..."
   },
   {
+    "slug": "docx",
+    "title": "DOCX Document Management",
+    "description": "Official Anthropic skill for creating, editing, and analyzing Word documents with tracked changes, comments, and formatting preservation.",
+    "categories": [
+      "business",
+      "document",
+      "automation"
+    ],
+    "tags": [
+      "word",
+      "docx",
+      "document-editing",
+      "tracked-changes",
+      "formatting",
+      "automation"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/docx",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic skill that enables comprehensive Word document operations including creation, editing, and analysis with full support for tracked changes, comments, and formatting preservation.  <C..."
+  },
+  {
+    "slug": "internal-comms",
+    "title": "Internal Communications",
+    "description": "Official Anthropic skill for creating professional internal company communications including status reports, leadership updates, and team announcements.",
+    "categories": [
+      "business",
+      "writing"
+    ],
+    "tags": [
+      "communications",
+      "writing",
+      "business",
+      "reports",
+      "updates"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/internal-comms",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic skill for creating professional internal company communications using standardized formats and templates that align with organizational best practices.  <Callout type=\"tip\"> Essenti..."
+  },
+  {
     "slug": "job-search-strategist",
     "title": "Job Search Strategist",
     "description": "Strategic, research-driven approach to job searching with deep company analysis, skills matching, and creative application strategies to maximize signal quality over volume.",
@@ -236,6 +303,29 @@
     "excerpt": "Transform meeting recordings, transcripts, and notes into structured summaries with action items, decisions, and next steps for improved team collaboration and accountability.  <Callout type=\"tip\"> Pe..."
   },
   {
+    "slug": "pdf",
+    "title": "PDF Processing Toolkit",
+    "description": "Official Anthropic skill for comprehensive PDF manipulation including text extraction, table parsing, merging, splitting, OCR, and document creation.",
+    "categories": [
+      "business",
+      "document",
+      "data-analysis"
+    ],
+    "tags": [
+      "pdf",
+      "document-processing",
+      "ocr",
+      "data-extraction",
+      "automation",
+      "python"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/pdf",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic skill enabling comprehensive PDF manipulation through Python libraries and command-line tools, supporting extraction, creation, transformation, and form processing at scale.  <Callo..."
+  },
+  {
     "slug": "pitch-deck-builder",
     "title": "Pitch Deck Builder",
     "description": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.",
@@ -258,6 +348,29 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/pitch-deck-builder",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.  <Callout typ..."
+  },
+  {
+    "slug": "pptx",
+    "title": "PPTX Presentation Builder",
+    "description": "Official Anthropic skill for creating, editing, and analyzing PowerPoint presentations with design-first approach and professional layouts.",
+    "categories": [
+      "business",
+      "presentation",
+      "design"
+    ],
+    "tags": [
+      "powerpoint",
+      "pptx",
+      "presentations",
+      "slides",
+      "design",
+      "automation"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/pptx",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic skill enabling comprehensive PowerPoint operations through specialized workflows for reading, creating, and editing presentations with emphasis on content-informed design.  <Callout..."
   },
   {
     "slug": "product-design",
@@ -371,6 +484,28 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/resume-builder",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
+  },
+  {
+    "slug": "skill-creator",
+    "title": "Skill Creator",
+    "description": "Official Anthropic framework for developing modular skill packages that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.",
+    "categories": [
+      "development",
+      "ai",
+      "meta"
+    ],
+    "tags": [
+      "skill-development",
+      "framework",
+      "claude",
+      "meta",
+      "tools"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skill-creator",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic framework providing structured guidance for developing modular skill packages that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.  <Callo..."
   },
   {
     "slug": "skill-debugging-assistant",
@@ -577,6 +712,26 @@
     "excerpt": "> **Created by:** [obra (Jesse Vincent)](https://github.com/obra)   > **Repository:** [github.com/obra/superpowers](https://github.com/obra/superpowers)   > **License:** MIT License   > **Stars:** 3,7..."
   },
   {
+    "slug": "template-skill",
+    "title": "Template Skill",
+    "description": "Official Anthropic minimal skeleton providing the essential structure for starting a new Claude skill project with required files and organization.",
+    "categories": [
+      "development",
+      "meta"
+    ],
+    "tags": [
+      "template",
+      "scaffold",
+      "skill-development",
+      "starter"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/template-skill",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic minimal skeleton providing the essential file structure and organization for starting a new Claude skill project.  <Callout type=\"tip\"> Perfect starting point for developers creatin..."
+  },
+  {
     "slug": "token-budget-advisor",
     "title": "Token Budget Advisor",
     "description": "Early assessment tool for token-heavy tasks providing chunking strategies and budget planning to prevent context window overruns before work begins.",
@@ -643,6 +798,29 @@
     "excerpt": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality, understanding architectural decisions, and building sustainable develop..."
   },
   {
+    "slug": "webapp-testing",
+    "title": "Web Application Testing",
+    "description": "Official Anthropic toolkit for automated testing of local web applications using Playwright with Python scripts for frontend verification and debugging.",
+    "categories": [
+      "development",
+      "testing",
+      "automation"
+    ],
+    "tags": [
+      "playwright",
+      "testing",
+      "automation",
+      "qa",
+      "frontend",
+      "python"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/webapp-testing",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic toolkit for automated testing of local web applications through native Python Playwright scripts, enabling frontend verification, UI debugging, screenshot capture, and browser log i..."
+  },
+  {
     "slug": "xlsx-editor",
     "title": "XLSX Editor",
     "description": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships.",
@@ -665,5 +843,28 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/xlsx-editor",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Specialized skill for editing existing Excel files while maintaining formulas, formatting, and structural integrity across multiple tabs and complex relationships through systematic analysis and valid..."
+  },
+  {
+    "slug": "xlsx",
+    "title": "XLSX Spreadsheet Tool",
+    "description": "Official Anthropic skill for comprehensive Excel operations including formula management, financial modeling, data analysis, and automated recalculation.",
+    "categories": [
+      "business",
+      "data-analysis",
+      "finance"
+    ],
+    "tags": [
+      "excel",
+      "xlsx",
+      "spreadsheets",
+      "formulas",
+      "financial-modeling",
+      "data-analysis"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/xlsx",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Official Anthropic skill for comprehensive Excel operations emphasizing formula-driven calculations, financial modeling standards, and zero-error deliverables through automated validation.  <Callout t..."
   }
 ]
