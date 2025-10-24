@@ -66,6 +66,27 @@
     "excerpt": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts that can be shared on Claude.ai, using modern frontend technologies with automated bundling.  <Callout type=\"tip\"> ..."
   },
   {
+    "slug": "brainstorming",
+    "title": "Brainstorming & Design",
+    "description": "Structured methodology for transforming rough ideas into fully-formed designs through systematic questioning and iterative validation.",
+    "categories": [
+      "development",
+      "design"
+    ],
+    "tags": [
+      "brainstorming",
+      "design",
+      "planning",
+      "architecture",
+      "methodology"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Structured methodology for transforming rough ideas into fully-formed, validated designs through six systematic phases of exploration, refinement, and documentation.  <Callout type=\"tip\"> Perfect for ..."
+  },
+  {
     "slug": "claude-scientific-skills",
     "title": "Claude Scientific Skills",
     "description": "Comprehensive collection of 70+ scientific skills for Claude, transforming it into an AI Scientist with access to bioinformatics, cheminformatics, drug discovery, and research tools.",
@@ -166,6 +187,27 @@
     "excerpt": "> **Created by:** [Corbin Brown (coffeefuelbump)](https://github.com/coffeefuelbump)   > **Repository:** [github.com/coffeefuelbump/csv-data-summarizer-claude-skill](https://github.com/coffeefuelbump/..."
   },
   {
+    "slug": "defense-in-depth",
+    "title": "Defense-in-Depth Validation",
+    "description": "Multi-layered validation pattern preventing bugs by implementing redundant checks across entry points, business logic, environment guards, and debug instrumentation.",
+    "categories": [
+      "development",
+      "testing",
+      "security"
+    ],
+    "tags": [
+      "validation",
+      "testing",
+      "defensive-programming",
+      "best-practices"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/blob/main/skills/defense-in-depth",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Multi-layered validation pattern that prevents bugs by implementing redundant checks across all data flow layers, making errors structurally impossible.  <Callout type=\"tip\"> Critical for preventing b..."
+  },
+  {
     "slug": "docx",
     "title": "DOCX Document Management",
     "description": "Official Anthropic skill for creating, editing, and analyzing Word documents with tracked changes, comments, and formatting preservation.",
@@ -187,6 +229,26 @@
     "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/docx",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill that enables comprehensive Word document operations including creation, editing, and analysis with full support for tracked changes, comments, and formatting preservation.  <C..."
+  },
+  {
+    "slug": "finishing-a-development-branch",
+    "title": "Finishing a Development Branch",
+    "description": "Structured workflow for completing development work through test verification, branch determination, and merge execution with appropriate cleanup.",
+    "categories": [
+      "development",
+      "git"
+    ],
+    "tags": [
+      "git",
+      "workflow",
+      "branch-management",
+      "pull-requests"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Structured four-step workflow for completing development work: verify tests, determine base branch, present merge options, and execute with proper cleanup.  <Callout type=\"tip\"> Essential for develope..."
   },
   {
     "slug": "internal-comms",
@@ -486,6 +548,26 @@
     "excerpt": "Comprehensive resume creation, review, and tailoring skill with ATS optimization, industry-specific guidance, and achievement-oriented formatting for career advancement and successful job applications..."
   },
   {
+    "slug": "root-cause-tracing",
+    "title": "Root Cause Tracing",
+    "description": "Methodology for identifying error origins by systematically tracing backward through call stacks instead of fixing symptoms at manifestation points.",
+    "categories": [
+      "development",
+      "debugging"
+    ],
+    "tags": [
+      "debugging",
+      "root-cause",
+      "tracing",
+      "problem-solving"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/root-cause-tracing",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Systematic methodology for identifying the originating source of errors by tracing backward through execution stacks rather than patching symptoms at their manifestation points.  <Callout type=\"tip\"> ..."
+  },
+  {
     "slug": "skill-creator",
     "title": "Skill Creator",
     "description": "Official Anthropic framework for developing modular skill packages that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.",
@@ -712,6 +794,26 @@
     "excerpt": "> **Created by:** [obra (Jesse Vincent)](https://github.com/obra)   > **Repository:** [github.com/obra/superpowers](https://github.com/obra/superpowers)   > **License:** MIT License   > **Stars:** 3,7..."
   },
   {
+    "slug": "systematic-debugging",
+    "title": "Systematic Debugging",
+    "description": "Four-phase debugging methodology prioritizing root cause investigation over symptom fixes to prevent cascading problems.",
+    "categories": [
+      "development",
+      "debugging"
+    ],
+    "tags": [
+      "debugging",
+      "troubleshooting",
+      "methodology",
+      "problem-solving"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/blob/main/skills/systematic-debugging",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Four-phase debugging methodology emphasizing root cause investigation before fixes to prevent symptom-chasing and cascade failures.  <Callout type=\"tip\"> Essential for developers who want to fix bugs ..."
+  },
+  {
     "slug": "template-skill",
     "title": "Template Skill",
     "description": "Official Anthropic minimal skeleton providing the essential structure for starting a new Claude skill project with required files and organization.",
@@ -730,6 +832,27 @@
     "repoUrl": "https://github.com/anthropics/skills/tree/main/template-skill",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic minimal skeleton providing the essential file structure and organization for starting a new Claude skill project.  <Callout type=\"tip\"> Perfect starting point for developers creatin..."
+  },
+  {
+    "slug": "test-driven-development",
+    "title": "Test-Driven Development",
+    "description": "Comprehensive TDD methodology skill emphasizing test-first development with the Red-Green-Refactor cycle for building reliable, verified software.",
+    "categories": [
+      "development",
+      "testing"
+    ],
+    "tags": [
+      "tdd",
+      "testing",
+      "methodology",
+      "best-practices",
+      "quality"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Comprehensive methodology for test-first software development using the Red-Green-Refactor cycle to build reliable, verified code through systematic testing discipline.  <Callout type=\"tip\"> Essential..."
   },
   {
     "slug": "token-budget-advisor",
@@ -774,6 +897,26 @@
     "repoUrl": "https://github.com/Exploration-labs/typescript-code-review",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "A comprehensive skill for conducting professional TypeScript code reviews, examining type safety, best practices, performance, security, and maintainability.  <Callout type=\"tip\"> This skill is perfec..."
+  },
+  {
+    "slug": "using-git-worktrees",
+    "title": "Using Git Worktrees",
+    "description": "Systematic procedures for creating isolated Git development workspaces that enable parallel branch work without context switching.",
+    "categories": [
+      "development",
+      "git"
+    ],
+    "tags": [
+      "git",
+      "worktrees",
+      "workflow",
+      "productivity"
+    ],
+    "featured": false,
+    "author": "obra",
+    "repoUrl": "https://github.com/obra/superpowers/blob/main/skills/using-git-worktrees/",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Systematic procedures for creating isolated Git development workspaces that share a single repository, enabling parallel branch work without losing context.  <Callout type=\"tip\"> Perfect for developer..."
   },
   {
     "slug": "vibe-coding",
