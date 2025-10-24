@@ -24,6 +24,9 @@ export default function TrendingSection() {
   // Cache for lazy-loaded skill descriptions and author
   const [descriptionCache, setDescriptionCache] = useState<Record<string, { description?: string; author?: string; loading: boolean; error?: boolean }>>({});
 
+  // Track which badge tooltip is active (for mobile tap-to-show)
+  const [activeBadgeTooltip, setActiveBadgeTooltip] = useState<string | null>(null);
+
   useEffect(() => {
     // Fetch trending skills
     fetch('/api/trending')
@@ -262,12 +265,12 @@ export default function TrendingSection() {
         <div className="space-y-0">
           {/* Column Headers */}
           <div className="grid grid-cols-12 gap-4 items-center py-2 px-4 border-b border-gray-200 dark:border-gray-700">
-            <div className="col-span-5 md:col-span-5">
+            <div className="col-span-8 md:col-span-5">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Skill
               </span>
             </div>
-            <div className="col-span-3 md:col-span-2">
+            <div className="hidden md:block md:col-span-2">
               <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
                 Category
               </span>
@@ -384,8 +387,8 @@ export default function TrendingSection() {
                       />
                     </svg>
 
-                    {/* Tooltip */}
-                    <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
+                    {/* Tooltip - hidden on mobile */}
+                    <div className="hidden md:block absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
                       <div className="relative p-3 bg-white dark:bg-white backdrop-blur-md rounded-2xl border border-gray-100 shadow-lg">
                         <div className="flex items-center gap-2 mb-1.5">
                           <div className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-100">
@@ -481,8 +484,8 @@ export default function TrendingSection() {
                       />
                     </svg>
 
-                    {/* Tooltip */}
-                    <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
+                    {/* Tooltip - hidden on mobile */}
+                    <div className="hidden md:block absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
                       <div className="relative p-3 bg-white dark:bg-white backdrop-blur-md rounded-2xl border border-gray-100 shadow-lg">
                         <div className="flex items-center gap-2 mb-1.5">
                           <div className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-100">
@@ -524,8 +527,8 @@ export default function TrendingSection() {
               className="group grid grid-cols-12 gap-4 items-center py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               aria-label={`Rank ${rank}. ${skill.title}`}
             >
-              {/* Rank + Title + Badge (5 columns) */}
-              <div className="col-span-5 md:col-span-5 flex items-center gap-3 min-w-0">
+              {/* Rank + Title + Badge (8 columns on mobile, 5 on desktop) */}
+              <div className="col-span-8 md:col-span-5 flex items-center gap-3 min-w-0">
                 <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-gray-500 dark:text-gray-400 font-semibold text-xs">
                   {rank}
                 </span>
@@ -537,16 +540,26 @@ export default function TrendingSection() {
                 >
                   {skill.title}
                 </h3>
-                <div className="hidden sm:flex relative items-center">
-                  <span
-                    className={`px-2 py-0.5 text-[10px] font-medium ${badgeStyles.bg} ${badgeStyles.text} rounded-full flex-shrink-0 inline-block peer`}
+                <div className="flex relative items-center group/badge">
+                  <button
+                    className={`px-2 py-0.5 text-[10px] font-medium ${badgeStyles.bg} ${badgeStyles.text} rounded-full flex-shrink-0 md:pointer-events-none`}
                     style={badgeStyles.style}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setActiveBadgeTooltip(activeBadgeTooltip === skill.slug ? null : skill.slug);
+                    }}
+                    aria-label={`${badgeStyles.label} badge - tap for info`}
                   >
                     {badgeStyles.label}
-                  </span>
+                  </button>
 
-                  {/* Badge Tooltip */}
-                  <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 transition-all duration-200 ease-out transform peer-hover:translate-y-0 translate-y-1 z-50 pointer-events-none">
+                  {/* Badge Tooltip - tap on mobile, hover on desktop */}
+                  <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 transition-all duration-200 ease-out transform z-50 ${
+                    activeBadgeTooltip === skill.slug
+                      ? 'visible opacity-100 translate-y-0'
+                      : 'invisible opacity-0 md:group-hover/badge:visible md:group-hover/badge:opacity-100 md:group-hover/badge:translate-y-0'
+                  } md:pointer-events-none`}>
                     <div className="relative p-2.5 bg-white dark:bg-white backdrop-blur-md rounded-xl border border-gray-100 shadow-lg">
                       <p className="text-xs text-gray-700 leading-relaxed">
                         {skill.badge === 'hot' && 'Rapidly growing with 50%+ velocity'}
@@ -561,8 +574,8 @@ export default function TrendingSection() {
                 </div>
               </div>
 
-              {/* Category (3 columns on mobile, 2 on desktop) */}
-              <div className="col-span-3 md:col-span-2">
+              {/* Category (hidden on mobile, 2 columns on desktop) */}
+              <div className="hidden md:block md:col-span-2">
                 {skill.category && (
                   <span className="text-xs text-gray-600 dark:text-gray-400 capitalize">
                     {skill.category}
