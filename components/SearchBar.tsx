@@ -153,7 +153,7 @@ export default function SearchBar({
               linear-gradient(120deg, hsl(278, 44%, 73%), hsl(35, 81%, 73%)) border-box
             `,
             border: compact ? '1px solid transparent' : '2px solid transparent',
-            fontSize: compact ? '16px' : undefined,
+            fontSize: compact ? '16px' : '18px',
           }}
         />
         {localValue && (
