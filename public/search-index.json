@@ -79,7 +79,8 @@
       "tailwind",
       "shadcn"
     ],
-    "featured": false,
+    "featured": true,
+    "featuredPriority": 1,
     "author": "Anthropic",
     "repoUrl": "https://github.com/anthropics/skills/tree/main/artifacts-builder",
     "date": "2025-10-24T00:00:00.000Z",
@@ -124,8 +125,7 @@
       "scientific-computing",
       "research"
     ],
-    "featured": true,
-    "featuredPriority": 2,
+    "featured": false,
     "author": "K-Dense AI",
     "repoUrl": "https://github.com/K-Dense-AI/claude-scientific-skills",
     "date": "2025-10-22T00:00:00.000Z",
@@ -148,8 +148,7 @@
       "ai-integration",
       "skills"
     ],
-    "featured": true,
-    "featuredPriority": 1,
+    "featured": false,
     "author": "K-Dense AI",
     "repoUrl": "https://github.com/K-Dense-AI/claude-skills-mcp",
     "date": "2025-10-22T00:00:00.000Z",
@@ -632,8 +631,7 @@
       "usability",
       "wcag"
     ],
-    "featured": true,
-    "featuredPriority": 1,
+    "featured": false,
     "author": "Exploration Labs",
     "repoUrl": "https://github.com/Exploration-labs/skill-product-design",
     "date": "2025-10-18T00:00:00.000Z",
@@ -1008,8 +1006,7 @@
       "meta-skills",
       "systematic-development"
     ],
-    "featured": true,
-    "featuredPriority": 3,
+    "featured": false,
     "author": "obra (Jesse Vincent)",
     "repoUrl": "https://github.com/obra/superpowers",
     "date": "2025-10-18",
@@ -1051,6 +1048,7 @@
       "action-planning"
     ],
     "featured": true,
+    "featuredPriority": 2,
     "author": "michalparkola",
     "repoUrl": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/tapestry",
     "date": "2025-10-24T00:00:00.000Z",
@@ -1091,7 +1089,8 @@
       "best-practices",
       "quality"
     ],
-    "featured": false,
+    "featured": true,
+    "featuredPriority": 3,
     "author": "obra",
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development",
     "date": "2025-10-24T00:00:00.000Z",
@@ -1154,8 +1153,7 @@
       "type-safety",
       "best-practices"
     ],
-    "featured": true,
-    "featuredPriority": 2,
+    "featured": false,
     "author": "Exploration Labs",
     "repoUrl": "https://github.com/Exploration-labs/typescript-code-review",
     "date": "2025-10-18T00:00:00.000Z",

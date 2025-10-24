@@ -14,8 +14,6 @@ tags:
   - genomics
   - scientific-computing
   - research
-featured: true
-featuredPriority: 2
 author: K-Dense AI
 repoUrl: https://github.com/K-Dense-AI/claude-scientific-skills
 date: 2025-10-22

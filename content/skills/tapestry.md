@@ -12,6 +12,8 @@ tags:
   - content-extraction
   - action-planning
 featured: true
+featuredPriority: 2
+featuredType: permanent
 author: michalparkola
 repoUrl: https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/tapestry
 externalUrl: https://github.com/michalparkola

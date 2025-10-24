@@ -12,8 +12,6 @@ tags:
   - performance
   - type-safety
   - best-practices
-featured: true
-featuredPriority: 2
 author: Exploration Labs
 repoUrl: https://github.com/Exploration-labs/typescript-code-review
 date: 2025-10-18

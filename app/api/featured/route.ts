@@ -9,15 +9,17 @@ const redis = Redis.fromEnv();
 
 /**
  * Get Featured Skills (Read-only API)
- * Returns up to 3 featured skills
+ * Returns 5-7 featured skills (2-3 permanent + 3-4 rotating)
  *
- * Priority:
- * 1. Manual featured (featured: true in frontmatter), sorted by featured_rank
- * 2. If < 3, backfill from popular (30-day views, excluding top 5 trending)
+ * New System (v4):
+ * 1. Reads from Redis cache (computed weekly via cron)
+ * 2. Falls back to frontmatter-based system if cache miss
+ * 3. Permanent featured: manually set via featuredType: 'permanent'
+ * 4. Rotating featured: auto-computed based on weighted scoring
  */
 
-const FEATURED_CACHE_KEY = 'skills:featured:v3';
-const FEATURED_CACHE_TTL = 60 * 60; // 1 hour
+const FEATURED_CACHE_KEY = 'skills:featured:v4';
+const FEATURED_CACHE_TTL_HOURS = 1; // Read cache TTL (cron updates weekly)
 const TRENDING_KEY = 'skills:trending:v1';
 
 interface FeaturedSkill {
@@ -36,7 +38,7 @@ interface FeaturedSkill {
 
 export async function GET() {
   try {
-    // Try to get from cache
+    // Try to get from new v4 cache (computed by cron)
     const cachedData = await redis.get(FEATURED_CACHE_KEY);
 
     if (cachedData) {
@@ -45,15 +47,19 @@ export async function GET() {
         ? JSON.parse(cachedData)
         : cachedData;
 
+      console.log(`[Featured API] Serving ${featured.length} skills from v4 cache`);
+
       return NextResponse.json(
         { featured },
         {
           headers: {
-            'Cache-Control': 'public, max-age=3600',
+            'Cache-Control': `public, max-age=${FEATURED_CACHE_TTL_HOURS * 3600}`,
           },
         }
       );
     }
+
+    console.log('[Featured API] Cache miss, falling back to frontmatter-based system');
 
     // Compute featured skills
     const allSkills = await getAllSkills();
@@ -116,9 +122,9 @@ export async function GET() {
       featured_rank: skill.featuredPriority,
     }));
 
-    // Cache the result
+    // Cache the result (1 hour TTL for fallback)
     await redis.set(FEATURED_CACHE_KEY, JSON.stringify(response), {
-      ex: FEATURED_CACHE_TTL,
+      ex: FEATURED_CACHE_TTL_HOURS * 3600,
     });
 
     return NextResponse.json(

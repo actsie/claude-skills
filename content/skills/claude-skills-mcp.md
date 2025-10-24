@@ -13,8 +13,6 @@ tags:
   - cursor
   - ai-integration
   - skills
-featured: true
-featuredPriority: 1
 mcp: true
 author: K-Dense AI
 repoUrl: https://github.com/K-Dense-AI/claude-skills-mcp

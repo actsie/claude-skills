@@ -12,8 +12,6 @@ tags:
   - design-systems
   - usability
   - wcag
-featured: true
-featuredPriority: 1
 author: Exploration Labs
 repoUrl: https://github.com/Exploration-labs/skill-product-design
 date: 2025-10-18

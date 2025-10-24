@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/compute-trending",
       "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/compute-featured",
+      "schedule": "0 0 * * 0"
     }
   ]
 }
