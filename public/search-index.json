@@ -505,6 +505,29 @@
     "excerpt": "A specialized tool designed to evaluate Claude skills for security vulnerabilities, risks, and safety concerns before deployment through comprehensive security assessment and risk categorization.  <Ca..."
   },
   {
+    "slug": "skill-seekers",
+    "title": "Skill Seekers",
+    "description": "Automated tool that transforms any documentation website into a production-ready Claude AI skill in minutes through intelligent scraping, organization, and packaging.",
+    "categories": [
+      "development",
+      "automation",
+      "ai"
+    ],
+    "tags": [
+      "documentation",
+      "scraping",
+      "skill-generation",
+      "automation",
+      "tools",
+      "mcp"
+    ],
+    "featured": false,
+    "author": "Yusuf Karaaslan",
+    "repoUrl": "https://github.com/yusufkaraaslan/Skill_Seekers",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "An automated conversion system that transforms documentation websites into production-ready Claude AI skills through intelligent scraping, content organization, and AI-powered enhancement.  <Callout t..."
+  },
+  {
     "slug": "skill-testing-framework",
     "title": "Skill Testing Framework",
     "description": "Comprehensive testing solution for validating skill functionality with automated test generation, multi-level testing, and regression detection.",
