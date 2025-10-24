@@ -43,6 +43,26 @@
     "excerpt": "Comprehensive framework for systematically evaluating AI vendors and solutions, designed to help organizations avoid the costly mistakes that plague 95% of AI projects through structured procurement p..."
   },
   {
+    "slug": "article-extractor",
+    "title": "Article Extractor",
+    "description": "Extracts clean, readable content from web articles and blog posts, removing ads, navigation, and clutter using reader-cli or trafilatura.",
+    "categories": [
+      "productivity",
+      "content"
+    ],
+    "tags": [
+      "web-scraping",
+      "content-extraction",
+      "readability",
+      "articles"
+    ],
+    "featured": false,
+    "author": "michalparkola",
+    "repoUrl": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/article-extractor",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Extract clean, distraction-free text from web articles and blog posts. This skill removes advertisements, navigation elements, newsletter prompts, and other clutter to give you just the content you wa..."
+  },
+  {
     "slug": "artifacts-builder",
     "title": "Artifacts Builder",
     "description": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts using React, TypeScript, Tailwind CSS, and shadcn/ui with automated bundling.",
@@ -568,6 +588,26 @@
     "excerpt": "Systematic methodology for identifying the originating source of errors by tracing backward through execution stacks rather than patching symptoms at their manifestation points.  <Callout type=\"tip\"> ..."
   },
   {
+    "slug": "ship-learn-next",
+    "title": "Ship-Learn-Next Action Planner",
+    "description": "Transforms passive learning content (transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework.",
+    "categories": [
+      "productivity",
+      "learning"
+    ],
+    "tags": [
+      "action-planning",
+      "learning",
+      "implementation",
+      "iteration"
+    ],
+    "featured": false,
+    "author": "michalparkola",
+    "repoUrl": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/ship-learn-next",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Stop consuming content passively. Turn transcripts, articles, and tutorials into concrete implementation roadmaps that get you building, shipping, and learning through action.  <Callout type=\"tip\"> Es..."
+  },
+  {
     "slug": "skill-creator",
     "title": "Skill Creator",
     "description": "Official Anthropic framework for developing modular skill packages that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.",
@@ -814,6 +854,27 @@
     "excerpt": "Four-phase debugging methodology emphasizing root cause investigation before fixes to prevent symptom-chasing and cascade failures.  <Callout type=\"tip\"> Essential for developers who want to fix bugs ..."
   },
   {
+    "slug": "tapestry",
+    "title": "Tapestry",
+    "description": "Master orchestration skill that detects content type (YouTube, article, PDF), extracts clean content, and automatically creates Ship-Learn-Next action plans.",
+    "categories": [
+      "productivity",
+      "content",
+      "learning"
+    ],
+    "tags": [
+      "orchestration",
+      "workflow",
+      "content-extraction",
+      "action-planning"
+    ],
+    "featured": true,
+    "author": "michalparkola",
+    "repoUrl": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/tapestry",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "One command to transform any learning resource (YouTube video, article, or PDF) into clean content and an actionable implementation plan. The master orchestrator that weaves together content extractio..."
+  },
+  {
     "slug": "template-skill",
     "title": "Template Skill",
     "description": "Official Anthropic minimal skeleton providing the essential structure for starting a new Claude skill project with required files and organization.",
@@ -1009,5 +1070,25 @@
     "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/xlsx",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill for comprehensive Excel operations emphasizing formula-driven calculations, financial modeling standards, and zero-error deliverables through automated validation.  <Callout t..."
+  },
+  {
+    "slug": "youtube-transcript",
+    "title": "YouTube Transcript Downloader",
+    "description": "Downloads and processes YouTube transcripts for readability, with automatic deduplication and fallback to Whisper transcription for videos without subtitles.",
+    "categories": [
+      "productivity",
+      "content"
+    ],
+    "tags": [
+      "youtube",
+      "transcription",
+      "video",
+      "content-extraction"
+    ],
+    "featured": false,
+    "author": "michalparkola",
+    "repoUrl": "https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/youtube-transcript",
+    "date": "2025-10-24T00:00:00.000Z",
+    "excerpt": "Extract clean, readable transcripts from YouTube videos in seconds. Perfect for studying tutorials, converting talks into notes, or creating written content from video sources.  <Callout type=\"tip\"> E..."
   }
 ]
