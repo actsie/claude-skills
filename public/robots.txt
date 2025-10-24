@@ -2,5 +2,14 @@
 User-agent: *
 Allow: /
 
+# Prevent indexing of filtered/sorted views (query parameters)
+# These are duplicate content - same page with client-side filters
+Disallow: /*?*category=*
+Disallow: /*?*tag=*
+Disallow: /*?*tags=*
+Disallow: /*?*sort=*
+Disallow: /*?*q=*
+Disallow: /*?*search=*
+
 # Sitemap location
 Sitemap: https://skills.pawgrammer.com/sitemap.xml
