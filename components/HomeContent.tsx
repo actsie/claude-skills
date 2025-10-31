@@ -534,11 +534,9 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
               ))}
             </div>
 
-            {/* Load More Button - Sticky on mobile when list is long */}
+            {/* Load More Button */}
             {sortedResults.length > displayCount && (
-              <div
-                className={`mt-8 ${sortedResults.length > 50 ? 'sm:relative fixed bottom-0 left-0 right-0 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-4 px-4 sm:border-0 sm:py-0 sm:px-0 sm:bg-transparent shadow-lg sm:shadow-none z-10' : ''} flex flex-col items-center gap-2`}
-              >
+              <div className="mt-8 flex flex-col items-center gap-2">
                 <button
                   onClick={() => setDisplayCount(prev => prev + 24)}
                   className="px-6 py-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
