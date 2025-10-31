@@ -87,6 +87,29 @@
     "excerpt": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts that can be shared on Claude.ai, using modern frontend technologies with automated bundling.  <Callout type=\"tip\"> ..."
   },
   {
+    "slug": "backend-dev-guidelines",
+    "title": "Backend Development Guidelines",
+    "description": "Comprehensive guidance for Node.js/Express/TypeScript microservices development, covering layered architecture patterns, controller/service/repository organization, input validation with Zod, error tracking via Sentry, and testing strategies.",
+    "categories": [
+      "development",
+      "backend"
+    ],
+    "tags": [
+      "nodejs",
+      "express",
+      "typescript",
+      "prisma",
+      "sentry",
+      "microservices"
+    ],
+    "featured": true,
+    "featuredPriority": 4,
+    "author": "diet103",
+    "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
+    "date": "2025-10-31T00:00:00.000Z",
+    "excerpt": "Production-tested patterns for building maintainable Node.js/Express/TypeScript microservices with proper layered architecture, input validation, error tracking, and testing strategies.  <Callout type..."
+  },
+  {
     "slug": "brainstorming",
     "title": "Brainstorming & Design",
     "description": "Structured methodology for transforming rough ideas into fully-formed designs through systematic questioning and iterative validation.",
@@ -271,6 +294,30 @@
     "excerpt": "Official Anthropic skill that enables comprehensive Word document operations including creation, editing, and analysis with full support for tracked changes, comments, and formatting preservation.  <C..."
   },
   {
+    "slug": "error-tracking",
+    "title": "Error Tracking with Sentry",
+    "description": "Integrates Sentry v8 error tracking and performance monitoring across project services, ensuring all errors are captured with proper context, severity levels, and workflow instrumentation.",
+    "categories": [
+      "development",
+      "monitoring",
+      "backend"
+    ],
+    "tags": [
+      "sentry",
+      "error-tracking",
+      "monitoring",
+      "observability",
+      "debugging",
+      "performance"
+    ],
+    "featured": true,
+    "featuredPriority": 7,
+    "author": "diet103",
+    "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
+    "date": "2025-10-31T00:00:00.000Z",
+    "excerpt": "Standardized patterns for integrating Sentry v8 error tracking and performance monitoring across all project services, with mandatory error reporting, proper context capture, severity classification, ..."
+  },
+  {
     "slug": "family-history-research",
     "title": "Family History Research Planning",
     "description": "Strategic genealogy research planning following Genealogical Proof Standard (GPS), with citation guidance, source evaluation, and evidence-based methodology.",
@@ -329,6 +376,30 @@
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Structured four-step workflow for completing development work: verify tests, determine base branch, present merge options, and execute with proper cleanup.  <Callout type=\"tip\"> Essential for develope..."
+  },
+  {
+    "slug": "frontend-dev-guidelines",
+    "title": "Frontend Development Guidelines",
+    "description": "Comprehensive guide for modern React development, emphasizing Suspense-based data fetching, lazy loading, proper file organization, and performance optimization with Material-UI v7.",
+    "categories": [
+      "development",
+      "frontend",
+      "web"
+    ],
+    "tags": [
+      "react",
+      "typescript",
+      "material-ui",
+      "performance",
+      "suspense",
+      "tanstack-query"
+    ],
+    "featured": true,
+    "featuredPriority": 5,
+    "author": "diet103",
+    "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
+    "date": "2025-10-31T00:00:00.000Z",
+    "excerpt": "Production-proven patterns for building modern React/TypeScript applications with current industry standards, covering component architecture, TanStack Query/Router integration, MUI v7 styling, and pe..."
   },
   {
     "slug": "git-pushing",
@@ -768,6 +839,30 @@
     "excerpt": "Systematic methodology for identifying the originating source of errors by tracing backward through execution stacks rather than patching symptoms at their manifestation points.  <Callout type=\"tip\"> ..."
   },
   {
+    "slug": "route-tester",
+    "title": "Route Tester",
+    "description": "Tests authenticated routes in your project using cookie-based JWT authentication, enabling validation of API endpoints, route functionality, and debugging of authentication issues.",
+    "categories": [
+      "development",
+      "testing",
+      "backend"
+    ],
+    "tags": [
+      "testing",
+      "api",
+      "authentication",
+      "jwt",
+      "express",
+      "debugging"
+    ],
+    "featured": true,
+    "featuredPriority": 6,
+    "author": "diet103",
+    "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
+    "date": "2025-10-31T00:00:00.000Z",
+    "excerpt": "Comprehensive testing framework for authenticated API routes using cookie-based JWT authentication, with patterns for validation, debugging, and ensuring route functionality works correctly in develop..."
+  },
+  {
     "slug": "ship-learn-next",
     "title": "Ship-Learn-Next Action Planner",
     "description": "Transforms passive learning content (transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework.",
@@ -852,6 +947,27 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/skill-dependency-mapper",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "A tool for analyzing skill ecosystems to optimize workflows, identify bottlenecks, and recommend effective skill combinations through comprehensive dependency mapping.  <Callout type=\"tip\"> This skill..."
+  },
+  {
+    "slug": "skill-developer",
+    "title": "Skill Developer",
+    "description": "Create and manage Claude Code skills following Anthropic best practices, with guidance on triggers, hooks, enforcement levels, and the 500-line rule.",
+    "categories": [
+      "development",
+      "ai"
+    ],
+    "tags": [
+      "claude-code",
+      "skills",
+      "meta",
+      "development"
+    ],
+    "featured": true,
+    "featuredPriority": 3,
+    "author": "diet103",
+    "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
+    "date": "2025-10-31T00:00:00.000Z",
+    "excerpt": "Comprehensive guide for creating and managing Claude Code skills with auto-activation, covering skill structure, trigger patterns, hook mechanisms, and Anthropic best practices including the 500-line ..."
   },
   {
     "slug": "skill-doc-generator",
