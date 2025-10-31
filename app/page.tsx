@@ -3,6 +3,8 @@ import HomeContent from '@/components/HomeContent';
 import TrendingSectionServer from '@/components/TrendingSectionServer';
 import FeaturedSectionServer from '@/components/FeaturedSectionServer';
 import { getTrendingSkills, getFeaturedSkills } from '@/lib/server/home-data';
+import { getAllSkills } from '@/lib/skills';
+import { generateItemListSchema, generateJsonLd } from '@/lib/seo';
 
 /**
  * Revalidation: Regenerate page every 60 seconds (ISR)
@@ -44,8 +46,14 @@ export async function generateMetadata({
     };
   }
 
-  // For clean home page, let layout.tsx handle metadata
-  return {};
+  // For clean home page, add dynamic title with skill count
+  const skills = await getAllSkills();
+  const skillCount = skills.length;
+
+  return {
+    title: `Claude Skills Market - ${skillCount}+ Free Community Skills for Claude AI`,
+    description: `Discover ${skillCount}+ free, community-curated skills for Claude AI. Extend Claude with specialized expertise in development, productivity, marketing, and more.`,
+  };
 }
 
 /**
@@ -54,15 +62,34 @@ export async function generateMetadata({
  */
 export default async function Home() {
   // Fetch data on server (parallel requests)
-  const [trending, featured] = await Promise.all([
+  const [trending, featured, allSkills] = await Promise.all([
     getTrendingSkills(),
     getFeaturedSkills(),
+    getAllSkills(),
   ]);
 
+  // Generate ItemList schema for all skills
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://skills.pawgrammer.com';
+  const skillsListSchema = generateItemListSchema(
+    allSkills.map((skill) => ({
+      name: skill.title,
+      url: `${baseUrl}/skills/${skill.slug}`,
+      description: skill.description,
+    }))
+  );
+
   return (
-    <HomeContent
-      trendingSection={<TrendingSectionServer trending={trending} />}
-      featuredSection={<FeaturedSectionServer featured={featured} />}
-    />
+    <>
+      {/* Skills Catalog Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateJsonLd(skillsListSchema)}
+      />
+
+      <HomeContent
+        trendingSection={<TrendingSectionServer trending={trending} />}
+        featuredSection={<FeaturedSectionServer featured={featured} />}
+      />
+    </>
   );
 }

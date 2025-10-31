@@ -113,6 +113,44 @@ export function generateSoftwareApplicationSchema(skill: Skill) {
 }
 
 /**
+ * Generate JSON-LD structured data for FAQ page
+ */
+export function generateFAQPageSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+/**
+ * Generate JSON-LD structured data for item list (skills catalog)
+ */
+export function generateItemListSchema(items: { name: string; url: string; description: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Thing',
+        name: item.name,
+        url: item.url,
+        description: item.description,
+      },
+    })),
+  };
+}
+
+/**
  * Helper to inject JSON-LD into a page
  */
 export function generateJsonLd(schema: Record<string, any> | Record<string, any>[]) {

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+import { generateFAQPageSchema, generateJsonLd } from '@/lib/seo';
 
 interface FAQContent {
   intro?: string;
@@ -106,6 +107,14 @@ interface FAQSectionProps {
 }
 
 export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionProps) {
+  // Convert FAQs to schema format
+  const faqSchemaData = faqs.map((faq) => ({
+    question: faq.question,
+    answer: [faq.content.intro, ...faq.content.points].filter(Boolean).join(' '),
+  }));
+
+  const faqSchema = generateFAQPageSchema(faqSchemaData);
+
   const resources = [
     {
       title: 'Official Skills Documentation',
@@ -145,7 +154,14 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50">
+    <>
+      {/* FAQ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateJsonLd(faqSchema)}
+      />
+
+      <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#EBE5FD] dark:bg-[#362B6B] rounded-full blur-3xl"></div>
@@ -279,5 +295,6 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
         </div>
       </div>
     </section>
+    </>
   );
 }
