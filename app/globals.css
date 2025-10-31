@@ -112,15 +112,29 @@ pre code {
     background-color: #1f2937 !important;
     border-color: #374151 !important;
   }
-  
+
   code {
     background-color: #374151 !important;
     color: #e5e7eb !important;
   }
-  
+
   pre code {
     background-color: transparent !important;
     color: #d1d5db !important;
+  }
+
+  /* Better contrast for plain text code blocks in dark mode */
+  pre code.language-text,
+  pre code.hljs.language-text,
+  pre .hljs.language-text {
+    color: #f9fafb !important;
+    opacity: 1 !important;
+  }
+
+  /* Ensure all children of text code blocks are visible */
+  pre code.language-text *,
+  pre code.hljs.language-text * {
+    color: #f9fafb !important;
   }
 }
 

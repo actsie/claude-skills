@@ -34,7 +34,7 @@ Track requests across distributed systems to understand latency, dependencies, a
 ## Distributed Tracing Concepts
 
 ### Trace Structure
-```
+```text
 Trace (Request ID: abc123)
   ↓
 Span (frontend) [100ms]
@@ -252,7 +252,7 @@ func getUsers(ctx context.Context) ([]User, error) {
 ## Context Propagation
 
 ### HTTP Headers
-```
+```text
 traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
 tracestate: congo=t61rcWkgMzE
 ```
@@ -370,7 +370,7 @@ sampler = ParentBased(root=TraceIdRatioBased(0.01))
 ### Finding Slow Requests
 
 **Jaeger Query:**
-```
+```text
 service=my-service
 duration > 1s
 ```
@@ -378,7 +378,7 @@ duration > 1s
 ### Finding Errors
 
 **Jaeger Query:**
-```
+```text
 service=my-service
 error=true
 tags.http.status_code >= 500
@@ -399,7 +399,7 @@ Jaeger automatically generates service dependency graphs showing:
 3. **Propagate context** across all service boundaries
 4. **Log exceptions** in spans
 5. **Use consistent naming** for operations
-6. **Monitor tracing overhead** (<1% CPU impact)
+6. **Monitor tracing overhead** (&lt;1% CPU impact)
 7. **Set up alerts** for trace errors
 8. **Implement distributed context** (baggage)
 9. **Use span events** for important milestones
