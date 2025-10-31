@@ -3,12 +3,26 @@
 import Link from 'next/link';
 import { Skill } from '@/lib/types';
 import FeaturedSkillCard from './FeaturedSkillCard';
+import type { FeaturedSkill } from '@/lib/server/home-data';
 
 interface FeaturedSkillsProps {
   skills: Skill[];
 }
 
 export default function FeaturedSkills({ skills }: FeaturedSkillsProps) {
+  // Convert Skill type to FeaturedSkill type for the card component
+  const featuredSkills: FeaturedSkill[] = skills.map((skill) => ({
+    skill_id: skill.slug,
+    slug: skill.slug,
+    title: skill.title,
+    description: skill.description,
+    category: skill.categories[0] || '',
+    tags: skill.tags,
+    author: skill.author,
+    created_at: skill.date,
+    lastUpdated: skill.lastUpdated || skill.date,
+    repoUrl: skill.repoUrl,
+  }));
   // If no featured skills, show a friendly CTA
   if (skills.length === 0) {
     return (
@@ -61,8 +75,8 @@ export default function FeaturedSkills({ skills }: FeaturedSkillsProps) {
           role="list"
           aria-label="Featured skills list"
         >
-          {skills.map((skill) => (
-            <FeaturedSkillCard key={skill.slug} skill={skill} />
+          {featuredSkills.map((skill, index) => (
+            <FeaturedSkillCard key={skill.slug} skill={skill} index={index} />
           ))}
         </div>
 

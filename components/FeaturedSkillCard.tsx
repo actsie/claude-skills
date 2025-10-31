@@ -1,102 +1,124 @@
 'use client';
 
 import Link from 'next/link';
-import { Skill } from '@/lib/types';
+import { useRouter } from 'next/navigation';
+import { trackSkillDetailView, trackTagClick } from '@/lib/analytics/events';
+import { formatTags } from '@/lib/utils/tags';
+import { formatLastUpdated } from '@/lib/skillUtils';
+import { isVerifiedAuthor } from '@/lib/utils/verification';
+import VerifiedBadge from '@/components/VerifiedBadge';
+import type { FeaturedSkill } from '@/lib/server/home-data';
 
 interface FeaturedSkillCardProps {
-  skill: Skill;
+  skill: FeaturedSkill;
+  index: number;
 }
 
-export default function FeaturedSkillCard({ skill }: FeaturedSkillCardProps) {
-  // Generate a deterministic background color from the skill title
-  const getBackgroundGradient = (title: string) => {
-    const colors = [
-      'from-blue-500 to-blue-600',
-      'from-purple-500 to-purple-600',
-      'from-green-500 to-green-600',
-      'from-orange-500 to-orange-600',
-      'from-pink-500 to-pink-600',
-      'from-indigo-500 to-indigo-600',
-    ];
-    const hash = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return colors[hash % colors.length];
+export default function FeaturedSkillCard({ skill, index }: FeaturedSkillCardProps) {
+  const router = useRouter();
+
+  const handleTagClick = (e: React.MouseEvent, tag: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    trackTagClick(tag, 'featured');
+    router.push(`/?tags=${encodeURIComponent(tag)}`);
   };
 
+  const formattedTags = formatTags(skill.tags || [], 2);
+
   return (
-    <article
-      className="group relative bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
-      role="listitem"
+    <Link
+      href={`/skills/${skill.slug}`}
+      onClick={() => trackSkillDetailView(skill, 'featured', index)}
+      className="group relative flex flex-col rounded-xl bg-white dark:bg-gray-800 p-5 shadow-md transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer min-h-[250px]"
     >
-      {/* Thumbnail/Visual Header */}
-      <div className={`relative h-40 bg-gradient-to-br ${getBackgroundGradient(skill.title)}`}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          {/* Icon placeholder - using first letter of title */}
-          <div className="text-5xl font-bold text-white/90">
-            {skill.title.charAt(0).toUpperCase()}
-          </div>
-        </div>
-        {/* Featured badge */}
-        <div className="absolute top-3 right-3">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-400 text-yellow-900 shadow-lg">
-            ⭐ Featured
-          </span>
-        </div>
-      </div>
+      {/* Gradient Border Glow */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-10 blur-sm transition-opacity duration-300 group-hover:opacity-20"></div>
+      <div className="absolute inset-[1px] rounded-[11px] bg-white dark:bg-gray-800"></div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-          <Link
-            href={`/skills/${skill.slug}`}
-            className="focus:outline-none focus:underline"
-            tabIndex={0}
-            aria-label={`View details for ${skill.title}`}
-          >
-            <span className="absolute inset-0" aria-hidden="true" />
-            {skill.title}
-          </Link>
+      <div className="relative flex flex-col h-full">
+        {/* Title */}
+        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2 mb-3">
+          {skill.title}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3 mb-4">
-          {skill.description}
-        </p>
+        {/* Description */}
+        <div className="flex-1 mb-4">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {skill.description}
+          </p>
+        </div>
 
-        {/* Categories */}
-        {skill.categories && skill.categories.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-3">
-            {skill.categories.map((category) => (
-              <span
-                key={category}
-                className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-              >
-                {category}
+        {/* Category + Tags: Combined inline - positioned at bottom */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {/* Category Badge */}
+          {skill.category && (
+            <>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-gray-50 text-gray-700 dark:bg-gray-900/30 dark:text-gray-300">
+                {skill.category}
               </span>
-            ))}
-          </div>
-        )}
+              {formattedTags.length > 0 && (
+                <span className="text-gray-300 dark:text-gray-600">|</span>
+              )}
+            </>
+          )}
 
-        {/* Tags */}
-        {skill.tags && skill.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {skill.tags.slice(0, 3).map((tag) => (
-              <span
+          {/* Tags */}
+          {formattedTags.map((tag, tagIndex) => {
+            const isExtraIndicator = tag.startsWith('+');
+
+            if (isExtraIndicator) {
+              // "+N" is non-clickable
+              return (
+                <span
+                  key={`extra-${tagIndex}`}
+                  className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium text-gray-500 dark:text-gray-500"
+                  title={`${skill.tags?.length} total tags`}
+                >
+                  {tag}
+                </span>
+              );
+            }
+
+            return (
+              <button
                 key={tag}
-                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                onClick={(e) => handleTagClick(e, tag)}
+                className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1"
+                title={`Filter by #${tag}`}
               >
                 #{tag}
-              </span>
-            ))}
-            {skill.tags.length > 3 && (
-              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-gray-500 dark:text-gray-400">
-                +{skill.tags.length - 3} more
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Footer: Author + Date */}
+        <div className="pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-1.5">
+            {skill.author && (
+              <span className="flex items-center gap-1">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+                {skill.author}
+                {isVerifiedAuthor(skill.repoUrl) && (
+                  <VerifiedBadge size="sm" />
+                )}
               </span>
             )}
           </div>
-        )}
+          {skill.lastUpdated && (
+            <span className="flex items-center gap-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              {formatLastUpdated(skill.lastUpdated)}
+            </span>
+          )}
+        </div>
       </div>
-
-      {/* Hover effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-    </article>
+    </Link>
   );
 }

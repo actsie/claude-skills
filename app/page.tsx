@@ -1,6 +1,14 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
 import HomeContent from '@/components/HomeContent';
+import TrendingSectionServer from '@/components/TrendingSectionServer';
+import FeaturedSectionServer from '@/components/FeaturedSectionServer';
+import { getTrendingSkills, getFeaturedSkills } from '@/lib/server/home-data';
+
+/**
+ * Revalidation: Regenerate page every 60 seconds (ISR)
+ * This ensures trending/featured data stays fresh without rebuilding entire site
+ */
+export const revalidate = 60;
 
 /**
  * Generate metadata dynamically based on URL parameters
@@ -40,16 +48,21 @@ export async function generateMetadata({
   return {};
 }
 
-export default function Home() {
+/**
+ * Home page - Server Component
+ * Fetches trending/featured data on server for better SEO and performance
+ */
+export default async function Home() {
+  // Fetch data on server (parallel requests)
+  const [trending, featured] = await Promise.all([
+    getTrendingSkills(),
+    getFeaturedSkills(),
+  ]);
+
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        </div>
-      }
-    >
-      <HomeContent />
-    </Suspense>
+    <HomeContent
+      trendingSection={<TrendingSectionServer trending={trending} />}
+      featuredSection={<FeaturedSectionServer featured={featured} />}
+    />
   );
 }

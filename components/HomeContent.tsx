@@ -9,8 +9,6 @@ import SkillCardSkeleton from '@/components/SkillCardSkeleton';
 import EmptyState from '@/components/EmptyState';
 import SortControl from '@/components/SortControl';
 import FilterMenu from '@/components/FilterMenu';
-import TrendingSection from '@/components/TrendingSection';
-import FeaturedSection from '@/components/FeaturedSection';
 import NewestSection from '@/components/NewestSection';
 import FAQSection from '@/components/FAQSection';
 import GetFeaturedModal from '@/components/GetFeaturedModal';
@@ -34,7 +32,12 @@ import {
   trackSearchSubmit,
 } from '@/lib/analytics/events';
 
-export default function HomeContent() {
+interface HomeContentProps {
+  trendingSection?: React.ReactNode;
+  featuredSection?: React.ReactNode;
+}
+
+export default function HomeContent({ trendingSection, featuredSection }: HomeContentProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -445,10 +448,10 @@ export default function HomeContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <main>
         {/* Homepage Sections (show when no filters/search active) */}
-        {!isLoading && isHomepage && (
+        {isHomepage && (
           <>
-            <TrendingSection />
-            <FeaturedSection />
+            {trendingSection}
+            {featuredSection}
             <NewestSection />
 
             {/* Divider */}
