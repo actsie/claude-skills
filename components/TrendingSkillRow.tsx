@@ -179,7 +179,7 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
             </svg>
 
             {/* Tooltip */}
-            <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
+            <div className="absolute invisible opacity-0 md:peer-hover:visible md:peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform md:peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none md:peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
               <div className="relative p-3 bg-white dark:bg-gray-800 backdrop-blur-md rounded-2xl border border-gray-100 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900/30">
