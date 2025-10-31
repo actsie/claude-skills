@@ -53,6 +53,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [isGetFeaturedModalOpen, setIsGetFeaturedModalOpen] = useState(false);
+  const [displayCount, setDisplayCount] = useState(24); // Pagination: show 24 skills initially (8 rows × 3 columns)
   const resultsRef = useRef<HTMLDivElement>(null);
   const isClearingFiltersRef = useRef(false);
 
@@ -332,6 +333,11 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
     }
   }, [selectedCategory, selectedTags]);
 
+  // Reset pagination when filters or search changes
+  useEffect(() => {
+    setDisplayCount(24);
+  }, [selectedCategory, selectedTags, searchQuery]);
+
   // Animate title letters on mount
   useEffect(() => {
     const spans = document.querySelectorAll('.animated-letter');
@@ -518,7 +524,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
               role="list"
               aria-label="Skills list"
             >
-              {sortedResults.map((result, index) => (
+              {sortedResults.slice(0, displayCount).map((result, index) => (
                 <SkillCard
                   key={result.item.slug}
                   skill={result.item}
@@ -531,6 +537,23 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
                 />
               ))}
             </div>
+
+            {/* Load More Button - Sticky on mobile when list is long */}
+            {sortedResults.length > displayCount && (
+              <div
+                className={`mt-8 ${sortedResults.length > 50 ? 'sm:relative fixed bottom-0 left-0 right-0 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-4 px-4 sm:border-0 sm:py-0 sm:px-0 sm:bg-transparent shadow-lg sm:shadow-none z-10' : ''} flex flex-col items-center gap-2`}
+              >
+                <button
+                  onClick={() => setDisplayCount(prev => prev + 24)}
+                  className="px-6 py-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                >
+                  Load More Skills
+                </button>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Showing {displayCount} of {sortedResults.length} skills
+                </p>
+              </div>
+            )}
           </>
         )}
         </main>
