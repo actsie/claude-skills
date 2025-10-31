@@ -12,6 +12,7 @@ import FilterMenu from '@/components/FilterMenu';
 import NewestSection from '@/components/NewestSection';
 import FAQSection from '@/components/FAQSection';
 import GetFeaturedModal from '@/components/GetFeaturedModal';
+import ThemeToggle from '@/components/ThemeToggle';
 import { Skill, SearchResult } from '@/lib/types';
 import { createSearchIndex, getMatchedExcerpt } from '@/lib/search';
 import {
@@ -363,10 +364,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
 
       {/* Hero Section with Main Search */}
       <div
-        className="relative dark:bg-gray-800"
-        style={{
-          background: 'linear-gradient(135deg, #fdf6ef 0%, #fcf3fa 33%, #f9f1fc 66%, #f4eefc 100%)',
-        }}
+        className="relative bg-gradient-to-br from-[#fdf6ef] via-[#fcf3fa] to-[#f4eefc] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32">
           <div className="text-center">
@@ -442,9 +440,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
           >
             <path
               d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-              style={{
-                fill: '#f9fafb',
-              }}
+              className="fill-gray-50 dark:fill-gray-900"
             />
           </svg>
         </div>
@@ -585,9 +581,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
           >
             <path
               d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-              style={{
-                fill: '#ffffff',
-              }}
+              className="fill-white dark:fill-gray-900"
             />
           </svg>
         </div>
@@ -602,9 +596,12 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
       {/* Footer */}
       <footer className="bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
-            Claude Skills Market - Community curated collection
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-center sm:text-left text-gray-600 dark:text-gray-400 text-sm">
+              Claude Skills Market - Community curated collection
+            </p>
+            <ThemeToggle />
+          </div>
         </div>
       </footer>
       

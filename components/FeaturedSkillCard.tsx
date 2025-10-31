@@ -45,7 +45,7 @@ export default function FeaturedSkillCard({ skill, index }: FeaturedSkillCardPro
 
         {/* Description */}
         <div className="flex-1 mb-4">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-400">
             {skill.description}
           </p>
         </div>

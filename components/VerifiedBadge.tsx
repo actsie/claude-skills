@@ -25,11 +25,11 @@ export default function VerifiedBadge({ size = 'sm', className = '' }: VerifiedB
 
       {/* Tooltip */}
       <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-2 w-40 transition-all duration-200 ease-out transform group-hover:translate-y-0 translate-y-1 z-50 pointer-events-none">
-        <div className="relative px-3 py-2 bg-white dark:bg-white backdrop-blur-md rounded-lg border border-gray-100 shadow-lg">
-          <p className="text-xs text-gray-700 text-center font-medium">
+        <div className="relative px-3 py-2 bg-white dark:bg-gray-800 backdrop-blur-md rounded-lg border border-gray-100 dark:border-gray-700 shadow-lg">
+          <p className="text-xs text-gray-700 dark:text-gray-300 text-center font-medium">
             Verified on GitHub
           </p>
-          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45 border-r border-b border-gray-100"></div>
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700"></div>
         </div>
       </div>
     </div>

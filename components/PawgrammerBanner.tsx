@@ -58,14 +58,14 @@ export default function PawgrammerBanner() {
       style={{ zIndex: 9999 }}
     >
       <div className="flex flex-col gap-2 max-w-[280px] sm:max-w-[320px] w-full text-[10px] sm:text-xs mx-4">
-        <div className="flex items-center justify-between w-full h-auto sm:h-14 rounded-lg bg-white border border-gray-100 px-2 sm:px-[10px] py-2 sm:py-0 shadow-lg">
+        <div className="flex items-center justify-between w-full h-auto sm:h-14 rounded-lg bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 px-2 sm:px-[10px] py-2 sm:py-0 shadow-lg">
           <a
             href="https://pawgrammer.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex gap-1.5 sm:gap-2 flex-1 cursor-pointer items-center"
           >
-            <div className="text-red-500 bg-gray-100 p-0.5 sm:p-1 rounded-lg flex-shrink-0">
+            <div className="text-red-500 bg-gray-100 dark:bg-gray-700 p-0.5 sm:p-1 rounded-lg flex-shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -82,8 +82,8 @@ export default function PawgrammerBanner() {
               </svg>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-gray-900 font-semibold leading-tight truncate">Build your first Claude Code app</p>
-              <p className="text-gray-500 leading-tight">free beta with Pawgrammer</p>
+              <p className="text-gray-900 dark:text-gray-100 font-semibold leading-tight truncate">Build your first Claude Code app</p>
+              <p className="text-gray-500 dark:text-gray-400 leading-tight">free beta with Pawgrammer</p>
             </div>
           </a>
           <button
@@ -94,7 +94,7 @@ export default function PawgrammerBanner() {
               const event = new CustomEvent('bannerDismissed');
               window.dispatchEvent(event);
             }}
-            className="text-gray-400 hover:bg-gray-100 p-0.5 sm:p-1 rounded-md transition-colors ease-linear flex-shrink-0 ml-1"
+            className="text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 p-0.5 sm:p-1 rounded-md transition-colors ease-linear flex-shrink-0 ml-1"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

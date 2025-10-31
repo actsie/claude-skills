@@ -3,6 +3,7 @@ import './globals.css';
 import 'highlight.js/styles/github-dark.css';
 import PawgrammerBanner from '@/components/PawgrammerBanner';
 import Analytics from '@/components/Analytics';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { generateWebsiteSchema, generateOrganizationSchema, generateJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -97,9 +98,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <PawgrammerBanner />
-        {children}
-        <Analytics />
+        <ThemeProvider>
+          <PawgrammerBanner />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

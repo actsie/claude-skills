@@ -216,10 +216,7 @@ export default function NewestSection() {
                 <div className="absolute top-2 right-2 z-10">
                   <div className="relative px-3 py-1 text-gray-900 dark:text-gray-100 text-[10px] font-semibold rounded-full shadow-sm select-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                     <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 opacity-60" />
-                    <div className="absolute -top-3 -right-0.5 w-6 h-6 -rotate-[20deg] pointer-events-none">
-                      <div className="absolute left-3 w-px h-full bg-gradient-to-b from-transparent via-white/70 to-transparent" />
-                      <div className="absolute top-3 w-full h-px bg-gradient-to-l from-transparent via-white/70 to-transparent" />
-                    </div>
+
                     <span className="relative">NEW</span>
                   </div>
                 </div>
@@ -234,7 +231,7 @@ export default function NewestSection() {
 
                 {/* Description */}
                 <div className="flex-1 mb-4">
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-400">
                     {skill.description}
                   </p>
                 </div>

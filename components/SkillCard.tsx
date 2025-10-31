@@ -107,12 +107,6 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
             {/* Glossy border */}
             <div className="absolute -inset-px rounded-full -z-10 bg-gradient-to-br from-gray-200 via-gray-100 to-white dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 opacity-60" />
 
-            {/* Sparkle shine */}
-            <div className="absolute -top-3 -right-0.5 w-6 h-6 -rotate-[20deg] pointer-events-none">
-              <div className="absolute left-3 w-px h-full bg-gradient-to-b from-transparent via-white/70 to-transparent" />
-              <div className="absolute top-3 w-full h-px bg-gradient-to-l from-transparent via-white/70 to-transparent" />
-            </div>
-
             <span className="relative">
               FEATURED
             </span>
@@ -140,7 +134,7 @@ export default function SkillCard({ skill, highlightedExcerpt, index, onTagClick
 
         {/* Description */}
         <div className="flex-1 mb-4">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-400">
             {description}
           </p>
         </div>

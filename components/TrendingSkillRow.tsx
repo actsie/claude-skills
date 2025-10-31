@@ -93,45 +93,39 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
     switch (badge) {
       case 'hot':
         return {
-          bg: 'dark:bg-gray-700',
-          text: 'text-gray-700 dark:text-gray-300',
+          bg: 'bg-pink-50 dark:bg-pink-900/30',
+          text: 'text-pink-700 dark:text-pink-300',
           label: 'Hot',
-          style: { backgroundColor: '#fcf3fa' }, // light pink - warm/hot
         };
       case 'rising':
         return {
-          bg: 'dark:bg-gray-700',
-          text: 'text-gray-700 dark:text-gray-300',
+          bg: 'bg-purple-50 dark:bg-purple-900/30',
+          text: 'text-purple-700 dark:text-purple-300',
           label: 'Rising',
-          style: { backgroundColor: '#f9f1fc' }, // light lavender - upward
         };
       case 'new':
         return {
-          bg: 'dark:bg-gray-700',
-          text: 'text-gray-700 dark:text-gray-300',
+          bg: 'bg-violet-50 dark:bg-violet-900/30',
+          text: 'text-violet-700 dark:text-violet-300',
           label: 'New',
-          style: { backgroundColor: '#f4eefc' }, // light purple - fresh
         };
       case 'cooling':
         return {
-          bg: 'dark:bg-gray-700',
-          text: 'text-gray-700 dark:text-gray-300',
+          bg: 'bg-blue-50 dark:bg-blue-900/30',
+          text: 'text-blue-700 dark:text-blue-300',
           label: 'Cooling',
-          style: { backgroundColor: '#eff6ff' }, // light blue - cooling
         };
       case 'stable':
         return {
           bg: 'bg-gray-100 dark:bg-gray-700',
           text: 'text-gray-600 dark:text-gray-400',
           label: 'Stable',
-          style: undefined,
         };
       default:
         return {
           bg: 'bg-gray-100 dark:bg-gray-700',
           text: 'text-gray-600 dark:text-gray-400',
           label: 'Stable',
-          style: undefined,
         };
     }
   };
@@ -186,11 +180,11 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
 
             {/* Tooltip */}
             <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 transition-all duration-300 ease-out transform peer-hover:translate-y-0 translate-y-2 z-50 pointer-events-none peer-hover:animate-[slideOut_1.5s_ease-in_forwards]">
-              <div className="relative p-3 bg-white dark:bg-white backdrop-blur-md rounded-2xl border border-gray-100 shadow-lg">
+              <div className="relative p-3 bg-white dark:bg-gray-800 backdrop-blur-md rounded-2xl border border-gray-100 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-100">
+                  <div className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900/30">
                     <svg
-                      className="w-3 h-3 text-yellow-600"
+                      className="w-3 h-3 text-yellow-600 dark:text-yellow-400"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -203,14 +197,14 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xs font-semibold text-gray-900">Collecting Trend Data</h3>
+                  <h3 className="text-xs font-semibold text-gray-900 dark:text-gray-100">Collecting Trend Data</h3>
                 </div>
 
-                <p className="text-xs text-gray-600 leading-relaxed">
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                   Sparkline will appear after a few days of activity
                 </p>
 
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-r border-b border-gray-100"></div>
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700"></div>
               </div>
             </div>
           </div>
@@ -278,22 +272,21 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
           <div className="hidden sm:flex relative items-center">
             <span
               className={`px-2 py-0.5 text-[10px] font-medium ${badgeStyles.bg} ${badgeStyles.text} rounded-full flex-shrink-0 inline-block peer`}
-              style={badgeStyles.style}
             >
               {badgeStyles.label}
             </span>
 
             {/* Badge Tooltip */}
             <div className="absolute invisible opacity-0 peer-hover:visible peer-hover:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 transition-all duration-200 ease-out transform peer-hover:translate-y-0 translate-y-1 z-50 pointer-events-none">
-              <div className="relative p-2.5 bg-white dark:bg-white backdrop-blur-md rounded-xl border border-gray-100 shadow-lg">
-                <p className="text-xs text-gray-700 leading-relaxed">
+              <div className="relative p-2.5 bg-white dark:bg-gray-800 backdrop-blur-md rounded-xl border border-gray-100 dark:border-gray-700 shadow-lg">
+                <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
                   {skill.badge === 'hot' && 'Rapidly growing with 50%+ velocity'}
                   {skill.badge === 'rising' && 'Growing steadily with 15%+ velocity'}
                   {skill.badge === 'new' && 'Added within the last 48 hours'}
                   {skill.badge === 'cooling' && 'Declining activity (-25% velocity)'}
                   {skill.badge === 'stable' && 'Consistent activity level'}
                 </p>
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45 border-r border-b border-gray-100"></div>
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700"></div>
               </div>
             </div>
           </div>

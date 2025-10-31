@@ -73,10 +73,7 @@ export default function NavigationBar({
 
   return (
     <nav
-      className="sticky top-0 z-50"
-      style={{
-        background: '#f9f1fc',
-      }}
+      className="sticky top-0 z-50 bg-[#f9f1fc] dark:bg-gray-900"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 relative z-10">
         <div className="flex items-center justify-between gap-2">
@@ -176,10 +173,7 @@ export default function NavigationBar({
         >
           <path
             d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-            className="shape-fill"
-            style={{
-              fill: '#f9f1fc',
-            }}
+            className="fill-[#f9f1fc] dark:fill-gray-900"
           />
         </svg>
       </div>
