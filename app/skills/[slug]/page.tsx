@@ -84,7 +84,6 @@ export default async function SkillPage({ params }: { params: { slug: string } }
   const articleSchema = generateSkillArticleSchema(skill);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
-    { name: 'Skills', url: '/skills' },
     { name: skill.title, url: `/skills/${skill.slug}` },
   ]);
 
