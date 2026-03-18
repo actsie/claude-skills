@@ -1,18 +1,13 @@
 import { NextResponse } from 'next/server';
-import { Redis } from '@upstash/redis';
 import { getAllSkills } from '@/lib/skills';
 
 export const dynamic = 'force-dynamic';
 
-const redis = Redis.fromEnv();
-
 /**
  * Get Newest Skills (Read-only API)
  * Returns top 6 newest skills sorted by creation date
+ * No Redis cache — reads MDX files directly so new skills appear immediately
  */
-
-const NEWEST_CACHE_KEY = 'skills:newest:v5';
-const NEWEST_CACHE_TTL = 60 * 60; // 1 hour
 
 interface NewestSkill {
   skill_id: string;
@@ -29,37 +24,16 @@ interface NewestSkill {
 
 export async function GET() {
   try {
-    // Try to get from cache
-    const cachedData = await redis.get(NEWEST_CACHE_KEY);
-
-    if (cachedData) {
-      // Upstash auto-deserializes, handle both string and object
-      const newest: NewestSkill[] = typeof cachedData === 'string'
-        ? JSON.parse(cachedData)
-        : cachedData;
-
-      return NextResponse.json(
-        { newest },
-        {
-          headers: {
-            'Cache-Control': 'public, max-age=3600',
-          },
-        }
-      );
-    }
-
-    // Compute newest skills
     const allSkills = await getAllSkills();
 
-    // Sort by date descending (newest first)
-    const newest = allSkills
-      .filter((skill) => skill.date) // Only include skills with dates
+    const newest: NewestSkill[] = allSkills
+      .filter((skill) => skill.date)
       .sort((a, b) => {
         const dateA = a.date ? new Date(a.date).getTime() : 0;
         const dateB = b.date ? new Date(b.date).getTime() : 0;
         return dateB - dateA;
       })
-      .slice(0, 6) // Top 6
+      .slice(0, 6)
       .map((skill) => ({
         skill_id: skill.slug,
         slug: skill.slug,
@@ -73,18 +47,9 @@ export async function GET() {
         repoUrl: skill.repoUrl,
       }));
 
-    // Cache the result
-    await redis.set(NEWEST_CACHE_KEY, JSON.stringify(newest), {
-      ex: NEWEST_CACHE_TTL,
-    });
-
     return NextResponse.json(
       { newest },
-      {
-        headers: {
-          'Cache-Control': 'public, max-age=3600',
-        },
-      }
+      { headers: { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=600' } }
     );
   } catch (error) {
     console.error('[Newest API] Error:', error);
