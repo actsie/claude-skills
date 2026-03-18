@@ -86,7 +86,7 @@ export async function GET() {
 
     return NextResponse.json(
       { trending, fallback: 'featured' },
-      { headers: { 'Cache-Control': 'public, max-age=3600' } }
+      { headers: { 'Cache-Control': 'no-store' } }
     );
   } catch (error) {
     console.error('[Trending API] Error:', error);
