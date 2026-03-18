@@ -269,6 +269,7 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
           >
             {skill.title}
           </h3>
+          {skill.badge !== 'stable' && (
           <div className="hidden sm:flex relative items-center">
             <span
               className={`px-2 py-0.5 text-[10px] font-medium ${badgeStyles.bg} ${badgeStyles.text} rounded-full flex-shrink-0 inline-block peer`}
@@ -290,6 +291,7 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
               </div>
             </div>
           </div>
+          )}
         </div>
 
         {/* Category (3 columns on mobile, 2 on desktop) */}
