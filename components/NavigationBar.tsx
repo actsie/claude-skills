@@ -15,6 +15,7 @@ interface NavigationBarProps {
   resultsCount?: number;
   onRequestSkill?: () => void;
   onSubmitSkill?: () => void;
+  alwaysShowSearch?: boolean;
 }
 
 export default function NavigationBar({
@@ -25,6 +26,7 @@ export default function NavigationBar({
   resultsCount,
   onRequestSkill,
   onSubmitSkill,
+  alwaysShowSearch = false,
 }: NavigationBarProps) {
   const [showMiniSearch, setShowMiniSearch] = useState(false);
   const [mobileSearchExpanded, setMobileSearchExpanded] = useState(false);
@@ -94,9 +96,9 @@ export default function NavigationBar({
               mobileSearchExpanded ? 'block md:block max-w-full mx-2 md:max-w-xs md:mx-6' : 'hidden md:block md:max-w-xs md:mx-6'
             }`}
             style={{
-              opacity: mobileSearchExpanded || showMiniSearch ? 1 : 0,
-              transform: mobileSearchExpanded || showMiniSearch ? 'translateY(0) scale(1)' : 'translateY(-10px) scale(0.95)',
-              pointerEvents: mobileSearchExpanded || showMiniSearch ? 'auto' : 'none',
+              opacity: mobileSearchExpanded || showMiniSearch || alwaysShowSearch ? 1 : 0,
+              transform: mobileSearchExpanded || showMiniSearch || alwaysShowSearch ? 'translateY(0) scale(1)' : 'translateY(-10px) scale(0.95)',
+              pointerEvents: mobileSearchExpanded || showMiniSearch || alwaysShowSearch ? 'auto' : 'none',
             }}
           >
             <SearchBar

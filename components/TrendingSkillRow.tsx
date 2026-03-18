@@ -285,7 +285,7 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
                   {skill.badge === 'rising' && 'Growing steadily with 15%+ velocity'}
                   {skill.badge === 'new' && 'Added within the last 48 hours'}
                   {skill.badge === 'cooling' && 'Declining activity (-25% velocity)'}
-                  {skill.badge === 'stable' && 'Consistent activity level'}
+
                 </p>
                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700"></div>
               </div>

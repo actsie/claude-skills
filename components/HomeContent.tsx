@@ -369,30 +369,14 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32">
           <div className="text-center">
             {/* Stats badge */}
-            {!isLoading && skills.length > 0 && (() => {
-              const latestDate = skills
-                .map(s => s.date || s.lastUpdated)
-                .filter(Boolean)
-                .sort()
-                .reverse()[0];
-              const formatted = latestDate
-                ? new Date(latestDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                : null;
-              return (
-                <div className="inline-flex items-center gap-2 mb-6 px-2.5 py-1 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 shadow-sm backdrop-blur-sm text-[10px] text-gray-500 dark:text-gray-400">
-                  <span className="flex items-center gap-1 font-medium text-gray-600 dark:text-gray-300">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400/60 animate-pulse" style={{ animationDuration: '3s' }}></span>
-                    {skills.length} skills
-                  </span>
-                  {formatted && (
-                    <>
-                      <span className="text-gray-300 dark:text-gray-600">·</span>
-                      <span>Updated {formatted}</span>
-                    </>
-                  )}
-                </div>
-              );
-            })()}
+            {!isLoading && skills.length > 0 && (
+              <div className="inline-flex items-center gap-2 mb-6 px-2.5 py-1 rounded-full bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 shadow-sm backdrop-blur-sm text-[10px] text-gray-500 dark:text-gray-400">
+                <span className="flex items-center gap-1 font-medium text-gray-600 dark:text-gray-300">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400/60 animate-pulse" style={{ animationDuration: '3s' }}></span>
+                  {skills.length} skills
+                </span>
+              </div>
+            )}
             <h1 className="text-6xl font-black text-gray-900 dark:text-gray-100 mb-4 animated-title" style={{ fontFamily: "'Doto', sans-serif" }}>
               {'Claude Skills Market'.split('').map((char, idx) => (
                 <span

@@ -136,6 +136,7 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
         onSearchClear={handleSearchClear}
         onRequestSkill={() => setIsRequestModalOpen(true)}
         onSubmitSkill={() => setIsSubmitModalOpen(true)}
+        alwaysShowSearch={true}
       />
       
       {/* Header with Breadcrumbs */}
