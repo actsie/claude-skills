@@ -1,6 +1,7 @@
 ---
 title: "Skill Writer"
 description: "Guide Claude through creating Agent Skills for Claude Code with proper structure, validation, and best practices — from scope definition to testing."
+author: "pytorch"
 repoUrl: "https://github.com/pytorch/pytorch"
 categories:
   - productivity

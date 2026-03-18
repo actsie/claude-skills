@@ -1,6 +1,7 @@
 ---
 title: "Writing Bun Bundler Tests"
 description: "Write bundler tests using itBundled/expectBundled in Bun's test suite — covers file setup, bundler options, runtime verification, DCE markers, and post-bundle assertions."
+author: "oven-sh"
 repoUrl: "https://github.com/oven-sh/bun"
 categories:
   - testing

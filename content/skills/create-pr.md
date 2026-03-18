@@ -1,6 +1,7 @@
 ---
 title: "Create PR"
 description: "Create GitHub pull requests with properly formatted conventional commit titles that pass CI validation — covers type, scope, summary rules, and PR body template."
+author: "n8n-io"
 repoUrl: "https://github.com/n8n-io/n8n"
 categories:
   - devops

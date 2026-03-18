@@ -1,6 +1,7 @@
 ---
 title: "Reproduce Bug"
 description: "Systematic framework for reproducing bugs from issue reports — parse signals, route to the right test layer, form a hypothesis, write a failing regression test."
+author: "n8n-io"
 repoUrl: "https://github.com/n8n-io/n8n"
 categories:
   - testing

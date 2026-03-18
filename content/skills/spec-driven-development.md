@@ -1,6 +1,7 @@
 ---
 title: "Spec-Driven Development"
 description: "Keep implementation and specifications synchronized — read spec before coding, update it when you diverge, verify alignment when done. Stores specs in .claude/specs/."
+author: "n8n-io"
 repoUrl: "https://github.com/n8n-io/n8n"
 categories:
   - productivity

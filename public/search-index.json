@@ -369,6 +369,7 @@
       "javascript"
     ],
     "featured": false,
+    "author": "oven-sh",
     "repoUrl": "https://github.com/oven-sh/bun",
     "date": "2026-03-18T16:00:00Z",
     "excerpt": "Writing Bun Bundler Tests Bundler tests use  from  to test Bun's bundler. Basic Usage Test ID format:  (e.g., , ) File Setup Bundler Options Runtime Verification Bundle Errors and Warnings Dead Code E...",
@@ -388,6 +389,7 @@
       "testing"
     ],
     "featured": false,
+    "author": "oven-sh",
     "repoUrl": "https://github.com/oven-sh/bun",
     "date": "2026-03-18T16:01:00Z",
     "excerpt": "Writing Bun Dev Server Tests Dev server tests validate hot-reloading robustness and reliability using the bake harness. File Structure Basic devTest Key APIs object -  — HTTP request to the dev server...",
@@ -558,6 +560,7 @@
       "conventional-commits"
     ],
     "featured": false,
+    "author": "n8n-io",
     "repoUrl": "https://github.com/n8n-io/n8n",
     "date": "2026-03-18T16:02:00Z",
     "excerpt": "Create Pull Request Creates GitHub PRs with titles following the Conventional Commits format — the standard used by most open source projects with automated changelogs and CI title validation. PR Titl...",
@@ -2312,6 +2315,7 @@
       "bug-reproduction"
     ],
     "featured": false,
+    "author": "n8n-io",
     "repoUrl": "https://github.com/n8n-io/n8n",
     "date": "2026-03-18T16:03:00Z",
     "excerpt": "Bug Reproduction Framework Systematic process for reproducing bugs from issue reports using failing regression tests. The goal is to write a failing test that demonstrates the bug — not to fix it. Cor...",
@@ -2770,6 +2774,7 @@
       "workflow"
     ],
     "featured": false,
+    "author": "pytorch",
     "repoUrl": "https://github.com/pytorch/pytorch",
     "date": "2026-03-18T16:04:00Z",
     "excerpt": "Skill Writer Guide users through creating Agent Skills for Claude Code with proper structure and validation. Main Steps 1. Determine skill scope (focused, single capability) 2. Choose location (person...",
@@ -2835,6 +2840,7 @@
       "planning"
     ],
     "featured": false,
+    "author": "n8n-io",
     "repoUrl": "https://github.com/n8n-io/n8n",
     "date": "2026-03-18T16:05:00Z",
     "excerpt": "Spec-Driven Development Keep implementation and specifications synchronized throughout development. Specs stored in  serve as the authoritative source for architectural choices, API contracts, and fea...",

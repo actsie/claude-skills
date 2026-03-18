@@ -1,6 +1,7 @@
 ---
 title: "Writing Bun Dev Server Tests"
 description: "Write HMR and dev server tests for Bun using devTest/prodTest harnesses — covers file watching, hot reload verification, client simulation, and error handling."
+author: "oven-sh"
 repoUrl: "https://github.com/oven-sh/bun"
 categories:
   - testing
