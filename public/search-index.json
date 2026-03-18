@@ -1946,6 +1946,26 @@
     "excerpt": "Comprehensive collection of 25+ proven AI prompting patterns with model-specific guidance, failure mode analysis, and orchestration strategies for advanced AI interactions and workflow optimization.  ..."
   },
   {
+    "slug": "prompts-chat",
+    "title": "prompts.chat",
+    "description": "The largest open-source prompt library with 143,000+ GitHub stars — 100+ curated AI prompts, a social platform, MCP server, and Claude Code plugin for searching and managing prompts.",
+    "categories": [
+      "productivity"
+    ],
+    "tags": [
+      "prompts",
+      "prompt-engineering",
+      "claude-code",
+      "mcp",
+      "collection"
+    ],
+    "featured": false,
+    "author": "f",
+    "repoUrl": "https://github.com/f/prompts.chat",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "The original and largest open-source prompt library — 143,000+ GitHub stars, featured by Forbes, cited by Harvard and Columbia, and the most-liked dataset on Hugging Face. Started in December 2022 as ..."
+  },
+  {
     "slug": "python-packaging",
     "title": "Python Packaging",
     "description": "Create distributable Python packages with proper project structure, setup.py/pyproject.toml, and publishing to PyPI. Use when packaging Python libraries, creating CLI tools, or distributing Python code.",
