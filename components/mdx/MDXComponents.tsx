@@ -53,4 +53,24 @@ export const MDXComponents = {
   blockquote: (props: any) => (
     <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-4 italic text-gray-600 dark:text-gray-400" {...props} />
   ),
+  table: (props: any) => (
+    <div className="overflow-x-auto my-6">
+      <table className="w-full text-sm border-collapse" {...props} />
+    </div>
+  ),
+  thead: (props: any) => (
+    <thead className="bg-gray-50 dark:bg-gray-800/60" {...props} />
+  ),
+  tbody: (props: any) => (
+    <tbody className="divide-y divide-gray-200 dark:divide-gray-700" {...props} />
+  ),
+  tr: (props: any) => (
+    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/40 transition-colors" {...props} />
+  ),
+  th: (props: any) => (
+    <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide border-b border-gray-200 dark:border-gray-700" {...props} />
+  ),
+  td: (props: any) => (
+    <td className="px-4 py-2.5 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700" {...props} />
+  ),
 };
