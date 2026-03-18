@@ -189,7 +189,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="your.email@example.com"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -209,7 +209,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   required
                   value={formData.skillName}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="e.g., Meeting Notes Summarizer, Resume Builder"
                 />
               </div>
@@ -226,7 +226,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   rows={3}
                   value={formData.skillPurpose}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="e.g., Transform meeting notes into structured summaries with action items and next steps"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -246,7 +246,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   rows={4}
                   value={formData.useCase}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="e.g., I would paste my meeting transcript and say 'Please summarize this meeting with action items and next steps'"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -265,7 +265,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   name="inputType"
                   value={formData.inputType}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="e.g., Plain text notes, PDF invoices, CSV files, images"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -284,7 +284,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   name="expectedOutput"
                   value={formData.expectedOutput}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="e.g., Markdown summary with action items checklist, Formatted report, Code files"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -325,7 +325,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
                   rows={3}
                   value={formData.additionalContext}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 placeholder:text-xs focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="Any other details, special requirements, or context that would be helpful"
                 />
               </div>
