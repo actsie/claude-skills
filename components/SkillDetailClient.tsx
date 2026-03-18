@@ -10,6 +10,7 @@ import TrustActions from './TrustActions';
 import QualityBanner from './QualityBanner';
 import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
 import { getFingerprint } from '@/lib/voting/fingerprint';
+import GitHubStars from '@/components/GitHubStars';
 
 interface SkillDetailClientProps {
   skill: Skill;
@@ -279,8 +280,11 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
 
             {/* GitHub Link Panel - Always visible */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 sticky top-24">
-              <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 uppercase tracking-wide">
-                Repository
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide">
+                  Repository
+                </div>
+                <GitHubStars repoUrl={skill.repoUrl} className="text-sm text-gray-500 dark:text-gray-400" />
               </div>
               {skill.repoUrl ? (
                 <a
