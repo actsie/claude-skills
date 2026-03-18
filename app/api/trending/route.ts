@@ -19,26 +19,16 @@ async function getMostViewedAllTime(): Promise<TrendingSkill[]> {
 
   const withViews = await Promise.all(
     allSkills.map(async (skill) => {
-      const entries = await redis.zrange(
-        `skill:${skill.slug}:views`,
-        '-inf',
-        '+inf',
-        { byScore: true }
-      );
-
-      const totalViews = Array.isArray(entries)
-        ? entries.reduce((sum: number, val: unknown) => sum + (typeof val === 'number' ? val : 0), 0)
-        : 0;
-
-      return { skill, totalViews };
+      const views = await redis.pfcount(`skill:view:30d:${skill.slug}`);
+      return { skill, views: views || 0 };
     })
   );
 
   return withViews
-    .filter(({ totalViews }) => totalViews > 0)
-    .sort((a, b) => b.totalViews - a.totalViews)
+    .filter(({ views }) => views > 0)
+    .sort((a, b) => b.views - a.views)
     .slice(0, 6)
-    .map(({ skill, totalViews }, index) => ({
+    .map(({ skill, views }, index) => ({
       skill_id: skill.slug,
       slug: skill.slug,
       title: skill.title,
@@ -46,10 +36,10 @@ async function getMostViewedAllTime(): Promise<TrendingSkill[]> {
       tags: skill.tags.slice(0, 3),
       created_at: skill.date || new Date().toISOString(),
       repoUrl: skill.repoUrl,
-      trending_score: totalViews,
+      trending_score: views,
       velocity_percent: null,
-      history_7d: [0, 0, 0, 0, 0, 0, totalViews],
-      views_7d: totalViews,
+      history_7d: [0, 0, 0, 0, 0, 0, views],
+      views_7d: views,
       first_seen_at: skill.date || new Date().toISOString(),
       badge: 'stable' as const,
       rank: index + 1,
@@ -95,7 +85,7 @@ export async function GET() {
     const trending = await getMostViewedAllTime();
 
     return NextResponse.json(
-      { trending, fallback: 'most-viewed' },
+      { trending, fallback: 'featured' },
       { headers: { 'Cache-Control': 'public, max-age=3600' } }
     );
   } catch (error) {
