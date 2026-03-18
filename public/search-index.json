@@ -2072,6 +2072,27 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** framework-migration     Master React version upgrades, class to hooks migration, concurrent features adoption..."
   },
   {
+    "slug": "react",
+    "title": "React",
+    "description": "Official React library by Meta — build user interfaces with components, hooks, and declarative rendering for web and native platforms.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "react",
+      "javascript",
+      "typescript",
+      "ui",
+      "frontend",
+      "components"
+    ],
+    "featured": false,
+    "author": "Meta",
+    "repoUrl": "https://github.com/facebook/react",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "The official React library by Meta. React lets you build user interfaces out of individual pieces called components. Used by millions of developers to build everything from simple interactive widgets ..."
+  },
+  {
     "slug": "remotion",
     "title": "Remotion",
     "description": "Create videos programmatically using React — write components, use CSS animations, SVG, WebGL, and full programming logic to generate data-driven video content at scale.",
