@@ -17,7 +17,7 @@ featured: true
 featuredPriority: 1
 featuredType: permanent
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/artifacts-builder
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/artifacts-builder
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0

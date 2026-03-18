@@ -19,7 +19,7 @@ version: 8.1.0
 
 # Antigravity Awesome Skills
 
-A community-maintained library of 1,265+ agentic skill files for Claude Code, Gemini CLI, Cursor, GitHub Copilot, and other AI coding tools. Version 8.1.0 with 100+ contributors.
+A community-maintained library of 1,265+ agentic skill files for Claude Code, Gemini CLI, Cursor, GitHub Copilot, AdaL, and other AI coding tools. Version 8.1.0 with 100+ contributors.
 
 <Callout type="tip">
 The largest curated skills collection available. One install gives your AI coding tool specialized knowledge across architecture, security, testing, DevOps, and more — organized into 8 domains with an interactive browser UI.

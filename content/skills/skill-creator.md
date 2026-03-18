@@ -190,6 +190,49 @@ python package_skill.py my-skill-name
 - Update documentation
 - Re-package and distribute
 
+## Evaluation & Benchmarking System
+
+The Skill Creator includes a full evaluation system for testing and improving skills before distribution.
+
+<Card title="Eval System Capabilities">
+
+**Blind A/B Comparison**
+Compare two versions of a skill side-by-side without knowing which is which. Eliminates bias when iterating on prompts.
+
+**Automated Eval Viewer**
+Browser-based interface showing benchmark metrics and per-iteration comparisons. Run evaluations headlessly and review results visually.
+
+**Description Optimization Loop**
+Generate trigger eval queries automatically to test whether the skill's `when_to_use` description activates correctly in real scenarios.
+
+**Feedback Persistence**
+Results saved to `feedback.json` so improvements accumulate across sessions and can be reviewed later.
+
+**Assertion-Based Grading**
+Define expected outputs as assertions. The eval runner grades each iteration against them automatically.
+
+**Static HTML Export**
+Export the eval viewer as a standalone HTML file for headless or CI environments.
+
+</Card>
+
+### Running Evals
+
+```bash
+# Run benchmark against current skill version
+python eval_skill.py my-skill-name
+
+# Compare two versions (blind A/B)
+python eval_skill.py my-skill-name --compare v1 v2
+
+# Export results as static HTML
+python eval_skill.py my-skill-name --export results.html
+```
+
+### Analyst Pass
+
+After running evals, an analyst pass identifies non-discriminating tests — assertions that pass regardless of skill quality — so you can remove them and keep your benchmark meaningful.
+
 ## Writing Standards
 
 <Card title="Metadata Requirements">

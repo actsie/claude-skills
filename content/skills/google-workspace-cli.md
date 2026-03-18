@@ -44,9 +44,26 @@ Auto-generates its entire command surface from Google's Discovery Service, so it
 ## Installation
 
 ```bash
+# npm
 npm install -g @googleworkspace/cli
+
+# Homebrew
+brew install googleworkspace/tap/gws
+
+# Nix
+nix profile install github:googleworkspace/cli
+
+# Cargo
+cargo install gws-cli
+```
+
+```bash
 gws auth setup
 ```
+
+<Callout type="info">
+The CLI is under active development heading toward v1.0. Expect occasional breaking changes between releases.
+</Callout>
 
 ## Quick Commands
 
@@ -110,6 +127,7 @@ Credentials are stored locally with AES-256-GCM encryption. All responses go thr
 - Local credential storage, never sent to third-party servers
 - Dry-run mode to preview destructive operations before executing
 - Scope-limited OAuth — request only the permissions you need
+- **Google Cloud Model Armor** integration scans all responses for prompt injection before they reach your agent
 
 ## Use Cases
 

@@ -41,6 +41,10 @@ Works with Claude, Gemini, OpenAI, and local models. Self-host for free or use B
 ## Installation
 
 ```bash
+# Initialize a new project
+uvx browser-use init
+
+# Or add to existing project
 uv add browser-use
 ```
 
@@ -66,6 +70,13 @@ await agent.run()
 4. **Content monitoring**: Track changes on websites over time
 5. **QA testing**: Automate end-to-end user flow testing
 6. **Data extraction**: Scrape structured data from any website
+
+## Fine-Tuned Model
+
+Browser Use offers a proprietary fine-tuned model optimized for browser automation:
+
+- **`browser-use/bu-30b-a3b-preview`** — 3–5x faster than general-purpose models with state-of-the-art accuracy on browser tasks
+- Available via Browser Use Cloud
 
 ## Browser Use Cloud
 
