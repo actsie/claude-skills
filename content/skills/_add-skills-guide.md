@@ -100,11 +100,16 @@ This is an internal reference document for adding new skills to the marketplace.
 
 1. **Check Trust Level** - Determine author trust level from table above
 2. **Fetch SKILL.md** - Read the skill content from GitHub
-3. **Scan for Red Flags** - Look for suspicious patterns
-4. **Verify External Resources** - Check all URLs and dependencies
-5. **Review Scripts/Assets** - If bundled, inspect code carefully
-6. **Document Findings** - Note any concerns or approval
-7. **Make Decision**:
+3. **Check for built-in Claude skills** - Look for `.claude/skills/` directory in the repo:
+   - Fetch `https://api.github.com/repos/[owner]/[repo]/contents/.claude/skills`
+   - If the directory exists, fetch each skill's `SKILL.md`
+   - If skills are contributor/internal tools (not for end users), document them in a **Contributor Skills** section on the skill page
+   - If skills are general-purpose (usable by anyone), document them prominently as a core feature
+4. **Scan for Red Flags** - Look for suspicious patterns
+5. **Verify External Resources** - Check all URLs and dependencies
+6. **Review Scripts/Assets** - If bundled, inspect code carefully
+7. **Document Findings** - Note any concerns or approval
+8. **Make Decision**:
    - ✅ **Approve** - Safe to add
    - ⚠️ **Flag** - Needs user review/approval
    - ❌ **Reject** - Security risk, do not add
@@ -256,7 +261,33 @@ For consistency across all skills, include these sections in order:
 3. **Skill Structure** ⭐ - Repository organization (if applicable)
 4. **What This Skill Does** - Core capabilities overview
 5. **Main Content** - Features, usage, examples
-6. **Repository Resources** - Link to reference materials
+6. **Contributor Skills** ⭐ - If `.claude/skills/` exists in the repo (see below)
+7. **Repository Resources** - Link to reference materials
+
+### Documenting Built-in Claude Skills
+
+If the repo has a `.claude/skills/` directory, add a **Contributor Skills** section:
+
+```mdx
+## Contributor Skills
+
+[Repo name] ships [N] Claude skills for [who they're for — contributors / end users / etc].
+
+<Card title="Built-in Skills">
+
+- **`skill-name`** — What it does, when to use it
+- **`skill-name`** — What it does, when to use it
+
+</Card>
+
+<Callout type="info">
+[Context — are these for contributors, end users, internal tooling?]
+</Callout>
+```
+
+**Judgment call on placement:**
+- Skills aimed at **contributors** (tests, linting, type-checking) → put near the bottom
+- Skills aimed at **end users** (workflows, generation, automation) → put near the top as a feature highlight
 
 ### Skill Structure Section Template
 
