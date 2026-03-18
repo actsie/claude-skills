@@ -13,7 +13,7 @@ tags:
   - docker
 author: Prosper Otemuyiwa (unicodeveloper)
 repoUrl: https://github.com/unicodeveloper/shannon
-date: 2026-03-18
+date: "2026-03-18T08:01:00Z"
 version: 1.0.0
 ---
 

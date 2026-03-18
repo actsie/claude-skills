@@ -12,7 +12,7 @@ tags:
   - typescript
   - e2e-testing
 author: "Metabase"
-date: 2026-03-18
+date: "2026-03-18T15:00:00Z"
 version: "1.0.0"
 ---
 

@@ -9,7 +9,7 @@ tags:
   - skills
   - agent
   - workflow
-date: 2026-03-18
+date: "2026-03-18T16:04:00Z"
 slug: skill-writer
 ---
 

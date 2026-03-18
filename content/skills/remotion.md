@@ -13,7 +13,7 @@ tags:
   - generative
 author: Remotion
 repoUrl: https://github.com/remotion-dev/remotion
-date: 2026-03-18
+date: "2026-03-18T08:05:00Z"
 version: 1.0.0
 ---
 

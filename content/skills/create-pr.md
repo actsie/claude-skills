@@ -9,7 +9,7 @@ tags:
   - github
   - pull-request
   - conventional-commits
-date: 2026-03-18
+date: "2026-03-18T16:02:00Z"
 slug: create-pr
 ---
 

@@ -11,7 +11,7 @@ tags:
   - components
   - typescript
 author: "Vercel Labs"
-date: 2026-03-18
+date: "2026-03-18T10:06:00Z"
 version: "1.0.0"
 ---
 

@@ -13,7 +13,7 @@ tags:
   - async
 author: Browser Use
 repoUrl: https://github.com/browser-use/browser-use
-date: 2026-03-18
+date: "2026-03-18T08:07:00Z"
 version: 1.0.0
 ---
 

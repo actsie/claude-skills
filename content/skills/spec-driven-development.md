@@ -9,7 +9,7 @@ tags:
   - documentation
   - architecture
   - planning
-date: 2026-03-18
+date: "2026-03-18T16:05:00Z"
 slug: spec-driven-development
 ---
 

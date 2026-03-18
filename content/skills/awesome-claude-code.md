@@ -12,7 +12,7 @@ tags:
   - community
   - collection
 author: "hesreallyhim"
-date: 2026-03-18
+date: "2026-03-18T10:00:00Z"
 version: "1.0.0"
 ---
 

@@ -15,7 +15,7 @@ tags:
   - rag
 author: Valyu AI
 repoUrl: https://github.com/valyuai/skills
-date: 2026-03-18
+date: "2026-03-18T08:00:00Z"
 version: 1.0.0
 ---
 

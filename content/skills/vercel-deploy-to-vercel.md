@@ -11,7 +11,7 @@ tags:
   - ci-cd
   - automation
 author: "Vercel Labs"
-date: 2026-03-18
+date: "2026-03-18T10:07:00Z"
 version: "1.0.0"
 ---
 

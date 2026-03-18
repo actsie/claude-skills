@@ -14,7 +14,7 @@ tags:
   - web
 author: Anthropic
 repoUrl: https://github.com/anthropics/skills/tree/main/skills/frontend-design
-date: 2026-03-18
+date: "2026-03-18T08:06:00Z"
 version: 1.0.0
 ---
 

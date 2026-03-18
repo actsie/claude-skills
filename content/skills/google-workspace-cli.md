@@ -16,7 +16,7 @@ tags:
   - productivity
 author: Google Workspace
 repoUrl: https://github.com/googleworkspace/cli
-date: 2026-03-18
+date: "2026-03-18T08:02:00Z"
 version: 1.0.0
 ---
 

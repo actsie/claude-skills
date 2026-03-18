@@ -11,7 +11,7 @@ tags:
   - knowledge-management
   - cli
 author: "kepano"
-date: 2026-03-18
+date: "2026-03-18T10:02:00Z"
 version: "1.0.0"
 ---
 

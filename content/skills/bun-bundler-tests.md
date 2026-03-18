@@ -9,7 +9,7 @@ tags:
   - bundler
   - testing
   - javascript
-date: 2026-03-18
+date: "2026-03-18T16:00:00Z"
 slug: bun-bundler-tests
 ---
 

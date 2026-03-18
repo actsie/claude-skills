@@ -13,7 +13,7 @@ tags:
   - collection
 author: sickn33
 repoUrl: https://github.com/sickn33/antigravity-awesome-skills
-date: 2026-03-18
+date: "2026-03-18T08:03:00Z"
 version: 8.1.0
 ---
 

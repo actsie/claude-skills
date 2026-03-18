@@ -168,12 +168,12 @@ categories: ["development"]  # Options: development, design, data, devops, etc.
 tags: ["tag1", "tag2", "tag3"]  # Relevant keywords for search/filtering
 featured: false  # Set to true for prominent display
 featuredPriority: 1  # Lower number = higher priority (1 is highest)
-date: "YYYY-MM-DD"  # REQUIRED: Always use today's actual date, never a placeholder
+date: "YYYY-MM-DDTHH:MM:SSZ"  # REQUIRED: Always use full ISO timestamp (e.g. 2026-03-18T14:30:00Z), never a placeholder
 version: "1.0.0"
 ---
 ```
 
-> ⚠️ **IMPORTANT**: The `date` field controls the "Newest Skills" section. Always set it to the actual date you're adding the skill (today's date). Never use a placeholder or copy a date from an example.
+> ⚠️ **IMPORTANT**: The `date` field controls the "Newest Skills" section and ordering within the same day. Always use a full ISO timestamp (e.g. `2026-03-18T14:30:00Z`) so skills added on the same day sort correctly. Never use a placeholder or copy a timestamp from an example.
 
 ### Frontmatter Fields Explained
 

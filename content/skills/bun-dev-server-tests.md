@@ -9,7 +9,7 @@ tags:
   - hmr
   - dev-server
   - testing
-date: 2026-03-18
+date: "2026-03-18T16:01:00Z"
 slug: bun-dev-server-tests
 ---
 
