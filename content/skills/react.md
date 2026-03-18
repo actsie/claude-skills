@@ -105,6 +105,26 @@ React is a library, not a framework. For production apps, use it with:
 - For React 18 and below: wrap expensive calculations in `useMemo`, stable callbacks in `useCallback`
 - Use `React.lazy` + `Suspense` for code splitting
 
+## Contributor Skills
+
+React ships 7 Claude skills for contributors working inside the React codebase itself. These live in `.claude/skills/` in the repo.
+
+<Card title="Built-in Contributor Skills">
+
+- **`test`** — Run React core tests across channels (source, www, experimental, stable). Supports `@gate` pragmas and `__VARIANT__` flags
+- **`feature-flags`** — Manage and gate tests by feature flags across release channels (canary, www, RN, experimental)
+- **`flags`** — Inspect feature flag states, diff channels, debug channel-specific behavior differences
+- **`flow`** — Run Flow type checking against specific renderers (dom-node, dom-browser, native, fabric)
+- **`verify`** — Full pre-commit validation: prettier → lint → flow + tests in parallel
+- **`fix`** — Fix formatting and lint issues with `yarn prettier` and `yarn linc`
+- **`extract-errors`** — Assign error codes when adding new error messages to React
+
+</Card>
+
+<Callout type="info">
+These skills are for contributors to React itself — not for building apps with React. If you're working inside the React source repo, add them via Claude Code to get test running, flag management, and type checking commands built in.
+</Callout>
+
 ## Resources
 
 - **[react.dev](https://react.dev)** — Official docs with interactive examples
