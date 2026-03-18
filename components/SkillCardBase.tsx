@@ -80,7 +80,7 @@ export default function SkillCardBase({
       )}
 
       {/* Content */}
-      <div className="relative flex flex-col h-full">
+      <div className="relative flex flex-col flex-1">
         {/* Title */}
         <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2 mb-3">
           {title}
