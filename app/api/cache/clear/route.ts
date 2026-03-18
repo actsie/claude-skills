@@ -6,13 +6,19 @@ const redis = Redis.fromEnv();
 /**
  * Clear specific cache keys
  * Used to force refresh of featured/newest sections
+ * Protected by CRON_SECRET
  */
-export async function POST() {
+export async function POST(request: Request) {
+  const secret = request.headers.get('x-cron-secret') || new URL(request.url).searchParams.get('secret');
+  if (secret !== process.env.CRON_SECRET) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   try {
-    // Clear all cache versions (v2 and v3)
     const keysToDelete = [
       'skills:featured:v2',
       'skills:featured:v3',
+      'skills:featured:v4',
       'skills:newest:v2',
       'skills:newest:v3',
       'skills:trending:v1',
