@@ -12,7 +12,7 @@ tags:
   - starter
 featured: false
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/template-skill
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/template-skill
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0

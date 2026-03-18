@@ -13,7 +13,7 @@ tags:
   - updates
 featured: false
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/internal-comms
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/internal-comms
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0

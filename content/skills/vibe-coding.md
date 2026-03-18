@@ -106,27 +106,41 @@ Vibe coding emphasizes using natural language to express programming intent rath
 
 ### Phase 2: AI Tool Selection
 
-**Tool Categories:**
+**2025 Tool Landscape:**
 
-<Card title="AI Coding Tools">
+<Card title="Full-Stack Platforms">
 
-**Code Generation:**
-- GitHub Copilot for inline suggestions
-- ChatGPT/Claude for complex logic
-- Cursor for context-aware editing
-- Replit Ghostwriter for rapid prototyping
+Build complete apps from natural language prompts — no local dev environment required:
 
-**Code Review and Analysis:**
-- AI-powered code review tools
-- Automated testing generators
-- Documentation generators
-- Refactoring assistants
+- **Lovable** — React/TypeScript apps with Supabase backend; best for SaaS prototypes
+- **Bolt.new** — StackBlitz-powered; runs entirely in the browser with instant preview
+- **Replit Agent** — Deploys to Replit hosting automatically; strong for Python/Node apps
 
-**Specialized Tools:**
-- Database query generators
-- API documentation tools
-- Configuration file generators
-- Deployment script creators
+Best for: early prototypes, MVPs, non-technical founders validating ideas
+
+</Card>
+
+<Card title="AI-Enhanced IDEs">
+
+Drop-in upgrades to your existing editor with deep codebase context:
+
+- **Cursor** — VSCode fork with multi-file editing, codebase indexing, and agent mode
+- **Windsurf** — Codeium's IDE with "Flows" for autonomous multi-step edits
+- **GitHub Copilot** — Inline suggestions + Copilot Chat; widest language/framework coverage
+
+Best for: experienced developers working on existing codebases
+
+</Card>
+
+<Card title="Specialized Tools">
+
+Purpose-built for specific output types:
+
+- **v0.dev** — Vercel's React UI generator; produces shadcn/ui components from prompts
+- **Tempo Labs** — React component builder with visual editing + AI sync
+- **Rosebud AI** — Game and interactive experience prototyping
+
+Best for: UI components, design-to-code workflows, game prototypes
 
 </Card>
 
@@ -531,6 +545,43 @@ Documentation AI: "Generate technical documentation"
 - Understand AI limitations and biases
 - Develop critical evaluation skills
 - Maintain architectural thinking abilities
+
+## Three-Tier MVP Philosophy
+
+When scoping a vibe-coded project, cut ruthlessly across three tiers:
+
+<Card title="What to Cut at Each Stage">
+
+**Tier 1 — Core loop only** (ship this)
+- The one interaction that proves the idea works
+- No auth, no settings, no error states — just the happy path
+
+**Tier 2 — Makes it usable** (add if core works)
+- Auth, basic error handling, data persistence
+- Only what a real user would immediately miss
+
+**Tier 3 — Nice to have** (defer indefinitely)
+- Admin panels, analytics, export features, settings screens
+- These never make the MVP cut — they're v2
+
+</Card>
+
+The goal is a working demo in hours, not a polished product. Defer everything that isn't the core loop.
+
+## When NOT to Vibe Code
+
+<Callout type="warning">
+
+**Vibe coding is not appropriate for:**
+
+- **Production security systems** — Authentication, authorization, encryption, and security-critical paths require deliberate design and expert review. AI-generated security code introduces unpredictable vulnerabilities.
+- **Financial and payment flows** — Rounding errors, race conditions, and compliance requirements (PCI-DSS, SOX) make AI-generated financial logic high-risk without deep manual review.
+- **Healthcare and medical software** — HIPAA compliance, data integrity requirements, and patient safety implications require professional oversight, not rapid iteration.
+- **Complex distributed systems** — Consensus algorithms, distributed transactions, and failure-mode reasoning require deep systems expertise. Vibe coding produces plausible-looking code that fails at scale.
+
+In these domains: design deliberately, review exhaustively, test adversarially, and involve domain experts before shipping.
+
+</Callout>
 
 ## About This Skill
 

@@ -15,7 +15,7 @@ tags:
   - data-analysis
 featured: false
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/document-skills/xlsx
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/xlsx
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0

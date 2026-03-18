@@ -15,7 +15,7 @@ tags:
   - python
 featured: false
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/webapp-testing
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/webapp-testing
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0

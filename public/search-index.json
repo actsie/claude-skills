@@ -67,6 +67,27 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** framework-migration     Master AngularJS to Angular migration, including hybrid apps, component conversion, d..."
   },
   {
+    "slug": "antigravity-awesome-skills",
+    "title": "Antigravity Awesome Skills",
+    "description": "A curated library of 1,265+ agentic skills for Claude Code, Cursor, GitHub Copilot, and other AI coding tools — covering architecture, security, testing, infrastructure, and more across 8 domains.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "skills",
+      "claude-code",
+      "cursor",
+      "ai-agents",
+      "productivity",
+      "collection"
+    ],
+    "featured": false,
+    "author": "sickn33",
+    "repoUrl": "https://github.com/sickn33/antigravity-awesome-skills",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A community-maintained library of 1,265+ agentic skill files for Claude Code, Gemini CLI, Cursor, GitHub Copilot, AdaL, and other AI coding tools. Version 8.1.0 with 100+ contributors.  <Callout type=..."
+  },
+  {
     "slug": "api-design-principles",
     "title": "Api Design Principles",
     "description": "Master REST and GraphQL API design principles to build intuitive, scalable, and maintainable APIs that delight developers. Use when designing new APIs, reviewing API specifications, or establishing API design standards.",
@@ -158,7 +179,7 @@
     "featured": true,
     "featuredPriority": 1,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/artifacts-builder",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/artifacts-builder",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic toolkit for creating sophisticated multi-component HTML artifacts that can be shared on Claude.ai, using modern frontend technologies with automated bundling.  <Callout type=\"tip\"> ..."
   },
@@ -261,7 +282,7 @@
   {
     "slug": "brainstorming",
     "title": "Brainstorming & Design",
-    "description": "Structured methodology for transforming rough ideas into fully-formed designs through systematic questioning and iterative validation.",
+    "description": "Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate preventing implementation before design sign-off.",
     "categories": [
       "development",
       "design"
@@ -277,12 +298,33 @@
     "author": "obra",
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/brainstorming",
     "date": "2025-10-24T00:00:00.000Z",
-    "excerpt": "Structured methodology for transforming rough ideas into fully-formed, validated designs through six systematic phases of exploration, refinement, and documentation.  <Callout type=\"tip\"> Perfect for ..."
+    "excerpt": "Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate at step 5 that prevents any implementation before explicit design sign-off.  <Callout type=\"ti..."
+  },
+  {
+    "slug": "browser-use",
+    "title": "Browser Use",
+    "description": "Enable AI agents to automate web browsing — form filling, research, e-commerce flows, and more — using an open-source Python library that works with Claude, OpenAI, Gemini, and local models.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "browser-automation",
+      "python",
+      "ai-agents",
+      "web-scraping",
+      "automation",
+      "async"
+    ],
+    "featured": false,
+    "author": "Browser Use",
+    "repoUrl": "https://github.com/browser-use/browser-use",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "An open-source Python library that gives AI agents the ability to control a real web browser — navigating pages, filling forms, clicking buttons, and extracting data.  <Callout type=\"tip\"> Works with ..."
   },
   {
     "slug": "claude-scientific-skills",
     "title": "Claude Scientific Skills",
-    "description": "Comprehensive collection of 70+ scientific skills for Claude, transforming it into an AI Scientist with access to bioinformatics, cheminformatics, drug discovery, and research tools.",
+    "description": "170+ ready-to-use scientific skills that transform Claude into an AI Scientist — with access to 250+ databases, 60+ Python packages, and 15+ lab platforms across biology, chemistry, medicine, physics, and engineering.",
     "categories": [
       "science",
       "research"
@@ -295,13 +337,16 @@
       "proteomics",
       "genomics",
       "scientific-computing",
-      "research"
+      "research",
+      "biology",
+      "chemistry"
     ],
-    "featured": false,
+    "featured": true,
+    "featuredPriority": 1,
     "author": "K-Dense AI",
     "repoUrl": "https://github.com/K-Dense-AI/claude-scientific-skills",
     "date": "2025-10-22T00:00:00.000Z",
-    "excerpt": "A comprehensive collection of 70+ ready-to-use scientific skills curated by K-Dense AI that transforms Claude Code into an \"AI Scientist\" with access to specialized scientific libraries, databases, an..."
+    "excerpt": "A comprehensive, open-source collection of **170+ ready-to-use scientific skills** by K-Dense AI that transforms Claude Code, Cursor, and other AI agents into an AI Scientist with access to cutting-ed..."
   },
   {
     "slug": "claude-skills-mcp",
@@ -633,7 +678,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/docx",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/docx",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill that enables comprehensive Word document operations including creation, editing, and analysis with full support for tracked changes, comments, and formatting preservation.  <C..."
   },
@@ -709,6 +754,28 @@
     "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase",
     "date": "2025-10-31T00:00:00.000Z",
     "excerpt": "Standardized patterns for integrating Sentry v8 error tracking and performance monitoring across all project services, with mandatory error reporting, proper context capture, severity classification, ..."
+  },
+  {
+    "slug": "excalidraw-diagram",
+    "title": "Excalidraw Diagram Generator",
+    "description": "Generate production-quality .excalidraw JSON diagram files from natural language — with visual structure that communicates meaning through layout and relationships, not just labels.",
+    "categories": [
+      "development",
+      "design"
+    ],
+    "tags": [
+      "excalidraw",
+      "diagrams",
+      "visualization",
+      "architecture",
+      "documentation",
+      "claude-code"
+    ],
+    "featured": false,
+    "author": "Cole Medin (coleam00)",
+    "repoUrl": "https://github.com/coleam00/excalidraw-diagram-skill",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A Claude Code skill that generates `.excalidraw` JSON diagram files from natural language descriptions. Produces \"visual arguments\" — diagrams where structure alone communicates relationships, causali..."
   },
   {
     "slug": "family-history-research",
@@ -794,6 +861,28 @@
     "repoUrl": "https://github.com/obra/superpowers/tree/main/skills/finishing-a-development-branch",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Structured four-step workflow for completing development work: verify tests, determine base branch, present merge options, and execute with proper cleanup.  <Callout type=\"tip\"> Essential for develope..."
+  },
+  {
+    "slug": "frontend-design",
+    "title": "Frontend Design",
+    "description": "Build distinctive, production-grade web UIs that avoid generic aesthetics — with bold conceptual direction, unexpected layouts, and atmosphere-driven visuals.",
+    "categories": [
+      "design",
+      "development"
+    ],
+    "tags": [
+      "frontend",
+      "ui",
+      "design",
+      "css",
+      "animations",
+      "web"
+    ],
+    "featured": false,
+    "author": "Anthropic",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "An official Anthropic skill that directs Claude to build distinctive, production-grade web UIs — prioritizing bold visual identity over generic defaults.  <Callout type=\"tip\"> This skill is for develo..."
   },
   {
     "slug": "frontend-dev-guidelines",
@@ -937,6 +1026,30 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** kubernetes-operations     Complete guide to implementing GitOps workflows with ArgoCD and Flux for automated ..."
   },
   {
+    "slug": "google-workspace-cli",
+    "title": "Google Workspace CLI",
+    "description": "A unified CLI for 40+ Google Workspace APIs — Drive, Gmail, Calendar, Sheets, Docs, Chat — designed for both humans and AI agents with structured JSON output and 40+ pre-built agent skills.",
+    "categories": [
+      "development",
+      "devops"
+    ],
+    "tags": [
+      "google-workspace",
+      "gmail",
+      "google-drive",
+      "google-sheets",
+      "calendar",
+      "cli",
+      "ai-agents",
+      "productivity"
+    ],
+    "featured": false,
+    "author": "Google Workspace",
+    "repoUrl": "https://github.com/googleworkspace/cli",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "An official Google CLI for the full Google Workspace API surface — Drive, Gmail, Calendar, Sheets, Docs, Chat, and 40+ other services. Built for both humans and AI agents, with every response as struc..."
+  },
+  {
     "slug": "grafana-dashboards",
     "title": "Grafana Dashboards",
     "description": "Create and manage production Grafana dashboards for real-time visualization of system and application metrics. Use when building monitoring dashboards, visualizing metrics, or creating operational observability interfaces.",
@@ -1030,7 +1143,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/internal-comms",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/internal-comms",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill for creating professional internal company communications using standardized formats and templates that align with organizational best practices.  <Callout type=\"tip\"> Essenti..."
   },
@@ -1584,7 +1697,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/pdf",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/pdf",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill enabling comprehensive PDF manipulation through Python libraries and command-line tools, supporting extraction, creation, transformation, and form processing at scale.  <Callo..."
   },
@@ -1631,7 +1744,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/pptx",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/pptx",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill enabling comprehensive PowerPoint operations through specialized workflows for reading, creating, and editing presentations with emphasis on content-informed design.  <Callout..."
   },
@@ -1877,6 +1990,27 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** framework-migration     Master React version upgrades, class to hooks migration, concurrent features adoption..."
   },
   {
+    "slug": "remotion",
+    "title": "Remotion",
+    "description": "Create videos programmatically using React — write components, use CSS animations, SVG, WebGL, and full programming logic to generate data-driven video content at scale.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "video",
+      "react",
+      "animation",
+      "typescript",
+      "media",
+      "generative"
+    ],
+    "featured": false,
+    "author": "Remotion",
+    "repoUrl": "https://github.com/remotion-dev/remotion",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A React-based framework for creating videos programmatically. Write React components, and they render to video — with full access to CSS, Canvas, SVG, WebGL, and programming logic.  <Callout type=\"tip..."
+  },
+  {
     "slug": "requirements-elicitation",
     "title": "Requirements Elicitation",
     "description": "Systematic framework for analyzing product documents and identifying technical requirements through conversational elicitation, gap analysis, and stakeholder alignment.",
@@ -2038,6 +2172,27 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** cicd-automation     Secure secrets management practices for CI/CD pipelines using Vault, AWS Secrets Manager,..."
   },
   {
+    "slug": "shannon",
+    "title": "Shannon — AI Pentester",
+    "description": "An autonomous white-box penetration testing skill for Claude Code that analyzes source code, maps attack surfaces, and executes real exploits across 50+ vulnerability types before they reach production.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "security",
+      "pentesting",
+      "vulnerability-scanning",
+      "owasp",
+      "claude-code",
+      "docker"
+    ],
+    "featured": false,
+    "author": "Prosper Otemuyiwa (unicodeveloper)",
+    "repoUrl": "https://github.com/unicodeveloper/shannon",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A Claude Code skill that wraps the Shannon white-box penetration testing framework. It analyzes your source code, maps the attack surface, and executes real exploits to prove vulnerabilities before th..."
+  },
+  {
     "slug": "ship-learn-next",
     "title": "Ship-Learn-Next Action Planner",
     "description": "Transforms passive learning content (transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework.",
@@ -2075,7 +2230,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/skill-creator",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic framework providing structured guidance for developing modular skill packages that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations.  <Callo..."
   },
@@ -2454,7 +2609,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/template-skill",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/template-skill",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic minimal skeleton providing the essential file structure and organization for starting a new Claude skill project.  <Callout type=\"tip\"> Perfect starting point for developers creatin..."
   },
@@ -2643,6 +2798,29 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** python-development     Comprehensive guide to using uv, an extremely fast Python package installer and resolv..."
   },
   {
+    "slug": "valyu",
+    "title": "Valyu — Unified Data Search",
+    "description": "Give AI agents access to 25+ specialized data sources — 40M+ academic papers, SEC filings, clinical trials, patents, real-time news, and prediction markets — through a single API.",
+    "categories": [
+      "data",
+      "development"
+    ],
+    "tags": [
+      "search",
+      "research",
+      "academic",
+      "financial",
+      "ai-agents",
+      "api",
+      "rag"
+    ],
+    "featured": false,
+    "author": "Valyu AI",
+    "repoUrl": "https://github.com/valyuai/skills",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A single API for 25+ specialized data sources: academic papers, SEC filings, clinical trials, patent databases, real-time news, and prediction markets. Built for AI agents that need reliable, citable ..."
+  },
+  {
     "slug": "vibe-coding",
     "title": "Vibe Coding",
     "description": "AI-assisted software development approach using natural language prompts to generate code efficiently while maintaining quality and understanding architectural decisions.",
@@ -2709,7 +2887,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/webapp-testing",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic toolkit for automated testing of local web applications through native Python Playwright scripts, enabling frontend verification, UI debugging, screenshot capture, and browser log i..."
   },
@@ -2756,7 +2934,7 @@
     ],
     "featured": false,
     "author": "Anthropic",
-    "repoUrl": "https://github.com/anthropics/skills/tree/main/document-skills/xlsx",
+    "repoUrl": "https://github.com/anthropics/skills/tree/main/skills/xlsx",
     "date": "2025-10-24T00:00:00.000Z",
     "excerpt": "Official Anthropic skill for comprehensive Excel operations emphasizing formula-driven calculations, financial modeling standards, and zero-error deliverables through automated validation.  <Callout t..."
   },

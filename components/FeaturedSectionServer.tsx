@@ -27,7 +27,7 @@ export default function FeaturedSectionServer({ featured }: FeaturedSectionServe
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
           {featured.map((skill, index) => (
             <FeaturedSkillCard
               key={skill.slug}

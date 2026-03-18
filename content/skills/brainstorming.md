@@ -1,7 +1,7 @@
 ---
 title: Brainstorming & Design
 slug: brainstorming  
-description: Structured methodology for transforming rough ideas into fully-formed designs through systematic questioning and iterative validation.
+description: Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate preventing implementation before design sign-off.
 categories:
   - development
   - design
@@ -21,26 +21,29 @@ version: 1.0.0
 
 # Brainstorming & Design
 
-Structured methodology for transforming rough ideas into fully-formed, validated designs through six systematic phases of exploration, refinement, and documentation.
+Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate at step 5 that prevents any implementation before explicit design sign-off.
 
 <Callout type="tip">
-Perfect for developers and architects who need to explore design options methodically before committing to implementation.
+Perfect for developers and architects who need to explore design options methodically before committing to implementation. The hard gate at step 5 prevents the most common failure mode: building before the design is settled.
 </Callout>
 
-## Six-Phase Process
+## Nine-Step Process
 
-<Card title="Phase Overview">
+<Card title="Step Overview">
 
 1. **Understanding** - Gather purpose, constraints, success criteria
 2. **Exploration** - Present 2-3 architectural approaches with trade-offs
-3. **Design Presentation** - Validate design incrementally in digestible sections
-4. **Design Documentation** - Write findings to `docs/plans/YYYY-MM-DD-<topic>-design.md`
-5. **Worktree Setup** - Establish isolated development workspace (optional)
-6. **Planning Handoff** - Create detailed implementation plan
+3. **Concept Selection** - User explicitly chooses an approach before design work begins
+4. **Design Presentation** - Validate design incrementally in digestible sections
+5. **Design Approval** ⛔ *Hard gate* - Explicit sign-off required before any implementation
+6. **Design Documentation** - Write findings to `docs/plans/YYYY-MM-DD-<topic>-design.md`
+7. **Worktree Setup** - Establish isolated development workspace (optional)
+8. **Planning Handoff** - Create detailed implementation plan
+9. **Implementation Kickoff** - Begin work only after plan is acknowledged
 
 </Card>
 
-## Phase 1: Understanding
+## Step 1: Understanding
 
 **Goal:** Gather complete context before proposing solutions
 
@@ -66,7 +69,7 @@ Perfect for developers and architects who need to explore design options methodi
 
 </Callout>
 
-## Phase 2: Exploration
+## Step 2: Exploration
 
 **Present 2-3 Architectural Approaches:**
 
@@ -108,7 +111,24 @@ Perfect for developers and architects who need to explore design options methodi
 - Dev velocity vs. long-term maintenance
 ```
 
-## Phase 3: Design Presentation
+## Step 3: Concept Selection
+
+After presenting approaches, **do not proceed** until the user explicitly selects one.
+
+**Required before moving to design:**
+
+```
+"Which approach would you like to move forward with — A, B, or C?"
+```
+
+- Wait for a clear selection
+- Confirm any modifications the user wants to the chosen approach
+- If the user is undecided, return to exploration with more detail on the sticking points
+- Do not combine approaches without explicit agreement
+
+This step exists to prevent designing in the wrong direction for multiple phases.
+
+## Step 4: Design Presentation
 
 **Incremental Validation:**
 
@@ -134,7 +154,33 @@ Perfect for developers and architects who need to explore design options methodi
 - After integration points
 - Before finalizing
 
-## Phase 4: Design Documentation
+## Step 5: Design Approval ⛔ Hard Gate
+
+<Callout type="warning">
+
+**Implementation is blocked until this step is passed.**
+
+Before writing any code, creating any files, or beginning any implementation work, get explicit approval:
+
+```
+"I've presented the complete design. Do you approve this approach so we can move to implementation?"
+```
+
+**Required response types that count as approval:**
+- "Yes, proceed"
+- "Looks good, let's build it"
+- Any clear affirmative that confirms the design
+
+**Not sufficient:**
+- Silence or lack of objection
+- "Sure, whatever you think"
+- Partial agreement on one component
+
+If the user has concerns, return to Step 4 (Design Presentation) to resolve them. Do not begin implementation with unresolved design questions.
+
+</Callout>
+
+## Step 6: Design Documentation
 
 **Create:** `docs/plans/YYYY-MM-DD-<topic>-design.md`
 
@@ -164,7 +210,7 @@ Perfect for developers and architects who need to explore design options methodi
 [Unresolved issues to address]
 ```
 
-## Phase 5: Worktree Setup (Optional)
+## Step 7: Worktree Setup (Optional)
 
 **If Implementing:**
 
@@ -180,7 +226,7 @@ cd .worktrees/feature-name
 - Easy abandonment if needed
 - Isolated testing
 
-## Phase 6: Planning Handoff
+## Step 8: Planning Handoff
 
 **Create Implementation Plan:**
 
@@ -203,6 +249,16 @@ cd .worktrees/feature-name
 - Fallback options
 
 </Card>
+
+## Step 9: Implementation Kickoff
+
+Before writing the first line of code, confirm the plan is understood:
+
+```
+"Here's the implementation order we agreed on: [summary]. Ready to begin?"
+```
+
+Starting implementation without this confirmation risks misaligned priorities. If the user modifies the plan at this step, update the planning document before proceeding.
 
 ## Decision Flowchart
 
@@ -267,4 +323,4 @@ This skill was created by **obra** as part of the [Superpowers Skills Collection
 
 ---
 
-*Structured methodology for transforming rough ideas into fully-formed designs through systematic questioning and iterative validation.*
+*Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate preventing implementation before design sign-off.*

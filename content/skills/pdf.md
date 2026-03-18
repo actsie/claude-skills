@@ -15,7 +15,7 @@ tags:
   - python
 featured: false
 author: Anthropic
-repoUrl: https://github.com/anthropics/skills/tree/main/document-skills/pdf
+repoUrl: https://github.com/anthropics/skills/tree/main/skills/pdf
 externalUrl: https://www.anthropic.com
 date: 2025-10-24
 version: 1.0.0
