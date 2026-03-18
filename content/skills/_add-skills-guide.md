@@ -163,6 +163,7 @@ Create files in: `/content/skills/[slug].md`
 title: "Skill Title Here"
 description: "One-sentence description of what this skill teaches or provides."
 logo: "/logos/skill-logo.svg"  # Optional - add logo to /public/logos/
+author: "org-or-username"  # Required - GitHub org or username (e.g. "vercel", "obra")
 repoUrl: "https://github.com/org/repo"  # Required - GitHub repository
 categories: ["development"]  # Options: development, design, data, devops, etc.
 tags: ["tag1", "tag2", "tag3"]  # Relevant keywords for search/filtering
