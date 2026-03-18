@@ -13,8 +13,6 @@ tags:
   - frontend
   - tailwind
   - shadcn
-featured: true
-featuredPriority: 1
 featuredType: permanent
 author: Anthropic
 repoUrl: https://github.com/anthropics/skills/tree/main/skills/artifacts-builder

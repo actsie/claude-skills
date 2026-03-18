@@ -13,8 +13,6 @@ tags:
   - observability
   - debugging
   - performance
-featured: true
-featuredPriority: 7
 featuredType: rotating
 author: diet103
 repoUrl: https://github.com/diet103/claude-code-infrastructure-showcase

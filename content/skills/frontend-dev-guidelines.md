@@ -13,8 +13,6 @@ tags:
   - performance
   - suspense
   - tanstack-query
-featured: true
-featuredPriority: 5
 featuredType: rotating
 author: diet103
 repoUrl: https://github.com/diet103/claude-code-infrastructure-showcase

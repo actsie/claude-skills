@@ -10,8 +10,6 @@ tags:
   - skills
   - meta
   - development
-featured: true
-featuredPriority: 3
 featuredType: rotating
 author: diet103
 repoUrl: https://github.com/diet103/claude-code-infrastructure-showcase

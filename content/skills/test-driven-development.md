@@ -11,8 +11,6 @@ tags:
   - methodology
   - best-practices
   - quality
-featured: true
-featuredPriority: 3
 featuredType: permanent
 author: obra
 repoUrl: https://github.com/obra/superpowers/tree/main/skills/test-driven-development
