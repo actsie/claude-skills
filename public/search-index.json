@@ -235,6 +235,27 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** developer-essentials     Build secure, scalable authentication and authorization systems using industry-stand..."
   },
   {
+    "slug": "awesome-claude-code",
+    "title": "Awesome Claude Code",
+    "description": "Community-curated index of 100+ Claude Code resources — slash commands, CLAUDE.md templates, skill packs, hooks, workflows, and tooling collected from the Claude Code community.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "claude-code",
+      "slash-commands",
+      "claude-md",
+      "skills",
+      "community",
+      "collection"
+    ],
+    "featured": false,
+    "author": "hesreallyhim",
+    "repoUrl": "https://github.com/hesreallyhim/awesome-claude-code",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Community-maintained \"awesome list\" for Claude Code — a curated index of the best slash commands, CLAUDE.md templates, skill packs, hooks, and tooling contributed by the Claude Code community.  <Callo..."
+  },
+  {
     "slug": "backend-dev-guidelines",
     "title": "Backend Development Guidelines",
     "description": "Comprehensive guidance for Node.js/Express/TypeScript microservices development, covering layered architecture patterns, controller/service/repository organization, input validation with Zod, error tracking via Sentry, and testing strategies.",
@@ -1386,6 +1407,27 @@
     "excerpt": "Transform markdown documents into professional EPUB3 ebook files ready for publishing. Generates proper book structure, table of contents, metadata, and styling—perfect for self-publishing, documentat..."
   },
   {
+    "slug": "marketing-skills",
+    "title": "Marketing Skills Pack",
+    "description": "33 AI skills for SaaS marketing — covering copywriting, SEO, paid ads, CRO, email sequences, pricing strategy, referral programs, and growth operations.",
+    "categories": [
+      "marketing"
+    ],
+    "tags": [
+      "marketing",
+      "seo",
+      "copywriting",
+      "cro",
+      "growth",
+      "saas"
+    ],
+    "featured": false,
+    "author": "coreyhaines31",
+    "repoUrl": "https://github.com/coreyhaines31/marketingskills",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "33 specialized AI skills for SaaS marketing, built by Corey Haines. Covers the full marketing stack from top-of-funnel content to conversion optimization, email sequences, paid ads, and revenue operat..."
+  },
+  {
     "slug": "meeting-insights-analyzer",
     "title": "Meeting Insights Analyzer",
     "description": "Analyzes meeting transcripts to identify communication patterns, speaker dynamics, decision-making effectiveness, and action item clarity across your team meetings.",
@@ -1627,6 +1669,26 @@
     "excerpt": "> **Source:** [wshobson/agents](https://github.com/wshobson/agents) > **Original Plugin:** javascript-typescript     Comprehensive guidance for building scalable, maintainable, and production-ready No..."
   },
   {
+    "slug": "obsidian-skills",
+    "title": "Obsidian Skills",
+    "description": "Five AI skills for Obsidian by Obsidian's creator — write Obsidian Markdown, build Bases databases, create Canvas files, use the CLI, and extract clean web content.",
+    "categories": [
+      "productivity"
+    ],
+    "tags": [
+      "obsidian",
+      "markdown",
+      "note-taking",
+      "knowledge-management",
+      "cli"
+    ],
+    "featured": false,
+    "author": "kepano",
+    "repoUrl": "https://github.com/kepano/obsidian-skills",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Five AI skills for working with Obsidian — built by Steph Ango (kepano), the creator of Obsidian. Covers Obsidian's unique syntax, Bases database queries, Canvas visual maps, CLI tooling, and web cont..."
+  },
+  {
     "slug": "paypal-integration",
     "title": "Paypal Integration",
     "description": "Integrate PayPal payment processing with support for express checkout, subscriptions, and refund management. Use when implementing PayPal payments, processing online transactions, or building e-commerce checkout flows.",
@@ -1724,6 +1786,26 @@
     "repoUrl": "https://github.com/Exploration-labs/Nates-Substack-Skills/tree/main/pitch-deck-builder",
     "date": "2025-10-18T00:00:00.000Z",
     "excerpt": "Professional pitch deck creation skill with strategic storytelling, audience-focused design, and technical implementation for investor pitches, sales presentations, and product launches.  <Callout typ..."
+  },
+  {
+    "slug": "planning-with-files",
+    "title": "Planning with Files",
+    "description": "File-based AI planning methodology using three persistent markdown files as working memory — includes 2-Action Rule, error recovery protocols, and session continuity across 16+ platforms.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "planning",
+      "context-engineering",
+      "memory",
+      "agents",
+      "productivity"
+    ],
+    "featured": false,
+    "author": "OthmanAdi",
+    "repoUrl": "https://github.com/OthmanAdi/planning-with-files",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "A structured AI planning methodology that solves the context loss problem by using three persistent markdown files as external memory. Version 2.23.0. Compatible with Claude Code, Cursor, Gemini CLI, ..."
   },
   {
     "slug": "pptx",
@@ -2819,6 +2901,106 @@
     "repoUrl": "https://github.com/valyuai/skills",
     "date": "2026-03-18T00:00:00.000Z",
     "excerpt": "A single API for 25+ specialized data sources: academic papers, SEC filings, clinical trials, patent databases, real-time news, and prediction markets. Built for AI agents that need reliable, citable ..."
+  },
+  {
+    "slug": "vercel-composition-patterns",
+    "title": "React Composition Patterns",
+    "description": "Avoid boolean prop proliferation in React by applying compound components, state lifting, and slot patterns — cleaner APIs, fewer conditional renders.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "react",
+      "architecture",
+      "design-patterns",
+      "components",
+      "typescript"
+    ],
+    "featured": false,
+    "author": "Vercel Labs",
+    "repoUrl": "https://github.com/vercel-labs/agent-skills/tree/main/composition-patterns",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Official React composition skill from Vercel Labs. Teaches AI tools to eliminate boolean prop proliferation and conditional spaghetti by applying compound components, slot patterns, and proper state l..."
+  },
+  {
+    "slug": "vercel-deploy-to-vercel",
+    "title": "Deploy to Vercel",
+    "description": "One-command deployment skill for Vercel — works in Claude Code, claude.ai, and Claude Desktop to deploy web apps instantly without leaving your AI session.",
+    "categories": [
+      "devops"
+    ],
+    "tags": [
+      "vercel",
+      "deployment",
+      "next-js",
+      "ci-cd",
+      "automation"
+    ],
+    "featured": false,
+    "author": "Vercel Labs",
+    "repoUrl": "https://github.com/vercel-labs/agent-skills/tree/main/deploy-to-vercel",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Official deployment skill from Vercel Labs. Enables AI tools (Claude Code, claude.ai, Claude Desktop) to deploy web applications to Vercel instantly — configure, build, and ship without leaving your A..."
+  },
+  {
+    "slug": "vercel-react-best-practices",
+    "title": "React Best Practices",
+    "description": "React and Next.js performance optimization skill with 40+ rules across 8 categories — covering rendering, state, hooks, and architecture.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "react",
+      "next-js",
+      "performance",
+      "hooks",
+      "architecture"
+    ],
+    "featured": false,
+    "author": "Vercel Labs",
+    "repoUrl": "https://github.com/vercel-labs/agent-skills/tree/main/react-best-practices",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Official React and Next.js skill from Vercel Labs. Applies 40+ curated rules across 8 categories to help AI coding tools produce idiomatic, performant React code.  <Callout type=\"tip\"> Built by the te..."
+  },
+  {
+    "slug": "vercel-react-native-skills",
+    "title": "React Native Best Practices",
+    "description": "React Native skill with 16 rules across 7 sections — covers performance, navigation, state management, and Expo compatibility for mobile app development.",
+    "categories": [
+      "development"
+    ],
+    "tags": [
+      "react-native",
+      "mobile",
+      "expo",
+      "ios",
+      "android"
+    ],
+    "featured": false,
+    "author": "Vercel Labs",
+    "repoUrl": "https://github.com/vercel-labs/agent-skills/tree/main/react-native-skills",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Official React Native skill from Vercel Labs. Applies 16 curated rules across 7 sections to help AI tools write performant, idiomatic React Native code — compatible with both bare workflow and Expo.  ..."
+  },
+  {
+    "slug": "vercel-web-design-guidelines",
+    "title": "Web Design Guidelines",
+    "description": "Comprehensive UI audit skill with 100+ rules for accessibility, performance, and UX — helps AI tools produce web interfaces that meet modern quality standards.",
+    "categories": [
+      "design"
+    ],
+    "tags": [
+      "accessibility",
+      "ux",
+      "wcag",
+      "performance",
+      "ui"
+    ],
+    "featured": false,
+    "author": "Vercel Labs",
+    "repoUrl": "https://github.com/vercel-labs/agent-skills/tree/main/web-design-guidelines",
+    "date": "2026-03-18T00:00:00.000Z",
+    "excerpt": "Official web design audit skill from Vercel Labs. Applies 100+ rules covering accessibility, performance, and UX so AI coding tools can evaluate and improve web interfaces against modern standards.  <..."
   },
   {
     "slug": "vibe-coding",
