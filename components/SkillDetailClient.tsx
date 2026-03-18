@@ -274,12 +274,13 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
           </div>
 
           {/* Right Sidebar */}
-          <aside className="lg:col-span-1 space-y-6">
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
             {/* Table of Contents - Only show if content exists */}
             <TableOfContents />
 
             {/* GitHub Link Panel - Always visible */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 sticky top-24">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide">
                   Repository
@@ -391,6 +392,7 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
                 )}
               </div>
             )}
+            </div>
           </aside>
         </div>
       </main>
