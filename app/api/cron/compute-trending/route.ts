@@ -185,8 +185,10 @@ export async function GET(request: NextRequest) {
         const skillId = skill.slug;
 
         // Get counters from KV
+        // Views: read from HyperLogLog (skill:view:30d) which is reliably populated
+        // Clicks: read from 24h counter set by analytics track route
         const [views24hRaw, clicks24hRaw] = await Promise.all([
-          redis.get<number>(`skill:${skillId}:views:24h`),
+          redis.pfcount(`skill:view:30d:${skillId}`),
           redis.get<number>(`skill:${skillId}:clicks:24h`),
         ]);
 
