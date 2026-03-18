@@ -1,7 +1,7 @@
 ---
 title: Claude Scientific Skills
 slug: claude-scientific-skills
-description: Comprehensive collection of 70+ scientific skills for Claude, transforming it into an AI Scientist with access to bioinformatics, cheminformatics, drug discovery, and research tools.
+description: 170+ ready-to-use scientific skills that transform Claude into an AI Scientist — with access to 250+ databases, 60+ Python packages, and 15+ lab platforms across biology, chemistry, medicine, physics, and engineering.
 categories:
   - science
   - research
@@ -14,61 +14,120 @@ tags:
   - genomics
   - scientific-computing
   - research
+  - biology
+  - chemistry
 author: K-Dense AI
 repoUrl: https://github.com/K-Dense-AI/claude-scientific-skills
 date: 2025-10-22
-version: 1.0.0
+version: 2.0.0
+featured: true
+featuredPriority: 1
 ---
 
 # Claude Scientific Skills
 
-A comprehensive collection of 70+ ready-to-use scientific skills curated by K-Dense AI that transforms Claude Code into an "AI Scientist" with access to specialized scientific libraries, databases, and research tools.
+A comprehensive, open-source collection of **170+ ready-to-use scientific skills** by K-Dense AI that transforms Claude Code, Cursor, and other AI agents into an AI Scientist with access to cutting-edge research tools.
 
-## Overview
+<Callout type="tip">
+170+ skills covering biology, chemistry, medicine, physics, and engineering. Access to 250+ scientific databases, 60+ optimized Python packages, and 15+ lab platform integrations — all in one collection.
+</Callout>
 
-This repository enables Claude to work with cutting-edge scientific tools across multiple domains including bioinformatics, cheminformatics, proteomics, machine learning, materials science, and data analysis.
+## What's Included
 
-## Skills Collection
+<Card title="170+ Skills Across Science">
 
-### Scientific Databases (24 skills)
-Access major scientific databases including:
-- **Genomics & Proteomics**: PubMed, UniProt, AlphaFold DB
-- **Drug Discovery**: PubChem, ChEMBL, DrugBank
-- **Clinical Research**: COSMIC, ClinVar, GTEx
-- **And many more specialized databases**
+- **Scientific Databases** — 250+ databases including PubMed, UniProt, AlphaFold, PubChem, ChEMBL, DrugBank, COSMIC, ClinVar, GTEx
+- **Python Package Integrations** — 60+ packages: RDKit, Scanpy, PyTorch Lightning, scikit-learn, BioPython, PyMOL, DeepChem, Open Babel, ASE, Pymatgen
+- **Lab Platform Integrations** — 15+ platforms: Benchling, DNAnexus, Opentrons, LatchBio, LabArchives, OMERO
+- **Analysis & Communication Tools** — 35+ tools for visualization, scientific writing, and reporting
 
-### Scientific Packages (41 skills)
-Work with specialized scientific libraries:
-- **Bioinformatics**: BioPython, Scanpy, PyMOL
-- **Cheminformatics**: RDKit, DeepChem, Open Babel
-- **Machine Learning**: PyTorch, scikit-learn, TensorFlow
-- **Materials Science**: ASE, Pymatgen, VASP tools
+</Card>
 
-### Scientific Thinking & Analysis
-Advanced research capabilities:
-- Exploratory data analysis
-- Hypothesis generation
-- Peer review frameworks
-- Scientific writing assistance
-- Document processing
+## Installation
 
-### Scientific Integrations (6 platforms)
-Connect with lab management and automation:
-- Benchling
-- DNAnexus
-- Opentrons
-- LabArchives
-- LatchBio
-- OMERO
+```bash
+git clone https://github.com/K-Dense-AI/claude-scientific-skills
+cp -r claude-scientific-skills/skills ~/.claude/skills/
+```
 
-## Use Cases
+Also works with Cursor (`~/.cursor/skills/`), Codex, and Gemini CLI.
 
-- **Drug Discovery**: Screen compounds, analyze molecular properties, predict binding
-- **Genomics Research**: Analyze sequences, process NGS data, annotate genomes
-- **Proteomics**: Study protein structures, predict interactions, analyze expression
-- **Materials Science**: Design materials, calculate properties, run simulations
-- **Clinical Research**: Analyze patient data, investigate mutations, study disease genes
-- **Academic Research**: Literature review, data analysis, hypothesis testing
+**Requirements:** Python 3.9+, `uv` package manager, macOS/Linux/Windows (WSL2)
+
+## Core Domains
+
+<Card>
+
+**Drug Discovery**
+Compound screening, molecular docking, ADMET prediction, target identification, binding affinity prediction
+
+**Genomics & Bioinformatics**
+Sequence analysis, NGS data processing, genome annotation, variant calling, single-cell RNA analysis
+
+**Proteomics**
+Protein structure prediction, interaction networks, expression analysis, AlphaFold integration
+
+**Multi-Omics & Systems Biology**
+Biomarker discovery, pathway analysis, network analysis, integrated omics workflows
+
+**Materials Science**
+Crystal structure analysis, property prediction, DFT calculations, materials simulation
+
+**Clinical Research**
+Clinical variant interpretation, disease gene analysis, patient data processing, biomarker studies
+
+</Card>
+
+## Scientific Databases (250+)
+
+The skills provide access to major scientific databases:
+
+- **Genomics**: NCBI, Ensembl, GTEx, ClinVar, COSMIC
+- **Proteins**: UniProt, PDB, AlphaFold Database
+- **Chemistry**: PubChem, ChEMBL, DrugBank, ZINC
+- **Literature**: PubMed, bioRxiv, ChemRxiv
+- **Clinical**: ClinicalTrials.gov, OMIM, PharmGKB
+
+## Python Package Integrations (60+)
+
+```python
+# Bioinformatics
+BioPython, Scanpy, PyDESeq2, STAR, HISAT2
+
+# Cheminformatics
+RDKit, DeepChem, Open Babel, AutoDock Vina
+
+# Machine Learning
+PyTorch Lightning, scikit-learn, XGBoost, JAX
+
+# Structural Biology
+PyMOL, MDAnalysis, OpenMM, GROMACS
+
+# Materials
+ASE, Pymatgen, VASP, Quantum ESPRESSO
+```
+
+## Analysis & Communication Tools
+
+<Card>
+
+**Visualization**
+- Publication-quality plots with matplotlib/seaborn
+- Interactive molecular viewers
+- Pathway and network diagrams
+
+**Scientific Writing**
+- Hypothesis generation frameworks
+- Peer review checklists
+- Methods section templates
+- Statistical reporting standards
+
+**Data Analysis**
+- Exploratory data analysis pipelines
+- Statistical hypothesis testing
+- Reproducibility and validation workflows
+
+</Card>
 
 ## Who It's For
 
@@ -79,21 +138,13 @@ Connect with lab management and automation:
 - Materials scientists and chemical engineers
 - Anyone building AI-powered scientific tools
 
-## Domains Covered
+## Community & Support
 
-- **Genomics**: Sequence analysis, gene expression, variant calling
-- **Drug Discovery**: Compound screening, ADMET prediction, target identification
-- **Proteomics**: Protein structure, function prediction, interactions
-- **Clinical Research**: Disease genetics, biomarker discovery, patient data
-- **Materials Science**: Crystal structures, property prediction, simulations
-- **Academic Research**: Literature analysis, data visualization, statistics
+- MIT licensed — free for research and commercial use
+- Active Slack community for questions and collaboration
+- Commercial support available through K-Dense AI
+- Contributions welcome via GitHub
 
-## Getting Started
-
-These skills are designed to work with Claude Code and can be easily integrated into your scientific workflows. Each skill includes detailed documentation on usage, parameters, and example workflows.
-
-## Project Background
-
-Created by **K-Dense AI**, a company building autonomous AI scientists for scientific research. These skills represent real-world tools and workflows used in cutting-edge scientific discovery.
-
-For questions or collaboration: orion.li@k-dense.ai
+<Callout type="info">
+Created by K-Dense AI, building autonomous AI scientists for scientific research. Contact: orion.li@k-dense.ai
+</Callout>

@@ -14,7 +14,7 @@ tags:
   - claude-code
 author: Cole Medin (coleam00)
 repoUrl: https://github.com/coleam00/excalidraw-diagram-skill
-date: 2025-01-01
+date: 2026-03-18
 version: 1.0.0
 ---
 

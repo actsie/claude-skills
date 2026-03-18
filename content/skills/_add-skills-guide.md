@@ -161,10 +161,14 @@ logo: "/logos/skill-logo.svg"  # Optional - add logo to /public/logos/
 repoUrl: "https://github.com/org/repo"  # Required - GitHub repository
 categories: ["development"]  # Options: development, design, data, devops, etc.
 tags: ["tag1", "tag2", "tag3"]  # Relevant keywords for search/filtering
-featured: true  # Set to true for prominent display
+featured: false  # Set to true for prominent display
 featuredPriority: 1  # Lower number = higher priority (1 is highest)
+date: "YYYY-MM-DD"  # REQUIRED: Always use today's actual date, never a placeholder
+version: "1.0.0"
 ---
 ```
+
+> ⚠️ **IMPORTANT**: The `date` field controls the "Newest Skills" section. Always set it to the actual date you're adding the skill (today's date). Never use a placeholder or copy a date from an example.
 
 ### Frontmatter Fields Explained
 
