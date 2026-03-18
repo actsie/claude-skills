@@ -21,12 +21,19 @@ function generateSearchIndex() {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(fileContents);
 
-      // Create excerpt
-      const excerpt = content
-        .replace(/^#.*$/gm, '')
+      // Strip markdown syntax for plain-text search body
+      const body = content
+        .replace(/```[\s\S]*?```/g, '') // remove code blocks
+        .replace(/`[^`]+`/g, '')        // remove inline code
+        .replace(/^#{1,6}\s+/gm, '')    // remove heading markers
+        .replace(/!\[.*?\]\(.*?\)/g, '') // remove images
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → text
+        .replace(/[*_~]/g, '')          // remove emphasis markers
+        .replace(/\n{2,}/g, ' ')
         .replace(/\n/g, ' ')
-        .trim()
-        .substring(0, 200) + '...';
+        .trim();
+
+      const excerpt = body.substring(0, 200) + '...';
 
       return {
         slug: data.slug || slug,
@@ -35,11 +42,11 @@ function generateSearchIndex() {
         categories: data.categories || [],
         tags: data.tags || [],
         featured: data.featured || false,
-        featuredPriority: data.featuredPriority,
         author: data.author,
         repoUrl: data.repoUrl,
         date: data.date,
         excerpt,
+        body,
       };
     });
 
