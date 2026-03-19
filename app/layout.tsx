@@ -1,6 +1,19 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Urbanist } from 'next/font/google';
 import './globals.css';
 import 'highlight.js/styles/github-dark.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const urbanist = Urbanist({
+  subsets: ['latin'],
+  variable: '--font-urbanist',
+  display: 'swap',
+});
 import PawgrammerBanner from '@/components/PawgrammerBanner';
 import Analytics from '@/components/Analytics';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -98,7 +111,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={generateJsonLd([websiteSchema, organizationSchema])}
         />
       </head>
-      <body className="antialiased">
+      <body className={`${inter.variable} ${urbanist.variable} font-sans antialiased`}>
         <ThemeProvider>
           <PawgrammerBanner />
           {children}
