@@ -377,7 +377,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
                 </span>
               </div>
             )}
-            <h1 className="text-6xl font-black text-gray-900 dark:text-gray-100 mb-4 animated-title" style={{ fontFamily: "'Doto', sans-serif" }}>
+            <h1 className="text-6xl font-black font-urbanist text-gray-900 dark:text-gray-100 mb-4 animated-title">
               {'Claude Skills Market'.split('').map((char, idx) => (
                 <span
                   key={idx}

@@ -83,7 +83,7 @@ export default function NavigationBar({
           {/* Left: Title */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap cursor-pointer" style={{ fontFamily: "'Doto', sans-serif" }}>
+              <h1 className="text-base sm:text-lg font-bold font-urbanist text-gray-900 dark:text-gray-100 whitespace-nowrap cursor-pointer">
                 <span className="hidden sm:inline">Claude Skills Market</span>
                 <span className="sm:hidden">Skills</span>
               </h1>
