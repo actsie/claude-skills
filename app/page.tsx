@@ -7,10 +7,10 @@ import { getAllSkills } from '@/lib/skills';
 import { generateItemListSchema, generateJsonLd } from '@/lib/seo';
 
 /**
- * Revalidation: Regenerate page every 60 seconds (ISR)
- * This ensures trending/featured data stays fresh without rebuilding entire site
+ * Revalidation: Regenerate page every 5 minutes (ISR)
+ * Skills content doesn't change by the minute — 5 min is plenty.
  */
-export const revalidate = 60;
+export const revalidate = 300;
 
 /**
  * Generate metadata dynamically based on URL parameters

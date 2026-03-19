@@ -5,7 +5,16 @@ import { Skill, SkillFrontmatter } from './types';
 
 const skillsDirectory = path.join(process.cwd(), 'content/skills');
 
+// In-memory cache — avoids re-reading 146 files on every request within the same server instance
+let _skillsCache: Skill[] | null = null;
+let _skillsCacheTime = 0;
+const SKILLS_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
 export async function getAllSkills(): Promise<Skill[]> {
+  if (_skillsCache && Date.now() - _skillsCacheTime < SKILLS_CACHE_TTL) {
+    return _skillsCache;
+  }
+
   // Check if directory exists
   if (!fs.existsSync(skillsDirectory)) {
     return [];
@@ -50,6 +59,8 @@ export async function getAllSkills(): Promise<Skill[]> {
       })
   );
 
+  _skillsCache = allSkills;
+  _skillsCacheTime = Date.now();
   return allSkills;
 }
 

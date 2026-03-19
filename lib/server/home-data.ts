@@ -19,12 +19,10 @@ function hasRealSignal(trending: TrendingSkill[]): boolean {
 
 async function getMostViewedFallback(): Promise<TrendingSkill[]> {
   const allSkills = await getAllSkills();
-  const withViews = await Promise.all(
-    allSkills.map(async (skill) => {
-      const views = await redis.pfcount(`skill:view:30d:${skill.slug}`);
-      return { skill, views: views || 0 };
-    })
-  );
+  const pipeline = redis.pipeline();
+  allSkills.forEach((skill) => pipeline.pfcount(`skill:view:30d:${skill.slug}`));
+  const viewCounts = (await pipeline.exec()) as number[];
+  const withViews = allSkills.map((skill, i) => ({ skill, views: viewCounts[i] || 0 }));
   return withViews
     .filter(({ views }) => views > 0)
     .sort((a, b) => b.views - a.views)
@@ -105,13 +103,10 @@ export interface FeaturedSkill {
 export async function getFeaturedSkills(): Promise<FeaturedSkill[]> {
   try {
     const allSkills = await getAllSkills();
-
-    const withViews = await Promise.all(
-      allSkills.map(async (skill) => {
-        const views = await redis.pfcount(`skill:view:30d:${skill.slug}`);
-        return { skill, views: views || 0 };
-      })
-    );
+    const pipeline = redis.pipeline();
+    allSkills.forEach((skill) => pipeline.pfcount(`skill:view:30d:${skill.slug}`));
+    const viewCounts = (await pipeline.exec()) as number[];
+    const withViews = allSkills.map((skill, i) => ({ skill, views: viewCounts[i] || 0 }));
 
     // Sort by views descending, fall back to date for ties
     const sorted = withViews.sort((a, b) => {
