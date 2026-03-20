@@ -231,9 +231,7 @@ export default function TrendingSkillRow({ skill, rank }: TrendingSkillRowProps)
           >
             {arrow} {Math.abs(velocity)}%
           </span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">
-            {skill.views_7d} views
-          </span>
+
         </div>
         {skill.history_7d && skill.history_7d.length >= 2 ? (
           <Sparkline
