@@ -101,23 +101,12 @@ async function getScoreHistory(skillId: string, days: number): Promise<number[]>
 }
 
 /**
- * Get total views for last N days
+ * Get total 30-day unique views from HyperLogLog
+ * Matches exactly what the skill detail page shows
  */
-async function getViews7d(skillId: string): Promise<number> {
-  const today = getUnixDay();
-  const startDay = today - 6; // 7 days including today
-
-  const views = await redis.zrange(
-    `skill:${skillId}:views`,
-    startDay,
-    today,
-    { byScore: true }
-  );
-
-  if (!views || !Array.isArray(views)) return 0;
-
-  // Sum all view counts
-  return views.reduce((sum: number, val: any) => sum + (typeof val === 'number' ? val : 0), 0);
+async function getViews30d(skillId: string): Promise<number> {
+  const count = await redis.pfcount(`skill:view:30d:${skillId}`);
+  return count || 0;
 }
 
 /**
@@ -185,15 +174,18 @@ export async function GET(request: NextRequest) {
         const skillId = skill.slug;
 
         // Get counters from KV
-        // Views: read from HyperLogLog (skill:view:30d) which is reliably populated
-        // Clicks: read from 24h counter set by analytics track route
-        const [views24hRaw, clicks24hRaw] = await Promise.all([
+        const [totalViews, yesterdaySnapshot, clicks24hRaw] = await Promise.all([
           redis.pfcount(`skill:view:30d:${skillId}`),
+          redis.get<number>(`skill:${skillId}:pfcount:${yesterday}`),
           redis.get<number>(`skill:${skillId}:clicks:24h`),
         ]);
 
-        const views24h = views24hRaw ?? 0;
+        // Actual new views today = delta from yesterday's snapshot
+        const views24h = Math.max(0, (totalViews ?? 0) - (yesterdaySnapshot ?? 0));
         const clicks24h = clicks24hRaw ?? 0;
+
+        // Store today's pfcount snapshot for tomorrow's delta calculation (48h TTL)
+        await redis.set(`skill:${skillId}:pfcount:${today}`, totalViews ?? 0, { ex: 48 * 3600 });
 
         // Get vote counts from last 24h
         const timestamp24hAgo = Date.now() - (24 * 60 * 60 * 1000);
@@ -209,26 +201,22 @@ export async function GET(request: NextRequest) {
           (helpful24h * 2) -
           (notHelpful24h * 1);
 
-        // Store today's score and views in Redis sorted sets
-        await Promise.all([
-          redis.zadd(`skill:${skillId}:score`, { score: today, member: trendingScore }),
-          redis.zadd(`skill:${skillId}:views`, { score: today, member: views24h }),
-        ]);
+        // Store today's score in Redis sorted set for sparkline/history
+        await redis.zadd(`skill:${skillId}:score`, { score: today, member: trendingScore });
 
-        // Clean up old data (keep only HISTORY_DAYS)
+        // Clean up old score data (keep only HISTORY_DAYS)
         const cutoffDay = today - HISTORY_DAYS;
-        await Promise.all([
-          redis.zremrangebyscore(`skill:${skillId}:score`, '-inf' as any, cutoffDay - 1),
-          redis.zremrangebyscore(`skill:${skillId}:views`, '-inf' as any, cutoffDay - 1),
-        ]);
+        await redis.zremrangebyscore(`skill:${skillId}:score`, '-inf' as any, cutoffDay - 1);
 
         // Get historical data
-        const [history7d, scoreYesterdayArr, views7d, firstSeenAtRaw] = await Promise.all([
+        const [history7d, scoreYesterdayArr, firstSeenAtRaw] = await Promise.all([
           getScoreHistory(skillId, SPARKLINE_DAYS),
           redis.zrange(`skill:${skillId}:score`, yesterday, yesterday, { byScore: true }),
-          getViews7d(skillId),
           redis.get<string>(`skill:${skillId}:first_seen_at`),
         ]);
+
+        // views_7d = 30d pfcount — consistent with skill detail page
+        const views7d = totalViews ?? 0;
 
         const scoreYesterday = scoreYesterdayArr && Array.isArray(scoreYesterdayArr) && scoreYesterdayArr.length > 0
           ? (scoreYesterdayArr[0] as number)
