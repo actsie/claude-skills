@@ -277,8 +277,8 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
           {/* Right Sidebar */}
           <aside className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
-            {/* Table of Contents - Only show if content exists */}
-            <TableOfContents />
+            {/* Trust & Actions Panel */}
+            <TrustActions skillId={skill.slug} skillTitle={skill.title} />
 
             {/* GitHub Link Panel - Always visible */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
@@ -311,8 +311,8 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
               )}
             </div>
 
-            {/* Trust & Actions Panel */}
-            <TrustActions skillId={skill.slug} skillTitle={skill.title} />
+            {/* Table of Contents - Only show if content exists */}
+            <TableOfContents />
 
             {/* Related Skills Panel */}
             {skillsByTags.length > 0 && (
