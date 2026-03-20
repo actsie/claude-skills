@@ -3,7 +3,7 @@ title: "Python Basics"
 description: "Learn Python fundamentals from scratch including variables, data types, functions, loops, conditionals, and basic data structures. Use when learning Python, writing simple scripts, or building foundational programming knowledge."
 categories: ["development"]
 tags: ["python", "beginner", "scripting", "fundamentals", "learning", "programming", "data-structures"]
-author: "python"
+author: "pawgrammer-community"
 repoUrl: ""
 featured: false
 date: "2026-03-20T10:00:00Z"
