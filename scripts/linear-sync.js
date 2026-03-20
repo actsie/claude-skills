@@ -2,25 +2,39 @@
 /**
  * linear-sync.js
  *
- * Auto-syncs git commits to Linear as Done issues in the Skills-Pawgrammer project.
- * Called by the Claude Code Stop hook — runs after every session.
+ * Two-layer Linear sync for skill-web sessions:
  *
- * Also usable manually:
- *   node scripts/linear-sync.js                   # sync unsynced commits → Done
- *   node scripts/linear-sync.js create "Title" "Description"  # create issue manually
- *   node scripts/linear-sync.js start <issueId>   # move issue to In Progress
- *   node scripts/linear-sync.js done <issueId>    # move issue to Done
+ * Layer 1 — Notes file (mid-session actions):
+ *   Claude writes to ~/.claude/linear-skill-notes.json during a session:
+ *   [
+ *     { "issueId": "MAK-30", "stateId": "done", "comment": "Fixed the views bug" },
+ *     { "issueId": "MAK-31", "stateId": "inProgress" },
+ *     { "comment": "Deployed fix to production", "issueId": "MAK-30" }
+ *   ]
+ *   Stop hook reads + processes this file, then clears it.
+ *
+ * Layer 2 — Git commit sync (safety net):
+ *   Any commits in the last 6 hours that haven't been synced → new Done issues.
+ *
+ * Manual CLI:
+ *   node scripts/linear-sync.js                          # run both layers
+ *   node scripts/linear-sync.js create "Title" "Desc"   # create Done issue
+ *   node scripts/linear-sync.js start <id>              # → In Progress
+ *   node scripts/linear-sync.js done <id>               # → Done
+ *   node scripts/linear-sync.js cancel <id>             # → Canceled
+ *   node scripts/linear-sync.js comment <id> "text"     # add comment
  */
 
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const os = require('os');
 
 // ─── Config ────────────────────────────────────────────────────────────────
-const API_KEY     = process.env.LINEAR_API_KEY;
-const TEAM_ID     = '0b945698-571d-4785-a175-4cbb734dcb2d';
-const PROJECT_ID  = '0699bb03-2803-47d3-891e-becd8987a76b';
+const API_KEY    = process.env.LINEAR_API_KEY;
+const TEAM_ID    = '0b945698-571d-4785-a175-4cbb734dcb2d';
+const PROJECT_ID = '0699bb03-2803-47d3-891e-becd8987a76b';
 
 const STATE = {
   todo:       '22baecb2-dc5c-492f-beec-3032a195eae7',
@@ -29,6 +43,7 @@ const STATE = {
   canceled:   'e6899ea4-b23e-46c2-a518-325a7a2cefca',
 };
 
+const NOTES_FILE  = path.join(os.homedir(), '.claude', 'linear-skill-notes.json');
 const SYNCED_FILE = path.join(process.cwd(), '.linear-synced');
 
 // ─── GraphQL client ────────────────────────────────────────────────────────
@@ -80,18 +95,74 @@ async function createIssue(title, description, stateId = STATE.done) {
 }
 
 async function updateState(issueId, stateId) {
+  // Accept friendly names or raw IDs
+  const resolvedStateId = STATE[stateId] || stateId;
   const data = await gql(
     `mutation Update($id: String!, $input: IssueUpdateInput!) {
        issueUpdate(id: $id, input: $input) {
          issue { id identifier title url }
        }
      }`,
-    { id: issueId, input: { stateId } }
+    { id: issueId, input: { stateId: resolvedStateId } }
   );
   return data.issueUpdate.issue;
 }
 
-// ─── Synced commit tracking ────────────────────────────────────────────────
+async function addComment(issueId, body) {
+  const data = await gql(
+    `mutation Comment($input: CommentCreateInput!) {
+       commentCreate(input: $input) {
+         comment { id url }
+       }
+     }`,
+    { input: { issueId, body } }
+  );
+  return data.commentCreate.comment;
+}
+
+// ─── Layer 1: Notes file ───────────────────────────────────────────────────
+async function processNotes() {
+  if (!fs.existsSync(NOTES_FILE)) return;
+
+  let notes;
+  try {
+    const raw = fs.readFileSync(NOTES_FILE, 'utf8').trim();
+    if (!raw) return;
+    notes = JSON.parse(raw);
+  } catch (err) {
+    console.error(`[Linear] Could not parse notes file: ${err.message}`);
+    return;
+  }
+
+  if (!Array.isArray(notes) || notes.length === 0) return;
+
+  console.log(`[Linear] Processing ${notes.length} queued note(s)...`);
+
+  for (const note of notes) {
+    try {
+      // Update state if provided
+      if (note.stateId && note.issueId) {
+        const issue = await updateState(note.issueId, note.stateId);
+        const label = STATE[note.stateId] ? note.stateId : 'updated';
+        console.log(`[Linear] → ${label}: ${issue.identifier} ${issue.title}`);
+      }
+
+      // Add comment if provided
+      if (note.comment && note.issueId) {
+        await addComment(note.issueId, note.comment);
+        console.log(`[Linear] 💬 Comment added to ${note.issueId}`);
+      }
+    } catch (err) {
+      console.error(`[Linear] ✗ Failed note for ${note.issueId}: ${err.message}`);
+    }
+  }
+
+  // Clear the notes file after processing
+  fs.writeFileSync(NOTES_FILE, '');
+  console.log(`[Linear] Notes file cleared.`);
+}
+
+// ─── Layer 2: Git commit sync ──────────────────────────────────────────────
 function loadSynced() {
   if (!fs.existsSync(SYNCED_FILE)) return new Set();
   return new Set(fs.readFileSync(SYNCED_FILE, 'utf8').split('\n').filter(Boolean));
@@ -101,7 +172,6 @@ function saveSynced(set) {
   fs.writeFileSync(SYNCED_FILE, [...set].join('\n') + '\n');
 }
 
-// ─── Auto-sync from git log ────────────────────────────────────────────────
 async function autoSync() {
   let log;
   try {
@@ -125,17 +195,17 @@ async function autoSync() {
 
   const synced = loadSynced();
   const unsynced = commits.filter((c) => !synced.has(c.hash));
-
   if (unsynced.length === 0) return;
 
   for (const commit of unsynced) {
-    // Skip merge commits and version bumps
     if (commit.subject.startsWith('Merge ')) continue;
 
     try {
       const issue = await createIssue(
         commit.subject,
-        commit.body ? `${commit.body}\n\n_Commit: ${commit.hash.slice(0, 8)}_` : `_Commit: ${commit.hash.slice(0, 8)}_`,
+        commit.body
+          ? `${commit.body}\n\n_Commit: ${commit.hash.slice(0, 8)}_`
+          : `_Commit: ${commit.hash.slice(0, 8)}_`,
         STATE.done
       );
       console.log(`[Linear] ✓ ${issue.identifier} — ${issue.title}`);
@@ -151,19 +221,19 @@ async function autoSync() {
 
 // ─── CLI ───────────────────────────────────────────────────────────────────
 async function main() {
-  if (!API_KEY) {
-    process.exit(0); // silent exit if no key configured
-  }
+  if (!API_KEY) process.exit(0);
 
   const [, , command, arg1, arg2] = process.argv;
 
+  // Default: run both layers
   if (!command || command === 'sync') {
+    await processNotes();
     await autoSync();
     return;
   }
 
   if (command === 'create') {
-    const issue = await createIssue(arg1 || 'Untitled', arg2 || '', STATE.inProgress);
+    const issue = await createIssue(arg1 || 'Untitled', arg2 || '', STATE.done);
     console.log(`[Linear] Created ${issue.identifier}: ${issue.title}`);
     console.log(`         ${issue.url}`);
     return;
@@ -187,10 +257,22 @@ async function main() {
     return;
   }
 
-  console.log('Usage: node scripts/linear-sync.js [sync|create <title> <desc>|start <id>|done <id>|cancel <id>]');
+  if (command === 'comment') {
+    await addComment(arg1, arg2 || '');
+    console.log(`[Linear] 💬 Comment added to ${arg1}`);
+    return;
+  }
+
+  console.log(`Usage:
+  node scripts/linear-sync.js                          # process notes + sync commits
+  node scripts/linear-sync.js create "Title" "Desc"   # create Done issue
+  node scripts/linear-sync.js start <id>              # → In Progress
+  node scripts/linear-sync.js done <id>               # → Done
+  node scripts/linear-sync.js cancel <id>             # → Canceled
+  node scripts/linear-sync.js comment <id> "text"     # add comment`);
 }
 
 main().catch((err) => {
   console.error('[Linear] Error:', err.message);
-  process.exit(0); // never block Claude from stopping
+  process.exit(0);
 });
