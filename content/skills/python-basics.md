@@ -4,7 +4,7 @@ description: "Learn Python fundamentals from scratch including variables, data t
 categories: ["development"]
 tags: ["python", "beginner", "scripting", "fundamentals", "learning", "programming", "data-structures"]
 author: "python"
-repoUrl: "https://github.com/python/cpython"
+repoUrl: ""
 featured: false
 date: "2026-03-20T10:00:00Z"
 version: "1.0.0"
