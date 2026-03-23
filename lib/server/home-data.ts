@@ -46,6 +46,32 @@ async function getMostViewedFallback(): Promise<TrendingSkill[]> {
     }));
 }
 
+// No Redis — falls back to most recently added skills from filesystem
+async function getRecentSkillsFallback(): Promise<TrendingSkill[]> {
+  const allSkills = await getAllSkills();
+  return allSkills
+    .filter((skill) => skill.date)
+    .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime())
+    .slice(0, 6)
+    .map((skill, index) => ({
+      skill_id: skill.slug,
+      slug: skill.slug,
+      title: skill.title,
+      category: skill.categories[0] || '',
+      tags: skill.tags.slice(0, 3),
+      created_at: skill.date || new Date().toISOString(),
+      repoUrl: skill.repoUrl,
+      trending_score: 0,
+      velocity_percent: null,
+      history_7d: [0, 0, 0, 0, 0, 0, 0],
+      views_7d: 0,
+      first_seen_at: skill.date || new Date().toISOString(),
+      badge: 'new' as const,
+      rank: index + 1,
+      low_signal: true,
+    }));
+}
+
 /**
  * Get trending skills (server-side)
  * Returns top 5 trending skills with stale-while-revalidate pattern
@@ -77,8 +103,8 @@ export async function getTrendingSkills(): Promise<TrendingSkill[]> {
     console.log('[getTrendingSkills] Falling back to most-viewed all-time');
     return await getMostViewedFallback();
   } catch (error) {
-    console.error('[getTrendingSkills] Error:', error);
-    return [];
+    console.error('[getTrendingSkills] Redis unavailable, using recent skills fallback:', error);
+    return await getRecentSkillsFallback();
   }
 }
 
@@ -129,7 +155,22 @@ export async function getFeaturedSkills(): Promise<FeaturedSkill[]> {
       repoUrl: skill.repoUrl,
     }));
   } catch (error) {
-    console.error('[getFeaturedSkills] Error:', error);
-    return [];
+    console.error('[getFeaturedSkills] Redis unavailable, using recent skills fallback:', error);
+    const allSkills = await getAllSkills();
+    return allSkills
+      .filter((skill) => skill.date)
+      .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime())
+      .slice(0, 6)
+      .map((skill) => ({
+        skill_id: skill.slug,
+        slug: skill.slug,
+        title: skill.title,
+        description: skill.description,
+        category: skill.categories[0] || '',
+        tags: skill.tags,
+        author: skill.author,
+        created_at: skill.date,
+        repoUrl: skill.repoUrl,
+      }));
   }
 }
