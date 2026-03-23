@@ -299,13 +299,13 @@ cd extracted && zip -r ../modified.pptx *
 
 **Example:**
 ```xml
-<!-- Before -->
+
 <a:t>Old Text</a:t>
 
-<!-- After -->
+
 <a:t>New Text</a:t>
 
-<!-- Formatting properties remain unchanged -->
+
 ```
 
 ## Quality Assurance

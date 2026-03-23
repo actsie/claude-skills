@@ -317,7 +317,7 @@ export class AppRoutingModule {}
 ## Forms Migration
 
 ```html
-<!-- Before: AngularJS -->
+
 <form name="userForm" ng-submit="saveUser()">
   <input type="text" ng-model="user.name" required>
   <input type="email" ng-model="user.email" required>

@@ -114,7 +114,7 @@ Based on the requested format:
 - [Feature 3] — [benefit]
 
 ---
-<!-- Continue for all slides -->
+
 ```
 
 #### HTML Presentation (reveal.js compatible)
@@ -137,7 +137,7 @@ Based on the requested format:
         <h2>The Problem</h2>
         <p>[Problem statement]</p>
       </section>
-      <!-- Continue for all slides -->
+      
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>

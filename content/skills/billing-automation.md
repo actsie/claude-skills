@@ -464,7 +464,7 @@ class Invoice:
             <h1>Invoice #{invoice_number}</h1>
             <p>Date: {date}</p>
             <h2>Bill To:</h2>
-            <p>{customer_name}<br>{customer_address}</p>
+            <p>{customer_name}<br />{customer_address}</p>
             <table>
                 <tr><th>Description</th><th>Quantity</th><th>Amount</th></tr>
                 {line_items}

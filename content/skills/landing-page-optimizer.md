@@ -644,7 +644,7 @@ After: "Hand-crafted Furniture Built to Last 25+ Years with Lifetime Repair Guar
   <p>Supporting explanation with emotional appeal</p>
   <div class="trust-indicators">Social proof elements</div>
   <button class="primary-cta">Action-Oriented CTA</button>
-  <img src="hero-image.jpg" alt="Product demonstration">
+  <img src="hero-image.jpg" alt="Product demonstration"/>
 </section>
 ```
 
