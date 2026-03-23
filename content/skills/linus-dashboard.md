@@ -129,19 +129,19 @@ _Example: Energy dashboard embedded seamlessly in Linus_
 ---
 
 <div align="center">
-  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/room-view-en.jpg?raw=true" alt="Room view">
+  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/room-view-en.jpg?raw=true" alt="Room view"/>
 </div>
 
 ---
 
 <div align="center">
-  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/security-view-en.jpg?raw=true" alt="Security view">
+  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/security-view-en.jpg?raw=true" alt="Security view"/>
 </div>
 
 ---
 
 <div align="center">
-  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/aggregate-views-en.jpg?raw=true" alt="Aggregate view">
+  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/aggregate-views-en.jpg?raw=true" alt="Aggregate view"/>
 </div>
 
 ---
