@@ -54,7 +54,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [trailofbits/skills-curated](https://github.com/trailofbits/skills-curated) | ![](https://img.shields.io/github/stars/trailofbits/skills-curated?style=flat-square&logo=github) | `Official` | '26.02 | 큐레이티드 마켓플레이스, 코드 리뷰를 거친 커뮤니티 검증 플러그인 (백도어 위험 경고) |
 | [pashov/skills](https://github.com/pashov/skills) | ![](https://img.shields.io/github/stars/pashov/skills?style=flat-square&logo=github) | `Community` | '26.03 | Pashov Audit Group의 스킬 저장소로, 스마트 컨트랙트 감사 및 Web3 보안 평가에 필요한 도구와 방법론을 제공합니다. Claude Code에서 MCP를 통해 접근하면 보안 감사 자동화 및 코드 분석을 지원할 수 있습니다. `1개 스킬` |
 
-<details><summary>trailofbits/skills 스킬 상세 (60개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [agentic-actions-auditor](https://github.com/trailofbits/skills/tree/main/plugins/agentic-actions-auditor/skills/agentic-actions-auditor) | AI 에이전트 통합(Claude Code Action, Gemini CLI, OpenAI Codex, GitHub AI Inference)의 GitHub Actions 워크플로우 보안 취약점 감사 |
@@ -118,14 +117,9 @@ date: "2026-03-23T13:50:03.752Z"
 | [yara-rule-authoring](https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring/skills/yara-rule-authoring) | YARA 규칙 작성 스킬 |
 | [zeroize-audit](https://github.com/trailofbits/skills/tree/main/plugins/zeroize-audit/skills/zeroize-audit) | 소스 코드의 민감 데이터 제로화 누락 감지 및 컴파일러 최적화로 제거된 제로화를 어셈블리 수준에서 분석 |
 
-</details>
-
-<details><summary>pashov/skills 스킬 상세 (1개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [solidity-auditor](https://github.com/pashov/skills/tree/main/solidity-auditor) | Security audit of Solidity code while you develop. Trigger on "audit", "check this contract", "review for security". |
-
-</details>
 
 ## 스킬 & 플러그인 — 프로토콜별
 
@@ -138,7 +132,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [nirholas/universal-crypto-mcp](https://github.com/nirholas/universal-crypto-mcp) | ![](https://img.shields.io/github/stars/nirholas/universal-crypto-mcp?style=flat-square&logo=github) | `Community` | '26.03 | 이 MCP 서버는 AI 에이전트가 자연언어로 블록체인과 상호작용할 수 있게 해주며, 스왑, 브릿지, 스테이킹 등 다양한 Web3 작업을 자동화합니다. Claude와 연결하면 복잡한 크립토 작업을 간단한 대화로 실행할 수 있습니다. |
 | [hashgraph-online/registry-broker-skills](https://github.com/hashgraph-online/registry-broker-skills) | ![](https://img.shields.io/github/stars/hashgraph-online/registry-broker-skills?style=flat-square&logo=github) | `Community` | '26.03 | 이 레포는 72,000개 이상의 AI 에이전트를 여러 블록체인 프로토콜에서 검색하고 등록할 수 있는 Universal Registry를 제공하며, Claude를 포함한 AI 코딩 어시스턴트에서 MCP 기반 스킬로 활용하여 Web3 에이전트 생태계에 접근할 수 있게 합니다. |
 
-<details><summary>Uniswap/uniswap-ai 스킬 상세 (7개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [configurator](https://github.com/Uniswap/uniswap-ai/tree/main/packages/plugins/uniswap-cca/skills/configurator) | CCA(Continuous Clearing Auction) 스마트 컨트랙트 매개변수를 인터랙티브 폼으로 설정 |
@@ -149,9 +142,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [swap-integration](https://github.com/Uniswap/uniswap-ai/tree/main/packages/plugins/uniswap-trading/skills/swap-integration) | Uniswap 스왑을 애플리케이션에 통합. Trading API, 스왑 프론트엔드, 스마트 컨트랙트 스왑 구현 |
 | [viem-integration](https://github.com/Uniswap/uniswap-ai/tree/main/packages/plugins/uniswap-viem/skills/viem-integration) | viem으로 EVM 블록체인 통합. 블록체인 데이터 읽기, 트랜잭션 전송, 스마트 컨트랙트 상호작용, wagmi 연동 |
 
-</details>
-
-<details><summary>austintgriffith/ethskills 스킬 상세 (23개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [addresses](https://github.com/austintgriffith/ethskills/tree/main/addresses) | Ethereum 메인넷과 L2의 주요 프로토콜 검증된 컨트랙트 주소. 주소 추측/환각 방지용 |
@@ -178,9 +168,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [wallets](https://github.com/austintgriffith/ethskills/tree/main/wallets) | Ethereum 지갑 생성, 관리, 사용. EOA, 스마트 컨트랙트 지갑, 멀티시그(Safe), 계정 추상화 |
 | [why-ethereum](https://github.com/austintgriffith/ethskills/tree/main/why) | Ethereum에서 빌드하는 이유. AI 에이전트 관점 — ERC-8004, x402, 조합성, 무허가 배포 |
 
-</details>
-
-<details><summary>trustwallet/tw-agent-skills 스킬 상세 (5개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [assets](https://github.com/trustwallet/tw-agent-skills/tree/main/skills/assets) | Trust Wallet 자산 저장소 — 토큰 로고/메타데이터 조회, 블록체인별 자산 목록, 새 자산 기여 |
@@ -188,8 +175,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [trust-developer](https://github.com/trustwallet/tw-agent-skills/tree/main/skills/trust-developer) | Trust Wallet 개발자 플랫폼. 딥링크 통합, 브라우저 확장 감지, WalletConnect 설정 |
 | [trust-web3-provider](https://github.com/trustwallet/tw-agent-skills/tree/main/skills/trust-web3-provider) | Trust Wallet Web3 프로바이더 라이브러리 통합. 멀티체인 dApp 연동, 블록체인 지원 추가 |
 | [wallet-core](https://github.com/trustwallet/tw-agent-skills/tree/main/skills/wallet-core) | Trust Wallet Core — 140+ 블록체인에서 HD 지갑 생성, 주소 파생, 트랜잭션 서명 |
-
-</details>
 
 ## 스킬 & 플러그인 — 범용 Web3 규칙
 
@@ -204,7 +189,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [bitget-wallet-ai-lab/bitget-wallet-skill](https://github.com/bitget-wallet-ai-lab/bitget-wallet-skill) | ![](https://img.shields.io/github/stars/bitget-wallet-ai-lab/bitget-wallet-skill?style=flat-square&logo=github) | `Community` | '26.03 | Bitget Wallet API를 래핑한 AI 에이전트 스킬로, 자연어 명령으로 토큰 스왑, 크로스체인 브릿지, 가스리스 트랜잭션을 실행할 수 있습니다. Claude와 MCP를 통해 Web3 애플리케이션에 블록체인 기능을 자동화된 방식으로 통합할 수 있습니다. |
 | [quiknode-labs/blockchain-skills](https://github.com/quiknode-labs/blockchain-skills) | ![](https://img.shields.io/github/stars/quiknode-labs/blockchain-skills?style=flat-square&logo=github) | `Community` | '26.03 | 블록체인 개발자들이 Claude Code, Cursor 등의 코딩 에이전트에서 사용할 수 있는 Web3/블록체인 관련 스킬을 모아둔 저장소입니다. Ethereum, Solana 등 다양한 블록체인 환경에서 스마트 컨트랙트 개발과 암호화폐 관련 작업을 더 효율적으로 수행할 수 있게 지원합니다. `1개 스킬` |
 
-<details><summary>BankrBot/openclaw-skills 스킬 상세 (15개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [bankr-signals](https://github.com/BankrBot/openclaw-skills/tree/main/bankr-signals) | Bankr 트레이딩 시그널 스킬 |
@@ -223,9 +207,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [yoink](https://github.com/BankrBot/openclaw-skills/tree/main/yoink) | Yoink — Base 온체인 깃발뺏기 게임. 깃발 뺏기, 게임 통계/리더보드, 플레이어 점수 조회 |
 | [zapper](https://github.com/BankrBot/openclaw-skills/tree/main/zapper) | Zapper 스킬 (플레이스홀더) |
 
-</details>
-
-<details><summary>coinmarketcap-official/skills-for-ai-agents-by-CoinMarketCap 스킬 상세 (8개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [cmc-api-crypto](https://github.com/coinmarketcap-official/skills-for-ai-agents-by-CoinMarketCap/tree/main/skills/cmc-api-crypto) | CoinMarketCap 암호화폐 API — 시세, 상장 목록, OHLCV, 트렌딩, 카테고리 엔드포인트 |
@@ -237,9 +218,6 @@ date: "2026-03-23T13:50:03.752Z"
 | [crypto-research](https://github.com/coinmarketcap-official/skills-for-ai-agents-by-CoinMarketCap/tree/main/skills/crypto-research) | CoinMarketCap MCP 데이터로 암호화폐 종합 실사(DD). 가격 외 특정 코인 상세 분석 |
 | [market-report](https://github.com/coinmarketcap-official/skills-for-ai-agents-by-CoinMarketCap/tree/main/skills/market-report) | CoinMarketCap MCP 데이터로 종합 크립토 시장 리포트 생성. 시장 상황, 심리, 전반적 현황 분석 |
 
-</details>
-
-<details><summary>binance/binance-skills-hub 스킬 상세 (7개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [crypto-market-rank](https://github.com/binance/binance-skills-hub/tree/main/skills/binance-web3/crypto-market-rank) | Crypto market rankings and leaderboards. Query trending tokens, top searched tokens, Binance Alpha tokens, tokenized stocks, social hype sentiment ranks, smart money inflow token rankings, top meme to... |
@@ -250,14 +228,9 @@ date: "2026-03-23T13:50:03.752Z"
 | [trading-signal](https://github.com/binance/binance-skills-hub/tree/main/skills/binance-web3/trading-signal) | Subscribe and retrieve on-chain Smart Money signals. Monitor trading activities of smart money addresses, including buy/sell signals, trigger price, current price, max gain, and exit rate. |
 | [spot](https://github.com/binance/binance-skills-hub/tree/main/skills/binance/spot) | Binance Spot request using the Binance API. Authentication requires API key and secret key. Supports testnet and mainnet. |
 
-</details>
-
-<details><summary>quiknode-labs/blockchain-skills 스킬 상세 (1개)</summary>
 | 스킬 | 설명 |
 |:-----|:------------|
 | [quicknode-skill](https://github.com/quiknode-labs/blockchain-skills/tree/main/skills/quicknode-skill) | Quicknode blockchain infrastructure including RPC endpoints (80+ chains), Streams (real-time data), Webhooks, IPFS storage, Marketplace Add-ons (Token API, NFT API, DeFi tools), Solana DAS API (Digita... |
-
-</details>
 
 ## MCP 서버 — 온체인 데이터 & 분석
 
