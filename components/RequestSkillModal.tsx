@@ -93,7 +93,7 @@ export default function RequestSkillModal({ isOpen, onClose }: RequestSkillModal
         });
       }
 
-      const response = await fetch('https://discord.com/api/webhooks/1429050546781945867/-IT_fLkKWIA5Ek11ERQgBHkLsYL-IQVH4T8-DsZIfE9S8Z9QG7egPg7rel5qW0OSDV3q', {
+      const response = await fetch('/api/discord/request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

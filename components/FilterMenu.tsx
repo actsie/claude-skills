@@ -1918,7 +1918,7 @@ export default function FilterMenu({
                 };
 
                 try {
-                  const response = await fetch('https://discord.com/api/webhooks/1430040837584326696/1tELaUvzZgHl43SWYRA3HH-U_8xZbejxQNzg2bSqTtWWvOCMTo8m4xd8-SCURAQY_Ih3', {
+                  const response = await fetch('/api/discord/featured', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
