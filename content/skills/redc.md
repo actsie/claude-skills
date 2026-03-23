@@ -22,8 +22,8 @@ date: "2026-03-22T14:17:54.293Z"
 <a href="https://github.com/wgpsec/redc/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/wgpsec/redc/total?color=brightgreen"/></a>
 <a href="https://goreportcard.com/report/github.com/wgpsec/redc"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/wgpsec/redc"/></a>
 <a href="https://twitter.com/wgpsec"><img alt="Twitter" src="https://img.shields.io/twitter/follow/wgpsec?label=Followers&style=social" /></a>
-<br>
-<br>
+<br />
+<br />
 <a href="https://redc.wgpsec.org/"><strong>Explore More Templates »</strong></a>
     <br/>
     <br />

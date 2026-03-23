@@ -10,7 +10,7 @@ date: "2026-03-22T14:18:09.167Z"
 
 <div align="center">
   <a href="https://thankyou-linus.com/">
-    <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/linus-dashboard-banner-en.jpg?raw=true" alt="Linus Dashboard">
+    <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/linus-dashboard-banner-en.jpg?raw=true" alt="Linus Dashboard" />
   </a>
   <p align="center">
     <br>
