@@ -9,11 +9,7 @@ date: "2026-03-22T14:18:19.691Z"
 ---
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zeroae/zae-limiter/main/docs/assets/zae-limiter-dark-bg.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/zeroae/zae-limiter/main/docs/assets/zae-limiter-white-bg.svg">
-    <img alt="zae-limiter" src="https://raw.githubusercontent.com/zeroae/zae-limiter/main/docs/assets/zae-limiter-white-bg.svg" width="50%">
-  </picture>
+  <img alt="zae-limiter" src="https://raw.githubusercontent.com/zeroae/zae-limiter/main/docs/assets/zae-limiter-white-bg.svg" width="50%" />
 </p>
 
 [![PyPI version](https://img.shields.io/pypi/v/zae-limiter?style=flat-square)](https://pypi.org/project/zae-limiter/)

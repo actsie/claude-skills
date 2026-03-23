@@ -34,7 +34,6 @@ date: "2026-03-22T14:18:09.167Z"
 
 [![My Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Thank-you-Linus&repository=Linus-Dashboard)
 
-  <!-- Social icons section -->
   <p align="center">
     <a href="https://www.instagram.com/thankyoulinus.ai/">
       <img width="32px" alt="Instagram" title="Instagram" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/instagram.svg"/>
@@ -173,7 +172,7 @@ _Example: Energy dashboard embedded seamlessly in Linus_
 ## 🌟 Features You'll Love
 
 <div align="center">
-  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/home-view-en.jpg?raw=true" alt="Home view">
+  <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/home-view-en.jpg?raw=true" alt="Home view" />
 </div>
 
 ---
@@ -358,7 +357,7 @@ We’re always open to contributions! Fork the project, submit improvements, or 
     Visit <a href="https://thankyou-linus.com/">thankyou-linus.com</a> to dive deeper into the Linus ecosystem and discover all the possibilities.
   </p>
   <a href="https://thankyou-linus.com/" style="text-decoration: none;">
-    <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/thank-you-linus.png?raw=true" alt="Visit thankyou-linus.com" >
+    <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/thank-you-linus.png?raw=true" alt="Visit thankyou-linus.com" />
   </a>
 </div>
 

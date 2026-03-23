@@ -10,7 +10,7 @@ date: "2026-03-22T14:17:54.293Z"
 
 <p align="center">
   <a href="https://github.com/wgpsec/redc">
-    <img src="./img/banner.jpg" width="100%" alt="redc">
+    <img src="./img/banner.jpg" width="100%" alt="redc" />
   </a>
   <p align="center">
     Red Team Infrastructure Multi-Cloud Automated Deployment Tool

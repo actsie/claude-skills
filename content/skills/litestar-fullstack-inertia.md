@@ -8,12 +8,10 @@ tags: ["litestar fullstack inertia", "litestar-org", "skill"]
 date: "2026-03-22T14:17:57.790Z"
 ---
 
-<!-- markdownlint-disable -->
 <p align="center">
   <img src="https://raw.githubusercontent.com/litestar-org/branding/1dc4635b192d29d864fcee6f3f73ea0ff6fecf10/assets/Branding%20-%20SVG%20-%20Transparent/Fullstack%20-%20Banner%20-%20Inline%20-%20Light.svg#gh-light-mode-only" alt="Litestar Logo - Light" width="100%" height="auto" />
   <img src="https://raw.githubusercontent.com/litestar-org/branding/1dc4635b192d29d864fcee6f3f73ea0ff6fecf10/assets/Branding%20-%20SVG%20-%20Transparent/Fullstack%20-%20Banner%20-%20Inline%20-%20Dark.svg#gh-dark-mode-only" alt="Litestar Logo - Dark" width="100%" height="auto" />
 </p>
-<!-- markdownlint-restore -->
 
 <div align="center">
 
