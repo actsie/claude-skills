@@ -8,7 +8,7 @@ tags: ["chibi", "s-nagaev", "skill"]
 date: "2026-03-23T13:51:18.013Z"
 ---
 
-<h1 align="center"><img width=150 src="https://github.com/s-nagaev/chibi/raw/main/docs/logo.png" alt="Chibi Logo"/></h1>
+<h1 align="center"><img width="150" src="https://github.com/s-nagaev/chibi/raw/main/docs/logo.png" alt="Chibi Logo"/></h1>
 
 <p align="center">
   <strong>Your Digital Companion. Not a Tool. A Partner.</strong><br/>
