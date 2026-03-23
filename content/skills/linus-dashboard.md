@@ -8,56 +8,7 @@ tags: ["linus dashboard", "Thank-you-Linus", "skill"]
 date: "2026-03-22T14:18:09.167Z"
 ---
 
-<div align="center">
-  <a href="https://thankyou-linus.com/">
-    <img src="https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/linus-dashboard-banner-en.jpg?raw=true" alt="Linus Dashboard" />
-  </a>
-  <p align="center">
-    <br>
-    ✨ The modern, intuitive Plug n Play Magic Dashboard that auto-organizes your rooms and devices into Smart Sections. Home Assistant has never looked this good! ✨
-    <br />
-    <p align="center">
-      <a href="README-fr.md"><strong>🇫🇷 Lire en français</strong></a>
-    </p>
-    <a href="https://community.home-assistant.io/t/looking-for-beta-testers-for-linus-dashboard-integration/804564">
-      <img src="https://img.shields.io/badge/Home%20Assistant-Community%20Forum-blue?logo=home-assistant" alt="Home Assistant Community Forum"/>
-    </a>
-    <a href="https://discord.com/invite/ej2Xn4GTww">
-      <img src="https://discordapp.com/api/guilds/1104794215440978042/widget.png?style=shield" alt="Discord Community"/>
-    </a>
-    <a href="https://github.com/Thank-you-Linus/Linus-Dashboard/stargazers">
-      <img src="https://img.shields.io/github/stars/Thank-you-Linus/Linus-Dashboard?style=social" alt="GitHub Stars"/>
-    </a>
-  </p>
-
-![Validate HACS](https://github.com/Thank-you-Linus/Linus-Dashboard/actions/workflows/validate.yml/badge.svg) ![Check Status](https://github.com/Thank-you-Linus/Linus-Dashboard/actions/workflows/main-check.yml/badge.svg) [![Latest release](https://img.shields.io/github/v/release/Thank-you-Linus/Linus-Dashboard.svg)](https://github.com/Thank-you-Linus/Linus-Dashboard/releases) [![GitHub latest commit](https://badgen.net/github/last-commit/Thank-you-Linus/Linus-Dashboard)](https://github.com/Thank-you-Linus/Linus-Dashboard/commit/) [![GitHub contributors](https://badgen.net/github/contributors/Thank-you-Linus/Linus-Dashboard)](https://GitHub.com/Thank-you-Linus/Linus-Dashboard/graphs/contributors/)
-
-[![My Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Thank-you-Linus&repository=Linus-Dashboard)
-
-  <p align="center">
-    <a href="https://www.instagram.com/thankyoulinus.ai/">
-      <img width="32px" alt="Instagram" title="Instagram" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/instagram.svg"/>
-    </a>
-    <a href="https://www.facebook.com/people/Thank-you-Linus/100093180180087/">
-      <img width="32px" alt="Facebook" title="Facebook" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/facebook.svg"/>
-    </a>
-    <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fthank_you_Linus">
-      <img width="32px" alt="Twitter" title="Twitter" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/x.svg"/>
-    </a>
-    <a href="https://discord.gg/ej2Xn4GTww" alt="Discord" title="Discord Server">
-      <img width="32px" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/discord.svg"/>
-    </a>
-    <a href="https://www.youtube.com/channel/UCKXNON6Xtxp63z-GKoMyPWw">
-      <img width="32px" alt="Youtube" title="Youtube" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/youtube.svg"/>
-    </a>
-    <a href="https://www.linkedin.com/company/thankyou-linus/">
-      <img width="32px" alt="LinkedIn" title="LinkedIn" src="https://raw.githubusercontent.com/Thank-you-Linus/.github/master/images/socials/linkedin.svg"/>
-    </a>
-  </p>
-    <a href="https://thankyou-linus.com/"><strong>Discover More »</strong></a>
-    <br />
-    <br />
-  </div>
+![Linus Dashboard](https://github.com/Thank-you-Linus/Linus-Dashboard/blob/main/images/screenshots/linus-dashboard-banner-en.jpg?raw=true)
 
 ## 🚀 Why Linus Dashboard?
 

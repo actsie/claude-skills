@@ -8,37 +8,7 @@ tags: ["redc", "wgpsec", "skill"]
 date: "2026-03-22T14:17:54.293Z"
 ---
 
-<p align="center">
-  <a href="https://github.com/wgpsec/redc">
-    <img src="./img/banner.jpg" width="100%" alt="redc" />
-  </a>
-  <p align="center">
-    Red Team Infrastructure Multi-Cloud Automated Deployment Tool
-    <br />
-    <br />
-<a href="https://github.com/wgpsec/redc/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/wgpsec/redc"/></a>
-<a href="https://github.com/wgpsec/redc/releases"><img alt="GitHub releases" src="https://img.shields.io/github/release/wgpsec/redc"/></a>
-<a href="https://github.com/wgpsec/redc/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-<a href="https://github.com/wgpsec/redc/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/wgpsec/redc/total?color=brightgreen"/></a>
-<a href="https://goreportcard.com/report/github.com/wgpsec/redc"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/wgpsec/redc"/></a>
-<a href="https://twitter.com/wgpsec"><img alt="Twitter" src="https://img.shields.io/twitter/follow/wgpsec?label=Followers&style=social" /></a>
-<br />
-<br />
-<a href="https://redc.wgpsec.org/"><strong>Explore More Templates »</strong></a>
-    <br/>
-    <br />
-      <a href="https://github.com/wgpsec/redc?tab=readme-ov-file#quick-start">🧐How to Use</a>
-      ·
-    <a href="https://github.com/wgpsec/redc/releases">⬇️Download</a>
-    ·
-    <a href="https://github.com/wgpsec/redc/issues">❔Report Bug</a>
-    ·
-    <a href="https://github.com/wgpsec/redc/discussions">🍭Request Feature</a>
-  </p>
-
-[中文](README_CN.md) | English
-
----
+![redc](./img/banner.jpg)
 
 ## Documentation
 
