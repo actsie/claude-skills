@@ -23,6 +23,7 @@ date: "2026-03-23T13:51:18.013Z"
   <a href="https://hub.docker.com/r/pysergio/chibi/tags"><img src="https://img.shields.io/badge/arch-arm64%20%7C%20amd64-informational" alt="Architectures"/></a>
   <a href="https://github.com/s-nagaev/chibi/blob/main/LICENSE"><img src="https://img.shields.io/github/license/s-nagaev/chibi" alt="License"/></a>
   <a href="https://chibi.bot"><img src="https://img.shields.io/badge/docs-chibi.bot-blue" alt="Documentation"/></a>
+</p>
 
 <p align="center">
   <strong>🌍 Read this in other languages:</strong><br/>

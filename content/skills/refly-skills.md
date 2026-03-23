@@ -10,7 +10,7 @@ date: "2026-03-23T14:19:50.218Z"
 
 <div align="center">
 
-<h1 align="center" style="border-bottom: none">
+<h1 align="center">
     <b>
         <a href="https://refly.ai">Refly Skills</a><br />
     </b>
