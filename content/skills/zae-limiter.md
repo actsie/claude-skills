@@ -1,6 +1,6 @@
 ---
 title: "or"
-description: "`bash"
+description: "A rate limiting library backed by DynamoDB using the token bucket algorithm."
 author: "zeroae"
 repoUrl: "https://github.com/zeroae/zae-limiter"
 categories: ["development"]

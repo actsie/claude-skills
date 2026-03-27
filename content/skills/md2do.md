@@ -1,6 +1,6 @@
 ---
 title: "md2do"
-description: "![npm version](https://www.npmjs.com/package/@md2do/cli)"
+description: "Convert markdown documents into structured task lists and actionable to-dos with a single command."
 author: "TeamNickHart"
 repoUrl: "https://github.com/TeamNickHart/md2do"
 categories: ["development"]

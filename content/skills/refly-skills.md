@@ -1,6 +1,6 @@
 ---
 title: "refly-skills"
-description: "Skill from refly-ai/refly-skills"
+description: "The official executable skill registry for Refly."
 author: "refly-ai"
 repoUrl: "https://github.com/refly-ai/refly-skills"
 categories: ["development"]

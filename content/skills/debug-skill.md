@@ -1,6 +1,6 @@
 ---
 title: "debug-skill"
-description: "![Watch the demo](https://youtu.be/ZxXvTtilZr0)"
+description: "Let your coding agent debug like a human developer. Set breakpoints, step through code, evaluate expressions — the way you actually debug."
 author: "AlmogBaku"
 repoUrl: "https://github.com/AlmogBaku/debug-skill"
 categories: ["development"]

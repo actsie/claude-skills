@@ -1,6 +1,6 @@
 ---
 title: "windows"
-description: "- User Guide - Complete installation and usage guide"
+description: "Terraform-based red team infrastructure tool that automates the full lifecycle of cloud resources — from provisioning to teardown."
 author: "wgpsec"
 repoUrl: "https://github.com/wgpsec/redc"
 categories: ["development"]

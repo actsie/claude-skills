@@ -1,6 +1,6 @@
 ---
 title: "assay"
-description: "![CI](https://github.com/Assay-Tools/assay/actions/workflows/ci.yml)"
+description: "The quality layer for agentic software. Independent agent-friendliness ratings for MCP servers, APIs, and SDKs."
 author: "Assay-Tools"
 repoUrl: "https://github.com/Assay-Tools/assay"
 categories: ["development"]

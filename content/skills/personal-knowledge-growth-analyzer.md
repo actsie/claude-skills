@@ -1,6 +1,6 @@
 ---
 title: "personal-knowledge-growth-analyzer"
-description: "English | 简体中文"
+description: "A local knowledge analysis tool built on Claude Skills that helps you observe how you accumulate, record, and organize knowledge over time."
 author: "wuyaojunkylin"
 repoUrl: "https://github.com/wuyaojunkylin/Personal-Knowledge-Growth-Analyzer"
 categories: ["development"]

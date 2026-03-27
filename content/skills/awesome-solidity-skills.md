@@ -1,6 +1,6 @@
 ---
 title: "awesome-solidity-skills"
-description: "Skill from gonzaloetjo/awesome-solidity-skills"
+description: "A curated collection of Claude Code skills for Solidity and smart contract development."
 author: "gonzaloetjo"
 repoUrl: "https://github.com/gonzaloetjo/awesome-solidity-skills"
 categories: ["development"]

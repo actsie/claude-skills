@@ -1,6 +1,6 @@
 ---
 title: "forge"
-description: "設計から実装・レビュー・テストまで — Claude Code の開発ワークフローを自動化するプラグインシステム"
+description: "A plugin system that automates Claude Code development workflows from design through implementation, review, and testing."
 author: "kousukef"
 repoUrl: "https://github.com/kousukef/forge"
 categories: ["development"]

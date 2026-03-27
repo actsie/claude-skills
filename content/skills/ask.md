@@ -1,6 +1,6 @@
 ---
 title: "ask"
-description: "Skill from yeasy/ask"
+description: "Agent Skills Kit — install once and use with Claude, Cursor, Codex, Copilot, Windsurf, Gemini, and more."
 author: "yeasy"
 repoUrl: "https://github.com/yeasy/ask"
 categories: ["development"]

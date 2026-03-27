@@ -1,6 +1,6 @@
 ---
 title: "pds-agent-skills"
-description: "!Plugins"
+description: "Specialized AI workflow plugins for NASA Planetary Data System in Claude Code."
 author: "NASA-PDS"
 repoUrl: "https://github.com/NASA-PDS/pds-agent-skills"
 categories: ["development"]

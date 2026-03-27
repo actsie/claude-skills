@@ -1,6 +1,6 @@
 ---
 title: "agnix"
-description: "Skill from avifenesh/agnix"
+description: "Lint agent configurations before they break your workflow."
 author: "avifenesh"
 repoUrl: "https://github.com/avifenesh/agnix"
 categories: ["development"]

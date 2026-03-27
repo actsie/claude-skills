@@ -1,6 +1,6 @@
 ---
 title: "gh-copilot-setup"
-description: "Two pills. One choice."
+description: "A complete Windows developer environment setup with two personalized GitHub Copilot agents — AI Maker and AI Workbench."
 author: "marcusash"
 repoUrl: "https://github.com/marcusash/gh-copilot-setup"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "claude-marketplace-registry"
-description: "!Claude Marketplace Aggregator"
+description: "Aggregates and indexes skills from the Claude marketplace ecosystem into a unified, searchable registry."
 author: "shrwnsan"
 repoUrl: "https://github.com/shrwnsan/claude-marketplace-registry"
 categories: ["design"]

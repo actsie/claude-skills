@@ -1,6 +1,6 @@
 ---
 title: "claude-matrix"
-description: "| Feature | What It Does |"
+description: "Matrix turns Claude Code into a complete development environment with persistent memory, code indexing across 15 languages, and automated hooks."
 author: "ojowwalker77"
 repoUrl: "https://github.com/ojowwalker77/Claude-Matrix"
 categories: ["data"]

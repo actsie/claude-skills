@@ -1,6 +1,6 @@
 ---
 title: "awesome-web3-claude"
-description: "![Awesome](https://awesome.re)"
+description: "A curated list of MCP servers, AI agent frameworks, skills, and dev tools for Web3 development with Claude Code."
 author: "sumsun-dev"
 repoUrl: "https://github.com/sumsun-dev/awesome-web3-claude"
 categories: ["data"]

@@ -1,6 +1,6 @@
 ---
 title: "charles-proxy-extract-skill"
-description: "!License: MIT"
+description: "A Claude Code skill that extracts and analyzes HTTP/HTTPS request and response data from Charles Proxy session files."
 author: "wannabehero"
 repoUrl: "https://github.com/wannabehero/charles-proxy-extract-skill"
 categories: ["development"]
