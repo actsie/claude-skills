@@ -40,7 +40,7 @@ npx add-skill raintree-technology/claude-starter --list
 The most advanced `.claude/` configuration framework for [Claude Code](https://code.claude.com) that provides:
 
 - **40 Skills** - Auto-activating expertise (Stripe, Supabase, Aptos, Expo, Plaid, Whop, Shopify, iOS)
-- **Meta-Commands** - Create custom commands from templates in <2 minutes
+- **Meta-Commands** - Create custom commands from templates in under 2 minutes
 - **Skill Orchestration** - Multi-skill collaboration with semantic matching
 - **Workflow Automation** - YAML-based workflows (GitHub Actions-inspired)
 - **TOON Format** - 30-60% token savings for tabular data

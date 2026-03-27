@@ -44,43 +44,25 @@ VibeSec is an AI Skill that acts as a security-first co-pilot. It teaches your s
 
 ## 📥 Installation
 
-- <details><summary>Claude Code</summary>
+**Claude Code**
+- Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+- Add it to `~/.claude/skills` (global) or `.claude/skills` in your project directory (project-only).
 
-  * Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+**Cursor**
+- Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+- Add it to `~/.cursor/skills` (global) or `.cursor/skills` in your project directory (project-only).
 
-  * Add it to `~/.claude/skills` (global) or `.claude/skills` in your project directory (project-only).
-</details>
+**Codex**
+- Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+- Add it to `~/.agents/skills` (global) or `.agents/skills` in your project directory (project-only).
 
-- <details><summary>Cursor</summary>
+**Github Copilot**
+- Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+- Add it to `~/.copilot/skills` (global) or `.github/skills` in your project directory (project-only).
 
-  * Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
-
-  * Add it to `~/.cursor/skills` (global) or `.cursor/skills` in your project directory (project-only).
-</details>
-
-- <details><summary>Codex</summary>
-
-  * Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
-
-  * Add it to `~/.agents/skills` (global) or `.agents/skills` in your project directory (project-only).
-
-</details>
-
-- <details><summary>Github Copilot</summary>
-
-  * Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
-
-  * Add it to `~/.copilot/skills` (global) or `.github/skills` in your project directory (project-only).
-
-</details>
-
-- <details><summary>Antigravity</summary>
-
-  * Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
-
-  * Add it to `~/.gemini/antigravity/skills/` (global) or `.agent/skills/` in your project directory (project-only).
-
-</details>
+**Antigravity**
+- Clone this repository: `git clone https://github.com/BehiSecc/VibeSec-Skill`
+- Add it to `~/.gemini/antigravity/skills/` (global) or `.agent/skills/` in your project directory (project-only).
 
 
 
