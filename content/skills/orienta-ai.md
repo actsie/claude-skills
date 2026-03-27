@@ -1,6 +1,6 @@
 ---
 title: "orienta-ai"
-description: "Skill from devjaime/orienta-ai"
+description: "Estado: Proyecto cerrado como startup. Código abierto para estudio y referencia técnica."
 author: "devjaime"
 repoUrl: "https://github.com/devjaime/orienta-ai"
 categories: ["development"]

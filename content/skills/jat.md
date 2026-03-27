@@ -1,6 +1,6 @@
 ---
 title: "jat"
-description: "Skill from joewinke/jat"
+description: "Agents ship, suggest, repeat. You supervise — or they run on their own."
 author: "joewinke"
 repoUrl: "https://github.com/joewinke/jat"
 categories: ["design"]

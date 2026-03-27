@@ -1,6 +1,6 @@
 ---
 title: "personal-knowledge-growth-analyzer"
-description: "Skill from wuyaojunkylin/Personal-Knowledge-Growth-Analyzer"
+description: "English | 简体中文"
 author: "wuyaojunkylin"
 repoUrl: "https://github.com/wuyaojunkylin/Personal-Knowledge-Growth-Analyzer"
 categories: ["development"]

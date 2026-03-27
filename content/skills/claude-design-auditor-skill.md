@@ -1,6 +1,6 @@
 ---
 title: "claude-design-auditor-skill"
-description: "Skill from Ashutos1997/claude-design-auditor-skill"
+description: "A Claude skill that audits designs against 18 professional design categories — built for developers, non-designers, and anyone who wants expert..."
 author: "Ashutos1997"
 repoUrl: "https://github.com/Ashutos1997/claude-design-auditor-skill"
 categories: ["development"]

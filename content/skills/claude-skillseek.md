@@ -1,6 +1,6 @@
 ---
 title: "claude-skillseek"
-description: "Skill from wience/claude-skillseek"
+description: "Discover the perfect Claude Code skill for any workflow."
 author: "wience"
 repoUrl: "https://github.com/wience/claude-skillseek"
 categories: ["development"]

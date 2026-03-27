@@ -1,6 +1,6 @@
 ---
 title: "claude-starter"
-description: "Skill from raintree-technology/claude-starter"
+description: "Advanced Claude Code framework with 40+ skills, meta-commands, skill orchestration, workflow automation, and TOON format support."
 author: "raintree-technology"
 repoUrl: "https://github.com/raintree-technology/claude-starter"
 categories: ["development"]

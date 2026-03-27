@@ -1,6 +1,6 @@
 ---
 title: "skilltree"
-description: "Skill from steadymoka/skilltree"
+description: "A skill manager for AI coding agents — organize, tag, and link skills across projects."
 author: "steadymoka"
 repoUrl: "https://github.com/steadymoka/skilltree"
 categories: ["data"]

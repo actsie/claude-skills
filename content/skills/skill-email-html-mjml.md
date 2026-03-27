@@ -1,6 +1,6 @@
 ---
 title: "skill-email-html-mjml"
-description: "Skill from framix-team/skill-email-html-mjml"
+description: "A Claude Code skill that generates responsive, cross-client HTML email from a single conversation."
 author: "framix-team"
 repoUrl: "https://github.com/framix-team/skill-email-html-mjml"
 categories: ["development"]

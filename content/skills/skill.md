@@ -1,6 +1,6 @@
 ---
 title: "skill"
-description: "Skill from agent-cards/skill"
+description: "Give your AI agent a debit card. Agent Cards lets AI agents create and spend prepaid virtual Visa cards — each with a fixed budget, real card..."
 author: "agent-cards"
 repoUrl: "https://github.com/agent-cards/skill"
 categories: ["development"]

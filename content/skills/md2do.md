@@ -1,6 +1,6 @@
 ---
 title: "md2do"
-description: "Skill from TeamNickHart/md2do"
+description: "![npm version](https://www.npmjs.com/package/@md2do/cli)"
 author: "TeamNickHart"
 repoUrl: "https://github.com/TeamNickHart/md2do"
 categories: ["development"]

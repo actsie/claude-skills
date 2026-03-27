@@ -1,6 +1,6 @@
 ---
 title: "skillsmith"
-description: "Skill from smith-horn/skillsmith"
+description: "Craft your agent skill workflow."
 author: "smith-horn"
 repoUrl: "https://github.com/smith-horn/skillsmith"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "debug-skill"
-description: "Skill from AlmogBaku/debug-skill"
+description: "![Watch the demo](https://youtu.be/ZxXvTtilZr0)"
 author: "AlmogBaku"
 repoUrl: "https://github.com/AlmogBaku/debug-skill"
 categories: ["development"]

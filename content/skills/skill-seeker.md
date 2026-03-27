@@ -1,6 +1,6 @@
 ---
 title: "skill-seeker"
-description: "Skill from mmmantasrrr/skill-seeker"
+description: "Discover and Install Community AI Skills for Claude Code"
 author: "mmmantasrrr"
 repoUrl: "https://github.com/mmmantasrrr/skill-seeker"
 categories: ["design"]

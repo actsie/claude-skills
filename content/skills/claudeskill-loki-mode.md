@@ -1,6 +1,6 @@
 ---
 title: "claudeskill-loki-mode"
-description: "Skill from asklokesh/claudeskill-loki-mode"
+description: "Describe what you want. Get production-ready code."
 author: "asklokesh"
 repoUrl: "https://github.com/asklokesh/claudeskill-loki-mode"
 categories: ["development"]

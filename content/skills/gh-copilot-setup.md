@@ -1,6 +1,6 @@
 ---
 title: "gh-copilot-setup"
-description: "Skill from marcusash/gh-copilot-setup"
+description: "Two pills. One choice."
 author: "marcusash"
 repoUrl: "https://github.com/marcusash/gh-copilot-setup"
 categories: ["development"]

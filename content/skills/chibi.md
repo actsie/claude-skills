@@ -1,6 +1,6 @@
 ---
 title: "chibi"
-description: "Skill from s-nagaev/chibi"
+description: "Your Digital Companion. Not a Tool. A Partner."
 author: "s-nagaev"
 repoUrl: "https://github.com/s-nagaev/chibi"
 categories: ["data"]

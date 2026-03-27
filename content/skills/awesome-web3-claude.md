@@ -1,6 +1,6 @@
 ---
 title: "awesome-web3-claude"
-description: "Skill from sumsun-dev/awesome-web3-claude"
+description: "![Awesome](https://awesome.re)"
 author: "sumsun-dev"
 repoUrl: "https://github.com/sumsun-dev/awesome-web3-claude"
 categories: ["data"]

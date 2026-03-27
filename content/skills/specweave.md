@@ -1,6 +1,6 @@
 ---
 title: "specweave"
-description: "Skill from anton-abyzov/specweave"
+description: "AI-assisted development, under control."
 author: "anton-abyzov"
 repoUrl: "https://github.com/anton-abyzov/specweave"
 categories: ["design"]

@@ -1,6 +1,6 @@
 ---
 title: "agents"
-description: "Skill from aRustyDev/agents"
+description: "Reusable Claude Code components: skills, agents, commands, rules, plugins, MCP server configurations, and a universal component management system."
 author: "aRustyDev"
 repoUrl: "https://github.com/aRustyDev/agents"
 categories: ["data"]

@@ -1,6 +1,6 @@
 ---
 title: "windows"
-description: "Skill from wgpsec/redc"
+description: "- User Guide - Complete installation and usage guide"
 author: "wgpsec"
 repoUrl: "https://github.com/wgpsec/redc"
 categories: ["development"]

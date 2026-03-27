@@ -1,6 +1,6 @@
 ---
 title: "assay"
-description: "Skill from Assay-Tools/assay"
+description: "![CI](https://github.com/Assay-Tools/assay/actions/workflows/ci.yml)"
 author: "Assay-Tools"
 repoUrl: "https://github.com/Assay-Tools/assay"
 categories: ["development"]

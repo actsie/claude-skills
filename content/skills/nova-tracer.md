@@ -1,6 +1,6 @@
 ---
 title: "nova-tracer"
-description: "Skill from Nova-Hunting/nova-tracer"
+description: "Security monitoring and prompt injection defense for Claude Code using the NOVA Framework."
 author: "Nova-Hunting"
 repoUrl: "https://github.com/Nova-Hunting/nova-tracer"
 categories: ["data"]

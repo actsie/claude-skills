@@ -1,6 +1,6 @@
 ---
 title: "frontend-slides"
-description: "Skill from zarazhangrui/frontend-slides"
+description: "A Claude Code skill for creating stunning, animation-rich HTML presentations — from scratch or by converting PowerPoint files."
 author: "zarazhangrui"
 repoUrl: "https://github.com/zarazhangrui/frontend-slides"
 categories: ["development"]

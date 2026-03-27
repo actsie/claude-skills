@@ -1,6 +1,6 @@
 ---
 title: "web-asset-generator"
-description: "Skill from alonw0/web-asset-generator"
+description: "🎨 A Claude Code Skill for generating favicons, app icons, and social media images"
 author: "alonw0"
 repoUrl: "https://github.com/alonw0/web-asset-generator"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "vibesec-skill"
-description: "Skill from BehiSecc/VibeSec-Skill"
+description: "Stop vibe coding vulnerabilities into production."
 author: "BehiSecc"
 repoUrl: "https://github.com/BehiSecc/VibeSec-Skill"
 categories: ["development"]

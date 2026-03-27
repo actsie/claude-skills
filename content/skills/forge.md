@@ -1,6 +1,6 @@
 ---
 title: "forge"
-description: "Skill from kousukef/forge"
+description: "設計から実装・レビュー・テストまで — Claude Code の開発ワークフローを自動化するプラグインシステム"
 author: "kousukef"
 repoUrl: "https://github.com/kousukef/forge"
 categories: ["development"]

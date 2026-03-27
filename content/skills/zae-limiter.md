@@ -1,6 +1,6 @@
 ---
 title: "or"
-description: "Skill from zeroae/zae-limiter"
+description: "`bash"
 author: "zeroae"
 repoUrl: "https://github.com/zeroae/zae-limiter"
 categories: ["development"]

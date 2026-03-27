@@ -1,6 +1,6 @@
 ---
 title: "claude-skills-guide"
-description: "Skill from theluckystrike/claude-skills-guide"
+description: "2,300+ free tutorials for Claude Code, Claude API, and AI-assisted development."
 author: "theluckystrike"
 repoUrl: "https://github.com/theluckystrike/claude-skills-guide"
 categories: ["development"]

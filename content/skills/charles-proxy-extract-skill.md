@@ -1,6 +1,6 @@
 ---
 title: "charles-proxy-extract-skill"
-description: "Skill from wannabehero/charles-proxy-extract-skill"
+description: "!License: MIT"
 author: "wannabehero"
 repoUrl: "https://github.com/wannabehero/charles-proxy-extract-skill"
 categories: ["development"]

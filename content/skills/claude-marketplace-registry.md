@@ -1,6 +1,6 @@
 ---
 title: "claude-marketplace-registry"
-description: "Skill from shrwnsan/claude-marketplace-registry"
+description: "!Claude Marketplace Aggregator"
 author: "shrwnsan"
 repoUrl: "https://github.com/shrwnsan/claude-marketplace-registry"
 categories: ["design"]

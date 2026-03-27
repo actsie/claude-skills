@@ -1,6 +1,6 @@
 ---
 title: "pds-agent-skills"
-description: "Skill from NASA-PDS/pds-agent-skills"
+description: "!Plugins"
 author: "NASA-PDS"
 repoUrl: "https://github.com/NASA-PDS/pds-agent-skills"
 categories: ["development"]

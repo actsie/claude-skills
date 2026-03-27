@@ -1,6 +1,6 @@
 ---
 title: "video-skill-transcriber"
-description: "Skill from JackMeds/Video-Skill-Transcriber"
+description: "The cure for your "Watch Later" backlog."
 author: "JackMeds"
 repoUrl: "https://github.com/JackMeds/Video-Skill-Transcriber"
 categories: ["data"]

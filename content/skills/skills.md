@@ -1,6 +1,6 @@
 ---
 title: "skills"
-description: "Skill from trailofbits/skills"
+description: "A Claude Code plugin marketplace from Trail of Bits providing skills to enhance AI-assisted security analysis, testing, and development workflows."
 author: "trailofbits"
 repoUrl: "https://github.com/trailofbits/skills"
 categories: ["development"]

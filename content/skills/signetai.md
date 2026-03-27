@@ -1,6 +1,6 @@
 ---
 title: "signetai"
-description: "Skill from Signet-AI/signetai"
+description: "Local-first persistent memory for AI agents"
 author: "Signet-AI"
 repoUrl: "https://github.com/Signet-AI/signetai"
 categories: ["development"]

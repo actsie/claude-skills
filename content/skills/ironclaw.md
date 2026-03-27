@@ -1,6 +1,6 @@
 ---
 title: "ironclaw"
-description: "Skill from nearai/ironclaw"
+description: "Your secure personal AI assistant, always on your side"
 author: "nearai"
 repoUrl: "https://github.com/nearai/ironclaw"
 categories: ["development"]

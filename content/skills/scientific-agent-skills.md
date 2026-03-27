@@ -1,6 +1,6 @@
 ---
 title: "scientific-agent-skills"
-description: "Skill from tondevrel/scientific-agent-skills"
+description: "A comprehensive collection of 72 Agent Skills for scientific computing, research workflows, and data analysis. These skills automatically enhance AI..."
 author: "tondevrel"
 repoUrl: "https://github.com/tondevrel/scientific-agent-skills"
 categories: ["development"]

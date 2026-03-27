@@ -1,6 +1,6 @@
 ---
 title: "pypict-claude-skill"
-description: "Skill from omkamal/pypict-claude-skill"
+description: "A Claude skill for designing comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing). This skill enables systematic test..."
 author: "omkamal"
 repoUrl: "https://github.com/omkamal/pypict-claude-skill"
 categories: ["development"]

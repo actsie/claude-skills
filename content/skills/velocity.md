@@ -1,6 +1,6 @@
 ---
 title: "velocity"
-description: "Skill from OptimiLabs/velocity"
+description: "Velocity is a local-first command center for Claude Code, Codex CLI, and Gemini CLI."
 author: "OptimiLabs"
 repoUrl: "https://github.com/OptimiLabs/velocity"
 categories: ["data"]

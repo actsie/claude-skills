@@ -1,6 +1,6 @@
 ---
 title: "agent-skills"
-description: "Skill from hashicorp/agent-skills"
+description: "A collection of Agent skills and Claude Code plugins for HashiCorp products."
 author: "hashicorp"
 repoUrl: "https://github.com/hashicorp/agent-skills"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "claude-matrix"
-description: "Skill from ojowwalker77/Claude-Matrix"
+description: "| Feature | What It Does |"
 author: "ojowwalker77"
 repoUrl: "https://github.com/ojowwalker77/Claude-Matrix"
 categories: ["data"]

@@ -1,6 +1,6 @@
 ---
 title: "claude-skills"
-description: "Skill from abeezith/claude-skills"
+description: "A community-curated, auto-updating directory of Claude Skills — reusable SKILL.md prompt modules that make Claude smarter at specific tasks."
 author: "abeezith"
 repoUrl: "https://github.com/abeezith/claude-skills"
 categories: ["development"]
