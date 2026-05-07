@@ -1,6 +1,6 @@
 ---
 title: "compound-engineering-plugin"
-description: "![Build Status](https://github.com/EveryInc/compound-engineering-plugin/actions/workflows/ci.yml)"
+description: "Plugin marketplace featuring the Compound Engineering plugin — AI skills and agents built on the principle that each unit of engineering work should make the next easier. Emphasizes planning-heavy, review-driven development."
 author: "EveryInc"
 repoUrl: "https://github.com/EveryInc/compound-engineering-plugin"
 categories: ["development"]

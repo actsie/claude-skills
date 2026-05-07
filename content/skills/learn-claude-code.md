@@ -1,6 +1,6 @@
 ---
 title: "learn-claude-code"
-description: "Before we talk about code, let's get one thing absolutely straight."
+description: "Harness engineering guide for building real AI agents with Claude Code. Covers model-first agent design, context management, multi-agent orchestration, and production deployment patterns."
 author: "shareAI-lab"
 repoUrl: "https://github.com/shareAI-lab/learn-claude-code"
 categories: ["development"]

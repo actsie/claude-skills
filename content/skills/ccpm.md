@@ -1,6 +1,6 @@
 ---
 title: "ccpm"
-description: "&nbsp;"
+description: "Spec-driven project management for AI agents. Turn ideas into PRDs, PRDs into epics, epics into GitHub issues, and issues into production code — with full traceability at every step. Prevents context loss and unblocks parallel agent workflows."
 author: "automazeio"
 repoUrl: "https://github.com/automazeio/ccpm"
 categories: ["development"]

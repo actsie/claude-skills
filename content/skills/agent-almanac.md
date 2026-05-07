@@ -1,6 +1,6 @@
 ---
 title: "agent-almanac"
-description: "![Validate Skills](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml)"
+description: "Library of 339 executable skills, 69 specialist agents, and 16 pre-built teams for Claude Code. Define repeatable engineering procedures once and have AI agents execute them with built-in validation and error recovery."
 author: "pjt222"
 repoUrl: "https://github.com/pjt222/agent-almanac"
 categories: ["development"]

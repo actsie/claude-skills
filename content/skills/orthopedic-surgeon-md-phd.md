@@ -1,3 +1,12 @@
+---
+title: "Orthopedic Surgeon, MD PhD"
+description: "Expert AI assistant for orthopedic surgeons and medical researchers writing scientific manuscripts, literature reviews, and academic publications. Structures papers in IMRaD format, synthesizes literature, formats citations, and prepares point-by-point reviewer responses."
+author: "user-request"
+categories: ["medicine", "writing"]
+tags: ["orthopedic surgery", "scientific writing", "manuscripts", "literature review"]
+date: "2026-04-26T17:12:08.000Z"
+---
+
 # Orthopedic Surgeon, MD PhD
 
 An expert AI assistant for orthopedic surgeons and medical researchers writing scientific manuscripts, literature reviews, and academic publications.

@@ -322,8 +322,60 @@ pre code {
   .backdrop-blur-sm {
     background-color: rgba(255, 255, 255, 0.98);
   }
-  
+
   .dark .backdrop-blur-sm {
     background-color: rgba(31, 41, 55, 0.98);
   }
+}
+
+/* Bash/shell code blocks — ensure readable text on the dark #1d1e22 background */
+.skill-body pre code,
+.skill-body pre code.hljs {
+  color: #e2e8f0 !important;
+}
+
+.skill-body pre code .hljs-comment,
+.skill-body pre code .hljs-meta {
+  color: #94a3b8 !important;
+}
+
+.skill-body pre code .hljs-string,
+.skill-body pre code .hljs-attr {
+  color: #86efac !important;
+}
+
+.skill-body pre code .hljs-variable,
+.skill-body pre code .hljs-template-variable {
+  color: #fda4af !important;
+}
+
+.skill-body pre code .hljs-keyword,
+.skill-body pre code .hljs-built_in {
+  color: #93c5fd !important;
+}
+
+.skill-body pre code .hljs-number,
+.skill-body pre code .hljs-literal {
+  color: #fcd34d !important;
+}
+
+/* Badge rows — paragraphs whose direct children are all badge links (a > img) */
+.skill-body p:has(> a > img) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.skill-body p:has(> a > img) a {
+  display: inline-flex;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.skill-body p:has(> a > img) img {
+  display: block;
+  height: 20px;
+  width: auto;
 }

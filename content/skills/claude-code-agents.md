@@ -1,6 +1,6 @@
 ---
 title: "claude-code-agents"
-description: "![Claude Code Ready](https://undeadlist.com) ![Mentioned in Awesome Claude Code](https://github.com/hesreallyhim/awesome-claude-code)"
+description: "Complete end-to-end development workflow for solo dev startups building with Next.js and Claude Code. Provides a full agent team — QA, security, performance, and deployment — ready to drop into any project."
 author: "undeadlist"
 repoUrl: "https://github.com/undeadlist/claude-code-agents"
 categories: ["development"]

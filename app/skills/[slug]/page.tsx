@@ -1,4 +1,4 @@
-import { getAllSkills, getSkillBySlug } from '@/lib/skills';
+import { getSkillBySlug } from '@/lib/skills';
 import { notFound } from 'next/navigation';
 import SkillDetailClient from '@/components/SkillDetailClient';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -10,12 +10,8 @@ import remarkGfm from 'remark-gfm';
 import { Metadata } from 'next';
 import { generateSkillArticleSchema, generateBreadcrumbSchema, generateJsonLd } from '@/lib/seo';
 
-export async function generateStaticParams() {
-  const skills = await getAllSkills();
-  return skills.map((skill) => ({
-    slug: skill.slug,
-  }));
-}
+// Pages render on first visit and are cached for 1 hour — no full rebuild needed for content changes
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const skill = await getSkillBySlug(params.slug);

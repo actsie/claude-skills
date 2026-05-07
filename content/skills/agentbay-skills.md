@@ -1,6 +1,6 @@
 ---
 title: "agentbay-skills"
-description: "English | 中文"
+description: "A collection of skills for AgentBay enabling agents to run code, use browser automation, monitor sentiment, analyze stocks, generate images, and integrate with external services in a sandboxed environment."
 author: "agentbay-ai"
 repoUrl: "https://github.com/agentbay-ai/agentbay-skills"
 categories: ["development"]

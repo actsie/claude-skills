@@ -1,6 +1,6 @@
 ---
 title: "claude-mountaineering-skills"
-description: "dreamiurg/claude-mountaineering-skills"
+description: "Automated mountain route research for North American peaks. Fetches route conditions, elevation profiles, gear requirements, and permit information for mountaineering objectives using Claude Code."
 author: "dreamiurg"
 repoUrl: "https://github.com/dreamiurg/claude-mountaineering-skills"
 categories: ["development"]

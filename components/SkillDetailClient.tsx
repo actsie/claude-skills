@@ -260,7 +260,7 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
           {/* Main Content Area */}
           <div className="lg:col-span-3">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8 lg:p-12">
-              <div className="max-w-none">
+              <div className="max-w-none skill-body">
                 {/* Quality warning banner */}
                 {qualityMetrics && (
                   <QualityBanner

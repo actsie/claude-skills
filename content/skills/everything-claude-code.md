@@ -1,6 +1,6 @@
 ---
 title: "everything-claude-code"
-description: "!Shell"
+description: "Comprehensive Claude Code toolkit with 50K+ GitHub stars. Covers Shell, TypeScript, Python, Go, Java, Perl, and Markdown workflows — includes AgentShield security tools, universal npm packages, and a GitHub App with 150+ installs."
 author: "affaan-m"
 repoUrl: "https://github.com/affaan-m/everything-claude-code"
 categories: ["development"]

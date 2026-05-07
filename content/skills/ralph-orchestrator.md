@@ -1,6 +1,6 @@
 ---
 title: "ralph-orchestrator"
-description: "![Mentioned in Awesome Claude Code](https://github.com/hesreallyhim/awesome-claude-code)"
+description: "Hat-based orchestration framework that keeps AI agents in a loop until the task is done. Wraps Claude Code in a structured task-completion cycle with configurable presets and automatic exit detection."
 author: "mikeyobrien"
 repoUrl: "https://github.com/mikeyobrien/ralph-orchestrator"
 categories: ["development"]

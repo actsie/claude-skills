@@ -1,6 +1,6 @@
 ---
 title: "claude-ally-health"
-description: "![Star History Chart](https://www.star-history.com/#huifer/Claude-Ally-Health&type=date&legend=top-left)"
+description: "File-based personal health data management system using Claude Code CLI tools. Track and manage personal health information locally with AI-assisted data entry, analysis, and reporting."
 author: "huifer"
 repoUrl: "https://github.com/huifer/Claude-Ally-Health"
 categories: ["development"]

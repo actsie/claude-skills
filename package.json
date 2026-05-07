@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-index": "node scripts/generate-search-index.js"
+    "generate-index": "node scripts/generate-search-index.js",
+    "seed-meta": "node scripts/seed-skill-meta.js",
+    "seed-meta:dry": "node scripts/seed-skill-meta.js --dry-run"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^4.6.2",

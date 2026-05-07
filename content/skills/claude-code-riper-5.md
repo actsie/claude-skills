@@ -1,6 +1,6 @@
 ---
 title: "claude-code-riper-5"
-description: "Research • Innovate • Plan • Execute • Review"
+description: "Structured 5-phase development workflow for Claude Code using custom slash commands and subagents. Separates research, planning, and execution phases to reduce context usage and prevent premature implementation."
 author: "tony"
 repoUrl: "https://github.com/tony/claude-code-riper-5"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "x-twitter-scraper"
-description: "!GitHub stars"
+description: "Gives AI coding agents deep knowledge of the Xquik X (Twitter) real-time data platform. Covers 120 REST API endpoints, 2 MCP tools, HMAC webhooks, and 23 bulk extraction tools — works with 40+ AI coding agents."
 author: "Xquik-dev"
 repoUrl: "https://github.com/Xquik-dev/x-twitter-scraper"
 categories: ["development"]

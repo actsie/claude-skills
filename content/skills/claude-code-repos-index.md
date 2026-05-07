@@ -1,6 +1,6 @@
 ---
 title: "claude-code-repos-index"
-description: "!Repository Count Over Time"
+description: "Curated index of Claude Code projects, agent workspace blueprints, and templates organized by use case. Covers diverse applications from software development to research workflows — adaptable to other agentic AI frameworks."
 author: "danielrosehill"
 repoUrl: "https://github.com/danielrosehill/Claude-Code-Repos-Index"
 categories: ["development"]

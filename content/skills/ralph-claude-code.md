@@ -1,6 +1,6 @@
 ---
 title: "ralph-claude-code"
-description: "![CI](https://github.com/frankbria/ralph-claude-code/actions/workflows/test.yml)"
+description: "Autonomous AI development loop for Claude Code with intelligent exit detection and rate limiting. Enables continuous iterative improvement cycles until project completion, with safeguards against infinite loops and API overuse."
 author: "frankbria"
 repoUrl: "https://github.com/frankbria/ralph-claude-code"
 categories: ["development"]

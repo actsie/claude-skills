@@ -1,6 +1,6 @@
 ---
 title: "claude-esp"
-description: "![Go Reference](https://pkg.go.dev/github.com/phiat/claude-esp)"
+description: "Streams Claude Code hidden output — thinking, tool calls, and subagent activity — to a separate terminal in real-time. Multi-session TUI with hierarchical tree view so you can monitor all active Claude sessions without interrupting your workflow."
 author: "phiat"
 repoUrl: "https://github.com/phiat/claude-esp"
 categories: ["development"]

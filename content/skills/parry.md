@@ -1,6 +1,6 @@
 ---
 title: "parry"
-description: "![ci](https://github.com/vaporif/parry/actions/workflows/ci.yml)"
+description: "Prompt injection scanner for Claude Code hooks. Catches injection attacks, leaked secrets, and data exfiltration attempts in tool inputs and outputs using ML-based detection (DeBERTa v3 + Llama Prompt Guard 2)."
 author: "vaporif"
 repoUrl: "https://github.com/vaporif/parry"
 categories: ["development"]

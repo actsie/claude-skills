@@ -1,6 +1,6 @@
 ---
 title: "openpaw"
-description: "daxaur/openpaw"
+description: "Turns Claude Code into a full personal assistant. Connects email, music, smart home controls, calendar, package tracking, and persistent memory — extending Claude Code far beyond coding tasks."
 author: "daxaur"
 repoUrl: "https://github.com/daxaur/openpaw"
 categories: ["development"]

@@ -1,6 +1,6 @@
 ---
 title: "cc-devops-skills"
-description: "![Mentioned in Awesome Claude Code](https://github.com/hesreallyhim/awesome-claude-code)"
+description: "31 DevOps skills for Claude Code and Codex covering infrastructure scaffolding, config validation, security checks, and Kubernetes debugging. Includes 16 generators, 14 validators, and a cluster troubleshooting debugger."
 author: "akin-ozer"
 repoUrl: "https://github.com/akin-ozer/cc-devops-skills"
 categories: ["development"]

@@ -62,7 +62,7 @@ export default function HomeContent({ trendingSection, featuredSection }: HomeCo
   useEffect(() => {
     async function loadSkills() {
       try {
-        const response = await fetch('/search-index.json');
+        const response = await fetch('/api/search-index');
         const data = await response.json();
         setSkills(data);
       } catch (error) {
