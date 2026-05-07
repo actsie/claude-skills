@@ -8,6 +8,7 @@ tags: ["payments", "virtual-cards", "agent-commerce", "email", "wallet", "x402",
 date: "2026-05-07T00:00:00.000Z"
 slug: "agentcard"
 homepage: "https://agentcard.ai"
+featured: true
 ---
 
 # AgentCard
