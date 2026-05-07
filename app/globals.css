@@ -359,6 +359,18 @@ pre code {
   color: #fcd34d !important;
 }
 
+/* Bento grid — collapse to 2 columns on mobile */
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .bento-grid > * {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+    min-height: 100px !important;
+  }
+}
+
 /* Badge rows — paragraphs whose direct children are all badge links (a > img) */
 .skill-body p:has(> a > img) {
   display: flex;

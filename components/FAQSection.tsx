@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { generateFAQPageSchema, generateJsonLd } from '@/lib/seo';
 
@@ -146,6 +147,13 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
       onClick: onGetFeatured,
       external: false,
     },
+    {
+      title: 'Agent Tools',
+      href: '/agent-tools',
+      description: 'Payments, monitoring, coding tools, and frameworks for Claude agents',
+      external: false,
+      isLink: true,
+    },
   ];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -182,17 +190,10 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
             <div className="space-y-4">
               {resources.map((resource, index) => {
                 const isExternal = resource.external;
-                const Component = isExternal ? 'a' : 'button';
-                const props = isExternal
-                  ? { href: resource.href, target: '_blank', rel: 'noopener noreferrer' }
-                  : { onClick: resource.onClick };
-
-                return (
-                  <Component
-                    key={index}
-                    {...props}
-                    className="group flex items-start justify-between gap-3 transition-all duration-200 w-full text-left"
-                  >
+                const isInternalLink = !isExternal && resource.isLink;
+                const className = "group flex items-start justify-between gap-3 transition-all duration-200 w-full text-left";
+                const inner = (
+                  <>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#7866CC] dark:group-hover:text-[#AF97F8] transition-colors">
                         {resource.title}
@@ -202,6 +203,29 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
                       </p>
                     </div>
                     <ArrowRight className="w-5 h-5 text-[#7866CC] dark:text-[#AF97F8] flex-shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                );
+
+                if (isInternalLink) {
+                  return (
+                    <Link key={index} href={resource.href!} className={className}>
+                      {inner}
+                    </Link>
+                  );
+                }
+
+                const Component = isExternal ? 'a' : 'button';
+                const props = isExternal
+                  ? { href: resource.href, target: '_blank', rel: 'noopener noreferrer' }
+                  : { onClick: resource.onClick };
+
+                return (
+                  <Component
+                    key={index}
+                    {...props}
+                    className={className}
+                  >
+                    {inner}
                   </Component>
                 );
               })}
