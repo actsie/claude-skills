@@ -11,7 +11,7 @@ tags:
   - workflow
   - content-extraction
   - action-planning
-featuredType: permanent
+featuredType: rotating
 author: michalparkola
 repoUrl: https://github.com/michalparkola/tapestry-skills-for-claude-code/tree/main/tapestry
 externalUrl: https://github.com/michalparkola
