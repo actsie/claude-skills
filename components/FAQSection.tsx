@@ -150,7 +150,7 @@ export default function FAQSection({ onSubmitSkill, onGetFeatured }: FAQSectionP
     {
       title: 'Agent Tools',
       href: '/agent-tools',
-      description: 'Payments, monitoring, coding tools, and frameworks for Claude agents',
+      description: 'Payments, monitoring, coding tools, and frameworks for AI agents',
       external: false,
       isLink: true,
     },
