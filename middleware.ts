@@ -25,10 +25,14 @@ export function middleware(request: NextRequest) {
   // If it's the home page with filters, add noindex header
   if (pathname === '/' && hasFilterParams) {
     const response = NextResponse.next();
-
-    // Tell search engines not to index this filtered view
     response.headers.set('X-Robots-Tag', 'noindex, follow');
+    return response;
+  }
 
+  // Clean homepage — override Next.js's no-store default so Google can cache and snippet it
+  if (pathname === '/' && !hasFilterParams) {
+    const response = NextResponse.next();
+    response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=600');
     return response;
   }
 

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import HomeContent from '@/components/HomeContent';
 import TrendingSectionServer from '@/components/TrendingSectionServer';
 import FeaturedSectionServer from '@/components/FeaturedSectionServer';
@@ -16,37 +17,10 @@ export const revalidate = 300;
  * Generate metadata dynamically based on URL parameters
  * Ensures filtered views have correct canonical URL pointing to home page
  */
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://skills.pawgrammer.com';
-
-  // Check if this is a filtered/sorted view (has query parameters)
-  const hasQueryParams =
-    searchParams.category ||
-    searchParams.tag ||
-    searchParams.tags ||
-    searchParams.sort ||
-    searchParams.q ||
-    searchParams.search;
-
-  // If filtered view, ensure canonical points to clean home page
-  // If clean home page, canonical points to itself (already set in layout)
-  if (hasQueryParams) {
-    return {
-      alternates: {
-        canonical: baseUrl, // All filtered views point to home page
-      },
-      robots: {
-        index: false, // Don't index filtered views
-        follow: true, // But still follow links on the page
-      },
-    };
-  }
-
-  // For clean home page, add dynamic title with skill count
+export async function generateMetadata(): Promise<Metadata> {
+  // Filtered views (/?category=X etc) are handled by middleware with X-Robots-Tag: noindex
+  // and canonical is set in layout.tsx — no searchParams needed here, which keeps the
+  // page cacheable (reading searchParams forces Next.js to set Cache-Control: no-store)
   const skills = await getAllSkills();
   const skillCount = skills.length;
 
@@ -86,10 +60,12 @@ export default async function Home() {
         dangerouslySetInnerHTML={generateJsonLd(skillsListSchema)}
       />
 
-      <HomeContent
-        trendingSection={<TrendingSectionServer trending={trending} />}
-        featuredSection={<FeaturedSectionServer featured={featured} />}
-      />
+      <Suspense fallback={null}>
+        <HomeContent
+          trendingSection={<TrendingSectionServer trending={trending} />}
+          featuredSection={<FeaturedSectionServer featured={featured} />}
+        />
+      </Suspense>
     </>
   );
 }
