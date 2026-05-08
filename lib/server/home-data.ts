@@ -6,6 +6,7 @@
 
 import { Redis } from '@upstash/redis';
 import { getAllSkills, getAllSkillsFromFiles } from '@/lib/skills';
+import type { Skill } from '@/lib/types';
 import type { TrendingSkill } from '@/lib/analytics/types';
 const redis = Redis.fromEnv();
 
