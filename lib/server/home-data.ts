@@ -5,7 +5,7 @@
  */
 
 import { Redis } from '@upstash/redis';
-import { getAllSkills } from '@/lib/skills';
+import { getAllSkills, getAllSkillsFromFiles } from '@/lib/skills';
 import type { TrendingSkill } from '@/lib/analytics/types';
 const redis = Redis.fromEnv();
 
@@ -141,9 +141,13 @@ export async function getFeaturedSkills(): Promise<FeaturedSkill[]> {
   });
 
   try {
+    // Always read permanents from filesystem so newly added skills show up immediately
+    const allFromFiles = getAllSkillsFromFiles();
+    const permanent = allFromFiles.filter((s) => s.featuredType === 'permanent');
+
     const allSkills = await getAllSkills();
-    const permanent = allSkills.filter((s) => s.featuredType === 'permanent');
-    const rest = allSkills.filter((s) => s.featuredType !== 'permanent');
+    const permanentSlugs = new Set(permanent.map((s) => s.slug));
+    const rest = allSkills.filter((s) => !permanentSlugs.has(s.slug));
 
     const pipeline = redis.pipeline();
     rest.forEach((skill) => pipeline.pfcount(`skill:view:30d:${skill.slug}`));
@@ -160,11 +164,12 @@ export async function getFeaturedSkills(): Promise<FeaturedSkill[]> {
       .slice(0, 6)
       .map(toFeatured);
   } catch (error) {
-    console.error('[getFeaturedSkills] Redis unavailable, using recent skills fallback:', error);
-    const allSkills = await getAllSkills();
-    const permanent = allSkills.filter((s) => s.featuredType === 'permanent');
-    const rest = allSkills
-      .filter((s) => s.featuredType !== 'permanent' && s.date)
+    console.error('[getFeaturedSkills] Redis unavailable, using filesystem fallback:', error);
+    const allFromFiles = getAllSkillsFromFiles();
+    const permanent = allFromFiles.filter((s) => s.featuredType === 'permanent');
+    const permanentSlugs = new Set(permanent.map((s) => s.slug));
+    const rest = allFromFiles
+      .filter((s) => !permanentSlugs.has(s.slug) && s.date)
       .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime());
 
     return [...permanent, ...rest].slice(0, 6).map(toFeatured);

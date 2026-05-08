@@ -86,7 +86,7 @@ async function getAllSkillsFromRedis(): Promise<Skill[] | null> {
 
 // ─── Filesystem getAllSkills (fallback) ────────────────────────────────────
 
-function getAllSkillsFromFiles(): Skill[] {
+export function getAllSkillsFromFiles(): Skill[] {
   if (!fs.existsSync(skillsDirectory)) return [];
 
   const fileNames = fs.readdirSync(skillsDirectory);
@@ -190,7 +190,7 @@ export async function getSkillBySlug(slug: string): Promise<Skill | null> {
       tags: redisMeta?.tags ? parseArray(redisMeta.tags) : (frontmatter.tags || []),
       featured: redisMeta ? String(redisMeta.featured) === 'true' : (frontmatter.featured || false),
       featuredPriority: redisMeta?.featuredPriority ? Number(redisMeta.featuredPriority) : frontmatter.featuredPriority,
-      featuredType: (redisMeta?.featuredType as SkillFrontmatter['featuredType']) || frontmatter.featuredType,
+      featuredType: frontmatter.featuredType || (redisMeta?.featuredType as SkillFrontmatter['featuredType']),
       mcp: redisMeta ? String(redisMeta.mcp) === 'true' : (frontmatter.mcp || false),
       author: rs(redisMeta?.author) || frontmatter.author,
       repoUrl: rs(redisMeta?.repoUrl) || frontmatter.repoUrl,
