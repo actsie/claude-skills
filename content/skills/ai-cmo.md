@@ -7,6 +7,7 @@ categories: ["marketing"]
 tags: ["marketing", "strategy", "content", "twitter", "reddit", "seo", "product-hunt", "indie-hacker", "launch"]
 date: "2026-05-07T00:00:00.000Z"
 slug: "ai-cmo"
+featuredType: permanent
 ---
 
 # AI CMO
