@@ -124,53 +124,49 @@ export interface FeaturedSkill {
 
 /**
  * Get featured skills (server-side)
- * Returns top 6 most-viewed skills of all time using HyperLogLog view counts
+ * Permanent skills (featuredType: permanent) always show first, remaining slots filled by top-viewed.
  */
 export async function getFeaturedSkills(): Promise<FeaturedSkill[]> {
+  const toFeatured = (skill: Skill) => ({
+    skill_id: skill.slug,
+    slug: skill.slug,
+    title: skill.title,
+    description: skill.description,
+    category: skill.categories[0] || '',
+    tags: skill.tags,
+    author: skill.author,
+    created_at: skill.date,
+    lastUpdated: skill.lastUpdated || skill.date,
+    repoUrl: skill.repoUrl,
+  });
+
   try {
     const allSkills = await getAllSkills();
+    const permanent = allSkills.filter((s) => s.featuredType === 'permanent');
+    const rest = allSkills.filter((s) => s.featuredType !== 'permanent');
+
     const pipeline = redis.pipeline();
-    allSkills.forEach((skill) => pipeline.pfcount(`skill:view:30d:${skill.slug}`));
+    rest.forEach((skill) => pipeline.pfcount(`skill:view:30d:${skill.slug}`));
     const viewCounts = (await pipeline.exec()) as number[];
-    const withViews = allSkills.map((skill, i) => ({ skill, views: viewCounts[i] || 0 }));
 
-    // Sort by views descending, fall back to date for ties
-    const sorted = withViews.sort((a, b) => {
-      if (b.views !== a.views) return b.views - a.views;
-      const dateA = new Date(a.skill.date || 0).getTime();
-      const dateB = new Date(b.skill.date || 0).getTime();
-      return dateB - dateA;
-    });
+    const sorted = rest
+      .map((skill, i) => ({ skill, views: viewCounts[i] || 0 }))
+      .sort((a, b) => {
+        if (b.views !== a.views) return b.views - a.views;
+        return new Date(b.skill.date || 0).getTime() - new Date(a.skill.date || 0).getTime();
+      });
 
-    return sorted.slice(0, 6).map(({ skill }) => ({
-      skill_id: skill.slug,
-      slug: skill.slug,
-      title: skill.title,
-      description: skill.description,
-      category: skill.categories[0] || '',
-      tags: skill.tags,
-      author: skill.author,
-      created_at: skill.date,
-      lastUpdated: skill.lastUpdated || skill.date,
-      repoUrl: skill.repoUrl,
-    }));
+    return [...permanent, ...sorted.map(({ skill }) => skill)]
+      .slice(0, 6)
+      .map(toFeatured);
   } catch (error) {
     console.error('[getFeaturedSkills] Redis unavailable, using recent skills fallback:', error);
     const allSkills = await getAllSkills();
-    return allSkills
-      .filter((skill) => skill.date)
-      .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime())
-      .slice(0, 6)
-      .map((skill) => ({
-        skill_id: skill.slug,
-        slug: skill.slug,
-        title: skill.title,
-        description: skill.description,
-        category: skill.categories[0] || '',
-        tags: skill.tags,
-        author: skill.author,
-        created_at: skill.date,
-        repoUrl: skill.repoUrl,
-      }));
+    const permanent = allSkills.filter((s) => s.featuredType === 'permanent');
+    const rest = allSkills
+      .filter((s) => s.featuredType !== 'permanent' && s.date)
+      .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime());
+
+    return [...permanent, ...rest].slice(0, 6).map(toFeatured);
   }
 }
