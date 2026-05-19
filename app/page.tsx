@@ -4,7 +4,7 @@ import HomeContent from '@/components/HomeContent';
 import TrendingSectionServer from '@/components/TrendingSectionServer';
 import FeaturedSectionServer from '@/components/FeaturedSectionServer';
 import { getTrendingSkills, getFeaturedSkills } from '@/lib/server/home-data';
-import { getAllSkills } from '@/lib/skills';
+import { getAllSkillsFromFiles } from '@/lib/skills';
 import { generateItemListSchema, generateJsonLd } from '@/lib/seo';
 
 /**
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // Filtered views (/?category=X etc) are handled by middleware with X-Robots-Tag: noindex
   // and canonical is set in layout.tsx — no searchParams needed here, which keeps the
   // page cacheable (reading searchParams forces Next.js to set Cache-Control: no-store)
-  const skills = await getAllSkills();
+  const skills = getAllSkillsFromFiles();
   const skillCount = skills.length;
 
   return {
@@ -39,7 +39,7 @@ export default async function Home() {
   const [trending, featured, allSkills] = await Promise.all([
     getTrendingSkills(),
     getFeaturedSkills(),
-    getAllSkills(),
+    getAllSkillsFromFiles(),
   ]);
 
   // Generate ItemList schema for all skills

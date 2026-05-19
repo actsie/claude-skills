@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Redis } from '@upstash/redis';
 
-const redis = Redis.fromEnv();
 const CACHE_TTL = 60 * 60 * 24; // 24 hours
+const STALE_WHILE_REVALIDATE = 60 * 60 * 24 * 7; // 7 days
 
 /**
  * Parse a GitHub URL into owner/repo.
@@ -35,14 +34,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Invalid GitHub URL' }, { status: 400 });
   }
 
-  const cacheKey = `github:stars:${repo}`;
-
-  // Check cache first
-  const cached = await redis.get(cacheKey);
-  if (cached !== null) {
-    return NextResponse.json({ stars: cached, repo, cached: true });
-  }
-
   // Fetch from GitHub API
   const headers: Record<string, string> = {
     Accept: 'application/vnd.github+json',
@@ -52,20 +43,35 @@ export async function GET(request: Request) {
     headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
 
-  const res = await fetch(`https://api.github.com/repos/${repo}`, { headers });
+  const responseHeaders = {
+    'Cache-Control': `public, s-maxage=${CACHE_TTL}, stale-while-revalidate=${STALE_WHILE_REVALIDATE}`,
+  };
 
-  if (!res.ok) {
-    return NextResponse.json({ stars: null, repo }, { status: 200 });
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers,
+      next: { revalidate: CACHE_TTL },
+    });
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { stars: null, repo },
+        { status: 200, headers: responseHeaders }
+      );
+    }
+
+    const data = await res.json();
+    const stars: number = data.stargazers_count ?? 0;
+
+    return NextResponse.json(
+      { stars, repo },
+      { headers: responseHeaders }
+    );
+  } catch (error) {
+    console.error('[GitHub Stars API] Failed to fetch stars:', error);
+    return NextResponse.json(
+      { stars: null, repo },
+      { status: 200, headers: responseHeaders }
+    );
   }
-
-  const data = await res.json();
-  const stars: number = data.stargazers_count ?? 0;
-
-  // Cache result
-  await redis.set(cacheKey, stars, { ex: CACHE_TTL });
-
-  return NextResponse.json(
-    { stars, repo, cached: false },
-    { headers: { 'Cache-Control': 'public, max-age=3600' } }
-  );
 }

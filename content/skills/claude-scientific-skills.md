@@ -18,6 +18,7 @@ tags:
   - chemistry
 author: K-Dense AI
 repoUrl: https://github.com/K-Dense-AI/claude-scientific-skills
+featuredType: permanent
 date: 2025-10-22
 version: 2.0.0
 ---

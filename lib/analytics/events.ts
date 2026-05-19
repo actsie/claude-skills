@@ -72,8 +72,13 @@ function trackEvent(eventName: string, properties: Record<string, any>): void {
   // Record for deduplication
   recordLastEvent(eventName, properties);
 
-  // Fallback: send to server API for ad-blocker scenarios
-  // This also increments KV counters for trending computation
+  // Keep high-volume page views out of Redis. PostHog is the source of truth for traffic.
+  if (eventName === 'skill_detail_view') {
+    return;
+  }
+
+  // Fallback: send lower-volume events to the server API for ad-blocker scenarios.
+  // This also increments KV counters for click-based trending computation.
   sendToServerFallback(eventName, properties).catch((err) => {
     console.warn('[Analytics] Server fallback failed:', err);
   });

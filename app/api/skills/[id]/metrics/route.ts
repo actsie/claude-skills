@@ -43,6 +43,19 @@ export async function GET(
     });
   } catch (error) {
     console.error('[Metrics API] Error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({
+      metrics: {
+        views: 0,
+        helpful: 0,
+        not_helpful: 0,
+        saves: 0,
+      },
+      userState: null,
+      degraded: true,
+    }, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   }
 }

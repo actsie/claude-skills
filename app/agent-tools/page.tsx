@@ -8,6 +8,21 @@ import { useState } from 'react';
 const AgentHeroCanvas = dynamic(() => import('@/components/AgentHeroCanvas'), { ssr: false });
 const SubmitToolModal = dynamic(() => import('@/components/SubmitToolModal'), { ssr: false });
 
+const agentToolsPalette = {
+  page: '#070d1a',
+  agentcard: '#0052ff',
+  ink: '#050914',
+  navy: '#0b1220',
+  navy2: '#111827',
+  navy3: '#172033',
+  teal: '#0d7a5f',
+  green: '#16a36d',
+  mint: '#7dffd2',
+  warm: '#d6b46a',
+  glass: 'rgba(255,255,255,0.08)',
+  glassBorder: 'rgba(125,255,210,0.22)',
+};
+
 
 interface Tool {
   name: string;
@@ -15,7 +30,6 @@ interface Tool {
   tags: string[];
   domain: string;
   href: string;
-  highlight?: boolean;
   bento?: {
     colSpan?: number;
     rowSpan?: number;
@@ -41,24 +55,23 @@ const sections: Section[] = [
         tags: ['enterprise', 'payments'],
         domain: 'mastercard.com',
         href: 'https://www.mastercard.com',
-        bento: { colSpan: 2, rowSpan: 2, bg: '#1a1a2e', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 2, rowSpan: 2, bg: agentToolsPalette.navy2, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'Ramp Agent Cards Beta',
-        description: 'Built on Visa Intelligent Commerce — policy-driven virtual cards for autonomous agents with corporate expense integration.',
+        description: 'Policy-driven virtual cards for autonomous agents, using tokenized credentials through Visa Intelligent Commerce and Ramp expense controls.',
         tags: ['enterprise', 'payments', 'visa'],
         domain: 'ramp.com',
         href: 'https://ramp.com',
-        bento: { colSpan: 2, rowSpan: 1, bg: '#1c1c1c', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 2, rowSpan: 1, bg: agentToolsPalette.navy, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'AgentCard',
         description: 'Virtual cards + a dedicated @agentcard.email inbox for AI agents. The only card that handles payment and email verification without a human in the loop. Fund with USD or USDC on Base.',
-        tags: ['developer', 'payments', 'crypto', 'mcp'],
+        tags: ['developer', 'payments', 'crypto', 'email', 'x402'],
         domain: 'agentcard.ai',
         href: 'https://agentcard.ai',
-        highlight: true,
-        bento: { colSpan: 2, rowSpan: 2, bg: '#0052ff', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 2, rowSpan: 2, bg: agentToolsPalette.agentcard, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'Slash',
@@ -66,7 +79,7 @@ const sections: Section[] = [
         tags: ['developer', 'payments', 'crypto', 'mcp'],
         domain: 'slash.com',
         href: 'https://slash.com',
-        bento: { colSpan: 1, rowSpan: 1, bg: '#0d2e2b', style: 'border', border: '#0d9488', textColor: '#0d9488' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.ink, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'Crossmint',
@@ -74,28 +87,28 @@ const sections: Section[] = [
         tags: ['developer', 'payments', 'crypto'],
         domain: 'crossmint.com',
         href: 'https://crossmint.com',
-        bento: { colSpan: 1, rowSpan: 1, bg: '#1e1030', style: 'border', border: '#7c3aed', textColor: '#a78bfa' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.navy3, style: 'border', border: agentToolsPalette.glassBorder, textColor: agentToolsPalette.mint },
       },
     ],
   },
   {
-    title: 'Code & Dev Environments',
+    title: 'Coding & Agent Runtimes',
     tools: [
       {
         name: 'Cursor',
-        description: 'AI code editor with native Claude support.',
+        description: 'AI code editor with Claude models available in its model picker.',
         tags: ['editor', 'coding'],
         domain: 'cursor.com',
         href: 'https://cursor.com',
-        bento: { colSpan: 2, rowSpan: 1, bg: '#0f172a', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 2, rowSpan: 1, bg: agentToolsPalette.navy2, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'Cline',
-        description: 'Open source Claude agent for VS Code.',
+        description: 'Open-source coding agent for VS Code with Claude support.',
         tags: ['open source', 'coding', 'vscode'],
         domain: 'github.com/cline/cline',
         href: 'https://github.com/cline/cline',
-        bento: { colSpan: 1, rowSpan: 1, style: 'border', border: '#22c55e', textColor: '#22c55e' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.glass, style: 'border', border: agentToolsPalette.glassBorder, textColor: agentToolsPalette.mint },
       },
       {
         name: 'OpenClaw',
@@ -103,7 +116,7 @@ const sections: Section[] = [
         tags: ['automation', 'discord'],
         domain: 'openclaw.ai',
         href: 'https://openclaw.ai',
-        bento: { colSpan: 1, rowSpan: 1, bg: '#ec4899', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.teal, textColor: '#ffffff', style: 'solid' },
       },
     ],
   },
@@ -116,7 +129,7 @@ const sections: Section[] = [
         tags: ['open source', 'observability', 'tracing'],
         domain: 'langfuse.com',
         href: 'https://langfuse.com',
-        bento: { colSpan: 2, rowSpan: 1, bg: '#f59e0b', textColor: '#1f2937', style: 'solid' },
+        bento: { colSpan: 2, rowSpan: 1, bg: agentToolsPalette.warm, textColor: '#111827', style: 'solid' },
       },
       {
         name: 'Helicone',
@@ -124,7 +137,7 @@ const sections: Section[] = [
         tags: ['proxy', 'observability', 'spend'],
         domain: 'helicone.ai',
         href: 'https://helicone.ai',
-        bento: { colSpan: 2, rowSpan: 1, style: 'border', border: '#f59e0b', textColor: '#f59e0b' },
+        bento: { colSpan: 2, rowSpan: 1, bg: agentToolsPalette.glass, style: 'border', border: agentToolsPalette.warm, textColor: agentToolsPalette.warm },
       },
     ],
   },
@@ -133,11 +146,11 @@ const sections: Section[] = [
     tools: [
       {
         name: 'LangChain',
-        description: 'Standard framework for chaining Claude calls, tools, and memory.',
+        description: 'Open-source framework for building agents with model, tool, and database integrations.',
         tags: ['framework', 'chaining', 'memory'],
         domain: 'langchain.com',
         href: 'https://langchain.com',
-        bento: { colSpan: 1, rowSpan: 1, bg: '#1d4ed8', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.navy3, textColor: '#ffffff', style: 'solid' },
       },
       {
         name: 'Hermes',
@@ -145,63 +158,19 @@ const sections: Section[] = [
         tags: ['open source', 'autonomous', 'multi-platform'],
         domain: 'github.com/NousResearch/Hermes',
         href: 'https://github.com/NousResearch/Hermes-Function-Calling',
-        bento: { colSpan: 2, rowSpan: 1, style: 'border', border: '#a78bfa', textColor: '#a78bfa' },
+        bento: { colSpan: 2, rowSpan: 1, bg: agentToolsPalette.glass, style: 'border', border: agentToolsPalette.glassBorder, textColor: agentToolsPalette.mint },
       },
       {
         name: 'AutoGen',
-        description: "Microsoft's collaborative multi-agent framework.",
+        description: "Microsoft's open-source framework for multi-agent AI applications; existing users are encouraged toward Microsoft Agent Framework.",
         tags: ['framework', 'multi-agent', 'microsoft'],
         domain: 'microsoft.github.io/autogen',
         href: 'https://microsoft.github.io/autogen',
-        bento: { colSpan: 1, rowSpan: 1, bg: '#0ea5e9', textColor: '#ffffff', style: 'solid' },
+        bento: { colSpan: 1, rowSpan: 1, bg: agentToolsPalette.navy2, textColor: '#ffffff', style: 'solid' },
       },
     ],
   },
 ];
-
-const tagColors: Record<string, string> = {
-  enterprise: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  payments: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
-  visa: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  developer: 'bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
-  crypto: 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300',
-  mcp: 'bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
-  'open source': 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  editor: 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
-  coding: 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
-  vscode: 'bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
-  automation: 'bg-pink-50 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300',
-  discord: 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
-  observability: 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
-  tracing: 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
-  proxy: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  spend: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
-  framework: 'bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
-  chaining: 'bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
-  memory: 'bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
-  autonomous: 'bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
-  'multi-platform': 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
-  'multi-agent': 'bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
-  microsoft: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-};
-
-const defaultTagColor = 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400';
-
-const coverColors: Record<string, string> = {
-  'Mastercard Agent Pay': 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-  'Ramp Agent Cards Beta': 'linear-gradient(135deg, #0f3460 0%, #1a4a7a 100%)',
-  'AgentCard': 'linear-gradient(135deg, #2d1b69 0%, #4a2c9a 100%)',
-  'Slash': 'linear-gradient(135deg, #0d4a3a 0%, #1a7a5a 100%)',
-  'Crossmint': 'linear-gradient(135deg, #1a0a2e 0%, #3d1a6e 100%)',
-  'Cursor': 'linear-gradient(135deg, #0a1628 0%, #162442 100%)',
-  'Cline': 'linear-gradient(135deg, #0d2a1a 0%, #1a4a2e 100%)',
-  'OpenClaw': 'linear-gradient(135deg, #2a0a1a 0%, #4a1a3a 100%)',
-  'Langfuse': 'linear-gradient(135deg, #1a1400 0%, #3a2e00 100%)',
-  'Helicone': 'linear-gradient(135deg, #0a1a2a 0%, #1a3a4a 100%)',
-  'LangChain': 'linear-gradient(135deg, #1a0a0a 0%, #3a1a1a 100%)',
-  'Hermes': 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%)',
-  'AutoGen': 'linear-gradient(135deg, #001428 0%, #002a50 100%)',
-};
 
 function BentoCard({ tool }: { tool: Tool }) {
   const b = tool.bento ?? {};
@@ -275,7 +244,7 @@ export default function AgentToolsPage() {
 
         {/* Payments & Spending section inside the same container */}
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-          <div className="rounded-2xl px-8 pt-8 pb-20 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #ffffff 75%, #070d1a 100%)' }}>
+          <div className="rounded-2xl px-8 pt-8 pb-20 relative overflow-hidden bg-white">
             {/* Grainy top — fades from visible at top to nothing going down */}
             <div
               className="absolute top-0 left-0 right-0 h-40 pointer-events-none"

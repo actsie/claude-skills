@@ -99,17 +99,8 @@ async function incrementCounters(
   try {
     switch (eventName) {
       case 'skill_detail_view':
-        // Increment 24h and 7d view counters
-        await Promise.all([
-          redis.incr(`skill:${skillId}:views:24h`),
-          redis.incr(`skill:${skillId}:views:7d`),
-        ]);
-
-        // Set TTL on first increment (idempotent)
-        await Promise.all([
-          redis.expire(`skill:${skillId}:views:24h`, 25 * 60 * 60), // 25 hours
-          redis.expire(`skill:${skillId}:views:7d`, 8 * 24 * 60 * 60), // 8 days
-        ]);
+        // Page views are tracked in PostHog only. Do not mirror high-volume view
+        // events into Redis; this endpoint may still receive events from older clients.
         break;
 
       case 'github_link_click':

@@ -9,7 +9,6 @@ import NavigationBar, { NavigationModals } from './NavigationBar';
 import TrustActions from './TrustActions';
 import QualityBanner from './QualityBanner';
 import { trackSkillDetailView, trackGitHubLinkClick, trackTagClick } from '@/lib/analytics/events';
-import { getFingerprint } from '@/lib/voting/fingerprint';
 import GitHubStars from '@/components/GitHubStars';
 
 interface SkillDetailClientProps {
@@ -24,37 +23,14 @@ export default function SkillDetailClient({ skill, relatedSkills, children }: Sk
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const hasTrackedView = useRef(false);
   const [qualityMetrics, setQualityMetrics] = useState<{ helpful: number; not_helpful: number } | null>(null);
-  const dwellStartTime = useRef<number>(Date.now());
 
-  // Track skill detail view on mount
+  // Track skill detail view in PostHog only. Redis view writes are disabled to stay within the free tier.
   useEffect(() => {
     if (!hasTrackedView.current) {
       trackSkillDetailView(skill, 'skill_detail');
       hasTrackedView.current = true;
     }
   }, [skill]);
-
-  // Track view with dwell time (8s minimum)
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      const dwellTime = Date.now() - dwellStartTime.current;
-
-      if (dwellTime >= 8000) {
-        try {
-          const fingerprint = await getFingerprint();
-          await fetch(`/api/skills/${skill.slug}/view`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fingerprint, dwellTime }),
-          });
-        } catch (err) {
-          console.error('View tracking failed:', err);
-        }
-      }
-    }, 8000);
-
-    return () => clearTimeout(timer);
-  }, [skill.slug]);
 
   // Fetch metrics for quality banner
   useEffect(() => {

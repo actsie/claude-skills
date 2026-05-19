@@ -5,6 +5,7 @@ categories: ["development", "ai", "workflow"]
 tags: ["claude-code", "skills", "testing", "debugging", "collaboration", "tdd", "automation", "meta-skills", "systematic-development"]
 author: "obra (Jesse Vincent)"
 repoUrl: "https://github.com/obra/superpowers"
+featuredType: permanent
 date: "2025-10-18"
 ---
 

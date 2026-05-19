@@ -155,14 +155,14 @@ export async function getSkillMetrics(skillId: string): Promise<{
   not_helpful: number;
   saves: number;
 }> {
-  const [votes, views, saves] = await Promise.all([
+  const [votes, saves] = await Promise.all([
     getVoteCounts(skillId),
-    getViewCount(skillId),
     getSaveCount(skillId),
   ]);
 
   return {
-    views,
+    // View tracking now lives in PostHog/Vercel/GA, not Redis.
+    views: 0,
     helpful: votes.helpful,
     not_helpful: votes.not_helpful,
     saves,
