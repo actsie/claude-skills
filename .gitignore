@@ -25,6 +25,7 @@ yarn-error.log*
 
 # generated local reports / session summaries
 /output_doc/
+data/skill-intake-review-*.md
 AGENTS.md
 ARCHITECTURE_REVIEW.md
 VIEWS_VOTING_*.md

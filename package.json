@@ -10,6 +10,10 @@
     "start": "next start",
     "lint": "next lint",
     "generate-index": "node scripts/generate-search-index.js",
+    "import-reader-skills": "node scripts/import-reader-skills.js",
+    "import-reader-skills:apply": "node scripts/import-reader-skills.js --apply",
+    "publish-reader-skills": "node scripts/publish-reader-skills.js",
+    "publish-reader-skills:dry": "node scripts/publish-reader-skills.js --dry-run",
     "seed-meta": "node scripts/seed-skill-meta.js",
     "seed-meta:dry": "node scripts/seed-skill-meta.js --dry-run"
   },
