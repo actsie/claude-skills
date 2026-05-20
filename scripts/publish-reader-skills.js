@@ -57,10 +57,15 @@ function parseStatusLine(line) {
 }
 
 function getGitStatus() {
-  const output = runGit(['status', '--porcelain']);
+  const output = execFileSync('git', ['status', '--porcelain', '--untracked-files=all'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  }).replace(/\n$/, '');
+
   return output
     .split('\n')
-    .map((line) => line.trimEnd())
+    .map((line) => line.replace(/\r$/, ''))
     .filter(Boolean)
     .map(parseStatusLine);
 }
