@@ -24,11 +24,12 @@ const SKIP_PUSH = args.has('--skip-push');
 const COMMIT_MESSAGE = process.env.SKILL_IMPORT_COMMIT_MESSAGE || 'Add daily imported Claude skills';
 
 function runGit(args, options = {}) {
-  return execFileSync('git', args, {
+  const result = execFileSync('git', args, {
     cwd: ROOT,
     encoding: 'utf8',
     stdio: options.stdio || ['ignore', 'pipe', 'pipe'],
-  }).trim();
+  });
+  return typeof result === 'string' ? result.trim() : '';
 }
 
 function runCommand(command, args, options = {}) {
