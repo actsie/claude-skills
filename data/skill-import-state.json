@@ -1,0 +1,417 @@
+{
+  "version": 2,
+  "last_run_at": "2026-05-20T08:52:24.658Z",
+  "last_status": "imported",
+  "last_successful_fetch_at": "2026-05-20T08:52:24.658Z",
+  "imported_repos": [
+    {
+      "repo": "greensock/gsap-skills",
+      "url": "https://github.com/greensock/gsap-skills",
+      "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+      "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+      "checked_at": "2026-05-20T08:51:55.686Z",
+      "status": "imported",
+      "reason": "refreshed content/skills/gsap-skills.md",
+      "slug": "gsap-skills",
+      "file": "content/skills/gsap-skills.md",
+      "imported_at": "2026-05-20T08:51:56.982Z"
+    },
+    {
+      "repo": "rbrown101010/codex-marketing-skills",
+      "url": "https://github.com/rbrown101010/codex-marketing-skills",
+      "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+      "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+      "checked_at": "2026-05-20T08:51:56.983Z",
+      "status": "imported",
+      "reason": "refreshed content/skills/codex-marketing-skills.md",
+      "slug": "codex-marketing-skills",
+      "file": "content/skills/codex-marketing-skills.md",
+      "imported_at": "2026-05-20T08:51:58.199Z"
+    },
+    {
+      "repo": "bmad-code-org/BMAD-METHOD",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "source_document_id": "01ks1zrnb3hrsp4rha9atq5s4q",
+      "source_document_title": "bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development",
+      "checked_at": "2026-05-20T08:52:26.097Z",
+      "status": "imported",
+      "reason": "refreshed content/skills/bmad-method.md",
+      "slug": "bmad-method",
+      "file": "content/skills/bmad-method.md",
+      "imported_at": "2026-05-20T08:52:26.873Z"
+    }
+  ],
+  "skipped_repos": [],
+  "pending_repos": [
+    {
+      "repo": "rough-stuff/rough",
+      "url": "https://github.com/rough-stuff/rough",
+      "source_document_id": "01ks1zr5kera9pntwwmf1c1h5s",
+      "source_document_title": "rough-stuff/rough: Create graphics with a hand-drawn, sketchy, appearance",
+      "checked_at": "2026-05-20T08:52:26.874Z",
+      "status": "pending_review",
+      "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/rough-stuff/rough/git/trees/master?recursive=1"
+    },
+    {
+      "repo": "browser-act/skills",
+      "url": "https://github.com/browser-act/skills",
+      "source_document_id": "01ks1zqk3p3dkvya40v41yk46x",
+      "source_document_title": "browser-act/skills: Give your AI the power to browse, scrape, and extract structured data from complex websites — with faster execution, lower cost, and more reliable results.",
+      "checked_at": "2026-05-20T08:52:27.098Z",
+      "status": "pending_review",
+      "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/browser-act/skills"
+    },
+    {
+      "repo": "greensock/gsap-skills",
+      "url": "https://github.com/greensock/gsap-skills",
+      "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+      "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+      "checked_at": "2026-05-20T08:52:27.301Z",
+      "status": "pending_review",
+      "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/greensock/gsap-skills"
+    },
+    {
+      "repo": "rbrown101010/codex-marketing-skills",
+      "url": "https://github.com/rbrown101010/codex-marketing-skills",
+      "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+      "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+      "checked_at": "2026-05-20T08:52:27.370Z",
+      "status": "pending_review",
+      "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/rbrown101010/codex-marketing-skills"
+    }
+  ],
+  "runs": [
+    {
+      "started_at": "2026-05-20T07:35:15.254Z",
+      "status": "missing_readwise_token",
+      "apply": true,
+      "found": 0,
+      "imported": 0,
+      "skipped": 0,
+      "pending": 0,
+      "repos": [],
+      "messages": [
+        "READWISE_TOKEN is missing. Add it to .env.local or the automation environment."
+      ]
+    },
+    {
+      "started_at": "2026-05-20T07:44:58.201Z",
+      "status": "readwise_fetch_failed",
+      "apply": true,
+      "found": 0,
+      "imported": 0,
+      "skipped": 0,
+      "pending": 0,
+      "repos": [],
+      "messages": [
+        "fetch failed"
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:20:32.933Z",
+      "status": "readwise_fetch_failed",
+      "apply": true,
+      "found": 0,
+      "imported": 0,
+      "skipped": 0,
+      "pending": 0,
+      "repos": [],
+      "messages": [
+        "fetch failed"
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:33:36.050Z",
+      "status": "readwise_fetch_failed",
+      "apply": true,
+      "found": 0,
+      "imported": 0,
+      "skipped": 0,
+      "pending": 0,
+      "repos": [],
+      "messages": [
+        "fetch failed"
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:37:53.135Z",
+      "status": "readwise_fetch_failed",
+      "apply": true,
+      "found": 0,
+      "imported": 0,
+      "skipped": 0,
+      "pending": 0,
+      "repos": [],
+      "messages": [
+        "fetch failed"
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:41:53.432Z",
+      "status": "imported",
+      "apply": true,
+      "found": 5,
+      "imported": 3,
+      "skipped": 0,
+      "pending": 2,
+      "repos": [
+        {
+          "repo": "bmad-code-org/BMAD-METHOD",
+          "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+          "source_document_id": "01ks1zrnb3hrsp4rha9atq5s4q",
+          "source_document_title": "bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development",
+          "checked_at": "2026-05-20T08:41:54.935Z",
+          "status": "imported",
+          "reason": "created content/skills/bmad-method.md",
+          "slug": "bmad-method",
+          "file": "content/skills/bmad-method.md",
+          "imported_at": "2026-05-20T08:41:55.890Z"
+        },
+        {
+          "repo": "rough-stuff/rough",
+          "url": "https://github.com/rough-stuff/rough",
+          "source_document_id": "01ks1zr5kera9pntwwmf1c1h5s",
+          "source_document_title": "rough-stuff/rough: Create graphics with a hand-drawn, sketchy, appearance",
+          "checked_at": "2026-05-20T08:41:55.890Z",
+          "status": "pending_review",
+          "reason": "no clear Claude skill signal found"
+        },
+        {
+          "repo": "browser-act/skills",
+          "url": "https://github.com/browser-act/skills",
+          "source_document_id": "01ks1zqk3p3dkvya40v41yk46x",
+          "source_document_title": "browser-act/skills: Give your AI the power to browse, scrape, and extract structured data from complex websites — with faster execution, lower cost, and more reliable results.",
+          "checked_at": "2026-05-20T08:41:56.708Z",
+          "status": "pending_review",
+          "reason": "slug skills already exists as skills.md"
+        },
+        {
+          "repo": "greensock/gsap-skills",
+          "url": "https://github.com/greensock/gsap-skills",
+          "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+          "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+          "checked_at": "2026-05-20T08:41:57.462Z",
+          "status": "imported",
+          "reason": "created content/skills/gsap-skills.md",
+          "slug": "gsap-skills",
+          "file": "content/skills/gsap-skills.md",
+          "imported_at": "2026-05-20T08:41:58.314Z"
+        },
+        {
+          "repo": "rbrown101010/codex-marketing-skills",
+          "url": "https://github.com/rbrown101010/codex-marketing-skills",
+          "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+          "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+          "checked_at": "2026-05-20T08:41:58.314Z",
+          "status": "imported",
+          "reason": "created content/skills/codex-marketing-skills.md",
+          "slug": "codex-marketing-skills",
+          "file": "content/skills/codex-marketing-skills.md",
+          "imported_at": "2026-05-20T08:41:59.062Z"
+        }
+      ],
+      "messages": [
+        "Regenerated public/search-index.json."
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:50:57.062Z",
+      "status": "imported",
+      "apply": true,
+      "found": 5,
+      "imported": 3,
+      "skipped": 0,
+      "pending": 2,
+      "repos": [
+        {
+          "repo": "bmad-code-org/BMAD-METHOD",
+          "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+          "source_document_id": "01ks1zrnb3hrsp4rha9atq5s4q",
+          "source_document_title": "bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development",
+          "checked_at": "2026-05-20T08:50:59.295Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/bmad-method.md",
+          "slug": "bmad-method",
+          "file": "content/skills/bmad-method.md",
+          "imported_at": "2026-05-20T08:51:01.284Z"
+        },
+        {
+          "repo": "rough-stuff/rough",
+          "url": "https://github.com/rough-stuff/rough",
+          "source_document_id": "01ks1zr5kera9pntwwmf1c1h5s",
+          "source_document_title": "rough-stuff/rough: Create graphics with a hand-drawn, sketchy, appearance",
+          "checked_at": "2026-05-20T08:51:01.284Z",
+          "status": "pending_review",
+          "reason": "no clear Claude skill signal found"
+        },
+        {
+          "repo": "browser-act/skills",
+          "url": "https://github.com/browser-act/skills",
+          "source_document_id": "01ks1zqk3p3dkvya40v41yk46x",
+          "source_document_title": "browser-act/skills: Give your AI the power to browse, scrape, and extract structured data from complex websites — with faster execution, lower cost, and more reliable results.",
+          "checked_at": "2026-05-20T08:51:02.966Z",
+          "status": "pending_review",
+          "reason": "slug skills already exists as skills.md"
+        },
+        {
+          "repo": "greensock/gsap-skills",
+          "url": "https://github.com/greensock/gsap-skills",
+          "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+          "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+          "checked_at": "2026-05-20T08:51:04.550Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/gsap-skills.md",
+          "slug": "gsap-skills",
+          "file": "content/skills/gsap-skills.md",
+          "imported_at": "2026-05-20T08:51:06.365Z"
+        },
+        {
+          "repo": "rbrown101010/codex-marketing-skills",
+          "url": "https://github.com/rbrown101010/codex-marketing-skills",
+          "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+          "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+          "checked_at": "2026-05-20T08:51:06.366Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/codex-marketing-skills.md",
+          "slug": "codex-marketing-skills",
+          "file": "content/skills/codex-marketing-skills.md",
+          "imported_at": "2026-05-20T08:51:07.904Z"
+        }
+      ],
+      "messages": [
+        "Regenerated public/search-index.json."
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:51:49.120Z",
+      "status": "imported",
+      "apply": true,
+      "found": 5,
+      "imported": 3,
+      "skipped": 0,
+      "pending": 2,
+      "repos": [
+        {
+          "repo": "bmad-code-org/BMAD-METHOD",
+          "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+          "source_document_id": "01ks1zrnb3hrsp4rha9atq5s4q",
+          "source_document_title": "bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development",
+          "checked_at": "2026-05-20T08:51:50.595Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/bmad-method.md",
+          "slug": "bmad-method",
+          "file": "content/skills/bmad-method.md",
+          "imported_at": "2026-05-20T08:51:52.523Z"
+        },
+        {
+          "repo": "rough-stuff/rough",
+          "url": "https://github.com/rough-stuff/rough",
+          "source_document_id": "01ks1zr5kera9pntwwmf1c1h5s",
+          "source_document_title": "rough-stuff/rough: Create graphics with a hand-drawn, sketchy, appearance",
+          "checked_at": "2026-05-20T08:51:52.524Z",
+          "status": "pending_review",
+          "reason": "no clear Claude skill signal found"
+        },
+        {
+          "repo": "browser-act/skills",
+          "url": "https://github.com/browser-act/skills",
+          "source_document_id": "01ks1zqk3p3dkvya40v41yk46x",
+          "source_document_title": "browser-act/skills: Give your AI the power to browse, scrape, and extract structured data from complex websites — with faster execution, lower cost, and more reliable results.",
+          "checked_at": "2026-05-20T08:51:54.078Z",
+          "status": "pending_review",
+          "reason": "slug skills already exists as skills.md"
+        },
+        {
+          "repo": "greensock/gsap-skills",
+          "url": "https://github.com/greensock/gsap-skills",
+          "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+          "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+          "checked_at": "2026-05-20T08:51:55.686Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/gsap-skills.md",
+          "slug": "gsap-skills",
+          "file": "content/skills/gsap-skills.md",
+          "imported_at": "2026-05-20T08:51:56.982Z"
+        },
+        {
+          "repo": "rbrown101010/codex-marketing-skills",
+          "url": "https://github.com/rbrown101010/codex-marketing-skills",
+          "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+          "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+          "checked_at": "2026-05-20T08:51:56.983Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/codex-marketing-skills.md",
+          "slug": "codex-marketing-skills",
+          "file": "content/skills/codex-marketing-skills.md",
+          "imported_at": "2026-05-20T08:51:58.199Z"
+        }
+      ],
+      "messages": [
+        "Regenerated public/search-index.json."
+      ]
+    },
+    {
+      "started_at": "2026-05-20T08:52:24.658Z",
+      "status": "imported",
+      "apply": true,
+      "found": 5,
+      "imported": 1,
+      "skipped": 0,
+      "pending": 4,
+      "repos": [
+        {
+          "repo": "bmad-code-org/BMAD-METHOD",
+          "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+          "source_document_id": "01ks1zrnb3hrsp4rha9atq5s4q",
+          "source_document_title": "bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development",
+          "checked_at": "2026-05-20T08:52:26.097Z",
+          "status": "imported",
+          "reason": "refreshed content/skills/bmad-method.md",
+          "slug": "bmad-method",
+          "file": "content/skills/bmad-method.md",
+          "imported_at": "2026-05-20T08:52:26.873Z"
+        },
+        {
+          "repo": "rough-stuff/rough",
+          "url": "https://github.com/rough-stuff/rough",
+          "source_document_id": "01ks1zr5kera9pntwwmf1c1h5s",
+          "source_document_title": "rough-stuff/rough: Create graphics with a hand-drawn, sketchy, appearance",
+          "checked_at": "2026-05-20T08:52:26.874Z",
+          "status": "pending_review",
+          "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/rough-stuff/rough/git/trees/master?recursive=1"
+        },
+        {
+          "repo": "browser-act/skills",
+          "url": "https://github.com/browser-act/skills",
+          "source_document_id": "01ks1zqk3p3dkvya40v41yk46x",
+          "source_document_title": "browser-act/skills: Give your AI the power to browse, scrape, and extract structured data from complex websites — with faster execution, lower cost, and more reliable results.",
+          "checked_at": "2026-05-20T08:52:27.098Z",
+          "status": "pending_review",
+          "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/browser-act/skills"
+        },
+        {
+          "repo": "greensock/gsap-skills",
+          "url": "https://github.com/greensock/gsap-skills",
+          "source_document_id": "01ks1zq68938tnv30g0zf0djk1",
+          "source_document_title": "GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub",
+          "checked_at": "2026-05-20T08:52:27.301Z",
+          "status": "pending_review",
+          "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/greensock/gsap-skills"
+        },
+        {
+          "repo": "rbrown101010/codex-marketing-skills",
+          "url": "https://github.com/rbrown101010/codex-marketing-skills",
+          "source_document_id": "01ks1qaef2re1bsn68edaapv2k",
+          "source_document_title": "rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills",
+          "checked_at": "2026-05-20T08:52:27.370Z",
+          "status": "pending_review",
+          "reason": "GitHub API failed: 403 rate limit exceeded for https://api.github.com/repos/rbrown101010/codex-marketing-skills"
+        }
+      ],
+      "messages": [
+        "Regenerated public/search-index.json."
+      ]
+    }
+  ],
+  "notes": []
+}

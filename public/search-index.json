@@ -708,6 +708,32 @@
     "body": "> Source: wshobson/agents > Original Plugin: payment-processing Billing Automation Master automated billing systems including recurring billing, invoice generation, dunning management, proration, and tax calculation. When to Use This Skill - Implementing SaaS subscription billing - Automating invoice generation and delivery - Managing failed payment recovery (dunning) - Calculating prorated charges for plan changes - Handling sales tax, VAT, and GST - Processing usage-based billing - Managing billing cycles and renewals Core Concepts 1. Billing Cycles Common Intervals: - Monthly (most common for SaaS) - Annual (discounted long-term) - Quarterly - Weekly - Custom (usage-based, per-seat) 2. Subscription States 3. Dunning Management Automated process to recover failed payments through: - Retry schedules - Customer notifications - Grace periods - Account restrictions 4. Proration Adjusting charges when: - Upgrading/downgrading mid-cycle - Adding/removing seats - Changing billing frequency Quick Start Subscription Lifecycle Management Billing Cycle Processing Dunning Management Proration Tax Calculation Invoice Generation Usage-Based Billing Resources - references/billing-cycles.md: Billing cycle management - references/dunning-management.md: Failed payment recovery - references/proration.md: Prorated charge calculations - references/tax-calculation.md: Tax/VAT/GST handling - references/invoice-lifecycle.md: Invoice state management - assets/billing-state-machine.yaml: Billing workflow - assets/invoice-template.html: Invoice templates - assets/dunning-policy.yaml: Dunning configuration Best Practices 1. Automate Everything: Minimize manual intervention 2. Clear Communication: Notify customers of billing events 3. Flexible Retry Logic: Balance recovery with customer experience 4. Accurate Proration: Fair calculation for plan changes 5. Tax Compliance: Calculate correct tax for jurisdiction 6. Audit Trail: Log all billing events 7. Graceful Degradation: Handle edge cases without breaking Common Pitfalls - Incorrect Proration: Not accounting for partial periods - Missing Tax: Forgetting to add tax to invoices - Aggressive Dunning: Canceling too quickly - No Notifications: Not informing customers of failures - Hardcoded Cycles: Not supporting custom billing dates"
   },
   {
+    "slug": "bmad-method",
+    "title": "BMAD METHOD",
+    "description": "Build More Architect Dreams is an AI-driven agile development module for the BMad Method ecosystem, with scale-adaptive planning for bug fixes, features, and larger product work.",
+    "categories": [
+      "productivity",
+      "development"
+    ],
+    "tags": [
+      "claude",
+      "claude-code",
+      "agents",
+      "ai",
+      "automation",
+      "python",
+      "workflow",
+      "agile",
+      "skills"
+    ],
+    "featured": false,
+    "author": "bmad-code-org",
+    "repoUrl": "https://github.com/bmad-code-org/BMAD-METHOD",
+    "date": "2026-05-20T08:52:26.857Z",
+    "excerpt": "BMAD METHOD Build More Architect Dreams — An AI-driven agile development module for the BMad Method Module Ecosystem, the best and most comprehensive Agile AI Driven Development framework that has tru...",
+    "body": "BMAD METHOD Build More Architect Dreams — An AI-driven agile development module for the BMad Method Module Ecosystem, the best and most comprehensive Agile AI Driven Development framework that has true scale-adaptive intelligence that adjusts from bug fixes to enterprise systems. <Callout type=\"info\"> Imported from bmad-code-org/BMAD-METHOD after being saved to Reader. Review the upstream README for the latest install and usage details. </Callout> What It Includes - AI Intelligent Help — Invoke the  skill anytime for guidance on what's next - Scale-Domain-Adaptive — Automatically adjusts planning depth based on project complexity - Structured Workflows — Grounded in agile best practices across analysis, planning, architecture, and implementation - Specialized Agents — 12+ domain experts (PM, Architect, Developer, UX, and more) - Party Mode — Bring multiple agent personas into one session to collaborate and discuss - Complete Lifecycle — From brainstorming to deployment Installation Prerequisites: Node.js v20.12+ · Python 3.10+ · uv > Want the newest prerelease build? Use . Expect higher churn than the default install. Follow the installer prompts, then open your AI IDE (Claude Code, Cursor, etc.) in your project folder. Non-Interactive Installation (for CI/CD): Override any module config option with  (repeatable). Run  to see locally-known official keys (built-in modules plus any external officials cached on this machine): See all installation options > Not sure what to do? Ask  — it tells you exactly what's next and what's optional. You can also ask questions like  Repository Details <Card title=\"BMAD METHOD\"> - Repository: bmad-code-org/BMAD-METHOD - Author: bmad-code-org - GitHub stars: 47,683 - License: NOASSERTION - Saved from Reader: bmad-code-org/BMAD-METHOD: Breakthrough Method for Agile Ai Driven Development </Card> Notes This listing was generated from a saved GitHub repository and summarized from public repository metadata and README content. Check the upstream repository before using it in production workflows."
+  },
+  {
     "slug": "brainstorming",
     "title": "Brainstorming & Design",
     "description": "Nine-step methodology for transforming rough ideas into fully-formed, approved designs — with a hard gate preventing implementation before design sign-off.",
@@ -1536,6 +1562,30 @@
     "date": "2025-10-31",
     "excerpt": "> Source: wshobson/agents > Original Plugin: developer-essentials Code Review Excellence Transform code reviews from gatekeeping to knowledge sharing through constructive feedback, systematic analysis...",
     "body": "> Source: wshobson/agents > Original Plugin: developer-essentials Code Review Excellence Transform code reviews from gatekeeping to knowledge sharing through constructive feedback, systematic analysis, and collaborative improvement. When to Use This Skill - Reviewing pull requests and code changes - Establishing code review standards for teams - Mentoring junior developers through reviews - Conducting architecture reviews - Creating review checklists and guidelines - Improving team collaboration - Reducing code review cycle time - Maintaining code quality standards Core Principles 1. The Review Mindset Goals of Code Review: - Catch bugs and edge cases - Ensure code maintainability - Share knowledge across team - Enforce coding standards - Improve design and architecture - Build team culture Not the Goals: - Show off knowledge - Nitpick formatting (use linters) - Block progress unnecessarily - Rewrite to your preference 2. Effective Feedback Good Feedback is: - Specific and actionable - Educational, not judgmental - Focused on the code, not the person - Balanced (praise good work too) - Prioritized (critical vs nice-to-have) 3. Review Scope What to Review: - Logic correctness and edge cases - Security vulnerabilities - Performance implications - Test coverage and quality - Error handling - Documentation and comments - API design and naming - Architectural fit What Not to Review Manually: - Code formatting (use Prettier, Black, etc.) - Import organization - Linting violations - Simple typos Review Process Phase 1: Context Gathering (2-3 minutes) Phase 2: High-Level Review (5-10 minutes) Phase 3: Line-by-Line Review (10-20 minutes) Phase 4: Summary & Decision (2-3 minutes) Review Techniques Technique 1: The Checklist Method Technique 2: The Question Approach Instead of stating problems, ask questions to encourage thinking: Technique 3: Suggest, Don't Command typescript     async function fetchUser(id: string) {         const user = await db.query('SELECT  FROM users WHERE id = ?', id);         return user;     }      Technique 4: Differentiate Severity Language-Specific Patterns Python Code Review TypeScript/JavaScript Code Review Advanced Review Patterns Pattern 1: Architectural Review Pattern 2: Test Quality Review Pattern 3: Security Review Giving Difficult Feedback Pattern: The Sandwich Method (Modified) Handling Disagreements Best Practices 1. Review Promptly: Within 24 hours, ideally same day 2. Limit PR Size: 200-400 lines max for effective review 3. Review in Time Blocks: 60 minutes max, take breaks 4. Use Review Tools: GitHub, GitLab, or dedicated tools 5. Automate What You Can: Linters, formatters, security scans 6. Build Rapport: Emoji, praise, and empathy matter 7. Be Available: Offer to pair on complex issues 8. Learn from Others: Review others' review comments Common Pitfalls - Perfectionism: Blocking PRs for minor style preferences - Scope Creep: \"While you're at it, can you also...\" - Inconsistency: Different standards for different people - Delayed Reviews: Letting PRs sit for days - Ghosting: Requesting changes then disappearing - Rubber Stamping: Approving without actually reviewing - Bike Shedding: Debating trivial details extensively Templates PR Review Comment Template Resources - references/code-review-best-practices.md: Comprehensive review guidelines - references/common-bugs-checklist.md: Language-specific bugs to watch for - references/security-review-guide.md: Security-focused review checklist - assets/pr-review-template.md: Standard review comment template - assets/review-checklist.md: Quick reference checklist - scripts/pr-analyzer.py: Analyze PR complexity and suggest reviewers"
+  },
+  {
+    "slug": "codex-marketing-skills",
+    "title": "Codex Marketing Skills",
+    "description": "This repo contains skill instructions and helper scripts that are safe to share publicly. Secrets are intentionally excluded. Each user should configure their own API keys, app connections, and plugin auth locally.",
+    "categories": [
+      "marketing"
+    ],
+    "tags": [
+      "claude",
+      "claude-code",
+      "ai",
+      "mcp",
+      "marketing",
+      "workflow",
+      "gsap",
+      "skills"
+    ],
+    "featured": false,
+    "author": "rbrown101010",
+    "repoUrl": "https://github.com/rbrown101010/codex-marketing-skills",
+    "date": "2026-05-20T08:51:58.199Z",
+    "excerpt": "Codex Marketing Skills This repo contains skill instructions and helper scripts that are safe to share publicly. Secrets are intentionally excluded. Each user should configure their own API keys, app ...",
+    "body": "Codex Marketing Skills This repo contains skill instructions and helper scripts that are safe to share publicly. Secrets are intentionally excluded. Each user should configure their own API keys, app connections, and plugin auth locally. <Callout type=\"info\"> Imported from rbrown101010/codex-marketing-skills after being saved to Reader. Review the upstream README for the latest install and usage details. </Callout> What It Includes - : standalone Codex/Claude-style skills. - : exported instructions from plugin-backed workflows that are useful to share with the team. - : repo-level reference docs for setup and required secrets. Installation For Codex-style local skills, copy a folder from  into your local skills directory, for example: For Claude Code-style skills, copy the same folder into your Claude/agent skills directory if your setup supports it. Plugin workflows may still require the corresponding plugin to be installed/enabled. The folders here preserve the operating instructions, but they do not replace plugin authentication or hosted plugin capabilities. Repository Details <Card title=\"Codex Marketing Skills\"> - Repository: rbrown101010/codex-marketing-skills - Author: rbrown101010 - GitHub stars: 29 - Saved from Reader: rbrown101010/codex-marketing-skills: Private team repo for Codex creator and marketing skills </Card> Notes This listing was generated from a saved GitHub repository and summarized from public repository metadata and README content. Check the upstream repository before using it in production workflows."
   },
   {
     "slug": "competitive-ads-extractor",
@@ -2634,6 +2684,31 @@
     "date": "2025-10-31",
     "excerpt": "> Source: wshobson/agents > Original Plugin: observability-monitoring Grafana Dashboards Create and manage production-ready Grafana dashboards for comprehensive system observability. Purpose Design ef...",
     "body": "> Source: wshobson/agents > Original Plugin: observability-monitoring Grafana Dashboards Create and manage production-ready Grafana dashboards for comprehensive system observability. Purpose Design effective Grafana dashboards for monitoring applications, infrastructure, and business metrics. When to Use - Visualize Prometheus metrics - Create custom dashboards - Implement SLO dashboards - Monitor infrastructure - Track business KPIs Dashboard Design Principles 1. Hierarchy of Information 2. RED Method (Services) - Rate - Requests per second - Errors - Error rate - Duration - Latency/response time 3. USE Method (Resources) - Utilization - % time resource is busy - Saturation - Queue length/wait time - Errors - Error count Dashboard Structure API Monitoring Dashboard Reference: See  Panel Types 1. Stat Panel (Single Value) 2. Time Series Graph 3. Table Panel 4. Heatmap Variables Query Variables Use Variables in Queries Alerts in Dashboards Dashboard Provisioning dashboards.yml: Common Dashboard Patterns Infrastructure Dashboard Key Panels: - CPU utilization per node - Memory usage per node - Disk I/O - Network traffic - Pod count by namespace - Node status Reference: See  Database Dashboard Key Panels: - Queries per second - Connection pool usage - Query latency (P50, P95, P99) - Active connections - Database size - Replication lag - Slow queries Reference: See  Application Dashboard Key Panels: - Request rate - Error rate - Response time (percentiles) - Active users/sessions - Cache hit rate - Queue length Best Practices 1. Start with templates (Grafana community dashboards) 2. Use consistent naming for panels and variables 3. Group related metrics in rows 4. Set appropriate time ranges (default: Last 6 hours) 5. Use variables for flexibility 6. Add panel descriptions for context 7. Configure units correctly 8. Set meaningful thresholds for colors 9. Use consistent colors across dashboards 10. Test with different time ranges Dashboard as Code Terraform Provisioning Ansible Provisioning Reference Files -  - API monitoring dashboard -  - Infrastructure dashboard -  - Database monitoring dashboard -  - Dashboard design guide Related Skills -  - For metric collection -  - For SLO dashboards"
+  },
+  {
+    "slug": "gsap-skills",
+    "title": "GSAP Skills",
+    "description": "Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage.",
+    "categories": [
+      "development",
+      "animation"
+    ],
+    "tags": [
+      "claude",
+      "claude-code",
+      "agents",
+      "ai",
+      "react",
+      "animation",
+      "gsap",
+      "skills"
+    ],
+    "featured": false,
+    "author": "greensock",
+    "repoUrl": "https://github.com/greensock/gsap-skills",
+    "date": "2026-05-20T08:51:56.982Z",
+    "excerpt": "GSAP Skills Official AI skills for GSAP. These skills teach Claude, Cursor, Copilot, and other coding agents how to use GreenSock Animation Platform correctly, including core animation patterns, timel...",
+    "body": "GSAP Skills Official AI skills for GSAP. These skills teach Claude, Cursor, Copilot, and other coding agents how to use GreenSock Animation Platform correctly, including core animation patterns, timelines, ScrollTrigger, framework usage, performance guidance, and plugin-specific workflows. <Callout type=\"info\"> Imported from greensock/gsap-skills after being saved to Reader. Review the upstream README for the latest install and usage details. </Callout> What It Includes - GSAP Core — guidance for tweens, timelines, easing, staggers, defaults, and common animation setup - ScrollTrigger — patterns for scroll-linked animation, pinning, scrub behavior, and trigger configuration - Framework Usage — React, Vue, Svelte, and lifecycle-safe animation patterns - Plugin Workflows — references for MotionPath, Flip, Draggable, Observer, ScrollSmoother, and other GSAP plugins - Performance Guidance — practical rules for transform-based animation, batching, and avoiding layout thrashing Installation Copy the GSAP skill folders into the skills directory used by your AI coding agent, then restart or reload the agent so it can discover the new instructions. Use the repository README for the latest per-agent installation paths. Repository Details <Card title=\"GSAP Skills\"> - Repository: greensock/gsap-skills - Author: greensock - GitHub stars: 3,367 - License: MIT - Saved from Reader: GitHub - greensock/gsap-skills: Official AI skills for GSAP. These skills teach AI coding agents how to correctly use GSAP (GreenSock Animation Platform), including best practices, common animation patterns, and plugin usage. · GitHub </Card> Notes This listing was generated from a saved GitHub repository and summarized from public repository metadata and README content. Check the upstream repository before using it in production workflows."
   },
   {
     "slug": "helm-chart-scaffolding",
